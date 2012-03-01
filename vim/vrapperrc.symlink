@@ -1,0 +1,7 @@
+map <Space> 10j
+map <BS> 10k
+map ; :
+map K i<cr><esc>k$
+
+set ic
+set scs

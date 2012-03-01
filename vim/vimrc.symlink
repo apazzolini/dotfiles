@@ -1,0 +1,52 @@
+filetype plugin indent on
+syntax on
+
+set nocompatible
+set noswapfile
+
+set ic
+set scs
+
+set autoindent
+set smartindent
+
+set expandtab
+set nosmarttab             " fuck tabs
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set showmatch
+set vb t_vb=
+set incsearch
+set number
+
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
+
+colorscheme desert
+set guifont=Anonymous\ Pro:h11
+set statusline=%F%m%r%h%w\ %03lL\ %02vC\ [%p%%]
+
+nmap ,t :CommandT<CR>
+map ,a :A<CR>
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-H> <C-W>h<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <Space> 10j
+map <BS> 10k
+map ; :
+map 0 ^
+
+map K i<cr><esc>k$
+map <D-l> :CommandT<CR>
+
+noremap j gj
+noremap k gk
+
+set statusline=
+set statusline=%F%m%r%h%w\ 
+set statusline+=\ [line\ %l\/%L]\ \-\ %c          
+
