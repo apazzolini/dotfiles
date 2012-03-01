@@ -11,7 +11,7 @@ export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 
 # Environment Path
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-export PATH="opt/local/bin:$ZSH/bin:$MAGICK_HOME/bin:$PATH"
+export PATH="opt/local/bin:$ZSH/bin:$ZSH/bin/private:$MAGICK_HOME/bin:$PATH"
 
 # Use VI mode in the shell
 set -o vi
