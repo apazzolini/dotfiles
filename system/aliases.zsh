@@ -8,6 +8,10 @@ alias lsd='ls -l | grep "^d"'
 alias ..="cd .."
 alias ...="cd ../.."
 
+# history alias
+alias hall='history 1 -1'
+alias h='history -30 -1'
+
 # process list helpers
 alias pg='ps -A | grep '
 alias psa='ps -A'
