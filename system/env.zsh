@@ -2,6 +2,7 @@
 export EDITOR='mvim'
 export MANPAGER="less -X"
 export HISTFILESIZE=32768
+export HISTSIZE=32768
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 export MVN_HOME=/usr/lib/apache-maven-3.0.2
 export MULE_HOME=/usr/lib/mule-standalone-3.1.2

@@ -1,2 +1,2 @@
-supertab.vba: call delete('/Users/Andre/.vim/doc/supertab.txt')|call delete('/Users/Andre/.vim/plugin/supertab.vim')
 ruby-sinatra-0.2.0.vba: call delete('/Users/Andre/.vim/ftdetect/ruby-sinatra.vim')|call delete('/Users/Andre/.vim/snippets/ruby-sinatra.snippets')|call delete('/Users/Andre/.vim/syntax/ruby-sinatra.vim')
+supertab.vba: call delete('/Users/Andre/.vim/doc/supertab.txt')|call delete('/Users/Andre/.vim/plugin/supertab.vim')
