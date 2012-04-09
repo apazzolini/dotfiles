@@ -7,10 +7,12 @@ configuration by myself, so this no longer requires that.
 
 ## Usage
 
-Same steps as Holman's: <Section blatantly ripped off>
+Same steps as Holman's:
+
 - `git clone git://github.com/apazzolini/dotfiles ~/.dotfiles`
 - `cd ~/.dotfiles`
 - `rake install`
+- `chsh -s /bin/zsh` (make sure this path exists on your machine or you're gonna have a bad time)
 
 The install rake task will symlink the appropriate files in `.dotfiles` to your
 home directory. Everything is configured and tweaked within `~/.dotfiles`,
