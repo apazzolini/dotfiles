@@ -12,6 +12,7 @@ Same steps as Holman's:
 - `git clone git://github.com/apazzolini/dotfiles ~/.dotfiles`
 - `cd ~/.dotfiles`
 - `rake install`
+- `brew install grc` (optional, will add color to a few utilities)
 - `chsh -s /bin/zsh` (make sure this path exists on your machine or you're gonna have a bad time)
 
 The install rake task will symlink the appropriate files in `.dotfiles` to your
@@ -35,6 +36,14 @@ There's a few special files in the hierarchy.
   symlinked in when you run `rake install`.
 - **topic/\*.completion.sh**: Any files ending in `completion.sh` get loaded
   last so that they get loaded after we set up zsh autocomplete functions.
+
+## Private items
+
+Items that are in `private/` will not get committed into git should you choose to share your repo.
+Files inside that end in .zsh or .symlink will still function however.
+
+Also, `git/gitconfig.symlink` is set to be ignored as well, and I recommend you move your private
+`~/.gitconfig` into `git/gitconfig.symlink` for consistency.
 
 ## Credit
 
