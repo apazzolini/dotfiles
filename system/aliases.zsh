@@ -24,9 +24,3 @@ alias t='vim /Users/Andre/Dropbox/Random/tasks.txt'
 
 # copies public ssh key to clipboard
 alias pubkey="more ~/.ssh/id_dsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
-
-# GRC colorizes nifty unix tools all over the place
-if $(grc &>/dev/null)
-then
-  source `brew --prefix`/etc/grc.bashrc
-fi
