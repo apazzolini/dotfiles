@@ -1,8 +1,8 @@
 # ls aliases
-alias l='ls -l'
-alias la='ls -a'
-alias ll='ls -la'
-alias lsd='ls -l | grep "^d"'
+alias ls="ls -F --color"
+alias l="ls -lh"
+alias ll="ls -lAh"
+alias la="ls -A"
 
 # easy navigating
 alias ..="cd .."
@@ -11,6 +11,7 @@ alias ...="cd ../.."
 # history alias
 alias hall='history 1 -1'
 alias h='history -30 -1'
+alias hg='history 1 -1 | grep '
 
 # process list helpers
 alias pg='ps -A | grep '
