@@ -45,5 +45,10 @@ RPROMPT='[%*] ${return_code}'
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="*"              # Text to display if the branch is dirty
-
 ZSH_THEME_GIT_PROMPT_CLEAN=""               # Text to display if the branch is clean
+
+# GRC colorizes nifty unix tools all over the place
+if $(grc &>/dev/null)
+then
+  source `brew --prefix`/etc/grc.bashrc
+fi
