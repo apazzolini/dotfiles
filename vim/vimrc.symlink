@@ -1,6 +1,9 @@
 filetype plugin indent on
 syntax on
 
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
 set nocompatible
 set noswapfile
 
@@ -43,7 +46,7 @@ map 0 ^
 
 map K i<cr><esc>k$
 map <D-l> :CommandT<CR>
-map <D-k> :NERDTreeToggle<CR>
+map <D-k> :NERDTreeTabsToggle<CR>
 
 noremap j gj
 noremap k gk
@@ -53,3 +56,5 @@ set statusline=%F%m%r%h%w\
 set statusline+=\ [line\ %l\/%L]\ \-\ %c          
 
 set wildignore+=*.class
+
+call pathogen#infect()
