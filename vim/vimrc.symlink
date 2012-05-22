@@ -40,7 +40,6 @@ set foldlevel=1
 set background=dark
 colorscheme solarized
 set guifont=Anonymous\ Pro:h11
-set statusline=%F%m%r%h%w\ %03lL\ %02vC\ [%p%%]
 set laststatus=2
 
 nmap ,t :CommandT<CR>
@@ -53,6 +52,7 @@ map <BS> 10k
 map ; :
 map 0 ^
 
+
 map K i<cr><esc>k$
 map <D-l> :CommandT<CR>
 map <D-k> :NERDTreeTabsToggle<CR>
@@ -63,7 +63,7 @@ noremap k gk
 
 set statusline=
 set statusline=%F%m%r%h%w\ 
-set statusline+=\ [line\ %l\/%L]\ \-\ %c          
+set statusline+=\ [line\ %l\/%L]\ \-\ %c\ [FORMAT=%{&ff}]
 
 set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
@@ -75,3 +75,5 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.class
 set wildignore+=_site/**
+
+let mapleader = ","
