@@ -15,4 +15,4 @@
 	url = git://github.com/godlygeek/tabular.git
 [submodule "vim/vim.symlink/bundle/scrooloose-nerdcommenter"]
 	path = vim/vim.symlink/bundle/scrooloose-nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
+	url = git://github.com/scrooloose/nerdcommenter.git
