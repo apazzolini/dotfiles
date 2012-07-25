@@ -8,14 +8,15 @@ alias la="ls -A"
 alias ..="cd .."
 alias ...="cd ../.."
 
-# history alias
+# history aliases
 alias hall='history 1 -1'
 alias h='history -30 -1'
 alias hg='history 1 -1 | grep '
 
-# process list helpers
+# process aliases
 alias pg='ps -A | grep '
 alias psa='ps -A'
+alias ka='killall'
 
 # open current window in path finder
 alias o='open -a "Path Finder.app" .'
@@ -28,3 +29,4 @@ alias pubkey="more ~/.ssh/id_dsa.pub | pbcopy | echo '=> Public key copied to pa
 
 # starts up a webserver at the current directory
 alias webserver="python -m SimpleHTTPServer 9090"
+

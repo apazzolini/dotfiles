@@ -35,7 +35,7 @@ setopt HIST_REDUCE_BLANKS
 setopt complete_aliases # don't expand aliases _before_ completion has finished like: git comm-[tab]
 
 # Use VI mode in the shell
-#set -o vi
+bindkey -v
 
 # Prompt
 if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
