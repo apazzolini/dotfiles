@@ -30,3 +30,7 @@ if $(grc &>/dev/null)
 then
   source `brew --prefix`/etc/grc.bashrc
 fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+eval "$(rbenv init -)"

@@ -37,8 +37,7 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=1
 
-set background=dark
-colorscheme solarized
+colorscheme Tomorrow-Night
 set guifont=Anonymous\ Pro:h11
 set laststatus=2
 

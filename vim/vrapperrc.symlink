@@ -5,3 +5,5 @@ map K i<cr><esc>k$
 
 set ic
 set scs
+
+set softtabstop=4
