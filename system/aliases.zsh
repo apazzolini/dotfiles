@@ -35,4 +35,5 @@ alias httpserver="python -m SimpleHTTPServer 9090"
 # use hub to front git
 alias git='hub'
 
-
+# because why not
+alias plz='sudo'
