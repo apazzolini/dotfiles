@@ -1,0 +1,3 @@
+getpath () { 
+    readlink -f $1 | pbcopy | echo "=> $1 path copied to clipboard"
+}
