@@ -16,3 +16,6 @@
 [submodule "vim/vim.symlink/bundle/scrooloose-nerdcommenter"]
 	path = vim/vim.symlink/bundle/scrooloose-nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule "vim/vim.symlink/bundle/airblade-vim-gitgutter"]
+	path = vim/vim.symlink/bundle/airblade-vim-gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
