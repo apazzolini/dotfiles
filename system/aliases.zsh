@@ -37,3 +37,6 @@ alias git='hub'
 
 # because why not
 alias plz='sudo'
+
+# javascript console
+alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
