@@ -24,7 +24,7 @@ alias kaj='killall java'
 alias o='open -a "Path Finder.app" .'
 
 # atea (https://github.com/pkamenarsky/atea)
-alias t='mvim /Users/Andre/Dropbox/Random/tasks.txt'
+alias t='vim /Users/Andre/Dropbox/Random/atea/tasks.txt'
 
 # copies public ssh key to clipboard
 alias pubkey="more ~/.ssh/id_dsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
