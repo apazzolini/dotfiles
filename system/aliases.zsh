@@ -40,3 +40,7 @@ alias plz='sudo'
 
 # javascript console
 alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
+
+# toggle java_home
+alias usejava6='export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home'
+alias usejava7='export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home'
