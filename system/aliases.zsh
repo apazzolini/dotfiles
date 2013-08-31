@@ -1,5 +1,5 @@
 # ls aliases
-alias ls="ls -F --color"
+alias ls="ls -F"
 alias l="ls -lh"
 alias ll="ls -lAh"
 alias la="ls -A"
@@ -47,3 +47,6 @@ alias usejava7='export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_25.j
 
 # open current directory in sourcetree
 alias st='open -a SourceTree `pwd`'
+
+# edit previous command in vi
+alias evi='fc -e vim'
