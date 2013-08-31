@@ -7,13 +7,9 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home
-export MVN_HOME=/usr/lib/apache-maven-3.0.2
-export MULE_HOME=/usr/lib/mule-standalone-3.1.2
-export GRAILS_HOME=/usr/lib/grails-2.0.0
-export MAGICK_HOME=/usr/lib/ImageMagick
-export NODE_PATH="/usr/local/lib/node"
+export MVN_HOME=/usr/local/Cellar/maven/3.1.0/libexec
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-export PATH="/usr/local/coreutils:$ZSH/bin:$ZSH/bin/private:$PATH"
+export PATH="$ZSH/bin:$ZSH/bin/private:$PATH"
 
 # Environment settings
 setopt NO_BG_NICE # don't nice background tasks
