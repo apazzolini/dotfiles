@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>net.damacy.releasemem</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/Andre/.dotfiles/utils/releasemem/releasemem.py</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>60</integer>
+    <key>Nice</key>
+    <integer>20</integer>
+    <key>LowPriorityIO</key>
+    <true/>
+  </dict>
+</plist>
