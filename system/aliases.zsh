@@ -50,3 +50,6 @@ alias st='open -a SourceTree `pwd`'
 
 # edit previous command in vi
 alias evi='fc -e vim'
+
+# starts up jekyll
+alias jek='jekyll serve --watch --drafts'
