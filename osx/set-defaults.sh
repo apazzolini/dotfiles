@@ -49,3 +49,5 @@ for app in Safari Finder Dock Mail; do killall "$app"; done
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
 echo "0x08000100:0" > ~/.CFUserTextEncoding
 
+# Disable sleepimage file
+sudo pmset -a hibernatemode 0
