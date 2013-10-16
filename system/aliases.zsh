@@ -27,7 +27,7 @@ alias o='open -a "Path Finder.app" .'
 alias t='vim /Users/Andre/Dropbox/Random/atea/tasks.txt'
 
 # copies public ssh key to clipboard
-alias pubkey="more ~/.ssh/id_dsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
 # starts up a webserver at the current directory
 alias httpserver="python -m SimpleHTTPServer 9090"
