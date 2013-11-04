@@ -10,6 +10,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home
 export MVN_HOME=/usr/local/Cellar/maven/3.1.0/libexec
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export PATH="$ZSH/bin:$ZSH/bin/private:$PATH"
+export PGDATA='/usr/local/var/postgres'
 
 # Environment settings
 setopt NO_BG_NICE # don't nice background tasks
