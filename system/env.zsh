@@ -39,7 +39,7 @@ bindkey -v
 if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 PROMPT='%{$reset_color%}%{${fg[green]}%}%10~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
-RPROMPT='[%*] ${return_code}'
+RPROMPT='[%* %m] ${return_code}'
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="*"              # Text to display if the branch is dirty
