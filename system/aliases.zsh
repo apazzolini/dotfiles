@@ -33,7 +33,10 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 alias httpserver="python -m SimpleHTTPServer 9090"
 
 # use hub to front git
-alias git='hub'
+if $(hub &>/dev/null)
+then
+  alias git='hub'
+fi
 
 # because why not
 alias plz='sudo'
