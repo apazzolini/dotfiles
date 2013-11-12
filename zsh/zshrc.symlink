@@ -21,7 +21,10 @@ compinit -u
 for config_file ($ZSH/**/completion.sh) source $config_file
 
 # autojump
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+if $(brew &>/dev/null)
+then
+  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+fi
 
 # GRC colorizes nifty unix tools all over the place
 if $(grc &>/dev/null)
