@@ -4,6 +4,8 @@ map ; :
 map K i<cr><esc>k$
 map <C-h> :tabprev<cr>
 map <C-l> :tabnext<cr>
+map H ^
+map L $
 
 set ic
 set scs

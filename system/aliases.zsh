@@ -19,6 +19,7 @@ alias psa='ps -A'
 alias ka='killall'
 alias pgj='ps -Aef | grep java'
 alias kaj='killall java'
+alias k='kill -9'
 
 # open current window in path finder
 alias o='open -a "Path Finder.app" .'

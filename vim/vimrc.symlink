@@ -49,7 +49,8 @@ map <C-L> <C-W>l<C-W>_
 map <Space> 10j
 map <BS> 10k
 map ; :
-map 0 ^
+map H ^
+map L $
 
 
 map K i<cr><esc>k$
