@@ -30,6 +30,6 @@ if hash grc 2>/dev/null; then
   source `brew --prefix`/etc/grc.bashrc
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if hash brew 2>/dev/null; then 
+    eval "$(rbenv init -)";
+fi
