@@ -21,4 +21,4 @@
 	url = git://github.com/airblade/vim-gitgutter.git
 [submodule "vim/vim.symlink/bundle/tpope-vim-pathogen"]
 	path = vim/vim.symlink/bundle/tpope-vim-pathogen
-	url = git://github.com/tpope/vim-pathogen.git
+	url = git@github.com:tpope/vim-pathogen.git
