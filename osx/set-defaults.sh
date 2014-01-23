@@ -51,3 +51,6 @@ echo "0x08000100:0" > ~/.CFUserTextEncoding
 
 # Disable sleepimage file
 sudo pmset -a hibernatemode 0
+
+# Set the personal global git ignore file
+git config --global core.excludesfile '~/.cvsignore'
