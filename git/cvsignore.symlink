@@ -1,2 +1,4 @@
 tags
 .ruby-version
+*.pyc
+node_modules/
