@@ -54,3 +54,6 @@ sudo pmset -a hibernatemode 0
 
 # Set the personal global git ignore file
 git config --global core.excludesfile '~/.cvsignore'
+
+# Grab fuck-you
+npm install -g fuck-you
