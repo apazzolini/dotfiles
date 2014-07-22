@@ -58,6 +58,7 @@ map <D-k> :NERDTreeTabsToggle<CR>
 inoremap jj <Esc>
 noremap j gj
 noremap k gk
+nnoremap <D-i> <C-a>
 
 set statusline=
 set statusline=%F%m%r%h%w\ 
@@ -73,5 +74,6 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.class
 set wildignore+=_site/**
+set wildignore+=**/target/classes/**
 
 let mapleader = ","
