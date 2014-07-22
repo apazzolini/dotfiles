@@ -51,10 +51,14 @@ alias usejava7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
 alias usejava8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
 
 # open current directory in sourcetree
-alias st='open -a SourceTree `pwd`'
+alias st='open -a /Applications/SourceTree.app `pwd`'
 
 # edit previous command in vi
 alias evi='fc -e vim'
 
 # starts up jekyll
 alias jek='jekyll serve --watch --drafts'
+
+# opens iphone photos
+alias phonepics='open -a "Path Finder.app" /Users/Andre/AeroFS/Photos/iPhone'
+ 
