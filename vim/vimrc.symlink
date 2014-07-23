@@ -74,6 +74,6 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.class
 set wildignore+=_site/**
-set wildignore+=**/target/classes/**
+set wildignore+=**/target/**
 
 let mapleader = ","

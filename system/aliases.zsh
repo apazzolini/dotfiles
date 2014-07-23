@@ -22,7 +22,7 @@ alias kaj='killall java'
 alias k='kill -9'
 
 # open current window in path finder
-alias o='open -a "Path Finder.app" .'
+alias o='open -a "/Applications/Path Finder.app" .'
 
 # atea (https://github.com/pkamenarsky/atea)
 alias t='vim /Users/Andre/Dropbox/Random/atea/tasks.txt'
@@ -51,7 +51,7 @@ alias usejava7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
 alias usejava8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
 
 # open current directory in sourcetree
-alias st='open -a /Applications/SourceTree.app `pwd`'
+alias st='open -a "/Applications/SourceTree.app" `pwd`'
 
 # edit previous command in vi
 alias evi='fc -e vim'
@@ -60,5 +60,5 @@ alias evi='fc -e vim'
 alias jek='jekyll serve --watch --drafts'
 
 # opens iphone photos
-alias phonepics='open -a "Path Finder.app" /Users/Andre/AeroFS/Photos/iPhone'
+alias viewpics='open -a "/Applications/Path Finder.app" /Users/Andre/AeroFS/Photos/iPhone'
  
