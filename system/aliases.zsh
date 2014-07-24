@@ -61,4 +61,6 @@ alias jek='jekyll serve --watch --drafts'
 
 # opens iphone photos
 alias viewpics='open -a "/Applications/Path Finder.app" /Users/Andre/AeroFS/Photos/iPhone'
- 
+
+# diffmerge
+alias diffmerge='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge'
