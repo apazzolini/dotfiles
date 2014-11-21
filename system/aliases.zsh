@@ -30,6 +30,9 @@ alias t='vim /Users/Andre/Dropbox/Random/atea/tasks.txt'
 # copies public ssh key to clipboard
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
+# copies current directory to clipboard
+alias curdir="pwd | tr -d '\n' | pbcopy"
+
 # starts up a webserver at the current directory
 alias httpserver="python -m SimpleHTTPServer 9090"
 
@@ -64,3 +67,6 @@ alias viewpics='open -a "/Applications/Path Finder.app" /Users/Andre/AeroFS/Phot
 
 # diffmerge
 alias diffmerge='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge'
+
+# clean eclipse artifacts
+alias cleaneclipse="find . -name '.classpath' -o -name 'target' -o -name '.settings' -o -name '.project' | xargs rm -rf"
