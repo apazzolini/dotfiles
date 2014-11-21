@@ -35,10 +35,13 @@ set nofoldenable
 set foldlevel=1
 
 "colorscheme Tomorrow-Night
-"set guifont=Anonymous\ Pro:h11
-colorscheme Solarized
-set background=light
-set guifont=Deja\ Vu\ Sans\ Mono:h11
+colorscheme Andre2
+"colorscheme Solarized
+"set background=light
+
+"set guifont=Deja\ Vu\ Sans\ Mono:h11
+set guifont=Anonymous\ Pro:h11
+
 set laststatus=2
 
 nmap ,t :CommandT<CR>
