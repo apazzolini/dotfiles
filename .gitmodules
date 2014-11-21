@@ -25,3 +25,6 @@
 [submodule "vim/vim.symlink/bundle/groenewege-vim-less"]
 	path = vim/vim.symlink/bundle/groenewege-vim-less
 	url = git@github.com:groenewege/vim-less.git
+[submodule "vim/vim.symlink/bundle/tfnico-vim-gradle"]
+	path = vim/vim.symlink/bundle/tfnico-vim-gradle
+	url = git@github.com:tfnico/vim-gradle.git
