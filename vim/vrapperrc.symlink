@@ -7,7 +7,10 @@ map <C-l> :tabnext<cr>
 map H ^
 map L $
 
+inoremap jj <Esc>
+
 set ic
 set scs
 
 set softtabstop=4
+set shiftwidth=4
