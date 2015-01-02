@@ -14,3 +14,6 @@ set scs
 
 set softtabstop=4
 set shiftwidth=4
+
+eclipseuiaction eclipsegotoimpl org.eclipse.jdt.ui.edit.text.java.open.implementation
+nnoremap gd :eclipsegotoimpl<cr>
