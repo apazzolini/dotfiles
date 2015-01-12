@@ -35,7 +35,7 @@ set nofoldenable
 set foldlevel=1
 
 let g:hybrid_use_iTerm_colors = 1
-colorscheme Solarized
+colorscheme hybrid
 
 "set guifont=Deja\ Vu\ Sans\ Mono:h11
 set guifont=Anonymous\ Pro:h11
@@ -56,8 +56,11 @@ map L $
 
 map K i<cr><esc>k$
 
-map <D-o> :CtrlP<CR>
+let g:ctrlp_map = '<D-o>'
 map <D-0> :NERDTreeTabsToggle<CR>
+
+map <C-n> :bnext<CR>
+map <C-p> :bprev<CR>
 
 inoremap jj <Esc>
 noremap j gj
