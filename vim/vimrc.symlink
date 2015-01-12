@@ -44,7 +44,7 @@ set guifont=Anonymous\ Pro:h11
 
 set laststatus=2
 
-"nmap ,t :CommandT<CR>
+nmap ,t :CtrlP<CR>
 map <C-J> <C-W>j<C-W>
 map <C-K> <C-W>k<C-W>
 map <C-H> <C-W>h<C-W>
@@ -58,7 +58,7 @@ map L $
 
 
 map K i<cr><esc>k$
-"map <D-l> :CommandT<CR>
+map <D-l> :CtrlP<CR>
 map <D-k> :NERDTreeTabsToggle<CR>
 
 inoremap jj <Esc>
@@ -79,10 +79,10 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.class
-set wildignore+=_site/**
-set wildignore+=**/target/**
-set wildignore+=**/bower_components/**
-set wildignore+=**node_modules/**
+set wildignore+=_site/*
+set wildignore+=*/target/*
+set wildignore+=*/bower_components/*
+set wildignore+=*/node_modules/*
 
 let mapleader = ","
 
