@@ -1,6 +1,3 @@
-[submodule "vim/vim.symlink/bundle/wincent-command-t"]
-	path = vim/vim.symlink/bundle/wincent-command-t
-	url = git://git.wincent.com/command-t.git
 [submodule "vim/vim.symlink/bundle/tpope-vim-markdown"]
 	path = vim/vim.symlink/bundle/tpope-vim-markdown
 	url = git://github.com/tpope/vim-markdown.git
