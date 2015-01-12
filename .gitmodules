@@ -13,9 +13,6 @@
 [submodule "vim/vim.symlink/bundle/scrooloose-nerdcommenter"]
 	path = vim/vim.symlink/bundle/scrooloose-nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/vim.symlink/bundle/airblade-vim-gitgutter"]
-	path = vim/vim.symlink/bundle/airblade-vim-gitgutter
-	url = git://github.com/airblade/vim-gitgutter.git
 [submodule "vim/vim.symlink/bundle/tpope-vim-pathogen"]
 	path = vim/vim.symlink/bundle/tpope-vim-pathogen
 	url = git@github.com:tpope/vim-pathogen.git
@@ -28,3 +25,18 @@
 [submodule "vim/vim.symlink/bundle/kien-ctrlp"]
 	path = vim/vim.symlink/bundle/kien-ctrlp
 	url = git@github.com:kien/ctrlp.vim.git
+[submodule "vim/vim.symlink/bundle/pangloss-vim-javascript"]
+	path = vim/vim.symlink/bundle/pangloss-vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "vim/vim.symlink/bundle/othree-javascript-libraries-syntax"]
+	path = vim/vim.symlink/bundle/othree-javascript-libraries-syntax
+	url = git@github.com:othree/javascript-libraries-syntax.vim.git
+[submodule "vim/vim.symlink/bundle/altercation-vim-colors-solarized"]
+	path = vim/vim.symlink/bundle/altercation-vim-colors-solarized
+	url = git@github.com:altercation/vim-colors-solarized.git
+[submodule "vim/vim.symlink/bundle/crusoexia-vim-monokai"]
+	path = vim/vim.symlink/bundle/crusoexia-vim-monokai
+	url = git@github.com:crusoexia/vim-monokai.git
+[submodule "vim/vim.symlink/bundle/w0ng-vim-hybrid"]
+	path = vim/vim.symlink/bundle/w0ng-vim-hybrid
+	url = git@github.com:w0ng/vim-hybrid.git

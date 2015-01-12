@@ -1,6 +1,8 @@
 let g:nerdtree_tabs_open_on_gui_startup = 1 " Auto open nerd tree on startup
 let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 
-"colorscheme Solarized
+set guifont=Anonymous\ Pro:h11
+colorscheme hybrid
 "set background=light
+
 set go-=T                                   " Hide MacVim toolbar
