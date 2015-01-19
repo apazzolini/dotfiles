@@ -58,6 +58,7 @@ map K i<cr><esc>k$
 
 let g:ctrlp_map = '<D-o>'
 map <D-0> :NERDTreeTabsToggle<CR>
+map <D-L> :NERDTreeFind<CR>
 
 map <C-n> :bnext<CR>
 map <C-p> :bprev<CR>
@@ -67,9 +68,7 @@ noremap j gj
 noremap k gk
 nnoremap <D-i> <C-a>
 
-set statusline=
-set statusline=%F%m%r%h%w\ 
-set statusline+=\ [line\ %l\/%L]\ \-\ %c\ [FORMAT=%{&ff}]
+let g:airline#extensions#whitespace#enabled = 1
 
 set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
@@ -85,6 +84,8 @@ set wildignore+=*/target/*
 set wildignore+=*/bower_components/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/client_dist/*
+set wildignore+=*/dist/*
+set wildignore+=*/build/*
 
 let mapleader = ","
 
