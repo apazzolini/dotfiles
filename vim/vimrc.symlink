@@ -38,7 +38,8 @@ let g:hybrid_use_iTerm_colors = 1
 colorscheme hybrid
 
 "set guifont=Deja\ Vu\ Sans\ Mono:h11
-set guifont=Anonymous\ Pro:h11
+"set guifont=Anonymous\ Pro:h11
+set guifont=Inconsolata-g:h10
 
 set laststatus=2
 
