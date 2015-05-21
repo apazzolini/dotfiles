@@ -1,9 +1,25 @@
-runtime bundle/tpope-vim-pathogen/autoload/pathogen.vim
-
 set nocompatible
-call pathogen#infect('bundle/{}')
-call pathogen#helptags()
 
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'godlygeek/tabular'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'groenewege/vim-less'
+Plugin 'tfnico/vim-gradle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'crusoexia/vim-monokai'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+call vundle#end()
 syntax on
 filetype plugin indent on
 
