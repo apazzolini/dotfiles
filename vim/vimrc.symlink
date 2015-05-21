@@ -19,6 +19,9 @@ Plugin 'crusoexia/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mileszs/ack.vim'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'ervandew/supertab'
 call vundle#end()
 syntax on
 filetype plugin indent on
@@ -71,11 +74,14 @@ map ; :
 map H ^
 map L $
 
+nmap ,a :Ack<space>''<left>
+nmap <D-F> :Ack<space>''<left>
+
 map K i<cr><esc>k$
 
 let g:ctrlp_map = '<D-o>'
 map <D-0> :NERDTreeTabsToggle<CR>
-map <D-L> :NERDTreeFind<CR>
+map <D-l> :NERDTreeFind<CR>
 
 map <C-n> :bnext<CR>
 map <C-p> :bprev<CR>
