@@ -22,6 +22,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mileszs/ack.vim'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'ervandew/supertab'
+Plugin 'Lokaltog/vim-easymotion'
 call vundle#end()
 syntax on
 filetype plugin indent on
