@@ -1,5 +1,5 @@
+" Vundle configuration
 set nocompatible
-
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -19,25 +19,19 @@ Plugin 'crusoexia/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mileszs/ack.vim'
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'ervandew/supertab'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'mileszs/ack.vim'
 call vundle#end()
 syntax on
 filetype plugin indent on
 
+" Basic configuration
 set noswapfile
-
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-
 set ic
 set scs
-
 set autoindent
 set smartindent
-
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -46,54 +40,60 @@ set showmatch
 set vb t_vb=
 set incsearch
 set number
-
 set wrap linebreak nolist
-
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=1
 
+" NERDTree
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+" Appearance
 let g:hybrid_use_iTerm_colors = 1
 colorscheme hybrid
-
-"set guifont=Deja\ Vu\ Sans\ Mono:h11
-"set guifont=Anonymous\ Pro:h11
 set guifont=Inconsolata-g:h10
 
-set laststatus=2
-
-nmap ,o :CtrlP<CR>
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
-map <C-B> <C-6>
-map <Space> 10j
-map <BS> 10k
+" Convenience Bindings
+let mapleader = ","
 map ; :
 map H ^
 map L $
-
-nmap ,a :Ack<space>''<left>
-nmap <D-F> :Ack<space>''<left>
-
+map <C-B> <C-6>
 map K i<cr><esc>k$
-
-let g:ctrlp_map = '<D-o>'
-map <D-0> :NERDTreeTabsToggle<CR>
-map <D-l> :NERDTreeFind<CR>
-
+map <Space> 10j
+map <BS> 10k
 map <C-n> :bnext<CR>
 map <C-p> :bprev<CR>
-
 inoremap jj <Esc>
 noremap j gj
 noremap k gk
 nnoremap <D-i> <C-a>
 
+" Window split bindings
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
+
+" Ack
+let g:ack_mappings = { "v": "<C-w><CR><C-w>L<C-w>h<C-w>j<C-w>J<C-w>10_<C-w>k<C-w>l<C-w>l" }
+nmap ,a :Ack!<space>''<left>
+nmap ,c :Ack!<CR>
+nmap <D-F> :Ack!<space>''<left>
+
+" CtrlP
+nmap ,o :CtrlP<CR>
+let g:ctrlp_map = '<D-o>'
+map <D-0> :NERDTreeTabsToggle<CR>
+map <D-l> :NERDTreeFind<CR>
+
+" Statusbar
+set laststatus=2
 let g:airline#extensions#whitespace#enabled = 1
 
+" Wildignore
 set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
@@ -111,6 +111,5 @@ set wildignore+=*/client_dist/*
 set wildignore+=*/dist/*
 set wildignore+=*/build/*
 
-let mapleader = ","
-
+" JS Syntax coloring
 let g:used_javascript_libs = 'underscore,angularjs,angularui,jquery'
