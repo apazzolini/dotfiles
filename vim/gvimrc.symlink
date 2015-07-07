@@ -2,3 +2,4 @@ let g:nerdtree_tabs_open_on_gui_startup = 1 " Auto open nerd tree on startup
 let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 set go-=T                                   " Hide MacVim toolbar
 set go-=L                                   " Hide left scrollbar
+set showtabline=2 "always show tabs, even if there is only one

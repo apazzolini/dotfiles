@@ -83,6 +83,9 @@ nmap ,a :Ack!<space>''<left>
 nmap ,c :Ack!<CR>
 nmap <D-F> :Ack!<space>''<left>
 
+" Window title
+nmap ,t :set titlestring=[]\ %f<left><left><left><left><left>
+
 " CtrlP
 nmap ,o :CtrlP<CR>
 let g:ctrlp_map = '<D-o>'
