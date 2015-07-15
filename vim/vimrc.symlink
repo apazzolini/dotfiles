@@ -12,14 +12,15 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'groenewege/vim-less'
 Plugin 'tfnico/vim-gradle'
 Plugin 'kien/ctrlp.vim'
-Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/syntastic'
+Plugin 'marijnh/tern_for_vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'crusoexia/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
-Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mileszs/ack.vim'
 call vundle#end()
@@ -70,6 +71,8 @@ inoremap jj <Esc>
 noremap j gj
 noremap k gk
 nnoremap <D-i> <C-a>
+inoremap <C-Space> <C-p>
+inoremap <C-S-Space> <C-n>
 
 " Window split bindings
 map <C-J> <C-W>j
@@ -116,3 +119,13 @@ set wildignore+=*/build/*
 
 " JS Syntax coloring
 let g:used_javascript_libs = 'underscore,angularjs,angularui,jquery'
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jshint']
