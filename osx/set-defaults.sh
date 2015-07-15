@@ -57,3 +57,6 @@ git config --global core.excludesfile '~/.cvsignore'
 
 # Grab fuck-you
 npm install -g fuck-you
+
+# Disable Captive Network Assistant Popup
+sudo mv Captive\ Network\ Assistant.app Captive\ Network\ Assistant.app.bak
