@@ -3,3 +3,5 @@
 --ignore-dir=dist
 --ignore-dir=bower_components
 --ignore-dir=vendor
+--ignore-dir=public/components
+--ignore-dir=public/build
