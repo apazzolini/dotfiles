@@ -1,29 +1,36 @@
-" Vundle configuration
+" Vundle init
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-markdown'
+
+" Generic
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'godlygeek/tabular'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'groenewege/vim-less'
-Plugin 'tfnico/vim-gradle'
-Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'mileszs/ack.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+
+" Filetypes
 Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-markdown'
+Plugin 'groenewege/vim-less'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'tfnico/vim-gradle'
+
+" Colorschemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'crusoexia/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
-" Plugin 'ervandew/supertab'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'mileszs/ack.vim'
 call vundle#end()
+
 syntax on
 filetype plugin indent on
 
@@ -71,8 +78,13 @@ inoremap jj <Esc>
 noremap j gj
 noremap k gk
 nnoremap <D-i> <C-a>
-inoremap <C-Space> <C-p>
-inoremap <C-S-Space> <C-n>
+nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
+
+" Completion
+set completeopt=menuone,longest
+inoremap <C-Space> <C-n>
+inoremap <C-S-Space> <C-p>
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " Window split bindings
 map <C-J> <C-W>j
@@ -81,41 +93,41 @@ map <C-H> <C-W>h
 map <C-L> <C-W>l
 
 " Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ack_mappings = { "v": "<C-w><CR><C-w>L<C-w>h<C-w>j<C-w>J<C-w>10_<C-w>k<C-w>l<C-w>l" }
-nmap ,a :Ack!<space>''<left>
-nmap ,c :Ack!<CR>
+nmap <leader>a :Ack!<space>''<left>
+nmap <leader>c :Ack!<CR>
 nmap <D-F> :Ack!<space>''<left>
 
-" Window title
-nmap ,t :set titlestring=[]\ %f<left><left><left><left><left>
-
-" CtrlP
-nmap ,o :CtrlP<CR>
-let g:ctrlp_map = '<D-o>'
+" NERDTree
 map <D-0> :NERDTreeTabsToggle<CR>
 map <D-l> :NERDTreeFind<CR>
+
+" EasyMotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+nmap <leader>s <Plug>(easymotion-s2)
+map <leader>f <Plug>(easymotion-e)
+map <leader>F <Plug>(easymotion-b)
+
+" Unite
+let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+let g:unite_source_history_yank_enable = 1
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/async<cr>
+nnoremap <leader>s :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/async<cr>
+nnoremap <leader>v :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/async<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  nmap <buffer> <Space> 10j
+  nmap <buffer> <BS> 10k
+endfunction
 
 " Statusbar
 set laststatus=2
 let g:airline#extensions#whitespace#enabled = 1
-
-" Wildignore
-set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-set wildignore+=*DS_Store*
-set wildignore+=*.gem
-set wildignore+=log/**
-set wildignore+=tmp/**
-set wildignore+=*.png,*.jpg,*.gif
-set wildignore+=*.class
-set wildignore+=_site/*
-set wildignore+=*/target/*
-set wildignore+=*/bower_components/*
-set wildignore+=*/node_modules/*
-set wildignore+=*/client_dist/*
-set wildignore+=*/dist/*
-set wildignore+=*/build/*
 
 " JS Syntax coloring
 let g:used_javascript_libs = 'underscore,angularjs,angularui,jquery'
@@ -129,3 +141,6 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
+
+" Filetype specific commands
+autocmd FileType javascript setlocal omnifunc=tern#Complete
