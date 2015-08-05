@@ -36,3 +36,11 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+precmd () {
+  if [[ -z "$WINTITLE" ]]; then
+    echo -ne "\033]0;`echo ${PWD##*/}`\007"
+  else
+    echo -ne "\033]0;"$WINTITLE"\007"
+  fi
+}
