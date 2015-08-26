@@ -35,7 +35,6 @@ syntax on
 filetype plugin indent on
 
 " Basic configuration
-set noswapfile
 set ic
 set scs
 set autoindent
@@ -53,6 +52,10 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=1
+set undodir=~/.vimundo//
+set backupdir=~/.vimbak//
+set directory=~/.vimswp//
+set mouse=a
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -69,7 +72,7 @@ map ; :
 map H ^
 map L $
 map <C-B> <C-6>
-map K i<cr><esc>k$
+map K i<CR><Esc>k$
 map <Space> 10j
 map <BS> 10k
 map <C-n> :bnext<CR>
