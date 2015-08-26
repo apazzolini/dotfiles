@@ -82,6 +82,7 @@ noremap j gj
 noremap k gk
 nnoremap <D-i> <C-a>
 nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
+map <leader>d :call FillLine( '-' )<CR>
 
 " Completion
 set completeopt=menuone,longest
@@ -147,3 +148,14 @@ let g:syntastic_javascript_checkers = ['jshint']
 
 " Filetype specific commands
 autocmd FileType javascript setlocal omnifunc=tern#Complete
+
+" Fill rest of line with characters
+" http://stackoverflow.com/questions/3364102/how-to-fill-a-line-with-character-x-up-to-column-y-using-vim
+function! FillLine( str )
+  let tw = 80
+  .s/[[:space:]]*$//
+  let reps = (tw - col("$")) / len(a:str)
+  if reps > 0
+    .s/$/\=(' '.repeat(a:str, reps))/
+  endif
+endfunction
