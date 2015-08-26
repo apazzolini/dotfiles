@@ -24,6 +24,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'tfnico/vim-gradle'
+Plugin 'mxw/vim-jsx'
 
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
@@ -144,10 +145,11 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Filetype specific commands
 autocmd FileType javascript setlocal omnifunc=tern#Complete
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " Fill rest of line with characters
 " http://stackoverflow.com/questions/3364102/how-to-fill-a-line-with-character-x-up-to-column-y-using-vim
