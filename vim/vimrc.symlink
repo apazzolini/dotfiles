@@ -84,6 +84,7 @@ noremap k gk
 nnoremap <D-i> <C-a>
 nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
 map <leader>d :call FillLine( '-' )<CR>
+vmap <leader>y "*y
 
 " Completion
 set completeopt=menuone,longest
