@@ -29,6 +29,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'GutenYe/json5.vim'
 
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
