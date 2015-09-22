@@ -16,14 +16,18 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mileszs/ack.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'mrtazz/simplenote.vim'
 
 " Filetypes
-Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-markdown'
-Plugin 'groenewege/vim-less'
-Plugin 'marijnh/tern_for_vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'cakebaker/scss-syntax.vim'
+"Plugin 'groenewege/vim-less'
+"Plugin 'marijnh/tern_for_vim'
+"Plugin 'tfnico/vim-gradle'
+Plugin 'scrooloose/syntastic'
 Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'tfnico/vim-gradle'
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
 " Colorschemes
@@ -57,6 +61,8 @@ set undodir=~/.vimundo//
 set backupdir=~/.vimbak//
 set directory=~/.vimswp//
 set mouse=a
+set splitbelow
+set splitright
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -117,7 +123,7 @@ map <leader>f <Plug>(easymotion-e)
 map <leader>F <Plug>(easymotion-b)
 
 " Unite
-let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 let g:unite_source_history_yank_enable = 1
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/async<cr>
 nnoremap <leader>s :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/async<cr>
@@ -136,7 +142,8 @@ set laststatus=2
 let g:airline#extensions#whitespace#enabled = 1
 
 " JS Syntax coloring
-let g:used_javascript_libs = 'underscore,angularjs,angularui,jquery'
+let g:used_javascript_libs = 'underscore,react,chai'
+let javascript_enable_domhtmlcss = 1
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -151,6 +158,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Filetype specific commands
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let b:javascript_fold = 0
 
 " Fill rest of line with characters
 " http://stackoverflow.com/questions/3364102/how-to-fill-a-line-with-character-x-up-to-column-y-using-vim
@@ -162,3 +170,9 @@ function! FillLine( str )
     .s/$/\=(' '.repeat(a:str, reps))/
   endif
 endfunction
+
+" Simplenote
+source ~/.simplenoterc " Username / Password
+let g:SimplenoteVertical=1
+let g:SimplenoteSingleWindow=1
+let g:SimplenoteListWidth=25
