@@ -11,7 +11,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'godlygeek/tabular'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mileszs/ack.vim'
 Plugin 'Shougo/unite.vim'
@@ -35,6 +35,7 @@ Plugin 'GutenYe/json5.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'crusoexia/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'whatyouhide/vim-gotham'
 call vundle#end()
 
 syntax on
