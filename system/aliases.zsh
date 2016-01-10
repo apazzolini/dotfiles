@@ -74,6 +74,7 @@ alias cleaneclipse="find . -name '.classpath' -o -name 'target' -o -name '.setti
 # shortcuts for npm run
 alias nr="npm run"
 alias nrt="npm run -s test"
+alias nrl="npm run -s lint"
 
 # Ack
 alias ackq="ack -Q"
