@@ -17,6 +17,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'mrtazz/simplenote.vim'
+Plugin 'jiangmiao/auto-pairs'
 
 " Filetypes
 Plugin 'tpope/vim-markdown'
@@ -30,6 +31,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'GutenYe/json5.vim'
+Plugin 'derekwyatt/vim-scala'
 
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
@@ -44,6 +46,7 @@ filetype plugin indent on
 " Basic configuration
 set ic
 set scs
+set hlsearch
 set autoindent
 set smartindent
 set tabstop=2
@@ -65,6 +68,7 @@ set directory=~/.vimswp//
 set mouse=a
 set splitbelow
 set splitright
+set relativenumber
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -93,6 +97,7 @@ nnoremap <D-i> <C-a>
 nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
 map <leader>d :call FillLine( '-' )<CR>
 vmap <leader>y "*y
+map <leader>n :noh<cr>
 
 " Completion
 set completeopt=menuone,longest
@@ -151,8 +156,8 @@ let javascript_enable_domhtmlcss = 1
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
@@ -178,3 +183,12 @@ source ~/.simplenoterc " Username / Password
 let g:SimplenoteVertical=1
 let g:SimplenoteSingleWindow=1
 let g:SimplenoteListWidth=25
+
+" From sensible.vim
+set formatoptions+=j " Delete comment character when joining commented lines
+set sidescrolloff=5
+set scrolloff=1
+set autoread
+
+" Autopairs
+let g:AutoPairsMultilineClose=0

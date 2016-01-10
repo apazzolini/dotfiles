@@ -1,19 +1,23 @@
+set ic
+set scs
+set hlsearch
+set softtabstop=2
+set shiftwidth=2
+
+" Convenience Bindings
 map <Space> 10j
 map <BS> 10k
 map ; :
 map K i<cr><esc>k$
-map <C-h> :tabprev<cr>
-map <C-l> :tabnext<cr>
 map H ^
 map L $
-
 inoremap jj <Esc>
 
-set ic
-set scs
-
-set softtabstop=4
-set shiftwidth=4
+" Window split bindings
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
 
 eclipseuiaction eclipsegotoimpl org.eclipse.jdt.ui.edit.text.java.open.implementation
 nnoremap gd :eclipsegotoimpl<cr>
