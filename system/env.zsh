@@ -8,6 +8,7 @@ export HISTSIZE=1000000
 export SAVEHIST=1000000
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
 export MVN_HOME=/usr/local/Cellar/maven/3.1.0/libexec
+export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=128m"
 export GRADLE_USER_HOME=/Users/Andre/.gradle
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:$PATH"
