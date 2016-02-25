@@ -26,18 +26,21 @@ Plugin 'cakebaker/scss-syntax.vim'
 "Plugin 'groenewege/vim-less'
 "Plugin 'marijnh/tern_for_vim'
 "Plugin 'tfnico/vim-gradle'
-Plugin 'scrooloose/syntastic'
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'GutenYe/json5.vim'
-Plugin 'derekwyatt/vim-scala'
+Plugin 'scrooloose/syntastic'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'mxw/vim-jsx'
+"Plugin 'GutenYe/json5.vim'
+"Plugin 'derekwyatt/vim-scala'
 
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'crusoexia/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'whatyouhide/vim-gotham'
+Plugin 'chriskempson/base16-vim'
 call vundle#end()
 
 syntax on
@@ -76,7 +79,10 @@ let NERDTreeDirArrows = 1
 
 " Appearance
 let g:hybrid_use_iTerm_colors = 1
-colorscheme hybrid
+" colorscheme hybrid
+let base16colorspace=256
+set background=dark
+colorscheme base16-tomorrow
 set guifont=Inconsolata-g:h10
 
 " Convenience Bindings

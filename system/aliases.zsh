@@ -59,17 +59,11 @@ alias st='open -a "/Applications/SourceTree.app" `pwd`'
 # edit previous command in vi
 alias r='fc -e vim'
 
-# starts up jekyll
-alias jek='jekyll serve --watch --drafts'
-
 # opens iphone photos
 alias viewpics='open -a "/Applications/Path Finder.app" /Users/Andre/AeroFS/Photos/iPhone'
 
 # diffmerge
 alias diffmerge='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge'
-
-# clean eclipse artifacts
-alias cleaneclipse="find . -name '.classpath' -o -name 'target' -o -name '.settings' -o -name '.project' | xargs rm -rf"
 
 # shortcuts for npm run
 alias nr="npm run"
@@ -78,3 +72,4 @@ alias nrl="npm run -s lint"
 
 # Ack
 alias ackq="ack -Q"
+alias ack="ag"
