@@ -71,7 +71,6 @@ set directory=~/.vimswp//
 set mouse=a
 set splitbelow
 set splitright
-set relativenumber
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -88,6 +87,7 @@ set guifont=Inconsolata-g:h10
 " Convenience Bindings
 let mapleader = ","
 map ; :
+map e w
 map H ^
 map L $
 map <C-B> <C-6>
