@@ -8,32 +8,37 @@ Plugin 'gmarik/Vundle.vim'
 " Generic
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'godlygeek/tabular'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'bling/vim-airline'
-"Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mileszs/ack.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'mrtazz/simplenote.vim'
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
+"Plugin 'Shougo/vimfiler.vim'
+"Plugin 'tpope/vim-fugitive'
 
 " Filetypes
 Plugin 'tpope/vim-markdown'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
-"Plugin 'groenewege/vim-less'
-"Plugin 'marijnh/tern_for_vim'
-"Plugin 'tfnico/vim-gradle'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/es.next.syntax.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'scrooloose/syntastic'
-"Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
 "Plugin 'mxw/vim-jsx'
 "Plugin 'GutenYe/json5.vim'
 "Plugin 'derekwyatt/vim-scala'
+"Plugin 'groenewege/vim-less'
+"Plugin 'tfnico/vim-gradle'
+"Plugin 'othree/yajs.vim'
+"Plugin 'othree/es.next.syntax.vim'
 
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
@@ -41,6 +46,8 @@ Plugin 'crusoexia/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'chriskempson/base16-vim'
+Plugin 'sheerun/vim-wombat-scheme'
+Plugin 'morhetz/gruvbox'
 call vundle#end()
 
 syntax on
@@ -49,7 +56,7 @@ filetype plugin indent on
 " Basic configuration
 set ic
 set scs
-set hlsearch
+set nohlsearch
 set autoindent
 set smartindent
 set tabstop=2
@@ -71,23 +78,28 @@ set directory=~/.vimswp//
 set mouse=a
 set splitbelow
 set splitright
+set cursorline
 
-" NERDTree
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+" From sensible.vim
+set formatoptions+=j " Delete comment character when joining commented lines
+set sidescrolloff=5
+set scrolloff=1
+set autoread
 
 " Appearance
-let g:hybrid_use_iTerm_colors = 1
-" colorscheme hybrid
-let base16colorspace=256
 set background=dark
-colorscheme base16-tomorrow
 set guifont=Inconsolata-g:h10
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_invert_selection=0
+colorscheme gruvbox
+"let g:hybrid_use_iTerm_colors = 0
+"colorscheme hybrid
+"let base16colorspace=256
+"colorscheme base16-tomorrow
 
 " Convenience Bindings
 let mapleader = ","
 map ; :
-map e w
 map H ^
 map L $
 map <C-B> <C-6>
@@ -111,6 +123,13 @@ inoremap <C-Space> <C-n>
 inoremap <C-S-Space> <C-p>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
+" Tern
+nmap gr :TernRefs<CR>
+
+" Tabular
+vmap <leader>i= :'<,'>Tab/=<CR>
+vmap <leader>i: :'<,'>Tab/=<CR>
+
 " Window split bindings
 map <C-J> <C-W>j
 map <C-K> <C-W>k
@@ -125,13 +144,51 @@ nmap <leader>c :Ack!<CR>
 nmap <D-F> :Ack!<space>''<left>
 
 " NERDTree
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeChDirMode = 2 " change vim working directory according to whatever the tree node is in NERDtree
 map <D-0> :NERDTreeTabsToggle<CR>
 map <D-l> :NERDTreeFind<CR>
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "M",
+    \ "Staged"    : "M",
+    \ "Untracked" : "N",
+    \ "Renamed"   : "R",
+    \ "Unmerged"  : "M",
+    \ "Deleted"   : "D",
+    \ "Dirty"     : "M",
+    \ "Clean"     : "A",
+    \ "Unknown"   : "?"
+    \ }
+
+" Vimfiler
+"map <D-0> :VimFilerExplorer -toggle<CR>
+"map <D-l> :VimFilerExplorer -find<CR>
+"autocmd VimEnter * VimFilerExplorer -no-focus
+"autocmd FileType vimfiler call s:vimfiler_settings()
+"let g:vimfiler_as_default_explorer = 1
+"let g:vimfiler_safe_mode_by_default = 0
+"let g:vimfiler_quick_look_command = 'qlmanage -p '
+"let g:vimfiler_enable_auto_cd = 1
+"function! s:vimfiler_settings()
+  "nmap <buffer> <Space> 10j
+  "nmap <buffer> <BS> 10k
+  "nmap <buffer> <c-l> <c-w>l
+  "nmap <buffer> I <Plug>(vimfiler_toggle_visible_dot_files)
+  "nmap <buffer> p <Plug>(vimfiler_quick_look)
+  "nmap <buffer> u <Plug>(vimfiler_switch_to_parent_directory)
+  "nmap <buffer> cd <Plug>(vimfiler_cd_vim_current_dir)
+  "nnoremap <silent><buffer><expr> t vimfiler#do_action('tabopen')
+"endfunction
+
+" NERDCommenter
+nmap <D-/> <Leader>c<space>
+vmap <D-/> <Leader>c<space>gv
+imap <D-/> <Esc><D-/>
 
 " EasyMotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
-nmap <leader>s <Plug>(easymotion-s2)
 map <leader>f <Plug>(easymotion-e)
 map <leader>F <Plug>(easymotion-b)
 
@@ -153,9 +210,10 @@ endfunction
 " Statusbar
 set laststatus=2
 let g:airline#extensions#whitespace#enabled = 1
+let g:airline_theme='gruvbox'
 
 " JS Syntax coloring
-let g:used_javascript_libs = 'underscore,react,chai'
+let g:used_javascript_libs = 'underscore,react,chai,angularjs,requirejs'
 let javascript_enable_domhtmlcss = 1
 
 " Syntastic
@@ -166,8 +224,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
+set formatoptions-=co
 
 " Filetype specific commands
 autocmd FileType javascript setlocal omnifunc=tern#Complete
@@ -190,12 +252,16 @@ source ~/.simplenoterc " Username / Password
 let g:SimplenoteVertical=1
 let g:SimplenoteSingleWindow=1
 let g:SimplenoteListWidth=25
+let g:SimplenoteNoteFormat="%N"
 
-" From sensible.vim
-set formatoptions+=j " Delete comment character when joining commented lines
-set sidescrolloff=5
-set scrolloff=1
-set autoread
+if has('gui_running')
+  set guifont=Inconsolata-g\ for\ Powerline:h10
+  let g:airline_powerline_fonts = 1
 
-" Autopairs
-let g:AutoPairsMultilineClose=0
+  let g:nerdtree_tabs_open_on_gui_startup = 1 " Auto open nerd tree on startup
+  let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
+
+  set go-=T                                   " Hide MacVim toolbar
+  set go-=L                                   " Hide left scrollbar
+  set showtabline=2 "always show tabs, even if there is only one
+endif
