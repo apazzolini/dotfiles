@@ -73,3 +73,5 @@ alias nrl="npm run -s lint"
 # Ack
 alias ackq="ack -Q"
 alias ack="ag"
+
+alias cleanatom="rm -rf /Users/Andre/.atom/storage/editor-*"
