@@ -78,7 +78,6 @@ set directory=~/.vimswp//
 set mouse=a
 set splitbelow
 set splitright
-set cursorline
 
 " From sensible.vim
 set formatoptions+=j " Delete comment character when joining commented lines
@@ -144,6 +143,7 @@ nmap <leader>c :Ack!<CR>
 nmap <D-F> :Ack!<space>''<left>
 
 " NERDTree
+let g:NERDTreeWinSize = 38
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeChDirMode = 2 " change vim working directory according to whatever the tree node is in NERDtree
