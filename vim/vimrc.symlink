@@ -21,8 +21,8 @@ Plugin 'mrtazz/simplenote.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
-"Plugin 'Shougo/vimfiler.vim'
-"Plugin 'tpope/vim-fugitive'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet.vim'
 
 " Filetypes
 Plugin 'tpope/vim-markdown'
@@ -32,21 +32,14 @@ Plugin 'scrooloose/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
-"Plugin 'mxw/vim-jsx'
-"Plugin 'GutenYe/json5.vim'
-"Plugin 'derekwyatt/vim-scala'
-"Plugin 'groenewege/vim-less'
-"Plugin 'tfnico/vim-gradle'
-"Plugin 'othree/yajs.vim'
-"Plugin 'othree/es.next.syntax.vim'
 
 " Colorschemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'crusoexia/vim-monokai'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'whatyouhide/vim-gotham'
-Plugin 'chriskempson/base16-vim'
-Plugin 'sheerun/vim-wombat-scheme'
+" Plugin 'altercation/vim-colors-solarized'
+" Plugin 'crusoexia/vim-monokai'
+" Plugin 'w0ng/vim-hybrid'
+" Plugin 'whatyouhide/vim-gotham'
+" Plugin 'chriskempson/base16-vim'
+" Plugin 'sheerun/vim-wombat-scheme'
 Plugin 'morhetz/gruvbox'
 call vundle#end()
 
@@ -78,12 +71,11 @@ set directory=~/.vimswp//
 set mouse=a
 set splitbelow
 set splitright
-
-" From sensible.vim
 set formatoptions+=j " Delete comment character when joining commented lines
 set sidescrolloff=5
 set scrolloff=1
 set autoread
+set formatoptions-=co
 
 " Appearance
 set background=dark
@@ -91,10 +83,6 @@ set guifont=Inconsolata-g:h10
 let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_invert_selection=0
 colorscheme gruvbox
-"let g:hybrid_use_iTerm_colors = 0
-"colorscheme hybrid
-"let base16colorspace=256
-"colorscheme base16-tomorrow
 
 " Convenience Bindings
 let mapleader = ","
@@ -115,25 +103,50 @@ nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
 map <leader>d :call FillLine( '-' )<CR>
 vmap <leader>y "*y
 map <leader>n :noh<cr>
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
 
 " Completion
-set completeopt=menuone,longest
-inoremap <C-Space> <C-n>
-inoremap <C-S-Space> <C-p>
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+set completeopt-=preview
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+if !exists('g:neocomplete#sources#omni#functions')
+  let g:neocomplete#sources#omni#functions = {}
+endif
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+inoremap <expr><C-Space> neocomplete#start_manual_complete()
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#keyword_patterns.default = '\h\w*'
+let g:neocomplete#keyword_patterns.html    = '</\?\%([[:alnum:]_:-]\+\s*\)\?\%(/\?>\)\?\|&\h\%(\w*;\)\?\|\h[[:alnum:]_:-]*'
+let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
+let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
+
+" Snippets
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :
+let g:neosnippet#disable_runtime_snippets = {'_' : 1}
+let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
 
 " Tern
+let g:tern_show_signature_in_pum = 1
+let g:tern_map_keys = 0
 nmap gr :TernRefs<CR>
 
 " Tabular
 vmap <leader>i= :'<,'>Tab/=<CR>
 vmap <leader>i: :'<,'>Tab/=<CR>
-
-" Window split bindings
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
 
 " Ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -150,38 +163,19 @@ let NERDTreeChDirMode = 2 " change vim working directory according to whatever t
 map <D-0> :NERDTreeTabsToggle<CR>
 map <D-l> :NERDTreeFind<CR>
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "M",
-    \ "Staged"    : "M",
-    \ "Untracked" : "N",
-    \ "Renamed"   : "R",
-    \ "Unmerged"  : "M",
-    \ "Deleted"   : "D",
-    \ "Dirty"     : "M",
-    \ "Clean"     : "A",
-    \ "Unknown"   : "?"
-    \ }
-
-" Vimfiler
-"map <D-0> :VimFilerExplorer -toggle<CR>
-"map <D-l> :VimFilerExplorer -find<CR>
-"autocmd VimEnter * VimFilerExplorer -no-focus
-"autocmd FileType vimfiler call s:vimfiler_settings()
-"let g:vimfiler_as_default_explorer = 1
-"let g:vimfiler_safe_mode_by_default = 0
-"let g:vimfiler_quick_look_command = 'qlmanage -p '
-"let g:vimfiler_enable_auto_cd = 1
-"function! s:vimfiler_settings()
-  "nmap <buffer> <Space> 10j
-  "nmap <buffer> <BS> 10k
-  "nmap <buffer> <c-l> <c-w>l
-  "nmap <buffer> I <Plug>(vimfiler_toggle_visible_dot_files)
-  "nmap <buffer> p <Plug>(vimfiler_quick_look)
-  "nmap <buffer> u <Plug>(vimfiler_switch_to_parent_directory)
-  "nmap <buffer> cd <Plug>(vimfiler_cd_vim_current_dir)
-  "nnoremap <silent><buffer><expr> t vimfiler#do_action('tabopen')
-"endfunction
+  \ "Modified"  : "M",
+  \ "Staged"    : "M",
+  \ "Untracked" : "N",
+  \ "Renamed"   : "R",
+  \ "Unmerged"  : "M",
+  \ "Deleted"   : "D",
+  \ "Dirty"     : "M",
+  \ "Clean"     : "A",
+  \ "Unknown"   : "?"
+  \ }
 
 " NERDCommenter
+let g:NERDSpaceDelims = 1
 nmap <D-/> <Leader>c<space>
 vmap <D-/> <Leader>c<space>gv
 imap <D-/> <Esc><D-/>
@@ -189,8 +183,8 @@ imap <D-/> <Esc><D-/>
 " EasyMotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
-map <leader>f <Plug>(easymotion-e)
-map <leader>F <Plug>(easymotion-b)
+map f <Plug>(easymotion-e)
+map F <Plug>(easymotion-b)
 
 " Unite
 let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
@@ -211,6 +205,7 @@ endfunction
 set laststatus=2
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_theme='gruvbox'
+let g:airline_extensions = []
 
 " JS Syntax coloring
 let g:used_javascript_libs = 'underscore,react,chai,angularjs,requirejs'
@@ -224,12 +219,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'passive' }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-
-set formatoptions-=co
 
 " Filetype specific commands
 autocmd FileType javascript setlocal omnifunc=tern#Complete
@@ -247,6 +240,9 @@ function! FillLine( str )
   endif
 endfunction
 
+" Strip trailing spaces
+autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 " Simplenote
 source ~/.simplenoterc " Username / Password
 let g:SimplenoteVertical=1
@@ -254,6 +250,7 @@ let g:SimplenoteSingleWindow=1
 let g:SimplenoteListWidth=25
 let g:SimplenoteNoteFormat="%N"
 
+" MacVim
 if has('gui_running')
   set guifont=Inconsolata-g\ for\ Powerline:h10
   let g:airline_powerline_fonts = 1
