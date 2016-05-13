@@ -74,4 +74,8 @@ alias nrl="npm run -s lint"
 alias ackq="ack -Q"
 alias ack="ag"
 
+# Atom
 alias cleanatom="rm -rf /Users/Andre/.atom/storage/editor-*"
+
+# Docker
+alias b2d="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
