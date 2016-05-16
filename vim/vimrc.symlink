@@ -11,8 +11,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'godlygeek/tabular'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'itchyny/lightline.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mileszs/ack.vim'
 Plugin 'Shougo/unite.vim'
@@ -23,6 +22,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet.vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'tommcdo/vim-exchange'
 
 " Filetypes
 Plugin 'tpope/vim-markdown'
@@ -52,9 +53,9 @@ set scs
 set nohlsearch
 set autoindent
 set smartindent
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 set showmatch
 set vb t_vb=
@@ -76,6 +77,7 @@ set sidescrolloff=5
 set scrolloff=1
 set autoread
 set formatoptions-=co
+set nojoinspaces
 
 " Appearance
 set background=dark
@@ -86,11 +88,13 @@ colorscheme gruvbox
 
 " Convenience Bindings
 let mapleader = ","
+map Y y$
 map ; :
 map H ^
 map L $
 map <C-B> <C-6>
-map K i<CR><Esc>k$
+map S i<CR><Esc>k$
+nmap K kJ
 map <Space> 10j
 map <BS> 10k
 map <C-n> :bnext<CR>
@@ -100,13 +104,25 @@ noremap j gj
 noremap k gk
 nnoremap <D-i> <C-a>
 nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
-map <leader>d :call FillLine( '-' )<CR>
+map <leader>l :call FillLine( '-' )<CR>
 vmap <leader>y "*y
 map <leader>n :noh<cr>
 map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
+nnoremap vv ^<C-v>g_
+
+inoremap (<CR> (<CR>)<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {; {<CR>};<Esc>O
+inoremap {, {<CR>},<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap [; [<CR>];<Esc>O
+inoremap [, [<CR>],<Esc>O
+
+" Dash
+nmap <silent> <leader>d <Plug>DashGlobalSearch
 
 " Completion
 set completeopt-=preview
@@ -125,13 +141,21 @@ endif
 inoremap <expr><C-Space> neocomplete#start_manual_complete()
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+
+let g:neocomplete#disable_auto_complete = 0
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#keyword_patterns.default = '\h\w*'
 let g:neocomplete#keyword_patterns.html    = '</\?\%([[:alnum:]_:-]\+\s*\)\?\%(/\?>\)\?\|&\h\%(\w*;\)\?\|\h[[:alnum:]_:-]*'
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
 let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
+autocmd FileType javascript py tern_ensureCompletionCached()
 
 " Snippets
 imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -143,10 +167,6 @@ let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
 let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 0
 nmap gr :TernRefs<CR>
-
-" Tabular
-vmap <leader>i= :'<,'>Tab/=<CR>
-vmap <leader>i: :'<,'>Tab/=<CR>
 
 " Ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -201,20 +221,85 @@ function! s:unite_settings()
   nmap <buffer> <BS> 10k
 endfunction
 
-" Statusbar
+" Lightline
 set laststatus=2
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline_theme='gruvbox'
-let g:airline_extensions = []
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightLineFilename',
+      \   'fileformat': 'LightLineFileformat',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileencoding': 'LightLineFileencoding',
+      \   'mode': 'LightLineMode',
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
+      \ },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
+
+function! LightLineModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help' && &readonly ? 'RO' : ''
+endfunction
+
+function! LightLineFilename()
+  let fname = expand('%:t')
+  return fname =~ 'NERD_tree' ? '' :
+        \ &ft == 'unite' ? unite#get_status_string() :
+        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightLineFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! LightLineMode()
+  let fname = expand('%:t')
+  return fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.js,*.css,*.html call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
 
 " JS Syntax coloring
 let g:used_javascript_libs = 'underscore,react,chai,angularjs,requirejs'
 let javascript_enable_domhtmlcss = 1
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
@@ -253,7 +338,10 @@ let g:SimplenoteNoteFormat="%N"
 " MacVim
 if has('gui_running')
   set guifont=Inconsolata-g\ for\ Powerline:h10
-  let g:airline_powerline_fonts = 1
+
+  let g:lightline.component = { 'readonly': '%{&readonly?"":""}' }
+  let g:lightline.separator = { 'left': '', 'right': '' }
+  let g:lightline.subseparator = { 'left': '', 'right': '' }
 
   let g:nerdtree_tabs_open_on_gui_startup = 1 " Auto open nerd tree on startup
   let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
