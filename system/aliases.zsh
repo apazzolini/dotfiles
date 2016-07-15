@@ -20,12 +20,10 @@ alias ka='killall'
 alias pgj='ps -Aef | grep java'
 alias kaj='killall java'
 alias k='kill -9'
+alias knode='pkill -9 -f '\''node --expose-gc'\'
 
 # open current window in path finder
 alias o='open -a "/Applications/Path Finder.app" .'
-
-# atea (https://github.com/pkamenarsky/atea)
-alias t='vim /Users/Andre/Dropbox/Random/atea/tasks.txt'
 
 # copies public ssh key to clipboard
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
@@ -41,12 +39,6 @@ if $(hub &>/dev/null)
 then
   alias git='hub'
 fi
-
-# because why not
-alias plz='sudo'
-
-# javascript console
-alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
 
 # toggle java_home
 alias usejava6='export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)'
@@ -76,6 +68,3 @@ alias ack="ag"
 
 # Atom
 alias cleanatom="rm -rf /Users/Andre/.atom/storage/editor-*"
-
-# Docker
-alias b2d="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"

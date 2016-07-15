@@ -1,5 +1,4 @@
 export NVM_DIR=~/.nvm
-nvm() { . "/usr/local/opt/nvm/nvm.sh" ; nvm $@ ; }
 
 #autoload -U add-zsh-hook
 #load-nvmrc() {
