@@ -61,6 +61,7 @@ alias diffmerge='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge'
 alias nr="npm run"
 alias nrt="npm run -s test"
 alias nrl="npm run -s lint"
+alias nrs="npm run -s start"
 
 # Ack
 alias ackq="ack -Q"

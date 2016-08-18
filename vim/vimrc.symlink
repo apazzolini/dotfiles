@@ -10,6 +10,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Lokaltog/vim-easymotion'
@@ -18,108 +20,51 @@ Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'mrtazz/simplenote.vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'tommcdo/vim-exchange'
+Plugin 'sickill/vim-pasta'
+Plugin 'raimondi/delimitmate'
 
 " Filetypes
-Plugin 'tpope/vim-markdown'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'vim-scripts/JavaScript-Indent'
+"Plugin 'othree/yajs.vim'
+"Plugin 'othree/es.next.syntax.vim'
+Plugin 'gavocanov/vim-js-indent'
 Plugin 'ternjs/tern_for_vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
+
+set cinoptions+=+1
 
 " Colorschemes
-" Plugin 'altercation/vim-colors-solarized'
-" Plugin 'crusoexia/vim-monokai'
-" Plugin 'w0ng/vim-hybrid'
-" Plugin 'whatyouhide/vim-gotham'
-" Plugin 'chriskempson/base16-vim'
-" Plugin 'sheerun/vim-wombat-scheme'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
 Plugin 'morhetz/gruvbox'
 call vundle#end()
 
 syntax on
 filetype plugin indent on
 
-" Basic configuration
-set ic
-set scs
-set nohlsearch
-set autoindent
-set smartindent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set showmatch
-set vb t_vb=
-set incsearch
-set number
-set wrap linebreak nolist
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=1
+" Appearance
+set background=dark
+
+" Base config
+source ~/.vimrc-base
+nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
 set undodir=~/.vimundo//
 set backupdir=~/.vimbak//
 set directory=~/.vimswp//
-set mouse=a
-set splitbelow
-set splitright
-set formatoptions+=j " Delete comment character when joining commented lines
-set sidescrolloff=5
-set scrolloff=1
-set autoread
-set formatoptions-=co
-set nojoinspaces
 
-" Appearance
-set background=dark
-set guifont=Inconsolata-g:h10
-let g:gruvbox_contrast_dark='medium'
-let g:gruvbox_invert_selection=0
-colorscheme gruvbox
-
-" Convenience Bindings
-let mapleader = ","
-map Y y$
-map ; :
-map H ^
-map L $
-map <C-B> <C-6>
-map S i<CR><Esc>k$
-nmap K kJ
-map <Space> 10j
-map <BS> 10k
-map <C-n> :bnext<CR>
-map <C-p> :bprev<CR>
-inoremap jj <Esc>
-noremap j gj
-noremap k gk
-nnoremap <D-i> <C-a>
-nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
-map <leader>l :call FillLine( '-' )<CR>
-vmap <leader>y "*y
-map <leader>n :noh<cr>
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
-nnoremap vv ^<C-v>g_
-
-inoremap (<CR> (<CR>)<Esc>O
-inoremap {<CR> {<CR>}<Esc>O
-inoremap {; {<CR>};<Esc>O
-inoremap {, {<CR>},<Esc>O
-inoremap [<CR> [<CR>]<Esc>O
-inoremap [; [<CR>];<Esc>O
-inoremap [, [<CR>],<Esc>O
+" DelimitMate
+let delimitMate_expand_cr=1
+let delimitMate_expand_space=1
 
 " Dash
 nmap <silent> <leader>d <Plug>DashGlobalSearch
@@ -141,20 +86,17 @@ endif
 inoremap <expr><C-Space> neocomplete#start_manual_complete()
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
 
 let g:neocomplete#disable_auto_complete = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#auto_completion_start_length = 4
+let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
 let g:neocomplete#keyword_patterns.default = '\h\w*'
 let g:neocomplete#keyword_patterns.html    = '</\?\%([[:alnum:]_:-]\+\s*\)\?\%(/\?>\)\?\|&\h\%(\w*;\)\?\|\h[[:alnum:]_:-]*'
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
-let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
 autocmd FileType javascript py tern_ensureCompletionCached()
 
 " Snippets
@@ -164,8 +106,10 @@ let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
 
 " Tern
+let g:tern#command = ["node", '/Users/Andre/.vim/bundle/tern_for_vim/node_modules/tern/bin/tern', '--no-port-file', '--persistent']
 let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 0
+let g:tern_request_timeout = 2
 nmap gr :TernRefs<CR>
 
 " Ack
@@ -180,6 +124,7 @@ let g:NERDTreeWinSize = 38
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeChDirMode = 2 " change vim working directory according to whatever the tree node is in NERDtree
+let NERDTreeShowBookmarks = 1
 map <D-0> :NERDTreeTabsToggle<CR>
 map <D-l> :NERDTreeFind<CR>
 let g:NERDTreeIndicatorMapCustom = {
@@ -209,10 +154,10 @@ map F <Plug>(easymotion-b)
 " Unite
 let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 let g:unite_source_history_yank_enable = 1
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/async<cr>
-nnoremap <leader>s :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/async<cr>
-nnoremap <leader>v :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/async<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/git<cr>
+nnoremap <leader>s :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/git<cr>
+nnoremap <leader>v :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/git<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/git<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 autocmd FileType unite call s:unite_settings()
@@ -300,30 +245,22 @@ let g:used_javascript_libs = 'underscore,react,chai,angularjs,requirejs'
 let javascript_enable_domhtmlcss = 1
 
 " Syntastic
+let g:syntastic_reuse_loc_lists = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
+let g:syntastic_javascript_eslint_args = '--parser=babel-eslint'
 let g:syntastic_mode_map = { 'mode': 'passive' }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 " Filetype specific commands
-autocmd FileType javascript setlocal omnifunc=tern#Complete
+"autocmd FileType javascript setlocal omnifunc=tern#Complete
+au BufRead,BufNewFile *.pcss set filetype=scss
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let b:javascript_fold = 0
-
-" Fill rest of line with characters
-" http://stackoverflow.com/questions/3364102/how-to-fill-a-line-with-character-x-up-to-column-y-using-vim
-function! FillLine( str )
-  let tw = 80
-  .s/[[:space:]]*$//
-  let reps = (tw - col("$")) / len(a:str)
-  if reps > 0
-    .s/$/\=(' '.repeat(a:str, reps))/
-  endif
-endfunction
 
 " Strip trailing spaces
 autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -335,13 +272,19 @@ let g:SimplenoteSingleWindow=1
 let g:SimplenoteListWidth=25
 let g:SimplenoteNoteFormat="%N"
 
-" MacVim
-if has('gui_running')
-  set guifont=Inconsolata-g\ for\ Powerline:h10
+"let g:gruvbox_contrast_dark='medium'
+"let g:gruvbox_invert_selection=0
+"let g:gruvbox_bold=0
+"colorscheme gruvbox
+colorscheme base16-eighties
 
-  let g:lightline.component = { 'readonly': '%{&readonly?"":""}' }
-  let g:lightline.separator = { 'left': '', 'right': '' }
-  let g:lightline.subseparator = { 'left': '', 'right': '' }
+set guioptions=gtrLme
+if has('gui_running')
+  set guifont=Operator\ Mono\ Book:h11
+  "let base16colorspace=256
+  "colorscheme base16-tomorrow
+  "set background=dark
+  "colorscheme solarized
 
   let g:nerdtree_tabs_open_on_gui_startup = 1 " Auto open nerd tree on startup
   let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
@@ -349,4 +292,8 @@ if has('gui_running')
   set go-=T                                   " Hide MacVim toolbar
   set go-=L                                   " Hide left scrollbar
   set showtabline=2 "always show tabs, even if there is only one
+else
+  "let g:gruvbox_contrast_dark='hard'
+  "let g:gruvbox_invert_selection=0
+  "colorscheme gruvbox
 endif

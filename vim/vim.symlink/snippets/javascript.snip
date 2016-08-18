@@ -1,6 +1,22 @@
 snippet new-promise
 alias prom
 options word
-  new Promise((resolve, reject) => {
-    ${0:TARGET}
-  });
+	new Promise((resolve, reject) => {
+		${0:TARGET}
+	});
+
+snippet new-query
+alias cque
+options indent
+	query({
+		sql: \`
+			${0:TARGET}
+		\`,
+		params: [
+		],
+	});
+
+snippet give-logger
+alias clog
+	 const log = require('mvp-common').logger(__filename);
+

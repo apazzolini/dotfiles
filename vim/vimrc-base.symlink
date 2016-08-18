@@ -1,0 +1,69 @@
+" Basic configuration
+set ic
+set scs
+set nohlsearch
+set autoindent
+set smartindent
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set showmatch
+set vb t_vb=
+set incsearch
+set number
+set wrap linebreak nolist
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
+set mouse=a
+set splitbelow
+set splitright
+set formatoptions+=j " Delete comment character when joining commented lines
+set sidescrolloff=5
+set scrolloff=1
+set autoread
+set formatoptions-=co
+set nojoinspaces
+set backspace=indent,eol,start
+
+" Convenience Bindings
+map ' `
+let mapleader = ","
+map Y y$
+map ; :
+map H ^
+map L $
+map <C-B> <C-6>
+map S i<CR><Esc>k$
+nmap K kJ
+map <Space> 10j
+map <BS> 10k
+map <C-n> :bnext<CR>
+map <C-p> :bprev<CR>
+inoremap jj <Esc>
+noremap j gj
+noremap k gk
+nnoremap <D-i> <C-a>
+vmap <leader>y "*y
+map <leader>n :noh<cr>
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
+nnoremap vv ^<C-v>g_
+map <leader>l :call FillLine( '-' )<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>     
+nmap \| :vert resize 117<CR>
+
+" Fill rest of line with characters
+" http://stackoverflow.com/questions/3364102/how-to-fill-a-line-with-character-x-up-to-column-y-using-vim
+function! FillLine( str )
+  let tw = 80
+  .s/[[:space:]]*$//
+  let reps = (tw - col("$")) / len(a:str)
+  if reps > 0
+    .s/$/\=(' '.repeat(a:str, reps))/
+  endif
+endfunction
