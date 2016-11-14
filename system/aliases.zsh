@@ -14,7 +14,7 @@ alias h='history -30 -1'
 alias hg='history 1 -1 | grep '
 
 # process aliases
-alias pg='ps -A | grep '
+alias pg='ps -Aef | head -1 && ps -Aef | grep'
 alias psa='ps -A'
 alias ka='killall'
 alias pgj='ps -Aef | grep java'
