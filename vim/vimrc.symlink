@@ -5,6 +5,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " Generic
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -28,17 +32,19 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'sickill/vim-pasta'
 Plugin 'raimondi/delimitmate'
+Plugin 'bkad/CamelCaseMotion'
 
 " Filetypes
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'scrooloose/syntastic'
-"Plugin 'pangloss/vim-javascript'
-Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+"Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'vim-scripts/JavaScript-Indent'
 "Plugin 'othree/yajs.vim'
 "Plugin 'othree/es.next.syntax.vim'
 Plugin 'gavocanov/vim-js-indent'
+"Plugin 'jason0x43/vim-js-indent'
 Plugin 'ternjs/tern_for_vim'
 
 set cinoptions+=+1
@@ -61,6 +67,15 @@ nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
 set undodir=~/.vimundo//
 set backupdir=~/.vimbak//
 set directory=~/.vimswp//
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
+set mouse=a
+
+map <leader>w <Plug>CamelCaseMotion_w
+map <leader>b <Plug>CamelCaseMotion_b
+map <leader>e <Plug>CamelCaseMotion_e
 
 " DelimitMate
 let delimitMate_expand_cr=1
@@ -157,9 +172,9 @@ let g:unite_source_history_yank_enable = 1
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/git<cr>
 nnoremap <leader>s :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/git<cr>
 nnoremap <leader>v :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/git<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/git<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/git<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+nnoremap <leader>u :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
   nmap <buffer> <Space> 10j
@@ -243,6 +258,7 @@ let g:vimshell_force_overwrite_statusline = 0
 " JS Syntax coloring
 let g:used_javascript_libs = 'underscore,react,chai,angularjs,requirejs'
 let javascript_enable_domhtmlcss = 1
+let g:javascript_plugin_flow = 1
 
 " Syntastic
 let g:syntastic_reuse_loc_lists = 0

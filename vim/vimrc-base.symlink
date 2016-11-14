@@ -13,11 +13,6 @@ set vb t_vb=
 set incsearch
 set number
 set wrap linebreak nolist
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=1
-set mouse=a
 set splitbelow
 set splitright
 set formatoptions+=j " Delete comment character when joining commented lines
@@ -27,6 +22,9 @@ set autoread
 set formatoptions-=co
 set nojoinspaces
 set backspace=indent,eol,start
+set lazyredraw
+set autoread
+set shiftround
 
 " Convenience Bindings
 map ' `
@@ -55,6 +53,7 @@ map <C-L> <C-W>l
 nnoremap vv ^<C-v>g_
 map <leader>l :call FillLine( '-' )<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>     
+nnoremap <F8> :source $MYVIMRC<CR>     
 nmap \| :vert resize 117<CR>
 
 " Fill rest of line with characters
