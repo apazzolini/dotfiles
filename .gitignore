@@ -3,3 +3,7 @@ vim/vim.symlink/bundle
 git/gitconfig.symlink
 private
 bin/private
+nvim/.netrwhist
+nvim/.swap
+nvim/.bak
+
