@@ -53,9 +53,10 @@ map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
-nnoremap vv V
-nnoremap V v$
+nnoremap vv v$
 nnoremap <leader>sv :source $MYVIMRC<CR>     
+map <D-v> "*p
+imap <D-v> <Esc>"*pa
 
 if has('gui_vimr')
   set showtabline=2

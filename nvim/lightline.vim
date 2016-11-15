@@ -35,7 +35,7 @@ function! LightLineReadonly()
 endfunction
 
 function! LightLineFilename()
-  let fname = expand('%:t')
+  let fname = expand('%')
   return fname =~ 'NERD_tree' ? '' :
         \ &ft == 'unite' ? unite#get_status_string() :
         \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .

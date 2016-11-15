@@ -8,3 +8,9 @@ set foldlevel=1
 set mouse=a
 
 set inccommand=split
+
+function! Sol()
+  set background=light
+  colorscheme Solarized
+endfunction
+command! Sol call Sol()

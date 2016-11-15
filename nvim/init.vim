@@ -24,14 +24,22 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': 'javascri
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
 
 " Colorschemes
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
 filetype plugin indent on
 syntax enable
 
-colorscheme base16-eighties
+"colorscheme base16-eighties
+
+set background=dark
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_bold=0
+let g:gruvbox_invert_selection=0
+colorscheme gruvbox
 
 source ~/.config/nvim/base.vim
 source ~/.config/nvim/ack.vim
