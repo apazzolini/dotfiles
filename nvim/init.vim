@@ -43,7 +43,6 @@ colorscheme gruvbox
 
 source ~/.config/nvim/base.vim
 source ~/.config/nvim/ack.vim
-source ~/.config/nvim/neovim.vim
 source ~/.config/nvim/camelcasemotion.vim
 source ~/.config/nvim/delimitmate.vim
 source ~/.config/nvim/fillline.vim
@@ -52,6 +51,8 @@ source ~/.config/nvim/nerdcommenter.vim
 source ~/.config/nvim/nerdtree.vim
 source ~/.config/nvim/neomake.vim
 source ~/.config/nvim/simplenote.vim
+source ~/.config/nvim/unite.vim
+
+source ~/.config/nvim/neovim.vim
 source ~/.config/nvim/deoplete.vim
 source ~/.config/nvim/deoplete-tern.vim
-source ~/.config/nvim/unite.vim

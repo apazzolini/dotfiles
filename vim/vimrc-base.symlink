@@ -4,11 +4,10 @@ set scs
 set nohlsearch
 set autoindent
 set smartindent
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
-set showmatch
 set vb t_vb=
 set incsearch
 set number
@@ -25,6 +24,8 @@ set backspace=indent,eol,start
 set lazyredraw
 set autoread
 set shiftround
+set cinoptions+=+1
+set noshowmatch
 
 " Convenience Bindings
 map ' `
@@ -50,19 +51,12 @@ map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
-nnoremap vv ^<C-v>g_
-map <leader>l :call FillLine( '-' )<CR>
+nnoremap vv v$
 nnoremap <leader>sv :source $MYVIMRC<CR>     
-nnoremap <F8> :source $MYVIMRC<CR>     
-nmap \| :vert resize 117<CR>
+map <D-v> "*p
+imap <D-v> <Esc>"*pa
+nmap <Tab> >
+nmap <S-Tab> <
+map <C-Y> <S-Tab>
 
-" Fill rest of line with characters
-" http://stackoverflow.com/questions/3364102/how-to-fill-a-line-with-character-x-up-to-column-y-using-vim
-function! FillLine( str )
-  let tw = 80
-  .s/[[:space:]]*$//
-  let reps = (tw - col("$")) / len(a:str)
-  if reps > 0
-    .s/$/\=(' '.repeat(a:str, reps))/
-  endif
-endfunction
+autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e

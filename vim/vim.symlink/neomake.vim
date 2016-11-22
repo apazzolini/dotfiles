@@ -12,4 +12,4 @@ let g:neomake_error_sign = {
 
 au BufEnter *.js let b:neomake_javascript_eslint_exe = 'eslint_d'
 autocmd! BufWinEnter,BufWritePost * Neomake
-"autocmd BufUnload * lclose
+autocmd BufUnload * lclose

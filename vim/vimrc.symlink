@@ -1,315 +1,63 @@
-" Vundle init
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" Generic plugins
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'itchyny/lightline.vim'
+Plug 'sickill/vim-pasta'
+Plug 'raimondi/delimitmate'
+Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-surround'
+Plug 'mrtazz/simplenote.vim'
+Plug 'godlygeek/tabular'
+Plug 'scrooloose/nerdcommenter'
+Plug 'bkad/CamelCaseMotion'
+Plug 'scrooloose/syntastic'
+"Plug 'neomake/neomake'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'mileszs/ack.vim'
+Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
+Plug 'Shougo/unite.vim'
 
-" Generic
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'xuyuanp/nerdtree-git-plugin'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'itchyny/lightline.vim'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'mileszs/ack.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'mrtazz/simplenote.vim'
-Plugin 'editorconfig/editorconfig-vim'
-"Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-surround'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'tommcdo/vim-exchange'
-Plugin 'sickill/vim-pasta'
-Plugin 'raimondi/delimitmate'
-Plugin 'bkad/CamelCaseMotion'
-
-" Filetypes
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'pangloss/vim-javascript'
-"Plugin 'jelera/vim-javascript-syntax'
-"Plugin 'vim-scripts/JavaScript-Indent'
-"Plugin 'othree/yajs.vim'
-"Plugin 'othree/es.next.syntax.vim'
-Plugin 'gavocanov/vim-js-indent'
-"Plugin 'jason0x43/vim-js-indent'
-Plugin 'ternjs/tern_for_vim'
-
-set cinoptions+=+1
+" Filetype specific plugins
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
 
 " Colorschemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'chriskempson/base16-vim'
-Plugin 'morhetz/gruvbox'
-call vundle#end()
+"Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 
-syntax on
+call plug#end()
+
 filetype plugin indent on
+syntax enable
 
-" Appearance
+"colorscheme base16-eighties
+
 set background=dark
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_bold=0
+let g:gruvbox_invert_selection=0
+colorscheme gruvbox
 
-" Base config
-source ~/.vimrc-base
-nmap <leader>T :set titlestring=[]\ %f<left><left><left><left><left>
-set undodir=~/.vimundo//
-set backupdir=~/.vimbak//
-set directory=~/.vimswp//
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=1
-set mouse=a
+source ~/.vim/base.vim
+source ~/.vim/ack.vim
+source ~/.vim/camelcasemotion.vim
+source ~/.vim/delimitmate.vim
+source ~/.vim/fillline.vim
+source ~/.vim/lightline.vim
+source ~/.vim/nerdcommenter.vim
+source ~/.vim/nerdtree.vim
+source ~/.vim/simplenote.vim
+source ~/.vim/unite.vim
+source ~/.vim/surround.vim
 
-map <leader>w <Plug>CamelCaseMotion_w
-map <leader>b <Plug>CamelCaseMotion_b
-map <leader>e <Plug>CamelCaseMotion_e
+"source ~/.vim/neomake.vim
+source ~/.vim/syntastic.vim
 
-" DelimitMate
-let delimitMate_expand_cr=1
-let delimitMate_expand_space=1
-
-" Dash
-nmap <silent> <leader>d <Plug>DashGlobalSearch
-
-" Completion
-set completeopt-=preview
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-if !exists('g:neocomplete#sources#omni#functions')
-  let g:neocomplete#sources#omni#functions = {}
-endif
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-inoremap <expr><C-Space> neocomplete#start_manual_complete()
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-let g:neocomplete#disable_auto_complete = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#auto_completion_start_length = 4
-let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
-let g:neocomplete#keyword_patterns.default = '\h\w*'
-let g:neocomplete#keyword_patterns.html    = '</\?\%([[:alnum:]_:-]\+\s*\)\?\%(/\?>\)\?\|&\h\%(\w*;\)\?\|\h[[:alnum:]_:-]*'
-let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
-autocmd FileType javascript py tern_ensureCompletionCached()
-
-" Snippets
-imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :
-let g:neosnippet#disable_runtime_snippets = {'_' : 1}
-let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
-
-" Tern
-let g:tern#command = ["node", '/Users/Andre/.vim/bundle/tern_for_vim/node_modules/tern/bin/tern', '--no-port-file', '--persistent']
-let g:tern_show_signature_in_pum = 1
-let g:tern_map_keys = 0
-let g:tern_request_timeout = 2
-nmap gr :TernRefs<CR>
-
-" Ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-let g:ack_mappings = { "v": "<C-w><CR><C-w>L<C-w>h<C-w>j<C-w>J<C-w>10_<C-w>k<C-w>l<C-w>l" }
-nmap <leader>a :Ack!<space>''<left>
-nmap <leader>c :Ack!<CR>
-nmap <D-F> :Ack!<space>''<left>
-
-" NERDTree
-let g:NERDTreeWinSize = 38
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeChDirMode = 2 " change vim working directory according to whatever the tree node is in NERDtree
-let NERDTreeShowBookmarks = 1
-map <D-0> :NERDTreeTabsToggle<CR>
-map <D-l> :NERDTreeFind<CR>
-let g:NERDTreeIndicatorMapCustom = {
-  \ "Modified"  : "M",
-  \ "Staged"    : "M",
-  \ "Untracked" : "N",
-  \ "Renamed"   : "R",
-  \ "Unmerged"  : "M",
-  \ "Deleted"   : "D",
-  \ "Dirty"     : "M",
-  \ "Clean"     : "A",
-  \ "Unknown"   : "?"
-  \ }
-
-" NERDCommenter
-let g:NERDSpaceDelims = 1
-nmap <D-/> <Leader>c<space>
-vmap <D-/> <Leader>c<space>gv
-imap <D-/> <Esc><D-/>
-
-" EasyMotion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1
-map f <Plug>(easymotion-e)
-map F <Plug>(easymotion-b)
-
-" Unite
-let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-let g:unite_source_history_yank_enable = 1
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/git<cr>
-nnoremap <leader>s :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/git<cr>
-nnoremap <leader>v :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/git<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/git<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>u :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  nmap <buffer> <Space> 10j
-  nmap <buffer> <BS> 10k
-endfunction
-
-" Lightline
-set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
-
-function! LightLineModified()
-  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? 'RO' : ''
-endfunction
-
-function! LightLineFilename()
-  let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? '' :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineMode()
-  let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.js,*.css,*.html call s:syntastic()
-augroup END
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
-
-" JS Syntax coloring
-let g:used_javascript_libs = 'underscore,react,chai,angularjs,requirejs'
-let javascript_enable_domhtmlcss = 1
-let g:javascript_plugin_flow = 1
-
-" Syntastic
-let g:syntastic_reuse_loc_lists = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-let g:syntastic_javascript_eslint_args = '--parser=babel-eslint'
-let g:syntastic_mode_map = { 'mode': 'passive' }
-nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-
-" Filetype specific commands
-"autocmd FileType javascript setlocal omnifunc=tern#Complete
-au BufRead,BufNewFile *.pcss set filetype=scss
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let b:javascript_fold = 0
-
-" Strip trailing spaces
-autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-" Simplenote
-source ~/.simplenoterc " Username / Password
-let g:SimplenoteVertical=1
-let g:SimplenoteSingleWindow=1
-let g:SimplenoteListWidth=25
-let g:SimplenoteNoteFormat="%N"
-
-"let g:gruvbox_contrast_dark='medium'
-"let g:gruvbox_invert_selection=0
-"let g:gruvbox_bold=0
-"colorscheme gruvbox
-colorscheme base16-eighties
-
-set guioptions=gtrLme
-if has('gui_running')
-  set guifont=Operator\ Mono\ Book:h11
-  "let base16colorspace=256
-  "colorscheme base16-tomorrow
-  "set background=dark
-  "colorscheme solarized
-
-  let g:nerdtree_tabs_open_on_gui_startup = 1 " Auto open nerd tree on startup
-  let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
-
-  set go-=T                                   " Hide MacVim toolbar
-  set go-=L                                   " Hide left scrollbar
-  set showtabline=2 "always show tabs, even if there is only one
-else
-  "let g:gruvbox_contrast_dark='hard'
-  "let g:gruvbox_invert_selection=0
-  "colorscheme gruvbox
-endif
+source ~/.vim/macvim.vim
+source ~/.vim/neocomplete.vim
+source ~/.vim/tern.vim
