@@ -3,6 +3,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeChDirMode = 2 " change vim working directory according to whatever the tree node is in NERDtree
 let NERDTreeShowBookmarks = 1
+let NERDTreeIgnore = ['node_modules', 'dist']
 
 map <D-0> :NERDTreeTabsToggle<CR>
 map <D-l> :NERDTreeFind<CR>
@@ -26,3 +27,8 @@ if has('gui_vimr')
   autocmd StdinReadPre * let s:std_in=1
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 endif
+
+function! Setcd()
+  cd %:p:h
+endfunction
+command! Setcd call Setcd()

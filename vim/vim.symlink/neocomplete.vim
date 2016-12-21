@@ -11,9 +11,11 @@ endif
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
+
 inoremap <expr><C-Space> neocomplete#start_manual_complete()
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+imap <expr> <CR> pumvisible() ? "\<C-y>" : '<Plug>delimitMateCR'
 
 let g:neocomplete#disable_auto_complete = 0
 let g:neocomplete#enable_at_startup = 1
@@ -24,8 +26,6 @@ let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMS
 let g:neocomplete#keyword_patterns.default = '\h\w*'
 let g:neocomplete#keyword_patterns.html    = '</\?\%([[:alnum:]_:-]\+\s*\)\?\%(/\?>\)\?\|&\h\%(\w*;\)\?\|\h[[:alnum:]_:-]*'
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
-"autocmd FileType javascript py tern_ensureCompletionCached()
 
 " Snippets
 imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"

@@ -14,7 +14,6 @@ Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdcommenter'
 Plug 'bkad/CamelCaseMotion'
 Plug 'scrooloose/syntastic'
-"Plug 'neomake/neomake'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'mileszs/ack.vim'
@@ -22,11 +21,9 @@ Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'Shougo/unite.vim'
 
 " Filetype specific plugins
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
 
 " Colorschemes
-"Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 
@@ -34,8 +31,6 @@ call plug#end()
 
 filetype plugin indent on
 syntax enable
-
-"colorscheme base16-eighties
 
 set background=dark
 let g:gruvbox_contrast_dark='hard'
@@ -55,9 +50,8 @@ source ~/.vim/simplenote.vim
 source ~/.vim/unite.vim
 source ~/.vim/surround.vim
 
-"source ~/.vim/neomake.vim
 source ~/.vim/syntastic.vim
 
 source ~/.vim/macvim.vim
 source ~/.vim/neocomplete.vim
-source ~/.vim/tern.vim
+source ~/.vim/vim-javascript.vim
