@@ -38,20 +38,24 @@ let g:gruvbox_bold=0
 let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 
+function! Sol()
+  set background=light
+  colorscheme Solarized
+endfunction
+command! Sol call Sol()
+
 source ~/.vim/base.vim
+
 source ~/.vim/ack.vim
 source ~/.vim/camelcasemotion.vim
 source ~/.vim/delimitmate.vim
 source ~/.vim/fillline.vim
 source ~/.vim/lightline.vim
+source ~/.vim/macvim.vim
+source ~/.vim/neocomplete.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
 source ~/.vim/simplenote.vim
-source ~/.vim/unite.vim
 source ~/.vim/surround.vim
-
 source ~/.vim/syntastic.vim
-
-source ~/.vim/macvim.vim
-source ~/.vim/neocomplete.vim
-source ~/.vim/vim-javascript.vim
+source ~/.vim/unite.vim
