@@ -19,6 +19,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'mileszs/ack.vim'
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'Shougo/unite.vim'
+Plug 'easymotion/vim-easymotion'
 
 " Filetype specific plugins
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
@@ -49,6 +50,7 @@ source ~/.vim/base.vim
 source ~/.vim/ack.vim
 source ~/.vim/camelcasemotion.vim
 source ~/.vim/delimitmate.vim
+source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
 source ~/.vim/lightline.vim
 source ~/.vim/macvim.vim
