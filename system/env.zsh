@@ -32,6 +32,7 @@ setopt complete_aliases # don't expand aliases _before_ completion has finished 
 
 # Use VI mode in the shell
 bindkey -v
+bindkey "^R" history-incremental-pattern-search-backward
 
 # Prompt
 if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
