@@ -26,6 +26,7 @@ set autoread
 set shiftround
 set cinoptions+=+1
 set noshowmatch
+set termguicolors
 
 " Convenience Bindings
 map ' `
@@ -39,12 +40,11 @@ map S i<CR><Esc>k$
 nmap K kJ
 map <Space> 10j
 map <BS> 10k
-map <C-n> :bnext<CR>
-map <C-p> :bprev<CR>
+map <C-n> :tabnext<CR>
+map <C-p> :tabprev<CR>
 inoremap jj <Esc>
 noremap j gj
 noremap k gk
-nnoremap <D-i> <C-a>
 vmap <leader>y "*y
 map <leader>n :noh<cr>
 map <C-J> <C-W>j
@@ -53,16 +53,11 @@ map <C-H> <C-W>h
 map <C-L> <C-W>l
 nnoremap vv v$
 nnoremap <leader>sv :source $MYVIMRC<CR>     
-map <D-v> "*p
-imap <D-v> <Esc>"*pa
 nmap <Tab> >
 nmap <S-Tab> <
 map <C-Y> <S-Tab>
 
-if has('gui_vimr')
-  set showtabline=2
-  map <D-{> :tabprev<CR>
-  map <D-}> :tabnext<CR>
-endif
+"map <D-v> "*p
+"imap <D-v> <Esc>"*pa
 
 autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e

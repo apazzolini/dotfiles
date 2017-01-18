@@ -1,5 +1,5 @@
 let g:NERDSpaceDelims = 1
-nmap <D-/> <Leader>c<space>
-vmap <D-/> <Leader>c<space>gv
-imap <D-/> <Esc><D-/>
+" nmap <c-/> <Leader>c<space>
+" vmap <c-/> <Leader>c<space>gv
+" imap <c-/> <Esc><D-/>
 

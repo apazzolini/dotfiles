@@ -16,7 +16,6 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'scrooloose/syntastic'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
-Plug 'mileszs/ack.vim'
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'Shougo/unite.vim'
 Plug 'easymotion/vim-easymotion'
@@ -47,7 +46,6 @@ command! Sol call Sol()
 
 source ~/.vim/base.vim
 
-source ~/.vim/ack.vim
 source ~/.vim/camelcasemotion.vim
 source ~/.vim/delimitmate.vim
 source ~/.vim/easymotion.vim

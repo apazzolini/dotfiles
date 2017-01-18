@@ -5,8 +5,8 @@ let NERDTreeChDirMode = 2 " change vim working directory according to whatever t
 let NERDTreeShowBookmarks = 1
 let NERDTreeIgnore = ['node_modules', 'dist']
 
-map <D-0> :NERDTreeTabsToggle<CR>
-map <D-l> :NERDTreeFind<CR>
+map <leader>nt :NERDTreeTabsToggle<CR>
+map <leader>g :NERDTreeFind<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
   \ "Modified"  : "M",
@@ -21,12 +21,8 @@ let g:NERDTreeIndicatorMapCustom = {
   \ }
 
 let g:nerdtree_tabs_open_on_gui_startup = 1
-let g:nerdtree_tabs_focus_on_files = 1
-
-if has('gui_vimr')
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-endif
+let g:nerdtree_tabs_open_on_console_startup = 2
+let g:nerdtree_tabs_smart_startup_focus = 1
 
 function! Setcd()
   cd %:p:h
