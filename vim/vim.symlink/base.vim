@@ -27,6 +27,13 @@ set shiftround
 set cinoptions+=+1
 set noshowmatch
 set termguicolors
+set t_ut= 
+
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 
 " Convenience Bindings
 map ' `
@@ -40,24 +47,25 @@ map S i<CR><Esc>k$
 nmap K kJ
 map <Space> 10j
 map <BS> 10k
-map <C-n> :tabnext<CR>
-map <C-p> :tabprev<CR>
-inoremap jj <Esc>
+map <C-M> :tabnext<CR>
+map <C-N> :tabprev<CR>
+"inoremap jj <Esc>
 noremap j gj
 noremap k gk
 vmap <leader>y "*y
 map <leader>n :noh<cr>
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
-nnoremap vv v$
+"map <C-J> <C-W>j
+"map <C-K> <C-W>k
+"map <C-H> <C-W>h
+"map <C-L> <C-W>l
+"nnoremap vv v$
 nnoremap <leader>sv :source $MYVIMRC<CR>     
 nmap <Tab> >
 nmap <S-Tab> <
 map <C-Y> <S-Tab>
-
-"map <D-v> "*p
-"imap <D-v> <Esc>"*pa
+noremap <ScrollWheelUp>     9<C-Y>
+noremap <ScrollWheelDown>   9<C-E>
+map <C-c> "*p
+imap <C-c> <Esc>"*pa
 
 autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e

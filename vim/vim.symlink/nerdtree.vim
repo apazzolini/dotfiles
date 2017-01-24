@@ -2,7 +2,7 @@ let g:NERDTreeWinSize = 38
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeChDirMode = 2 " change vim working directory according to whatever the tree node is in NERDtree
-let NERDTreeShowBookmarks = 1
+let NERDTreeShowBookmarks = 0
 let NERDTreeIgnore = ['node_modules', 'dist']
 
 map <leader>nt :NERDTreeTabsToggle<CR>

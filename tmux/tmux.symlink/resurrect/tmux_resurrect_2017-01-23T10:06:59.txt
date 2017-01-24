@@ -1,0 +1,30 @@
+pane	0	0	:vim	1	:*	1	:/Users/Andre	1	vim	:vim .vimrc
+pane	0	1	:api	0	:-	1	:/Users/Andre/Work/MVPindex/ws/apiv2	1	vim	:vim .
+pane	0	2	:ingestion	0	:	1	:/Users/Andre/Work/MVPindex/ws/ingestionv2	1	vim	:vim .
+pane	0	3	:elastic	0	:	1	:/Users/Andre/Work/MVPindex/ws/elastic-ingestion	1	vim	:vim .
+pane	0	4	:enhancer	0	:	1	:/Users/Andre/Work/MVPindex/ws/enhancer	1	vim	:vim .
+pane	0	5	:vim	0	:	1	:/Users/Andre/Work/MVPindex/ws/scripts/crontasks	1	vim	:vim .
+pane	0	6	:common	0	:	1	:/Users/Andre/Work/MVPindex/ws/common	1	vim	:vim .
+pane	local	0	:zsh	1	:*	1	:/Users/Andre/Work/MVPindex/ws/enhancer	0	zsh	:
+pane	local	0	:zsh	1	:*	2	:/Users/Andre/Work/MVPindex/ws/ingestionv2	0	zsh	:
+pane	local	0	:zsh	1	:*	3	:/Users/Andre/Work/MVPindex/ws/elastic-ingestion	0	zsh	:
+pane	local	0	:zsh	1	:*	4	:/Users/Andre/Work/MVPindex/ws/scripts/crontasks	1	zsh	:
+pane	local	1	:vim	0	:-	1	:/Users/Andre	1	vim	:vim ditto-logs.txt
+pane	logs	0	:zsh	1	:*	1	:/Users/Andre	0	Python	:/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python /usr/local/bin/awslogs get elastic-ingestion ALL --start=5m ago --watch --no-color -S -G
+node /usr/local/bin/bunyan -o short
+pane	logs	0	:zsh	1	:*	2	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	3	:/Users/Andre	1	zsh	:
+pane	logs	0	:zsh	1	:*	4	:/Users/Andre	0	zsh	:
+pane	remote	0	:zsh	1	:*	1	:/Users/Andre	1	zsh	:
+window	0	0	1	:*	d37e,391x97,0,0,1
+window	0	1	0	:-	d37f,391x97,0,0,2
+window	0	2	0	:	d380,391x97,0,0,3
+window	0	3	0	:	d381,391x97,0,0,4
+window	0	4	0	:	69f5,391x97,0,0,16
+window	0	5	0	:	d383,391x97,0,0,6
+window	0	6	0	:	d384,391x97,0,0,7
+window	local	0	1	:*	ea1f,391x96,0,0{228x96,0,0[228x27,0,0,13,228x29,0,28,15,228x38,0,58,18],162x96,229,0,26}
+window	local	1	0	:-	e7f7,391x96,0,0,28
+window	logs	0	1	:*	b327,391x97,0,0{195x97,0,0[195x42,0,0,19,195x54,0,43,22],195x97,196,0[195x42,196,0,20,195x54,196,43,21]}
+window	remote	0	1	:*	e9f3,391x97,0,0,24
+state	0	

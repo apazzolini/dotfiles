@@ -19,6 +19,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'Shougo/unite.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Filetype specific plugins
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
@@ -39,6 +40,7 @@ let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 
 function! Sol()
+  set notermguicolors
   set background=light
   colorscheme Solarized
 endfunction

@@ -1,0 +1,39 @@
+# remap prefix to Control + p
+unbind C-b
+
+set -g prefix C-p
+bind C-p send-prefix
+
+# Start panes at 1, not 0
+set -g pane-base-index 1
+
+# basic setup
+set -g mouse on
+set -g default-terminal "xterm-256color"
+setw -g mode-keys vi
+set -sg escape-time 0
+
+# convenience bindings
+bind -n C-o choose-window -F "#W"
+
+# hacky way to get cmd+k working
+bind C-l send-keys -R \; clear-history
+
+# pane management
+bind-key j command-prompt -p "join pane from:"  "join-pane -h -s '%%'"
+bind-key s command-prompt -p "send pane to:"  "join-pane -h -t '%%'"
+
+# tmux-resurrect
+bind S run-shell ~/.tmux/plugins/tmux-resurrect/scripts/save.sh
+
+# tmux-better-mouse-mode
+set -g @scroll-without-changing-pane "on"
+set -g @scroll-speed-num-lines-per-scroll "9"
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'nhdaly/tmux-better-mouse-mode'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+run '~/.tmux/plugins/tpm/tpm'

@@ -1,0 +1,7 @@
+pane	0	1	:api	0	:	1	:/Users/Andre/Work/MVPindex/ws/apiv2	1	vim	:vim .
+pane	0	2	:ingestion	0	:-	1	:/Users/Andre/Work/MVPindex/ws/ingestionv2	1	vim	:vim .
+pane	0	3	:zsh	1	:*	1	:/Users/Andre/.dotfiles/tmux/tmux.symlink/plugins/tmux-resurrect/scripts	1	zsh	:
+window	0	1	0	:	cf7d,391x96,0,0,0
+window	0	2	0	:-	cf7e,391x96,0,0,1
+window	0	3	1	:*	cf81,391x96,0,0,4
+state	0	
