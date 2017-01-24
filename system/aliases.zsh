@@ -69,3 +69,4 @@ alias ack="ag"
 
 # Atom
 alias cleanatom="rm -rf /Users/Andre/.atom/storage/editor-*"
+alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2"
