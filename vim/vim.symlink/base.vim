@@ -26,14 +26,23 @@ set autoread
 set shiftround
 set cinoptions+=+1
 set noshowmatch
-set termguicolors
 set t_ut= 
+set timeoutlen=1000 ttimeoutlen=0
 
 if has("mouse_sgr")
     set ttymouse=sgr
 else
     set ttymouse=xterm2
 end
+
+" Change cursor based on mode
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " Convenience Bindings
 map ' `
@@ -49,23 +58,23 @@ map <Space> 10j
 map <BS> 10k
 map <C-M> :tabnext<CR>
 map <C-N> :tabprev<CR>
-"inoremap jj <Esc>
 noremap j gj
 noremap k gk
 vmap <leader>y "*y
 map <leader>n :noh<cr>
-"map <C-J> <C-W>j
-"map <C-K> <C-W>k
-"map <C-H> <C-W>h
-"map <C-L> <C-W>l
-"nnoremap vv v$
 nnoremap <leader>sv :source $MYVIMRC<CR>     
 nmap <Tab> >
 nmap <S-Tab> <
 map <C-Y> <S-Tab>
-noremap <ScrollWheelUp>     9<C-Y>
-noremap <ScrollWheelDown>   9<C-E>
-map <C-c> "*p
-imap <C-c> <Esc>"*pa
+noremap <ScrollWheelUp> 9<C-Y>
+noremap <ScrollWheelDown> 9<C-E>
+map <C-c> o<Esc>"*p']
+imap <C-c> <Esc>"*p']a
+map <leader>we <C-W>=
+
+" Show syntax highlighting of current word
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e

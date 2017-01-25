@@ -1,0 +1,29 @@
+pane	0	0	:vim	1	:*	1	:/Users/Andre	1	vim	:vim .vimrc
+pane	0	1	:api	0	:-	1	:/Users/Andre/Work/MVPindex/ws/apiv2	1	vim	:vim .
+pane	0	2	:ingestion	0	:	1	:/Users/Andre/Work/MVPindex/ws/ingestionv2	1	vim	:vim .
+pane	0	3	:elastic	0	:	1	:/Users/Andre/Work/MVPindex/ws/elastic-ingestion	1	vim	:vim .
+pane	0	4	:enhancer	0	:	1	:/Users/Andre/Work/MVPindex/ws/enhancer	1	vim	:vim .
+pane	0	5	:vim	0	:	1	:/Users/Andre/Work/MVPindex/ws/scripts/crontasks	1	vim	:vim .
+pane	0	6	:common	0	:	1	:/Users/Andre/Work/MVPindex/ws/common	1	vim	:vim .
+pane	local	0	:zsh	1	:*	1	:/Users/Andre/Work/MVPindex/ws/enhancer	0	zsh	:
+pane	local	0	:zsh	1	:*	2	:/Users/Andre/Work/MVPindex/ws/ingestionv2	0	zsh	:
+pane	local	0	:zsh	1	:*	3	:/Users/Andre/Work/MVPindex/ws/elastic-ingestion	0	zsh	:
+pane	local	0	:zsh	1	:*	4	:/Users/Andre/Work/MVPindex/ws/scripts/crontasks	1	zsh	:
+pane	local	1	:vim	0	:-	1	:/Users/Andre	1	zsh	:
+pane	logs	0	:zsh	1	:*	1	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	2	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	3	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	4	:/Users/Andre	1	zsh	:
+pane	remote	0	:zsh	1	:*	1	:/Users/Andre	1	zsh	:
+window	0	0	1	:*	c87e,393x94,0,0,1
+window	0	1	0	:-	c87f,393x94,0,0,2
+window	0	2	0	:	c880,393x94,0,0,3
+window	0	3	0	:	c881,393x94,0,0,4
+window	0	4	0	:	c882,393x94,0,0,5
+window	0	5	0	:	c883,393x94,0,0,6
+window	0	6	0	:	c884,393x94,0,0,7
+window	local	0	1	:*	dde7,393x94,0,0{229x94,0,0[229x26,0,0,8,229x29,0,27,9,229x37,0,57,10],163x94,230,0,11}
+window	local	1	0	:-	6471,393x94,0,0,12
+window	logs	0	1	:*	58c1,393x94,0,0{196x94,0,0[196x41,0,0,13,196x52,0,42,14],196x94,197,0[196x41,197,0,15,196x52,197,42,16]}
+window	remote	0	1	:*	6476,393x94,0,0,17
+state	0	remote

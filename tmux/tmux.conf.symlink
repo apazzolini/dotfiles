@@ -16,8 +16,12 @@ set -sg escape-time 0
 # convenience bindings
 bind -n C-o choose-window -F "#W"
 
-# hacky way to get cmd+k working
+# iterm2 hex code binds
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
 bind C-l send-keys -R \; clear-history
+bind C-u if-shell "$is_vim" "send-keys \e:q\r" "kill-pane"
+bind r if-shell "$is_vim" "send-keys \e:redraw!\r" "refresh-client"
 
 # pane management
 bind-key j command-prompt -p "join pane from:"  "join-pane -h -s '%%'"

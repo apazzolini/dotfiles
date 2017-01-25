@@ -55,3 +55,5 @@ if $(grc &>/dev/null)
 then
   source `brew --prefix`/etc/grc.bashrc
 fi
+
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
