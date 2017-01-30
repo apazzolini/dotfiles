@@ -28,6 +28,10 @@ set cinoptions+=+1
 set noshowmatch
 set t_ut= 
 set timeoutlen=1000 ttimeoutlen=0
+set foldmethod=syntax
+set foldnestmax=3
+set foldlevel=3
+set nofoldenable
 
 if has("mouse_sgr")
     set ttymouse=sgr
@@ -71,6 +75,7 @@ noremap <ScrollWheelDown> 9<C-E>
 map <C-c> o<Esc>"*p']
 imap <C-c> <Esc>"*p']a
 map <leader>we <C-W>=
+map <leader>re :redraw!<CR>
 
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'

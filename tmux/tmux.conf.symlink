@@ -8,10 +8,14 @@ bind C-p send-prefix
 set -g pane-base-index 1
 
 # basic setup
-set -g mouse on
 set -g default-terminal "xterm-256color"
-setw -g mode-keys vi
 set -sg escape-time 0
+
+setw -g mouse on
+setw -g mode-keys vi
+# set -g @shell_mode 'vi'
+# unbind -t vi-copy MouseDragEnd1Pane
+bind -tvi-copy MouseDragEnd1Pane copy-selection -x
 
 # convenience bindings
 bind -n C-o choose-window -F "#W"
@@ -22,6 +26,7 @@ is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
 bind C-l send-keys -R \; clear-history
 bind C-u if-shell "$is_vim" "send-keys \e:q\r" "kill-pane"
 bind r if-shell "$is_vim" "send-keys \e:redraw!\r" "refresh-client"
+bind / if-shell "$is_vim" "send-keys -l ,ct" "refresh-client"
 
 # pane management
 bind-key j command-prompt -p "join pane from:"  "join-pane -h -s '%%'"
