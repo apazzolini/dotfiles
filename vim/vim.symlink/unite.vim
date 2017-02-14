@@ -13,10 +13,6 @@ autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
   nmap <buffer> <Space> 10j
   nmap <buffer> <BS>    10k
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  nmap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  nmap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   nmap <silent><buffer><expr> V     unite#do_action('vsplit')
   nmap <silent><buffer><expr> I     unite#do_action('split')
 endfunction
