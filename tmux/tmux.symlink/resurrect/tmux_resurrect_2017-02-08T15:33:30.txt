@@ -1,0 +1,37 @@
+pane	local	0	:multi	1	:*	1	:/Users/Andre/Work/MVPindex/ws/apiv2	1	zsh	:
+pane	local	0	:multi	1	:*	2	:/Users/Andre/Work/MVPindex/ws/enhancer	0	zsh	:
+pane	local	0	:multi	1	:*	3	:/Users/Andre/Work/MVPindex/ws/scripts	0	zsh	:
+pane	local	1	:single	0	:-	1	:/Users/Andre	1	zsh	:
+pane	logs	0	:zsh	1	:*	1	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	2	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	3	:/Users/Andre	1	Python	:/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python /usr/local/bin/awslogs get scripts ALL --start=5m ago --watch --no-color -S -G
+node /usr/local/bin/bunyan -o short
+pane	logs	0	:zsh	1	:*	4	:/Users/Andre	0	zsh	:
+pane	notes	0	:vim	1	:*	1	:/Users/Andre/Work/MVPindex/docs	1	vim	:vim log.txt
+pane	remote	0	:d.ecs	0	:	1	:/Users/Andre	1	ssh	:ssh d.ecs
+pane	remote	1	:i.ecs	0	:-	1	:/Users/Andre	1	ssh	:ssh i.ecs
+pane	remote	2	:i.kafka	0	:	1	:/Users/Andre	1	ssh	:ssh i.kafka
+pane	remote	3	:bastion	1	:*	1	:/Users/Andre	1	zsh	:
+pane	vim	0	:vim	0	:	1	:/Users/Andre/.dotfiles	1	vim	:vim .dotfiles
+pane	vim	1	:api	1	:*	1	:/Users/Andre/Work/MVPindex/ws/apiv2	1	vim	:vim .
+pane	vim	2	:ingestion	0	:	1	:/Users/Andre/Work/MVPindex/ws/ingestionv2	1	vim	:vim .
+pane	vim	3	:elastic	0	:	1	:/Users/Andre/Work/MVPindex/ws/elastic-ingestion	1	vim	:vim .
+pane	vim	4	:enhancer	0	:	1	:/Users/Andre/Work/MVPindex/ws/enhancer	1	vim	:vim .
+pane	vim	5	:scripts	0	:-	1	:/Users/Andre/Work/MVPindex/ws/scripts	1	vim	:vim .
+pane	vim	6	:common	0	:	1	:/Users/Andre/Work/MVPindex/ws/common	1	vim	:vim .
+window	local	0	1	:*	6992,393x95,0,0{228x95,0,0[228x59,0,0,8,228x35,0,60,10],164x95,229,0,11}
+window	local	1	0	:-	e670,393x95,0,0,21
+window	logs	0	1	:*	5be1,393x95,0,0{194x95,0,0[194x40,0,0,13,194x54,0,41,14],198x95,195,0[198x40,195,0,15,198x54,195,41,16]}
+window	notes	0	1	:*	dbd8,172x52,0,0,29
+window	remote	0	0	:	e673,393x95,0,0,24
+window	remote	1	0	:-	6670,393x95,0,0,30
+window	remote	2	0	:	6671,393x95,0,0,31
+window	remote	3	1	:*	6676,393x95,0,0,36
+window	vim	0	0	:	e877,393x96,0,0,28
+window	vim	1	1	:*	d07f,393x96,0,0,2
+window	vim	2	0	:	d080,393x96,0,0,3
+window	vim	3	0	:	d081,393x96,0,0,4
+window	vim	4	0	:	d082,393x96,0,0,5
+window	vim	5	0	:-	6877,393x96,0,0,18
+window	vim	6	0	:	d084,393x96,0,0,7
+state	remote	

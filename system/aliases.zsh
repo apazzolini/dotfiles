@@ -40,11 +40,6 @@ then
   alias git='hub'
 fi
 
-# toggle java_home
-alias usejava6='export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)'
-alias usejava7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
-alias usejava8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
-
 # open current directory in sourcetree
 alias st='open -a "/Applications/SourceTree.app" `pwd`'
 
@@ -72,5 +67,7 @@ alias cleanatom="rm -rf /Users/Andre/.atom/storage/editor-*"
 
 # tmux
 alias t="tmux -2"
+alias ta="t attach -t"
+alias tda="t detach -a && t detach"
 
 alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2"

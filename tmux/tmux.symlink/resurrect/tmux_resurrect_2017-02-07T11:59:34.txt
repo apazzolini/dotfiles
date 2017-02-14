@@ -1,0 +1,38 @@
+pane	hyper	0	:zsh	1	:*	1	:/Users/Andre/.hyper_plugins/local/tmux-shortcuts	1	zsh	:
+pane	local	0	:multi	1	:*	1	:/Users/Andre/Work/MVPindex/ws/ingestionv2	1	node	:gulp  
+pane	local	0	:multi	1	:*	2	:/Users/Andre/Work/MVPindex/ws/enhancer	0	zsh	:
+pane	local	0	:multi	1	:*	3	:/Users/Andre/Work/MVPindex/ws/scripts	0	zsh	:
+pane	local	1	:single	0	:-	1	:/Users/Andre	1	zsh	:
+pane	local	2	:zsh	0	:	1	:/Users/Andre/Work/MVPindex/ws/enhancer	1	zsh	:
+pane	logs	0	:zsh	1	:*	1	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	2	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	3	:/Users/Andre	0	zsh	:
+pane	logs	0	:zsh	1	:*	4	:/Users/Andre	1	zsh	:
+pane	notes	0	:vim	1	:*	1	:/Users/Andre/Work/MVPindex/docs	1	vim	:vim log.txt
+pane	remote	0	:d.ecs	1	:*	1	:/Users/Andre	1	ssh	:ssh d.ecs
+pane	remote	1	:i.ecs	0	:-	1	:/Users/Andre	1	ssh	:ssh i.ecs
+pane	remote	2	:i.kafka	0	:	1	:/Users/Andre	1	ssh	:ssh i.kafka
+pane	vim	0	:vim	0	:	1	:/Users/Andre/.dotfiles	1	vim	:vim .dotfiles
+pane	vim	1	:api	0	:	1	:/Users/Andre/Work/MVPindex/ws/apiv2	1	vim	:vim .
+pane	vim	2	:ingestion	1	:*	1	:/Users/Andre/Work/MVPindex/ws/ingestionv2	1	vim	:vim .
+pane	vim	3	:elastic	0	:	1	:/Users/Andre/Work/MVPindex/ws/elastic-ingestion	1	vim	:vim .
+pane	vim	4	:enhancer	0	:	1	:/Users/Andre/Work/MVPindex/ws/enhancer	1	vim	:vim .
+pane	vim	5	:scripts	0	:	1	:/Users/Andre/Work/MVPindex/ws/scripts	1	vim	:vim .
+pane	vim	6	:common	0	:-	1	:/Users/Andre/Work/MVPindex/ws/common	1	vim	:vim .
+window	hyper	0	1	:*	e914,150x78,0,0,25
+window	local	0	1	:*	4fd2,393x95,0,0{229x95,0,0[229x59,0,0,8,229x35,0,60,10],163x95,230,0,11}
+window	local	1	0	:-	e670,393x95,0,0,21
+window	local	2	0	:	e672,393x95,0,0,23
+window	logs	0	1	:*	6e1d,393x95,0,0{195x95,0,0[195x40,0,0,13,195x54,0,41,14],197x95,196,0[197x40,196,0,15,197x54,196,41,16]}
+window	notes	0	1	:*	dfd8,172x54,0,0,29
+window	remote	0	1	:*	e673,393x95,0,0,24
+window	remote	1	0	:-	6670,393x95,0,0,30
+window	remote	2	0	:	6671,393x95,0,0,31
+window	vim	0	0	:	e877,393x96,0,0,28
+window	vim	1	0	:	d07f,393x96,0,0,2
+window	vim	2	1	:*	d080,393x96,0,0,3
+window	vim	3	0	:	d081,393x96,0,0,4
+window	vim	4	0	:	d082,393x96,0,0,5
+window	vim	5	0	:	6877,393x96,0,0,18
+window	vim	6	0	:-	d084,393x96,0,0,7
+state	remote	

@@ -23,7 +23,8 @@ bind -n C-o choose-window -F "#W"
 # iterm2 hex code binds
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
     | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-bind C-l send-keys -R \; clear-history
+# bind C-l send-keys C-l \; run-shell "sleep .3s" \; clear-history
+bind C-l send-keys -R \; send-keys C-l \; clear-history \; send-keys
 bind C-u if-shell "$is_vim" "send-keys \e:q\r" "kill-pane"
 bind r if-shell "$is_vim" "send-keys \e:redraw!\r" "refresh-client"
 bind / if-shell "$is_vim" "send-keys -l ,ct" "refresh-client"

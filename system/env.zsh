@@ -1,5 +1,5 @@
 # Environment Variables
-export EDITOR='mvim'
+export EDITOR='vim'
 export MANPAGER="less -X"
 export CLICOLOR=true
 export HISTFILE=~/.zsh_history
