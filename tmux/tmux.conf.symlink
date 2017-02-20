@@ -1,37 +1,32 @@
 # remap prefix to Control + p
 unbind C-b
-
 set -g prefix C-p
 bind C-p send-prefix
 
-# Start panes at 1, not 0
-set -g pane-base-index 1
-
 # basic setup
 set -g default-terminal "xterm-256color"
+set -g pane-base-index 1 # Start panes at 1, not 0
 set -sg escape-time 0
-
 setw -g mouse on
 setw -g mode-keys vi
-# set -g @shell_mode 'vi'
-# unbind -t vi-copy MouseDragEnd1Pane
 bind -tvi-copy MouseDragEnd1Pane copy-selection -x
 
 # convenience bindings
 bind -n C-o choose-window -F "#W"
+bind i split-window
+bind v split-window -h
 
 # iterm2 hex code binds
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
     | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-# bind C-l send-keys C-l \; run-shell "sleep .3s" \; clear-history
 bind C-l send-keys -R \; send-keys C-l \; clear-history \; send-keys
 bind C-u if-shell "$is_vim" "send-keys \e:q\r" "kill-pane"
 bind r if-shell "$is_vim" "send-keys \e:redraw!\r" "refresh-client"
 bind / if-shell "$is_vim" "send-keys -l ,ct" "refresh-client"
 
 # pane management
-bind-key j command-prompt -p "join pane from:"  "join-pane -h -s '%%'"
-bind-key s command-prompt -p "send pane to:"  "join-pane -h -t '%%'"
+bind j command-prompt -p "join pane from:"  "join-pane -h -s '%%'"
+bind s command-prompt -p "send pane to:"  "join-pane -h -t '%%'"
 
 # tmux-resurrect
 bind S run-shell ~/.tmux/plugins/tmux-resurrect/scripts/save.sh
