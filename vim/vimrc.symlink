@@ -20,6 +20,7 @@ Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'Shougo/unite.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'wellle/targets.vim'
 
 " Filetype specific plugins
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
@@ -27,6 +28,9 @@ Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
+Plug 'rhysd/vim-color-spring-night'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -39,6 +43,14 @@ let g:gruvbox_bold=0
 let g:gruvbox_invert_selection=0
 let g:gruvbox_italic=1
 colorscheme gruvbox
+
+"let g:spring_night_high_contrast='gui'
+"colorscheme spring-night
+
+"colorscheme xoria256
+
+"let base16colorspace=256
+colorscheme base16-tomorrow-night
 
 function! Sol()
   set notermguicolors
@@ -61,4 +73,5 @@ source ~/.vim/nerdtree.vim
 source ~/.vim/simplenote.vim
 source ~/.vim/surround.vim
 source ~/.vim/syntastic.vim
+source ~/.vim/targets.vim
 source ~/.vim/unite.vim

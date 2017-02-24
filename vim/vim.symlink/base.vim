@@ -72,8 +72,10 @@ nmap <S-Tab> <
 map <C-Y> <S-Tab>
 noremap <ScrollWheelUp> 9<C-Y>
 noremap <ScrollWheelDown> 9<C-E>
-map <C-c> o<Esc>"*p']
-imap <C-c> <Esc>"*p']a
+"map <C-c> o<Esc>"*p']
+"imap <C-c> <Esc>"*p']a
+map <C-c> :read !pbpaste<CR>
+imap <C-c> <Esc>:read !pbpaste<CR>
 map <leader>we <C-W>=
 map <leader>re :redraw!<CR>
 
