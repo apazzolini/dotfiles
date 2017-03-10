@@ -21,6 +21,7 @@ alias pgj='ps -Aef | grep java'
 alias kaj='killall java'
 alias k='kill -9'
 alias knode='pkill -9 -f '\''node --expose-gc'\'
+alias fk='fkill'
 
 # open current window in path finder
 alias o='open -a "/Applications/Path Finder.app" .'
