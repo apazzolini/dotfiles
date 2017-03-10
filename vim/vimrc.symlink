@@ -49,7 +49,7 @@ colorscheme gruvbox
 
 "colorscheme xoria256
 
-"let base16colorspace=256
+let base16colorspace=256
 colorscheme base16-tomorrow-night
 
 function! Sol()
