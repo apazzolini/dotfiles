@@ -9,4 +9,4 @@ nvim/.bak
 vim/vim.symlink/.swap
 vim/vim.symlink/.bak
 plugged
-
+tmux/tmux.symlink/plugins
