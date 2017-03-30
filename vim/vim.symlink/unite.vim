@@ -5,15 +5,19 @@ nnoremap <leader>v :<C-u>Unite -no-split -buffer-name=files -start-insert -defau
 nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/git<cr>
 nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
-nmap <leader>a :Unite -no-quit -winheight=10 -direction=dynamicbottom grep:.<cr>
+" let g:unite_source_grep_command = 'ag'
+" let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
+" nmap <leader>a :Unite -no-quit -winheight=10 -direction=dynamicbottom grep:.<cr>
 
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
   nmap <buffer> <Space> 10j
   nmap <buffer> <BS>    10k
-  nmap <silent><buffer><expr> V     unite#do_action('vsplit')
-  nmap <silent><buffer><expr> I     unite#do_action('split')
+  " nmap <buffer> <c-h>    <c-w>h
+  " nmap <buffer> <c-j>    <c-w>j
+  " nmap <buffer> <c-k>    <c-w>k
+  " nmap <buffer> <c-l>    <c-w>l
+  " nmap <silent><buffer><expr> v     unite#do_action('vsplit')
+  " nmap <silent><buffer><expr> i     unite#do_action('split')
 endfunction
 

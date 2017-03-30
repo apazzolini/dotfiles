@@ -21,6 +21,7 @@ Plug 'Shougo/unite.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'wellle/targets.vim'
+Plug 'mileszs/ack.vim'
 
 " Filetype specific plugins
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
@@ -61,6 +62,7 @@ command! Sol call Sol()
 
 source ~/.vim/base.vim
 
+source ~/.vim/ack.vim
 source ~/.vim/camelcasemotion.vim
 source ~/.vim/delimitmate.vim
 source ~/.vim/easymotion.vim
