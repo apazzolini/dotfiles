@@ -58,6 +58,10 @@ alias nr="npm run"
 alias nrt="npm run -s test"
 alias nrl="npm run -s lint"
 alias nrs="npm run -s start"
+alias yr="yarn run"
+alias ys="yarn run start"
+alias yl="yarn run lint"
+alias yt="yarn run test"
 
 # Ack
 alias ackq="ack -Q"

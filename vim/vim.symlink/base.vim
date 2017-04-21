@@ -60,8 +60,8 @@ map S i<CR><Esc>k$
 nmap K kJ
 map <Space> 10j
 map <BS> 10k
-map <C-M> :tabnext<CR>
-map <C-N> :tabprev<CR>
+map <C-N> :tabnext<CR>
+map <C-B> :tabprev<CR>
 noremap j gj
 noremap k gk
 vmap <leader>y "*y
@@ -78,6 +78,7 @@ map <C-c> :read !pbpaste<CR>
 imap <C-c> <Esc>:read !pbpaste<CR>
 map <leader>we <C-W>=
 map <leader>re :redraw!<CR>
+map <leader>. :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
 
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'

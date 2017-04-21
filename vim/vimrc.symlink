@@ -13,7 +13,6 @@ Plug 'mrtazz/simplenote.vim'
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdcommenter'
 Plug 'bkad/CamelCaseMotion'
-Plug 'scrooloose/syntastic'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
@@ -22,33 +21,22 @@ Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'wellle/targets.vim'
 Plug 'mileszs/ack.vim'
+Plug 'neomake/neomake'
+Plug 'alvan/vim-closetag'
+Plug 'sbdchd/neoformat'
 
 " Filetype specific plugins
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 
 " Colorschemes
-Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
-Plug 'rhysd/vim-color-spring-night'
-Plug 'vim-scripts/xoria256.vim'
 Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
 filetype plugin indent on
 syntax enable
-
-set background=dark
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_bold=0
-let g:gruvbox_invert_selection=0
-let g:gruvbox_italic=1
-colorscheme gruvbox
-
-"let g:spring_night_high_contrast='gui'
-"colorscheme spring-night
-
-"colorscheme xoria256
 
 let base16colorspace=256
 colorscheme base16-tomorrow-night
@@ -61,7 +49,6 @@ endfunction
 command! Sol call Sol()
 
 source ~/.vim/base.vim
-
 source ~/.vim/ack.vim
 source ~/.vim/camelcasemotion.vim
 source ~/.vim/delimitmate.vim
@@ -72,8 +59,23 @@ source ~/.vim/macvim.vim
 source ~/.vim/neocomplete.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
+source ~/.vim/parjump.vim
 source ~/.vim/simplenote.vim
 source ~/.vim/surround.vim
-source ~/.vim/syntastic.vim
 source ~/.vim/targets.vim
 source ~/.vim/unite.vim
+source ~/.vim/neomake.vim
+source ~/.vim/neoformat.vim
+
+"let g:javascript_plugin_flow = 1
+let g:flow#enable = 0
+let g:jsx_ext_required = 0
+
+hi link xmlEndTag xmlTag
+hi link jsxCloseTag jsxTag
+hi link jsxCloseString jsxTag
+
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx"
+
+silent! so .vimlocal
+

@@ -1,16 +1,14 @@
 set completeopt-=preview
 set completeopt+=noinsert
 
-let g:deoplete#enable_at_startup = 0
+function! StrTrim(txt)
+  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+endfunction
 
-inoremap <expr><C-Space> deoplete#manual_complete()
-inoremap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
+
+if g:flow_path != 'flow not found'
+  let g:deoplete#sources#flow#flow_bin = g:flow_path
+endif
 
 autocmd FileType javascript call deoplete#enable() 

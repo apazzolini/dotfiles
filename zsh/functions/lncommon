@@ -1,0 +1,13 @@
+if ! [ -d "node_modules/mvp-common" ] 
+then
+    echo "No node_modules/mvp-common directory found"
+    return 1;
+fi
+
+cd node_modules/mvp-common
+rm -rf config configs
+ln -s /Users/Andre/Work/MVPindex/ws/common/config .
+ln -s /Users/Andre/Work/MVPindex/ws/common/configs .
+ln -s /Users/Andre/Work/MVPindex/ws/common/flow-typed .
+cp -r /Users/Andre/Work/MVPindex/ws/common/utils .
+cd ../..
