@@ -5,14 +5,22 @@ bind C-p send-prefix
 
 # basic setup
 set -g default-terminal "xterm-256color"
+set -as terminal-overrides ',xterm*:sitm=\E[3m'
+set -ga terminal-overrides ",xterm-256color:Tc"
 set -g pane-base-index 1 # Start panes at 1, not 0
 set -sg escape-time 0
 setw -g mouse on
 setw -g mode-keys vi
-bind -tvi-copy MouseDragEnd1Pane copy-selection -x
+
+# copy mode bindings
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi Space send-keys -N 10 -X cursor-down
+bind-key -T copy-mode-vi BSpace send-keys -N 10 -X cursor-up
 
 # convenience bindings
-bind -n C-o choose-window -F "#W"
+bind -n C-f choose-window -F "#W"
 bind i split-window -v -c "#{pane_current_path}"
 bind v split-window -h -c "#{pane_current_path}"
 bind C-p last-window
@@ -20,10 +28,13 @@ bind C-p last-window
 # iterm2 hex code binds
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
     | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-bind C-l send-keys -R \; send-keys C-l \; clear-history \; send-keys
+
+bind C-l if-shell "$is_vim" "choose-window -F \"#W\"" "send-keys -R \; send-keys C-l \; clear-history \; send-keys"
 bind C-u if-shell "$is_vim" "send-keys \e:q\r" "kill-pane"
 bind r if-shell "$is_vim" "send-keys \e:redraw!\r" "refresh-client"
 bind / if-shell "$is_vim" "send-keys -l ,ct" "refresh-client"
+bind -n C-b if-shell "$is_vim" "send-keys c-b" "previous-window"
+bind -n C-n if-shell "$is_vim" "send-keys c-n" "next-window"
 
 # pane management
 bind j command-prompt -p "join pane from:"  "join-pane -h -s '%%'"
@@ -43,11 +54,11 @@ set -g window-status-current-bg cyan
 set -g window-status-current-fg black
 
 set -g pane-border-fg colour241
-set -g pane-border-bg colour235
-set -g pane-active-border-fg colour241
+set -g pane-border-bg '#2A2A2A'
+set -g pane-active-border-fg colour3
 
-set -g window-style 'fg=white,bg=colour235'
-set -g window-active-style 'fg=white,bg=black'
+set -g window-style 'fg=white,bg=#2A2A2A'
+set -g window-active-style 'fg=white,bg=#212121'
 
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
