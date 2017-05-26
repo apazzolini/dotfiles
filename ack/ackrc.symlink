@@ -5,3 +5,4 @@
 --ignore-dir=vendor
 --ignore-dir=public/components
 --ignore-dir=public/build
+--ignore=yarn.lock
