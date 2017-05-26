@@ -1,6 +1,6 @@
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'Tomorrow_Night',
+      \ 'colorscheme': 'gruvbox',
       \ 'enable': {
       \   'statusline': 1,
       \   'tabline': 0,
@@ -61,4 +61,3 @@ function! LightLineMode()
         \ &ft == 'unite' ? 'Unite' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
-

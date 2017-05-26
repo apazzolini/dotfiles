@@ -1,8 +1,5 @@
-let g:neoformat_javascript_prettier = {
-\ 'exe': './node_modules/.bin/prettier',
-\ 'args': ['--stdin', '--print-width 110', '--tab-width 4', '--single-quote', '--trailing-comma es5'],
-\ 'stdin': 1,
-\ 'no_append': 1,
-\ }
+let g:neoformat_try_formatprg = 1     " Use formatprg when available
+let g:neoformat_only_msg_on_error = 1 " https://github.com/sbdchd/neoformat/issues/25
 
-let g:neoformat_enabled_javascript = ['prettier']
+autocmd FileType javascript setlocal formatprg=prettier_dnc\ --local-only\ --pkg-conf\ --fallback
+autocmd BufWritePre *.js Neoformat

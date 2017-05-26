@@ -3,14 +3,14 @@ alias arr
 options word
     => {
     ${0:TARGET}
-    };
+    }
 
 snippet new-promise
 alias prom
 options word
 	new Promise((resolve, reject) => {
 		${0:TARGET}
-	});
+	})
 
 snippet new-query
 alias cque
@@ -21,9 +21,9 @@ options indent
 		\`,
 		params: [
 		],
-	});
+	})
 
 snippet give-logger
 alias clog
-	 const log = require('mvp-common').logger(__filename); // eslint-disable-line
+	 const log = require('mvp-common').logger(__filename) // eslint-disable-line
 

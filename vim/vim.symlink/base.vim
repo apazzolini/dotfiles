@@ -28,24 +28,14 @@ set cinoptions+=+1
 set noshowmatch
 set t_ut= 
 set timeoutlen=1000 ttimeoutlen=0
-set foldmethod=syntax
-set foldnestmax=3
-set foldlevel=3
+set foldmethod=indent
+set foldnestmax=10
 set nofoldenable
+set foldlevel=1
 
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
-
-" Change cursor based on mode
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+if has('nvim')
+    set mouse=a
+    set inccommand=split
 endif
 
 " Convenience Bindings
@@ -67,22 +57,17 @@ noremap k gk
 vmap <leader>y "*y
 map <leader>n :noh<cr>
 nnoremap <leader>sv :source $MYVIMRC<CR>     
-nmap <Tab> >
-nmap <S-Tab> <
-map <C-Y> <S-Tab>
-noremap <ScrollWheelUp> 9<C-Y>
-noremap <ScrollWheelDown> 9<C-E>
-"map <C-c> o<Esc>"*p']
-"imap <C-c> <Esc>"*p']a
+noremap <ScrollWheelUp> 20<C-Y>
+noremap <ScrollWheelDown> 20<C-E>
 map <C-c> :read !pbpaste<CR>
 imap <C-c> <Esc>:read !pbpaste<CR>
 map <leader>we <C-W>=
 map <leader>re :redraw!<CR>
 map <leader>. :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
+map gz :tab sp<CR>
+map gZ :tabclose<CR>
 
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e

@@ -1,7 +1,6 @@
 set shellpipe=>
-"set t_ti= t_te=
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'rg --vimgrep --no-heading --smart-case'
 
 let g:ack_mappings = {
     \ "t": "<C-W><CR><C-W>T",
@@ -17,4 +16,3 @@ let g:ack_mappings = {
 
 nmap <leader>a :Ack!<space>''<left>
 nmap <leader>A :Ack!<CR>
-

@@ -10,4 +10,3 @@ function! FillLine( str )
 endfunction
 
 map <leader>l :call FillLine( '-' )<CR>
-
