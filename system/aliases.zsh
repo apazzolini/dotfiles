@@ -43,6 +43,7 @@ fi
 
 # open current directory in sourcetree
 alias st='open -a "/Applications/SourceTree.app" `pwd`'
+alias stf='open -a "/Applications/SourceTree.app" `pwd` && fg'
 
 # edit previous command in vi
 alias r='fc -e vim'
@@ -76,3 +77,6 @@ alias ta="t attach -t"
 alias tda="t detach -a && t detach"
 
 alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2"
+
+alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'

@@ -9,6 +9,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:$PATH"
 export PGDATA='/usr/local/var/postgres'
+export IGNOREEOF=50
 
 # Environment settings
 setopt NO_BG_NICE # don't nice background tasks
@@ -39,9 +40,9 @@ if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 if [[ `hostname` == *andrembp* ]]; then
-    PROMPT='%{$reset_color%}%{${fg[green]}%}%10~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
+    PROMPT='%{$reset_color%}%{${fg[blue]}%}%10~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 else
-    PROMPT='[%m] %{$reset_color%}%{${fg[green]}%}%10~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
+    PROMPT='[%m] %{$reset_color%}%{${fg[blue]}%}%10~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 fi
 
 RPROMPT='[%*] ${return_code}'
