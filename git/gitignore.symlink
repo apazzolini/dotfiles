@@ -5,3 +5,4 @@
 *.rbc
 go.sh
 .agignore
+.ignore
