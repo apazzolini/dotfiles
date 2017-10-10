@@ -1,5 +1,5 @@
 # Environment Variables
-export EDITOR='vim'
+export EDITOR='nvim'
 export MANPAGER="less -X"
 export CLICOLOR=true
 export HISTFILE=~/.zsh_history
@@ -34,6 +34,10 @@ setopt complete_aliases # don't expand aliases _before_ completion has finished 
 # Use VI mode in the shell
 bindkey -v
 bindkey "^R" history-incremental-pattern-search-backward
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd g edit-command-line
 
 # Prompt
 if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
