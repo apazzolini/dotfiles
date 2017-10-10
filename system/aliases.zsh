@@ -63,6 +63,7 @@ alias yr="yarn run"
 alias ys="yarn run start"
 alias yl="yarn run lint"
 alias yt="yarn run test"
+alias ytw="yarn test:watch"
 
 # Ack
 alias ackq="ack -Q"
