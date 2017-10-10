@@ -1,7 +1,7 @@
 " Basic configuration
 set ic
 set scs
-set nohlsearch
+set hlsearch
 set autoindent
 set smartindent
 set tabstop=4
@@ -28,10 +28,12 @@ set cinoptions+=+1
 set noshowmatch
 set t_ut= 
 set timeoutlen=1000 ttimeoutlen=0
-set foldmethod=indent
-set foldnestmax=10
+set foldmethod=manual
 set nofoldenable
-set foldlevel=1
+
+set switchbuf=useopen
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 if has('nvim')
     set mouse=a
@@ -55,8 +57,7 @@ map <C-B> :tabprev<CR>
 noremap j gj
 noremap k gk
 vmap <leader>y "*y
-map <leader>n :noh<cr>
-nnoremap <leader>sv :source $MYVIMRC<CR>     
+nnoremap <leader>W :source $MYVIMRC<CR>     
 noremap <ScrollWheelUp> 20<C-Y>
 noremap <ScrollWheelDown> 20<C-E>
 map <C-c> :read !pbpaste<CR>
@@ -65,9 +66,44 @@ map <leader>we <C-W>=
 map <leader>re :redraw!<CR>
 map <leader>. :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
 map gz :tab sp<CR>
-map gZ :tabclose<CR>
+map gx :tabclose<CR>
+nnoremap <CR> :nohlsearch<CR>
+nnoremap zu 15<c-y>
+nnoremap zd 15<c-e>
 
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+autocmd! FileType mkd setlocal syn=off
+autocmd! CmdwinEnter * :unmap <cr>
+
+
+set winwidth=120
+" We have to have a winheight bigger than we want to set winminheight. But if
+" we set winheight to be huge before winminheight, the winminheight set will
+" fail.
+set winheight=10
+set winminheight=10
+set winheight=999
+nnoremap <leader><leader> <c-^>
+cnoremap <expr> %% expand('%:h').'/'
+
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+
+map <leader>nr :call RenameFile()<cr>
+map <leader>ne :e %%

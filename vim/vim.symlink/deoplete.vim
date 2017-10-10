@@ -1,7 +1,7 @@
-set completeopt-=preview
-set completeopt+=noinsert
+set completeopt=noinsert,menuone
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
 let g:deoplete#file#enable_buffer_path = 1
 
 let g:tern_request_timeout = 1
@@ -28,18 +28,30 @@ function! s:neosnippet_complete()
   endif
 endfunction
 
+function! s:neosnippet_complete_jj()
+  if neosnippet#expandable_or_jumpable() 
+    return "\<Plug>(neosnippet_expand_or_jump)"
+  else
+    return deoplete#manual_complete()
+  endif
+endfunction
+
 function! s:neosnippet_complete_tab()
+  let col = col('.') - 1
   if neosnippet#expandable_or_jumpable() 
     return "\<Plug>(neosnippet_expand_or_jump)"
   elseif pumvisible()
     return "\<c-n>"
-  else
+  elseif !col || getline('.')[col - 1] !~ '\k'
     return "\<tab>"
+  else
+    return deoplete#manual_complete()
   endif
 endfunction
 
 imap <expr><TAB> <SID>neosnippet_complete_tab()
-imap <expr><CR> <SID>neosnippet_complete()
+imap <expr>jj <SID>neosnippet_complete_jj()
+"imap <expr><CR> <SID>neosnippet_complete()
 
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ["neosnippet"]

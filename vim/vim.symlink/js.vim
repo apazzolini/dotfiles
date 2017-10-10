@@ -50,3 +50,7 @@ hi! link jsRepeat jsKeyword
 " let s:gb.bright_purple  = ['#d3869b', 175]     " 211-134-155
 " let s:gb.bright_aqua    = ['#8ec07c', 108]     " 142-192-124
 " let s:gb.bright_orange  = ['#fe8019', 208]     " 254-128-25
+
+imap <c-l> <space>=><space>
+nmap <leader>re s{<cr>return <esc>l%ls<cr>}<esc>v%=o
+nmap <leader>rc dwjds{kLv%S)

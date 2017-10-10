@@ -12,6 +12,13 @@ options word
 		${0:TARGET}
 	})
 
+snippet new-transaction
+alias tx
+options indent
+	transaction(async tquery => {
+		${0:TARGET}
+	})
+
 snippet new-query
 alias cque
 options indent
@@ -23,7 +30,151 @@ options indent
 		],
 	})
 
+snippet new-query-q1
+alias cq1
+options indent
+	queryOne({
+		sql: \`
+			${0:TARGET}
+		\`,
+		params: [
+		],
+	})
+
+snippet new-query-q
+alias cq
+options indent
+	q({
+		sql: \`
+			${0:TARGET}
+		\`,
+		params: [
+		],
+	})
+
+snippet update-query
+alias update
+options indent
+	update({
+		request,
+		table: '${0:TARGET}',
+		props: {},
+		where: {
+			clause: '',
+			params: [],
+		},
+	})
+
+snippet insert-query
+alias insert
+options indent
+	insert({
+		request,
+		table: '${0:TARGET}',
+		mapper: {},
+		rows: [],
+	})
+
+snippet delete-query
+alias del
+options indent
+	del({
+		request,
+		table: '${0:TARGET}',
+		where: {
+			clause: '',
+			params: [],
+		},
+	})
+
+snippet server-inject-as-admin
+alias si
+options indent
+	const res = await server.injectAsAdmin({
+		method: 'GET',
+		url: '/api/v3/${0:TARGET}',
+	})
+
+snippet server-inject-as
+alias sia
+options indent
+	const res = await server.injectAs('${0:TARGET}', {
+		method: 'GET',
+		url: '/api/v3/',
+	})
+
 snippet give-logger
 alias clog
 	 const log = require('mvp-common').logger(__filename) // eslint-disable-line
 
+snippet import-mvp-common
+alias imc
+	 import { ${0:TARGET} } from 'mvp-common'
+
+snippet test-template
+alias tt
+    import { setupEnv, destroyEnv, getSample } from '@/util/test.js' // eslint-disable-line
+    import { server } from '@/server/server.js' // eslint-disable-line
+    const log = require('mvp-common').logger(__filename) // eslint-disable-line
+
+    beforeAll(() => setupEnv())
+    afterAll(() => destroyEnv())
+
+    describe('GET /${0:TARGET}', () => {
+        test('does_something', async () => {
+            const res = await server.injectAsAdmin({
+                method: 'GET',
+                url: '/api/v3/xxxxx',
+            })
+
+            expect(res.result).toBe({})
+            expect(res.statusCode).toBe(200)
+        })
+    })
+
+snippet route-template
+alias rt
+    import { Joi } from 'mvp-common'
+    import * as v from '@/lib/validation.js'
+    const log = require('mvp-common').logger(__filename) // eslint-disable-line
+
+    export default {
+        description: '${0:TARGET}',
+        method: 'GET',
+        path: '/xxxxx',
+        handler: async (request, reply) => {},
+        query: {},
+        payload: {},
+        params: {},
+        response: {},
+    }
+
+snippet method-template
+alias mt
+    import Promise from 'bluebird'
+    import config from 'config'
+    import { server } from '@/server/server.js'
+    import getServerMethodCache from '@/util/hapi/server-method-cache.js'
+
+    server.method({
+        name: 'xxxxx',
+        method: async (arg1xxxxx, arg2xxxxx, next) => {
+            if (err) return next(err)
+            return next(null, result)
+        },
+        options: {
+            cache: getServerMethodCache(config.getInt('server.cache.xxxxxMs')),
+        },
+    })
+
+    export const xxxxx = Promise.promisify(server.methods.xxxxx)
+
+snippet jobs-worker-template
+alias jt
+    import Promise from 'bluebird'
+    import { sendProgress } from '@/utils.js' // eslint-disable-line no-unused-vars
+    const log = require('@/utils.js').logger(__filename) // eslint-disable-line no-unused-vars
+
+    export const run = async params => {
+        ${0:TARGET}
+    }

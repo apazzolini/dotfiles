@@ -1,6 +1,6 @@
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'seoul256',
       \ 'enable': {
       \   'statusline': 1,
       \   'tabline': 0,

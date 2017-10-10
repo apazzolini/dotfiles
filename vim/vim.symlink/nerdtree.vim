@@ -8,7 +8,6 @@ let NERDTreeIgnore = ['node_modules', 'dist', 'es5']
 let NERDTreeCascadeSingleChildDir=1
 
 map <leader>nt :NERDTreeToggle<CR>
-map <leader>nm :NERDTreeMirror<CR>
 map <leader>g :NERDTreeFind<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
@@ -23,11 +22,26 @@ let g:NERDTreeIndicatorMapCustom = {
   \ "Unknown"   : "?"
   \ }
 
-let g:nerdtree_tabs_autoclose = 0
-let g:nerdtree_tabs_open_on_console_startup = 1
-let g:nerdtree_tabs_smart_startup_focus = 1
+" let g:nerdtree_tabs_autoclose = 1
+" let g:nerdtree_tabs_open_on_console_startup = 1
+" let g:nerdtree_tabs_smart_startup_focus = 1
 
-function! Setcd()
-  cd %:p:h
-endfunction
-command! Setcd call Setcd()
+" function! Setcd()
+  " cd %:p:h
+" endfunction
+" command! Setcd call Setcd()
+
+hi! link NERDTreeCWD GruvBoxAqua
+hi! link NERDTreeOpenable GruvBoxBlue
+hi! link NERDTreeClosable GruvBoxBlue
+hi! link NERDTreeFlags GruvBoxPurple
+hi! link NERDTreeDir GruvBoxBlue
+
+hi! link NERDTreeGitStatusModified GruvBoxPurple
+hi! link NERDTreeGitStatusStaged GruvBoxPurple
+hi! link NERDTreeGitStatusRenamed GruvBoxPurple
+hi! link NERDTreeGitStatusUnmerged GruvBoxPurple
+hi! link NERDTreeGitStatusUntracked GruvBoxPurple
+hi! link NERDTreeGitStatusDirDirty GruvBoxPurple
+hi! link NERDTreeGitStatusDirClean GruvBoxPurple
+hi! link NERDTreeGitStatusIgnored GruvBoxPurple
