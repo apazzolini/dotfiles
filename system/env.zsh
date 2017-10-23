@@ -7,7 +7,7 @@ export HISTSIZE=1000000
 export SAVEHIST=1000000
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:$PATH"
+export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:./node_modules/.bin:$PATH"
 export PGDATA='/usr/local/var/postgres'
 export IGNOREEOF=50
 
