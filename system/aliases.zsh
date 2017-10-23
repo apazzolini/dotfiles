@@ -15,6 +15,7 @@ alias hg='history 1 -1 | grep '
 
 # process aliases
 alias pg='ps -Aef | head -1 && ps -Aef | grep'
+alias pgn="pg node | grep -v Postman | grep -v _d | grep -v '(node)' | grep -v grep"
 alias psa='ps -A'
 alias ka='killall'
 alias pgj='ps -Aef | grep java'
