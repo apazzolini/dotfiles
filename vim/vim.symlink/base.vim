@@ -84,7 +84,6 @@ autocmd BufReadPost *
 autocmd! FileType mkd setlocal syn=off
 autocmd! CmdwinEnter * :unmap <cr>
 
-
 set winwidth=120
 " We have to have a winheight bigger than we want to set winminheight. But if
 " we set winheight to be huge before winminheight, the winminheight set will
@@ -107,3 +106,4 @@ endfunction
 
 map <leader>nr :call RenameFile()<cr>
 map <leader>ne :e %%
+map <leader>nt :tabnew<cr>

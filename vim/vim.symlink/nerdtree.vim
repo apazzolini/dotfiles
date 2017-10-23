@@ -7,7 +7,7 @@ let NERDTreeIgnore = ['node_modules', 'dist', 'es5']
 
 let NERDTreeCascadeSingleChildDir=1
 
-map <leader>nt :NERDTreeToggle<CR>
+map <leader>N :NERDTreeToggle<CR>
 map <leader>g :NERDTreeFind<CR>
 
 let g:NERDTreeIndicatorMapCustom = {

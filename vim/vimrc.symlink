@@ -71,7 +71,7 @@ source ~/.vim/neoformat.vim
 source ~/.vim/neomake.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
-source ~/.vim/parjump.vim
+source ~/.vim/repeat-block.vim
 source ~/.vim/simplenote.vim
 source ~/.vim/surround.vim
 source ~/.vim/targets.vim
@@ -109,3 +109,5 @@ if has('nvim')
     tnoremap <C-p> <C-\><C-N>
     autocmd BufEnter,WinEnter * if &buftype == 'terminal' |:startinsert|
 endif
+
+
