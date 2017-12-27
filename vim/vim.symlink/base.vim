@@ -30,6 +30,7 @@ set t_ut=
 set timeoutlen=1000 ttimeoutlen=0
 set foldmethod=manual
 set nofoldenable
+set hidden
 
 set switchbuf=useopen
 
@@ -56,15 +57,10 @@ map <C-N> :tabnext<CR>
 map <C-B> :tabprev<CR>
 noremap j gj
 noremap k gk
-vmap <leader>y "*y
-nnoremap <leader>W :source $MYVIMRC<CR>     
 noremap <ScrollWheelUp> 20<C-Y>
 noremap <ScrollWheelDown> 20<C-E>
 map <C-c> :read !pbpaste<CR>
 imap <C-c> <Esc>:read !pbpaste<CR>
-map <leader>we <C-W>=
-map <leader>re :redraw!<CR>
-map <leader>. :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
 map gz :tab sp<CR>
 map gx :tabclose<CR>
 nnoremap <CR> :nohlsearch<CR>
@@ -83,16 +79,15 @@ autocmd BufReadPost *
 
 autocmd! FileType mkd setlocal syn=off
 autocmd! CmdwinEnter * :unmap <cr>
+autocmd! BufRead *.txt :call DeopleteDisable()
 
 set winwidth=120
 " We have to have a winheight bigger than we want to set winminheight. But if
 " we set winheight to be huge before winminheight, the winminheight set will
 " fail.
-set winheight=10
-set winminheight=10
-set winheight=999
-nnoremap <leader><leader> <c-^>
-cnoremap <expr> %% expand('%:h').'/'
+"set winheight=20
+"set winminheight=30
+"set winheight=999
 
 function! RenameFile()
     let old_name = expand('%')
@@ -104,6 +99,20 @@ function! RenameFile()
     endif
 endfunction
 
+nnoremap <leader><leader> <c-^>
+cnoremap <expr> %% expand('%:h').'/'
+nnoremap <leader>W :source $MYVIMRC<CR>     
+vmap <leader>y "*y
+map <leader>re :redraw!<CR>
+map <leader>. :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
+map <leader>jst :silent !open -a "/Applications/SourceTree.app" `pwd`<cr>
+map <leader>json :%!python -m json.tool<cr>
 map <leader>nr :call RenameFile()<cr>
 map <leader>ne :e %%
 map <leader>nt :tabnew<cr>
+
+map <leader>we <C-W>=
+map <leader>wj :resize +20<cr>
+map <leader>wk :resize -20<cr>
+map <leader>wh :vert resize -20<cr>
+map <leader>wl :vert resize +20<cr>

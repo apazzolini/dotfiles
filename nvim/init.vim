@@ -1,1 +1,0 @@
-/Users/Andre/.vimrc

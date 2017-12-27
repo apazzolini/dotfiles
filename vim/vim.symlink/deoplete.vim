@@ -1,7 +1,7 @@
-set completeopt=noinsert,menuone
+set completeopt=noselect,menuone
 
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#disable_auto_complete = 1
+let g:deoplete#disable_auto_complete = 0
 let g:deoplete#file#enable_buffer_path = 1
 
 let g:tern_request_timeout = 1

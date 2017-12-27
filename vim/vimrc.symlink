@@ -1,8 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
 " Generic plugins
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'itchyny/lightline.vim'
 Plug 'sickill/vim-pasta'
 Plug 'raimondi/delimitmate'
@@ -22,6 +20,13 @@ Plug 'neomake/neomake'
 Plug 'alvan/vim-closetag'
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/neosnippet.vim'
+Plug 'cocopon/iceberg.vim'
+Plug 'ap/vim-css-color'
+Plug 'benmills/vimux'
+Plug 'apazzolini/wave.vim'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'haya14busa/incsearch.vim'
+Plug 'Shougo/vimfiler.vim'
 
 " Filetype specific plugins
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
@@ -35,8 +40,6 @@ Plug 'morhetz/gruvbox'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'carlitux/deoplete-ternjs'
-else
-    Plug 'Shougo/neocomplete.vim'
 endif
 
 call plug#end()
@@ -45,12 +48,20 @@ filetype plugin indent on
 syntax enable
 
 set background=dark
-let g:gruvbox_italic = 1
-let g:gruvbox_bold = 0
-let g:gruvbox_invert_selection = 0
-colorscheme gruvbox
-highlight Normal ctermbg=NONE
-highlight TabLineFill ctermbg=NONE
+
+if has('gui_running')
+    set guifont=Operator\ Mono\ Book:h11
+    let g:gruvbox_italic = 1
+    let g:gruvbox_bold = 0
+    let g:gruvbox_invert_selection = 0
+    colorscheme gruvbox
+    highlight Normal ctermbg=NONE
+    highlight TabLineFill ctermbg=NONE
+else
+    set notermguicolors
+    colorscheme wave
+    hi! Normal ctermbg=NONE guibg=NONE
+endif
 
 function! Sol()
   set notermguicolors
@@ -66,48 +77,19 @@ source ~/.vim/camelcasemotion.vim
 source ~/.vim/delimitmate.vim
 source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
+source ~/.vim/incsearch.vim
 source ~/.vim/lightline.vim
 source ~/.vim/neoformat.vim
 source ~/.vim/neomake.vim
 source ~/.vim/nerdcommenter.vim
-source ~/.vim/nerdtree.vim
 source ~/.vim/repeat-block.vim
 source ~/.vim/simplenote.vim
 source ~/.vim/surround.vim
 source ~/.vim/targets.vim
 source ~/.vim/unite.vim
-
+source ~/.vim/vimfiler.vim
 source ~/.vim/js.vim
 
 if has('nvim')
     source ~/.vim/deoplete.vim
-else
-    source ~/.vim/neocomplete.vim
 endif
-
-if has('nvim')
-    let g:terminal_color_0 = '#282828'
-    let g:terminal_color_1 = '#D44C40'
-    let g:terminal_color_2 = '#B2B25E'
-    let g:terminal_color_3 = '#D2B26D'
-    let g:terminal_color_4 = '#7CACB0'
-    let g:terminal_color_5 = '#AE708F'
-    let g:terminal_color_6 = '#91B98C'
-    let g:terminal_color_7 = '#CDC0AD'
-    let g:terminal_color_8 = '#908376'
-    let g:terminal_color_9 = '#E75841'
-    let g:terminal_color_10 = '#B9BB46'
-    let g:terminal_color_11 = '#F1C04F'
-    let g:terminal_color_12 = '#8AA499'
-    let g:terminal_color_13 = '#C8899B'
-    let g:terminal_color_14 = '#99BF83'
-    let g:terminal_color_15 = '#E9DBB7'
-    tnoremap <C-h> <C-\><C-N><C-w>h
-    tnoremap <C-j> <C-\><C-N><C-w>j
-    tnoremap <C-k> <C-\><C-N><C-w>k
-    tnoremap <C-l> <C-\><C-N><C-w>l
-    tnoremap <C-p> <C-\><C-N>
-    autocmd BufEnter,WinEnter * if &buftype == 'terminal' |:startinsert|
-endif
-
-

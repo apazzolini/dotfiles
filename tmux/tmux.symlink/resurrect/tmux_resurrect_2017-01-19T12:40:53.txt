@@ -1,7 +1,0 @@
-pane	0	1	:vim	0	:-	1	:/Users/Andre/Work/MVPindex/ws/apiv2	1	vim	:vim .
-pane	0	2	:ingestion	1	:*	1	:/Users/Andre/Work/MVPindex/ws/ingestionv2	1	vim	:vim .
-pane	0	3	:elastic	0	:	1	:/Users/Andre/Work/MVPindex/ws/elastic-ingestion	1	vim	:vim .
-window	0	1	0	:-	cf7e,391x96,0,0,1
-window	0	2	1	:*	cf7f,391x96,0,0,2
-window	0	3	0	:	cf80,391x96,0,0,3
-state	0	

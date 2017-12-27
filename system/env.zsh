@@ -61,4 +61,4 @@ then
   source `brew --prefix`/etc/grc.bashrc
 fi
 
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+source "$HOME/.dotfiles/system/env-colors.zsh"

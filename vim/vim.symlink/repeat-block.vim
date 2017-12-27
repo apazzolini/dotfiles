@@ -9,8 +9,8 @@ function! s:repeat_block(key) abort
 endfunction
 
 for k in ['w', 'W', 's', 'p', '[', ']', '(', ')', 'b', '<', '>', 't', '{', '}', 'B', '"', "'"]
-  execute printf('vnoremap <expr> a%s <sid>repeat_block(''a%s'')', k, k)
-  execute printf('vnoremap <expr> i%s <sid>repeat_block(''i%s'')', k, k)
+  execute printf('vnoremap <expr> a%s <sid>repeat_block("a%s")', k, k)
+  execute printf('vnoremap <expr> i%s <sid>repeat_block("i%s")', k, k)
 endfor
 
 unlet! k
