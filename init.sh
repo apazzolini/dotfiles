@@ -7,7 +7,7 @@ function link {
     dst=`echo "$src" | sed "s/.*\///"` # extract just the filename
     dst=~/.${dst%%.symlink}
 
-    if [ -f $dst ] && ! [ -L $dst ]; then
+    if ([ -f $dst ] || [ -d $dst ]) && ! [ -L $dst ]; then
         echo "$dst exists and is a regular file. Exiting"
         exit 1
     fi
@@ -31,6 +31,7 @@ function env_setup {
     link vim/vim.symlink
     link vim/vimrc.symlink
     link zsh/zshrc.symlink
+    link docker/docker.symlink
 
     mkdir -p ~/.config/nvim
     ln -sFv ~/.vimrc ~/.config/nvim/init.vim

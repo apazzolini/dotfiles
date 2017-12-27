@@ -1,4 +1,10 @@
 # ls aliases
+if [ `uname` = 'Darwin' ]
+then
+    alias ls="ls -F"
+else
+    alias ls="ls -F --color"
+fi
 alias ls="ls -F"
 alias l="ls -lh"
 alias ll="ls -lAh"
