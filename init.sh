@@ -36,6 +36,8 @@ function env_setup {
     ln -sFv ~/.vimrc ~/.config/nvim/init.vim
     ln -sFv ~/.vim/autoload ~/.config/nvim
     ln -sFv ~/.vim/ftplugin ~/.config/nvim
+
+    touch ~/.simplenoterc
 }
 
 env_setup
