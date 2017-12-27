@@ -5,7 +5,6 @@ then
 else
     alias ls="ls -F --color"
 fi
-alias ls="ls -F"
 alias l="ls -lh"
 alias ll="ls -lAh"
 alias la="ls -A"
