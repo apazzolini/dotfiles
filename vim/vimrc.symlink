@@ -59,7 +59,7 @@ if has('gui_running')
     highlight TabLineFill ctermbg=NONE
 else
     set notermguicolors
-    colorscheme wave
+    silent! colorscheme wave
     hi! Normal ctermbg=NONE guibg=NONE
 endif
 
