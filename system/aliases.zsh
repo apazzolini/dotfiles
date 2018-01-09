@@ -67,6 +67,7 @@ alias t="tmux -2"
 alias ta="t attach -t"
 alias td="t detach"
 alias tawork="/Users/Andre/.dotfiles/tmux/sessions/work.sh"
+alias tadre="/Users/Andre/.dotfiles/tmux/sessions/dre.sh"
 
 # vim
 alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
@@ -75,4 +76,4 @@ alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 
 # misc
 alias d='docker'
-alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2"
+alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2 -b 10.0.101.172"

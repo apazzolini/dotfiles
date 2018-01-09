@@ -1,4 +1,6 @@
 {
-    "psFormat": "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
-}
+  "auths" : {
 
+  },
+  "psFormat" : "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+}

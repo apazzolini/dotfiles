@@ -80,6 +80,7 @@ autocmd BufReadPost *
 autocmd! FileType mkd setlocal syn=off
 autocmd! CmdwinEnter * :unmap <cr>
 autocmd! BufRead *.txt :call DeopleteDisable()
+autocmd BufWritePre * %s/\s\+$//e
 
 set winwidth=120
 " We have to have a winheight bigger than we want to set winminheight. But if
