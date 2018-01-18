@@ -40,6 +40,8 @@ bind C-f choose-session
 bind s split-window -v -c "#{pane_current_path}"
 bind v split-window -h -c "#{pane_current_path}"
 bind C-p last-window
+bind S-Left swap-window -t -1
+bind S-Right swap-window -t +1
 
 # iterm2 hex code binds
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
