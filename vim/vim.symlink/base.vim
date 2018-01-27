@@ -26,7 +26,7 @@ set autoread
 set shiftround
 set cinoptions+=+1
 set noshowmatch
-set t_ut= 
+set t_ut=
 set timeoutlen=1000 ttimeoutlen=0
 set foldmethod=manual
 set nofoldenable
@@ -102,7 +102,7 @@ endfunction
 
 nnoremap <leader><leader> <c-^>
 cnoremap <expr> %% expand('%:h').'/'
-nnoremap <leader>W :source $MYVIMRC<CR>     
+nnoremap <leader>W :source $MYVIMRC<CR>
 vmap <leader>y "*y
 map <leader>re :redraw!<CR>
 map <leader>. :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
@@ -111,6 +111,7 @@ map <leader>json :%!python -m json.tool<cr>
 map <leader>nr :call RenameFile()<cr>
 map <leader>ne :e %%
 map <leader>nt :tabnew<cr>
+map <leader>nfix :!eslint -c .eslintrc '%' --fix<cr>
 
 map <leader>we <C-W>=
 map <leader>wj :resize +20<cr>
