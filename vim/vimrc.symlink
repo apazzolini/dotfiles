@@ -16,7 +16,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'wellle/targets.vim'
 Plug 'mileszs/ack.vim'
-Plug 'neomake/neomake'
 Plug 'alvan/vim-closetag'
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/neosnippet.vim'
@@ -27,6 +26,7 @@ Plug 'apazzolini/wave.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'haya14busa/incsearch.vim'
 Plug 'Shougo/vimfiler.vim'
+Plug 'w0rp/ale'
 
 " Filetype specific plugins
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
@@ -73,6 +73,7 @@ command! Sol call Sol()
 source ~/.vim/base.vim
 
 source ~/.vim/ack.vim
+source ~/.vim/ale.vim
 source ~/.vim/camelcasemotion.vim
 source ~/.vim/delimitmate.vim
 source ~/.vim/easymotion.vim
@@ -80,7 +81,6 @@ source ~/.vim/fillline.vim
 source ~/.vim/incsearch.vim
 source ~/.vim/lightline.vim
 source ~/.vim/neoformat.vim
-source ~/.vim/neomake.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/repeat-block.vim
 source ~/.vim/simplenote.vim

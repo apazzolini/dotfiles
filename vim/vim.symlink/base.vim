@@ -105,7 +105,6 @@ cnoremap <expr> %% expand('%:h').'/'
 nnoremap <leader>W :source $MYVIMRC<CR>
 vmap <leader>y "*y
 map <leader>re :redraw!<CR>
-map <leader>. :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
 map <leader>jst :silent !open -a "/Applications/SourceTree.app" `pwd`<cr>
 map <leader>json :%!python -m json.tool<cr>
 map <leader>nr :call RenameFile()<cr>
