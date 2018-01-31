@@ -21,7 +21,7 @@ function! s:neosnippet_complete()
   if pumvisible()
     return "\<c-y>"
   else
-    if neosnippet#expandable_or_jumpable() 
+    if neosnippet#expandable_or_jumpable()
       return "\<Plug>(neosnippet_expand_or_jump)"
     endif
     return "\<Plug>delimitMateCR"
@@ -29,7 +29,7 @@ function! s:neosnippet_complete()
 endfunction
 
 function! s:neosnippet_complete_jj()
-  if neosnippet#expandable_or_jumpable() 
+  if neosnippet#expandable_or_jumpable()
     return "\<Plug>(neosnippet_expand_or_jump)"
   else
     return deoplete#manual_complete()
@@ -38,7 +38,7 @@ endfunction
 
 function! s:neosnippet_complete_tab()
   let col = col('.') - 1
-  if neosnippet#expandable_or_jumpable() 
+  if neosnippet#expandable_or_jumpable()
     return "\<Plug>(neosnippet_expand_or_jump)"
   elseif pumvisible()
     return "\<c-n>"
@@ -54,7 +54,7 @@ imap <expr>jj <SID>neosnippet_complete_jj()
 "imap <expr><CR> <SID>neosnippet_complete()
 
 let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ["neosnippet"]
+let g:deoplete#ignore_sources._ = ["neosnippet","LanguageClient"]
 let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
 

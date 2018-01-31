@@ -11,6 +11,10 @@ export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:./node_modules/.bin:$PATH
 export PGDATA='/usr/local/var/postgres'
 export IGNOREEOF=50
 
+export RG_GLOBS='-g "*.*" -g "config/local.js" -g "!.git" -g "!es5" -g "!dist" -g "!*/__fixtures__/*" -g "!*/__snapshots__/*" -g "!tmux.symlink/resurrect*" -g "!tmux.symlink/plugins" -g "!vim.symlink/plugged" -g "!yarn.lock" -g "!.DS_Store"'
+export FZF_DEFAULT_COMMAND="rg --color=never --files --hidden --smart-case --follow $RG_GLOBS"
+export FZF_DEFAULT_OPTS='--reverse --border'
+
 # Environment settings
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP

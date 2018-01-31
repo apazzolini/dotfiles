@@ -1,30 +1,49 @@
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'wave',
-      \ 'enable': {
-      \   'statusline': 1,
-      \   'tabline': 0,
-      \ },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
+    \ 'colorscheme': 'wave',
+    \ 'enable': {
+    \   'statusline': 1,
+    \   'tabline': 0,
+    \ },
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'linter_errors' ],
+    \             [ 'readonly', 'filename', 'modified' ] ],
+    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \ },
+    \ 'component_function': {
+    \   'filename': 'LightLineFilename',
+    \   'fileformat': 'LightLineFileformat',
+    \   'filetype': 'LightLineFiletype',
+    \   'fileencoding': 'LightLineFileencoding',
+    \   'mode': 'LightLineMode',
+    \ },
+    \ 'component_expand': {
+    \   'linter_errors': 'LightlineLinterErrors',
+    \   'linter_ok': 'LightlineLinterOK',
+    \ },
+    \ 'component_type': {
+    \   'linter_errors': 'error',
+    \   'linter_ok': 'ok'
+    \ },
+    \ 'subseparator': { 'left': '|', 'right': '|' }
+    \ }
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors + all_non_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓' : ''
+endfunction
+
+autocmd User ALELint call lightline#update()
 
 function! LightLineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'

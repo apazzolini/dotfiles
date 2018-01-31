@@ -2,45 +2,40 @@ call plug#begin('~/.vim/plugged')
 
 " Generic plugins
 Plug 'itchyny/lightline.vim'
-Plug 'sickill/vim-pasta'
-Plug 'raimondi/delimitmate'
-Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-surround'
-Plug 'mrtazz/simplenote.vim'
-Plug 'godlygeek/tabular'
-Plug 'scrooloose/nerdcommenter'
-Plug 'bkad/CamelCaseMotion'
-Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
-Plug 'Shougo/unite.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'wellle/targets.vim'
-Plug 'mileszs/ack.vim'
-Plug 'alvan/vim-closetag'
-Plug 'sbdchd/neoformat'
-Plug 'Shougo/neosnippet.vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'ap/vim-css-color'
-Plug 'benmills/vimux'
-Plug 'apazzolini/wave.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'haya14busa/incsearch.vim'
-Plug 'Shougo/vimfiler.vim'
-Plug 'w0rp/ale'
-
-" Filetype specific plugins
-Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-
-" Colorschemes
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mrtazz/simplenote.vim'
+Plug 'wellle/targets.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'godlygeek/tabular'
+Plug 'raimondi/delimitmate'
+Plug 'alvan/vim-closetag'
+Plug 'sickill/vim-pasta'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'romainl/vim-qf'
 
 if has('nvim')
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+    Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'carlitux/deoplete-ternjs'
 endif
+
+" Filetype specific plugins
+Plug 'w0rp/ale', { 'for': 'javascript' }
+Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'sbdchd/neoformat', { 'for': 'css' }
+
+" Colorschemes
+Plug 'apazzolini/wave.vim'
 
 call plug#end()
 
@@ -48,48 +43,34 @@ filetype plugin indent on
 syntax enable
 
 set background=dark
-
+silent! colorscheme wave
 if has('gui_running')
     set guifont=Operator\ Mono\ Book:h11
-    let g:gruvbox_italic = 1
-    let g:gruvbox_bold = 0
-    let g:gruvbox_invert_selection = 0
-    colorscheme gruvbox
     highlight Normal ctermbg=NONE
     highlight TabLineFill ctermbg=NONE
 else
     set notermguicolors
-    silent! colorscheme wave
     hi! Normal ctermbg=NONE guibg=NONE
 endif
 
-function! Sol()
-  set notermguicolors
-  set background=light
-  colorscheme Solarized
-endfunction
-command! Sol call Sol()
-
 source ~/.vim/base.vim
-
-source ~/.vim/ack.vim
 source ~/.vim/ale.vim
-source ~/.vim/camelcasemotion.vim
 source ~/.vim/delimitmate.vim
 source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
+source ~/.vim/fzf.vim
 source ~/.vim/incsearch.vim
+source ~/.vim/js.vim
 source ~/.vim/lightline.vim
 source ~/.vim/neoformat.vim
 source ~/.vim/nerdcommenter.vim
-source ~/.vim/repeat-block.vim
+source ~/.vim/nerdtree.vim
+source ~/.vim/qf.vim
 source ~/.vim/simplenote.vim
 source ~/.vim/surround.vim
 source ~/.vim/targets.vim
-source ~/.vim/unite.vim
-source ~/.vim/vimfiler.vim
-source ~/.vim/js.vim
 
 if has('nvim')
     source ~/.vim/deoplete.vim
+    source ~/.vim/language-client.vim
 endif

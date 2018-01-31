@@ -12,7 +12,6 @@ set vb t_vb=
 set incsearch
 set number
 set wrap linebreak nolist
-set splitbelow
 set splitright
 set formatoptions+=j " Delete comment character when joining commented lines
 set sidescrolloff=5
@@ -31,7 +30,6 @@ set timeoutlen=1000 ttimeoutlen=0
 set foldmethod=manual
 set nofoldenable
 set hidden
-
 set switchbuf=useopen
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -50,7 +48,6 @@ map H ^
 map L $
 map <C-B> <C-6>
 map S i<CR><Esc>k$
-nmap K kJ
 map <Space> 10j
 map <BS> 10k
 map <C-N> :tabnext<CR>
@@ -63,7 +60,6 @@ map <C-c> :read !pbpaste<CR>
 imap <C-c> <Esc>:read !pbpaste<CR>
 map gz :tab sp<CR>
 map gx :tabclose<CR>
-nnoremap <CR> :nohlsearch<CR>
 nnoremap zu 15<c-y>
 nnoremap zd 15<c-e>
 
@@ -78,17 +74,9 @@ autocmd BufReadPost *
     \ endif
 
 autocmd! FileType mkd setlocal syn=off
-autocmd! CmdwinEnter * :unmap <cr>
-autocmd! BufRead *.txt :call DeopleteDisable()
 autocmd BufWritePre * %s/\s\+$//e
 
 set winwidth=120
-" We have to have a winheight bigger than we want to set winminheight. But if
-" we set winheight to be huge before winminheight, the winminheight set will
-" fail.
-"set winheight=20
-"set winminheight=30
-"set winheight=999
 
 function! RenameFile()
     let old_name = expand('%')
