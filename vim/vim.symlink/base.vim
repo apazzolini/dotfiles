@@ -31,7 +31,6 @@ set foldmethod=manual
 set nofoldenable
 set hidden
 set switchbuf=useopen
-set cursorline
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -63,6 +62,13 @@ map gz :tab sp<CR>
 map gx :tabclose<CR>
 nnoremap zu 15<c-y>
 nnoremap zd 15<c-e>
+
+" Only show cursor line on active split
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
 
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
