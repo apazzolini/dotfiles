@@ -1,0 +1,11 @@
+source ~/.vimrc
+
+set nocursorline
+set winminwidth=0
+set winwidth=85
+set laststatus=0
+set noruler
+
+hi MatchParen ctermfg=0
+
+DeopleteDisable

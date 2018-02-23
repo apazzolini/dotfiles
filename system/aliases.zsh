@@ -63,16 +63,19 @@ alias yt="yarn run test"
 alias ytw="yarn test:watch"
 
 # tmux
-alias t="tmux -2"
+alias t="tmux -u -2"
 alias ta="t attach -t"
 alias td="t detach"
 alias tawork="/Users/Andre/.dotfiles/tmux/sessions/work.sh"
 alias tadre="/Users/Andre/.dotfiles/tmux/sessions/dre.sh"
 
 # vim
+alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+alias vf='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim "$(fzf)"'
+alias notes='vim -u ~/.dotfiles/vim/vimnotes -O ~/Work/MVPindex/docs/log.txt ~/Work/MVPindex/docs/tasks.txt'
 
 # misc
 alias d='docker'

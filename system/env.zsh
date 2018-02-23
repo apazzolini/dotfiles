@@ -34,6 +34,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 setopt complete_aliases # don't expand aliases _before_ completion has finished like: git comm-[tab]
+setopt auto_cd # allow changing to a directory without typing "cd "
 
 # Use VI mode in the shell
 bindkey -v
@@ -53,7 +54,7 @@ else
     PROMPT='[%m] %{$reset_color%}%{${fg[blue]}%}%10~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 fi
 
-RPROMPT='[%*] ${return_code}'
+#RPROMPT='[%*] ${return_code}'
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="*"              # Text to display if the branch is dirty

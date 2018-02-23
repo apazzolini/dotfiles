@@ -35,6 +35,7 @@ function env_setup {
     then
         link tmux/tmux.symlink
         link tmux/tmux.conf.symlink
+        link hyper/hyper.js.symlink
     fi
 
     mkdir -p ~/.config/nvim

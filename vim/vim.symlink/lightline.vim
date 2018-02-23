@@ -1,6 +1,6 @@
 set laststatus=2
 let g:lightline = {
-    \ 'colorscheme': 'wave',
+    \ 'colorscheme': has('gui_vimr') ? 'one' : 'wave',
     \ 'enable': {
     \   'statusline': 1,
     \   'tabline': 0,

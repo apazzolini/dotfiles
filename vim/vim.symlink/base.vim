@@ -31,6 +31,7 @@ set foldmethod=manual
 set nofoldenable
 set hidden
 set switchbuf=useopen
+set cursorline
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 

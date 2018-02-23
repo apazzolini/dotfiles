@@ -15,7 +15,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # create a new session, named $SESSION, and detach from it
-tmux -2 new-session -d -s $SESSION
+tmux -u -2 new-session -d -s $SESSION
 
 # Now populate the session with the windows you use every day
 tmux set-option -g base-index 0

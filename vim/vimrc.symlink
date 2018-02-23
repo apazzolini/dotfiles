@@ -18,6 +18,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'romainl/vim-qf'
+Plug 'chriskempson/base16-vim'
 
 if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {
@@ -43,12 +44,13 @@ filetype plugin indent on
 syntax enable
 
 set background=dark
-silent! colorscheme wave
-if has('gui_running')
-    set guifont=Operator\ Mono\ Book:h11
+if has('gui_vimr')
+    colorscheme base16-ashes
+    "set guifont=Operator\ Mono\ Book:h11
     highlight Normal ctermbg=NONE
     highlight TabLineFill ctermbg=NONE
 else
+    silent! colorscheme wave
     set notermguicolors
     hi! Normal ctermbg=NONE guibg=NONE
 endif

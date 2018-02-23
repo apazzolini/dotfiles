@@ -58,10 +58,10 @@ bind -n C-n if-shell "$is_vim" "send-keys c-n" "next-window"
 set -g @scroll-without-changing-pane "on"
 set -g @scroll-speed-num-lines-per-scroll "9"
 
-set -g status-bg colour238
+set -g status-bg colour244
 set -g status-fg white
 set -g status-left ""
-set -g window-status-current-bg cyan
+set -g window-status-current-bg yellow
 set -g window-status-current-fg black
 set -g window-status-format " #I:#W "
 set -g window-status-current-format " #I:#W "
@@ -71,8 +71,8 @@ set -g pane-border-fg colour241
 set -g pane-border-bg '#2A2A2A'
 set -g pane-active-border-fg colour3
 
-set -g window-style 'fg=white,bg=#2F2F2F'
-set -g window-active-style 'fg=white,bg=#272727'
+set -g window-style 'fg=white,bg=#292e33'
+set -g window-active-style 'fg=white,bg=#1C2023'
 
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
