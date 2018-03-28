@@ -42,6 +42,8 @@ bind v split-window -h -c "#{pane_current_path}"
 bind C-p last-window
 bind S-Left swap-window -t -1
 bind S-Right swap-window -t +1
+bind S setw synchronize-panes
+bind M-l setw synchronize-panes on \; send-keys -R \; send-keys C-l \; clear-history \; setw synchronize-panes off
 
 # iterm2 hex code binds
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \

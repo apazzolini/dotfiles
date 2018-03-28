@@ -39,15 +39,11 @@ spawn_window () {
 }
 
 spawn_window "common" "~/Work/MVPindex/ws/common"
-# spawn_window "apiv2" "~/Work/MVPindex/ws/apiv2"
 spawn_window "apiv3" "~/Work/MVPindex/ws/apiv3"
 spawn_window "ingestion" "~/Work/MVPindex/ws/ingestionv2"
 spawn_window "elastic" "~/Work/MVPindex/ws/elastic-ingestion"
-spawn_window "enhancer" "~/Work/MVPindex/ws/enhancer"
-# spawn_window "esm" "~/Work/MVPindex/ws/esm"
-# spawn_window "jobs-server" "~/Work/MVPindex/ws/jobs-server"
+spawn_window "other" "~/Work/MVPindex/ws"
 spawn_window "jobs-worker" "~/Work/MVPindex/ws/jobs-worker"
-# spawn_window "dash" "~/Work/MVPindex/ws/dash"
 
 tmux new-window -t $SESSION:$next_session -k -n remote-ingestion
 ((next_session++))
@@ -60,13 +56,6 @@ tmux select-pane -t:.3
 
 tmux new-window -t $SESSION:$next_session -k -n remote-misc
 ((next_session++))
-
-# tmux new-window -t $SESSION:$next_session -k -n remote-elastic
-# ((next_session++))
-# tmux split-window -v -p 33
-# tmux select-pane -t 1
-# tmux split-window -v -p 50
-# tmux select-pane -t:.1
 
 # all done. select starting window and get to work
 tmux select-window -t $SESSION:0

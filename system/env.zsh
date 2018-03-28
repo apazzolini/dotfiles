@@ -13,7 +13,7 @@ export IGNOREEOF=50
 
 export RG_GLOBS='-g "*.*" -g "config/local.js" -g "!.git" -g "!es5" -g "!dist" -g "!*/__fixtures__/*" -g "!*/__snapshots__/*" -g "!tmux.symlink/resurrect*" -g "!tmux.symlink/plugins" -g "!vim.symlink/plugged" -g "!yarn.lock" -g "!.DS_Store"'
 export FZF_DEFAULT_COMMAND="rg --color=never --files --hidden --smart-case --follow $RG_GLOBS"
-export FZF_DEFAULT_OPTS='--reverse --border'
+export FZF_DEFAULT_OPTS='--reverse --border --bind=ctrl-d:half-page-down,ctrl-u:half-page-up'
 
 # Environment settings
 setopt NO_BG_NICE # don't nice background tasks

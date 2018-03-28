@@ -20,7 +20,7 @@ alias hg='history 1 -1 | grep '
 
 # process aliases
 alias pg='ps -Aef | head -1 && ps -Aef | grep'
-alias pgn="pg node | grep -v Postman | grep -v _d | grep -v '(node)' | grep -v grep"
+alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep"
 alias ka='killall'
 alias k='kill -9'
 alias knode='pkill -9 -f '\''node --expose-gc'\'
@@ -70,13 +70,15 @@ alias tawork="/Users/Andre/.dotfiles/tmux/sessions/work.sh"
 alias tadre="/Users/Andre/.dotfiles/tmux/sessions/dre.sh"
 
 # vim
-alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-alias vf='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim "$(fzf)"'
-alias notes='vim -u ~/.dotfiles/vim/vimnotes -O ~/Work/MVPindex/docs/log.txt ~/Work/MVPindex/docs/tasks.txt'
+alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
+alias vi='echo "v"'
+alias vim='echo "v"'
+alias nvim='echo "v"'
+alias vf='v "$(fzf)"'
+alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Work/MVPindex/docs/log.txt ~/Work/MVPindex/docs/tasks.txt'
 
 # misc
 alias d='docker'
 alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2 -b 10.0.101.172"
+alias jest='nocorrect jest'
+alias rg='rg -i'

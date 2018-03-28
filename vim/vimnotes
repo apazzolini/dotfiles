@@ -9,3 +9,7 @@ set noruler
 hi MatchParen ctermfg=0
 
 DeopleteDisable
+
+augroup CursorLine
+	autocmd!
+augroup END

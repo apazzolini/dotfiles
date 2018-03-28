@@ -31,6 +31,7 @@ set foldmethod=manual
 set nofoldenable
 set hidden
 set switchbuf=useopen
+set scrolloff=10
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -44,7 +45,7 @@ map ' `
 let mapleader = ","
 map Y y$
 map ; :
-map H ^
+map H 0
 map L $
 map <C-B> <C-6>
 map S i<CR><Esc>k$
@@ -62,6 +63,8 @@ map gz :tab sp<CR>
 map gx :tabclose<CR>
 nnoremap zu 15<c-y>
 nnoremap zd 15<c-e>
+nnoremap 0 ^
+nnoremap ^ 0
 
 " Only show cursor line on active split
 augroup CursorLine
@@ -99,6 +102,7 @@ nnoremap <leader><leader> <c-^>
 cnoremap <expr> %% expand('%:h').'/'
 nnoremap <leader>W :source $MYVIMRC<CR>
 vmap <leader>y "*y
+map <leader>p "*p
 map <leader>re :redraw!<CR>
 map <leader>jst :silent !open -a "/Applications/SourceTree.app" `pwd`<cr>
 map <leader>json :%!python -m json.tool<cr>
@@ -112,3 +116,7 @@ map <leader>wj :resize +20<cr>
 map <leader>wk :resize -20<cr>
 map <leader>wh :vert resize -20<cr>
 map <leader>wl :vert resize +20<cr>
+
+nmap <leader>wJ 15<C-e>
+nmap <leader>wK 15<C-y>
+

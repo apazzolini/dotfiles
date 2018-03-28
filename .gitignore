@@ -10,3 +10,4 @@ vim/vim.symlink/.bak
 plugged
 tmux/tmux.symlink/plugins
 docker/docker.symlink/daemon.json
+server.pem
