@@ -55,8 +55,8 @@ map <C-N> :tabnext<CR>
 map <C-B> :tabprev<CR>
 noremap j gj
 noremap k gk
-noremap <ScrollWheelUp> 20<C-Y>
-noremap <ScrollWheelDown> 20<C-E>
+noremap <ScrollWheelUp> <C-Y>
+noremap <ScrollWheelDown> <C-E>
 map <C-c> :read !pbpaste<CR>
 imap <C-c> <Esc>:read !pbpaste<CR>
 map gz :tab sp<CR>
@@ -88,6 +88,16 @@ autocmd BufWritePre * %s/\s\+$//e
 
 set winwidth=120
 
+set winheight=10
+set winminheight=10
+set winheight=999
+nnoremap c<C-j> :bel sp new<cr>
+nnoremap c<C-k> :abo sp new<cr>
+nnoremap c<C-h> :lefta vsp new<cr>
+nnoremap c<C-l> :rightb vsp new<cr>
+nnoremap <leader>re :set winheight=999<cr>
+nnoremap <leader>rd :set winheight=10<cr><c-w>=<cr>
+
 function! RenameFile()
     let old_name = expand('%')
     let new_name = input('New file name: ', expand('%'), 'file')
@@ -118,4 +128,3 @@ map <leader>wl :vert resize +20<cr>
 
 nmap <leader>wJ 15<C-e>
 nmap <leader>wK 15<C-y>
-
