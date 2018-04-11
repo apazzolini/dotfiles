@@ -1,8 +1,10 @@
 source ~/.vimrc
 
 set nocursorline
+set winheight=10
+set winwidth=10
 set winminwidth=0
-set winwidth=85
+set winwidth=84
 set laststatus=0
 set noruler
 
@@ -13,3 +15,5 @@ DeopleteDisable
 augroup CursorLine
 	autocmd!
 augroup END
+
+:cd /Users/Andre/Work/MVPindex/docs/
