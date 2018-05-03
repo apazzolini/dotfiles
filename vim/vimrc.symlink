@@ -19,6 +19,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'romainl/vim-qf'
 Plug 'chriskempson/base16-vim'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-entire'
+Plug 'thinca/vim-textobj-function-javascript'
 
 if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {
@@ -36,7 +41,7 @@ Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'sbdchd/neoformat', { 'for': 'css' }
 
 " Colorschemes
-Plug 'apazzolini/wave.vim'
+Plug 'apazzolini/vim-wave'
 
 call plug#end()
 
@@ -68,6 +73,7 @@ source ~/.vim/neoformat.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
 source ~/.vim/qf.vim
+source ~/.vim/repeat-block.vim
 source ~/.vim/simplenote.vim
 source ~/.vim/surround.vim
 source ~/.vim/targets.vim

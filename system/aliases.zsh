@@ -20,7 +20,7 @@ alias hg='history 1 -1 | grep '
 
 # process aliases
 alias pg='ps -Aef | head -1 && ps -Aef | grep'
-alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep"
+alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep | grep -v javascript-typescript-stdio"
 alias ka='killall'
 alias k='kill -9'
 alias knode='pkill -9 -f '\''node --expose-gc'\'
@@ -45,8 +45,8 @@ then
 fi
 
 # open current directory in sourcetree
-alias st='open -a "/Applications/SourceTree.app" `pwd`'
-alias stf='open -a "/Applications/SourceTree.app" `pwd` && fg'
+alias st='open -a "/Applications/Fork.app" `pwd`'
+alias stf='open -a "/Applications/Fork.app" `pwd` && fg'
 
 # edit previous command in vi
 alias r='fc -e vim'

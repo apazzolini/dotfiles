@@ -95,8 +95,6 @@ nnoremap c<C-j> :bel sp new<cr>
 nnoremap c<C-k> :abo sp new<cr>
 nnoremap c<C-h> :lefta vsp new<cr>
 nnoremap c<C-l> :rightb vsp new<cr>
-nnoremap <leader>re :set winheight=999<cr>
-nnoremap <leader>rd :set winheight=10<cr><c-w>=<cr>
 
 function! RenameFile()
     let old_name = expand('%')
@@ -113,14 +111,15 @@ cnoremap <expr> %% expand('%:h').'/'
 nnoremap <leader>W :source $MYVIMRC<CR>
 vmap <leader>y "*y
 map <leader>p "*p
-map <leader>jst :silent !open -a "/Applications/SourceTree.app" `pwd`<cr>
+map <leader>jst :silent !open -a "/Applications/Fork.app" `pwd`<cr>
 map <leader>json :%!python -m json.tool<cr>
 map <leader>nr :call RenameFile()<cr>
 map <leader>ne :e %%
 map <leader>nt :tabnew<cr>
 map <leader>nfix :!eslint -c .eslintrc '%' --fix<cr>
 
-map <leader>we <C-W>=
+map <leader>we :set winheight=999<cr>
+map <leader>wd :set winheight=10<cr><c-w>=<cr>
 map <leader>wj :resize +20<cr>
 map <leader>wk :resize -20<cr>
 map <leader>wh :vert resize -20<cr>
@@ -128,3 +127,7 @@ map <leader>wl :vert resize +20<cr>
 
 nmap <leader>wJ 15<C-e>
 nmap <leader>wK 15<C-y>
+
+nmap <leader>ot mT:%s/test.only/test/ge<cr>'T?test(<cr>cetest.only<esc>'T
+nmap <leader>oa mT?test(<cr>cetest.only<esc>'T
+nmap <leader>ox mT:%s/test.only/test/ge<cr>'T

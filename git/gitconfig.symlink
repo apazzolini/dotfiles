@@ -1,8 +1,8 @@
 [push]
     default = current
 [user]
-    name = Andre Azzolini
-    email = apazzolini@gmail.com
+	name = Andre Azzolini
+	email = apazzolini@gmail.com
 [core]
     excludesfile = /Users/Andre/.gitignore
     quotepath = false
