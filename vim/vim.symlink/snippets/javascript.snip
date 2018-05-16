@@ -30,6 +30,19 @@ options indent
 		],
 	})
 
+snippet import-pgr
+alias ipgr
+options indent
+	import { query, sql } from 'pgr'
+
+snippet new-pg-query
+alias cpgq
+options indent
+	query(sql\`
+		${0:TARGET}
+	\`, {
+	})
+
 snippet new-query-q1
 alias cq1
 options indent

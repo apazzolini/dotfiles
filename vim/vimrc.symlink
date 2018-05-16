@@ -3,8 +3,6 @@ call plug#begin('~/.vim/plugged')
 " Generic plugins
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'haya14busa/incsearch.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mrtazz/simplenote.vim'
@@ -32,6 +30,11 @@ if has('nvim')
         \ }
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
+
+if !empty($TMUX)
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'tmux-plugins/vim-tmux-focus-events'
 endif
 
 " Filetype specific plugins
@@ -82,3 +85,8 @@ if has('nvim')
     source ~/.vim/deoplete.vim
     source ~/.vim/language-client.vim
 endif
+
+if !empty($TMUX)
+    source ~/.vim/tmux-navigator.vim
+endif
+

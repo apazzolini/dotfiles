@@ -45,8 +45,10 @@ then
 fi
 
 # open current directory in sourcetree
-alias st='open -a "/Applications/Fork.app" `pwd`'
-alias stf='open -a "/Applications/Fork.app" `pwd` && fg'
+alias st='open -a "/Applications/SourceTree.app" `pwd`'
+alias stf='open -a "/Applications/SourceTree.app" `pwd` && fg'
+alias sf='open -a "/Applications/Fork.app" `pwd`'
+alias sff='open -a "/Applications/Fork.app" `pwd` && fg'
 
 # edit previous command in vi
 alias r='fc -e vim'
@@ -82,3 +84,4 @@ alias d='docker'
 alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2 -b 10.0.101.172"
 alias jest='nocorrect jest'
 alias rg='rg -i'
+alias fix='echo -e "\033c"'

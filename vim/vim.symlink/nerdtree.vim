@@ -9,3 +9,5 @@ let NERDTreeShowHidden=0
 let g:NERDTreeMapOpenSplit="s"
 let g:NERDTreeMapOpenVSplit="v"
 map <leader>g :NERDTreeFind<cr>
+
+map <leader>no :let NERDTreeQuitOnOpen=!NERDTreeQuitOnOpen<cr>

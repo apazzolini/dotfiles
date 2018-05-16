@@ -15,7 +15,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # create a new session, named $SESSION, and detach from it
-tmux -u -2 new-session -d -s $SESSION
+tmux -u -2 new-session -d -s $SESSION -x 393 -y 95
 
 # Now populate the session with the windows you use every day
 tmux set-option -g base-index 0
@@ -42,7 +42,7 @@ spawn_window "common" "~/Work/MVPindex/ws/common"
 spawn_window "apiv3" "~/Work/MVPindex/ws/apiv3"
 spawn_window "ingestion" "~/Work/MVPindex/ws/ingestionv2"
 spawn_window "elastic" "~/Work/MVPindex/ws/elastic-ingestion"
-spawn_window "other" "~/Work/MVPindex/ws"
+# spawn_window "other" "~/Work/MVPindex/ws"
 spawn_window "jobs-worker" "~/Work/MVPindex/ws/jobs-worker"
 
 tmux new-window -t $SESSION:$next_session -k -n remote-ingestion
@@ -54,8 +54,8 @@ tmux select-pane -t:.3
 tmux split-window -h -p 20
 tmux select-pane -t:.3
 
-tmux new-window -t $SESSION:$next_session -k -n remote-misc
-((next_session++))
+# tmux new-window -t $SESSION:$next_session -k -n remote-misc
+# ((next_session++))
 
 # all done. select starting window and get to work
 tmux select-window -t $SESSION:0
