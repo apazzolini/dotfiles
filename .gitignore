@@ -10,4 +10,5 @@ vim/vim.symlink/.bak
 plugged
 tmux/tmux.symlink/plugins
 docker/docker.symlink/daemon.json
+docker/docker.symlink/.buildNodeID
 server.pem
