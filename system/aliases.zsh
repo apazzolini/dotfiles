@@ -73,8 +73,8 @@ alias tadre="/Users/Andre/.dotfiles/tmux/sessions/dre.sh"
 
 # vim
 alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
-alias vi='echo "v"'
-alias vim='echo "v"'
+alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
+alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
 alias nvim='echo "v"'
 alias vf='v "$(fzf)"'
 alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Work/MVPindex/docs/log.txt ~/Work/MVPindex/docs/tasks.txt'
@@ -85,3 +85,7 @@ alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2 -b 10.0.101.172"
 alias jest='nocorrect jest'
 alias rg='rg -i'
 alias fix='echo -e "\033c"'
+
+# sudo aliases
+alias sv='sudo NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
+alias sd='sudo docker'
