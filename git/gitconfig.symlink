@@ -6,7 +6,7 @@
 [core]
     excludesfile = /Users/Andre/.gitignore
     quotepath = false
-    editor = vim
+    editor = /usr/local/bin/nvim
     autocrlf = input
     commentchar = ";"
 [github]
@@ -54,7 +54,7 @@
     helper = osxkeychain
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
