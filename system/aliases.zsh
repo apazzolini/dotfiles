@@ -77,14 +77,14 @@ alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
 alias nvim='echo "v"'
 alias vf='v "$(fzf)"'
-alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Work/MVPindex/docs/log.txt ~/Work/MVPindex/docs/tasks.txt'
+alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Notes/work-log.txt ~/Air/Notes/work-tasks.txt'
 
 # misc
 alias d='docker'
 alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2 -b 10.0.101.172"
 alias jest='nocorrect jest'
 alias rg='rg -i'
-alias fix='echo -e "\033c"'
+alias fix='echo -e "\033c"; stty sane; tput rs1'
 
 # sudo aliases
 alias sv='sudo NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'

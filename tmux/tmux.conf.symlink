@@ -40,7 +40,7 @@ bind-key -T copy-mode-vi C-f command-prompt -1 -p "Window Index:" "select-window
 # bind -n C-f run-shell 'tmux choose-tree -F "##{window_name}" -Nwf"##{==:##{session_name},#{session_name}}"'
 # bind -n C-f choose-tree -F "##{window_name}" -Nw
 bind -n C-f command-prompt -1 -p "Window Index:" "select-window -t ':%%'"
-bind C-f choose-tree -s
+bind -n C-g choose-tree -s
 bind s split-window -v -c "#{pane_current_path}"
 bind v split-window -h -c "#{pane_current_path}"
 bind C-p last-window

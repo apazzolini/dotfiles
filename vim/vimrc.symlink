@@ -22,6 +22,7 @@ Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
 Plug 'thinca/vim-textobj-function-javascript'
+Plug 'tmhedberg/matchit'
 
 if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {
@@ -42,6 +43,7 @@ Plug 'w0rp/ale', { 'for': 'javascript' }
 Plug 'apazzolini/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'sbdchd/neoformat', { 'for': 'css' }
+Plug 'styled-components/vim-styled-components', { 'for': 'javascript' }
 
 " Colorschemes
 Plug 'apazzolini/vim-wave'

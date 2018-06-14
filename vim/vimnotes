@@ -16,4 +16,4 @@ augroup CursorLine
 	autocmd!
 augroup END
 
-:cd /Users/Andre/Work/MVPindex/docs/
+:cd /Users/Andre/Air/Notes
