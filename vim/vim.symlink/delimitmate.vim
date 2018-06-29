@@ -5,3 +5,4 @@ let delimitMate_nesting_quotes = ['`']
 let delimitMate_smart_quotes = ''
 
 au FileType text let b:loaded_delimitMate = 1
+au FileType markdown let b:loaded_delimitMate = 1

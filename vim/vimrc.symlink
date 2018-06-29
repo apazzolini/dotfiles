@@ -21,10 +21,13 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-indent'
 Plug 'thinca/vim-textobj-function-javascript'
 Plug 'tmhedberg/matchit'
+Plug 'zirrostig/vim-schlepp'
 
 if has('nvim')
+    let g:node_host_prog = '/Users/Andre/.config/yarn/global/node_modules/.bin/neovim-node-host'
     Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
         \ 'do': 'bash install.sh',
@@ -79,6 +82,7 @@ source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
 source ~/.vim/qf.vim
 source ~/.vim/repeat-block.vim
+source ~/.vim/schlepp.vim
 source ~/.vim/simplenote.vim
 source ~/.vim/surround.vim
 source ~/.vim/targets.vim

@@ -47,6 +47,7 @@ bind C-p last-window
 bind S-Left swap-window -t -1
 bind S-Right swap-window -t +1
 bind S setw synchronize-panes
+bind & kill-window
 bind M-i setw synchronize-panes on \; send-keys -R \; send-keys C-l \; clear-history \; setw synchronize-panes off
 bind-key , command-prompt -p (rename-window) "rename-window '%%'"
 
