@@ -4,9 +4,8 @@ set -g prefix C-p
 bind C-p send-prefix
 
 # basic setup
-set -g default-terminal "xterm-256color"
-set -as terminal-overrides ',xterm*:sitm=\E[3m'
-set -ga terminal-overrides ",xterm-256color:Tc"
+set -g default-terminal 'tmux-256color'
+set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
 set -g pane-base-index 0
 set -sg escape-time 0
 setw -g mouse on

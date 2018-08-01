@@ -26,6 +26,7 @@ function env_setup {
     link git/githelpers.symlink
     link git/gitignore.symlink
     link system/xterm-256color.ti.symlink
+    link system/tmux-256color.ti.symlink
     link vim/vim.symlink
     link vim/vimrc.symlink
     link zsh/zshrc.symlink

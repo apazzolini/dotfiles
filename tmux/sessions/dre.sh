@@ -25,7 +25,7 @@ tmux set-window-option -t $SESSION status on
 tmux set-window-option -t $SESSION status-position top
 tmux set-window-option -g pane-base-index 1
 
-tmux new-window -t $SESSION:1 -k -n dotfiles
+tmux new-window -t $SESSION:0 -k -n dotfiles
 tmux send-keys -t ${window}.1 'cd ~/.dotfiles' Enter
 
 next_session=1
