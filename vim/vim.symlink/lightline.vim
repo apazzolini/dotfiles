@@ -1,6 +1,6 @@
 set laststatus=2
 let g:lightline = {
-    \ 'colorscheme': has('gui_vimr') ? 'one' : 'wave',
+    \ 'colorscheme': has('gui_vimr') ? 'seoul' : 'wave',
     \ 'enable': {
     \   'statusline': 1,
     \   'tabline': 0,
@@ -9,7 +9,7 @@ let g:lightline = {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'linter_errors' ],
     \             [ 'readonly', 'filename', 'modified' ] ],
-    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \   'right': [ [ 'lineinfo' ], [ 'filetype' ] ]
     \ },
     \ 'component_function': {
     \   'filename': 'LightLineFilename',
@@ -43,7 +43,7 @@ function! LightlineLinterOK() abort
   return l:counts.total == 0 ? '✓' : ''
 endfunction
 
-autocmd User ALELint call lightline#update()
+autocmd User ALELintPost call lightline#update()
 
 function! LightLineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'

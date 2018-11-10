@@ -6,8 +6,9 @@ else
     alias ls="ls -F --color"
 fi
 alias l="ls -lh"
-alias ll="ls -lAh"
 alias la="ls -A"
+alias ll="ls -lAh"
+alias llg="ll | grep"
 
 # easy navigating
 alias ..="cd .."
@@ -20,7 +21,7 @@ alias hg='history 1 -1 | grep '
 
 # process aliases
 alias pg='ps -Aef | head -1 && ps -Aef | grep'
-alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep | grep -v javascript-typescript-stdio"
+alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep | grep -v javascript-typescript-stdio | grep -v 'There Helper'"
 alias ka='killall'
 alias k='kill -9'
 alias knode='pkill -9 -f '\''node --expose-gc'\'
@@ -50,8 +51,8 @@ alias stf='open -a "/Applications/SourceTree.app" `pwd` && fg'
 alias sf='open -a "/Applications/Fork.app" `pwd`'
 alias sff='open -a "/Applications/Fork.app" `pwd` && fg'
 
-# edit previous command in vi
-alias r='fc -e vim'
+# ranger
+alias r='ranger'
 
 # shortcuts for npm run
 alias nr="npm run"
@@ -75,9 +76,9 @@ alias tadre="/Users/Andre/.dotfiles/tmux/sessions/dre.sh"
 alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
 alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
-alias nvim='echo "v"'
+alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
 alias vf='v "$(fzf)"'
-alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Notes/work-log.txt ~/Air/Notes/work-tasks.txt'
+alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Wiki/diary/diary.wiki ~/Air/Wiki/index.wiki'
 
 # misc
 alias d='docker'

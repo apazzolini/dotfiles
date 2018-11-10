@@ -7,13 +7,14 @@ bind C-p send-prefix
 set -g default-terminal 'tmux-256color'
 set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
 set -g pane-base-index 0
-set -sg escape-time 0
+#set -sg escape-time 0
 setw -g mouse on
 setw -g mode-keys vi
 set -g renumber-windows on
 set -g set-titles off
 set -g set-titles-string "#S: #W"
-set -g focus-events on
+#set -g focus-events on
+set-option -s escape-time 10
 
 # fix sierra clipboard interaction
 set -g default-shell $SHELL
@@ -38,8 +39,8 @@ bind-key -T copy-mode-vi C-f command-prompt -1 -p "Window Index:" "select-window
 # bind C-f choose-session
 # bind -n C-f run-shell 'tmux choose-tree -F "##{window_name}" -Nwf"##{==:##{session_name},#{session_name}}"'
 # bind -n C-f choose-tree -F "##{window_name}" -Nw
-bind -n C-f command-prompt -1 -p "Window Index:" "select-window -t ':%%'"
-bind -n C-g choose-tree -s
+# bind -n C-f command-prompt -1 -p "Window Index:" "select-window -t ':%%'"
+bind g choose-tree -s
 bind s split-window -v -c "#{pane_current_path}"
 bind v split-window -h -c "#{pane_current_path}"
 bind C-p last-window
@@ -47,6 +48,7 @@ bind S-Left swap-window -t -1
 bind S-Right swap-window -t +1
 bind S setw synchronize-panes
 bind & kill-window
+bind x kill-pane
 bind M-i setw synchronize-panes on \; send-keys -R \; send-keys C-l \; clear-history \; setw synchronize-panes off
 bind-key , command-prompt -p (rename-window) "rename-window '%%'"
 

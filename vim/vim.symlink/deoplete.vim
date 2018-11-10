@@ -4,8 +4,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#disable_auto_complete = 0
 let g:deoplete#file#enable_buffer_path = 1
 
-let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = '1'
+" let g:tern_request_timeout = 1
+" let g:tern_show_signature_in_pum = '1'
 
 inoremap <expr><C-space> deoplete#manual_complete()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
@@ -57,6 +57,11 @@ let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ["neosnippet","LanguageClient"]
 let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
+" let g:deoplete#sources#ternjs#types = 1
+" let g:deoplete#sources#ternjs#filetypes = [
+    " \ 'jsx',
+    " \ 'javascript.jsx'
+    " \ ]
 
 function! DeopleteDisable()
   let g:deoplete#disable_auto_complete = 1

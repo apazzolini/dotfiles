@@ -27,11 +27,15 @@ set cinoptions+=+1
 set noshowmatch
 set t_ut=
 set timeoutlen=1000 ttimeoutlen=0
-set foldmethod=manual
+set foldmethod=syntax
 set nofoldenable
+set foldlevel=99
+set foldnestmax=2
+set noshowcmd
 set hidden
 set switchbuf=useopen
 set scrolloff=10
+set colorcolumn=111
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -63,14 +67,17 @@ map gz :tab sp<CR>
 map gx :tabclose<CR>
 nnoremap zu 15<c-y>
 nnoremap zd 15<c-e>
-nnoremap 0 ^
-nnoremap ^ 0
+nnoremap <c-d> <c-d>zz
+nnoremap <c-u> <c-u>zz
+noremap 0 ^
+noremap ^ 0
 
 " Only show cursor line on active split
+set nocursorline
 augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
+   au!
+   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+   au WinLeave * setlocal nocursorline
 augroup END
 
 " Show syntax highlighting of current word
@@ -86,11 +93,11 @@ autocmd BufReadPost *
 autocmd! FileType mkd setlocal syn=off
 autocmd BufWritePre * %s/\s\+$//e
 
-set winwidth=120
+" set winwidth=120
 
-set winheight=10
-set winminheight=10
-set winheight=999
+""set winheight=10
+""set winminheight=10
+""set winheight=999
 nnoremap c<C-j> :bel sp new<cr>
 nnoremap c<C-k> :abo sp new<cr>
 nnoremap c<C-h> :lefta vsp new<cr>
@@ -117,10 +124,11 @@ vmap <leader>y "*y
 map <leader>p "*p
 map <leader>jst :silent !open -a "/Applications/SourceTree.app" `pwd`<cr>
 map <leader>jsf :silent !open -a "/Applications/Fork.app" `pwd`<cr>
-map <leader>json :%!python -m json.tool<cr>
 map <leader>nr :call RenameFile()<cr>
 map <leader>ne :e %%
 map <leader>nt :tabnew<cr>
+map ]] :call search('!!!')<cr>zt
+map [[ :call search('!!!', 'b')<cr>zt
 
 map <leader>we :set winheight=999<cr>
 map <leader>wd :set winheight=10<cr><c-w>=<cr>
@@ -135,3 +143,21 @@ nmap <leader>wK 15<C-y>
 nmap <leader>ot mT:%s/test.only/test/ge<cr>'T?test(<cr>cetest.only<esc>'T
 nmap <leader>oa mT?test(<cr>cetest.only<esc>'T
 nmap <leader>ox mT:%s/test.only/test/ge<cr>'T
+
+command! Pjson set ft=json | %!jq '.'
+command! Djson set ft=json | %!jq '.' -c
+
+command! BCloseHidden call s:CloseHiddenBuffers()
+function! s:CloseHiddenBuffers()
+  let open_buffers = []
+
+  for i in range(tabpagenr('$'))
+    call extend(open_buffers, tabpagebuflist(i + 1))
+  endfor
+
+  for num in range(1, bufnr("$") + 1)
+    if buflisted(num) && index(open_buffers, num) == -1
+      exec "bdelete ".num
+    endif
+  endfor
+endfunction
