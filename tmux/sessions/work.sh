@@ -52,8 +52,6 @@ spawn_window "web-app" "~/Work/Float/dws/sites/web-app"
 spawn_window "search" "~/Work/Float/ws/float-search"
 spawn_window "api3" "~/Work/Float/dws/sites/api3"
 spawn_window "float" "~/Work/Float/dws/sites/float"
-spawn_window "dws" "~/Work/Float/dws"
-spawn_window "report" "~/Work/Float/ws/node-report-data"
 
 
 # all done. select starting window and get to work

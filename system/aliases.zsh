@@ -46,10 +46,8 @@ then
 fi
 
 # open current directory in sourcetree
-alias st='open -a "/Applications/SourceTree.app" `pwd`'
-alias stf='open -a "/Applications/SourceTree.app" `pwd` && fg'
-alias sf='open -a "/Applications/Fork.app" `pwd`'
-alias sff='open -a "/Applications/Fork.app" `pwd` && fg'
+alias st='stree'
+alias sf='fork'
 
 # ranger
 alias r='ranger'
@@ -86,6 +84,7 @@ alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2 -b 10.0.101.172"
 alias jest='nocorrect jest'
 alias rg='rg -i'
 alias fix='echo -e "\033c"; stty sane; tput rs1'
+alias lg='lazygit'
 
 # sudo aliases
 alias sv='sudo NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'

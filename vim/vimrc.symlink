@@ -6,10 +6,7 @@ Plug 'tpope/vim-surround'
 Plug 'haya14busa/incsearch.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'wellle/targets.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'godlygeek/tabular'
-Plug 'raimondi/delimitmate'
-Plug 'alvan/vim-closetag'
 Plug 'sickill/vim-pasta'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -23,23 +20,17 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'fvictorio/vim-textobj-backticks'
 Plug 'thinca/vim-textobj-function-javascript'
-Plug 'tmhedberg/matchit'
-Plug 'zirrostig/vim-schlepp'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'Konfekt/FastFold'
-" Plug 'majutsushi/tagbar'
-" Plug 'ternjs/tern_for_vim'
-" Plug 'xolox/vim-misc'
-" Plug 'xolox/vim-session'
-" Plug 'mrtazz/simplenote.vim'
+Plug 'MartinLafreniere/vim-PairTools'
 
 if has('nvim')
     let g:node_host_prog = '/Users/Andre/.config/yarn/global/node_modules/.bin/neovim-node-host'
     Plug 'Shougo/neosnippet.vim'
+    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
@@ -47,18 +38,16 @@ if !empty($TMUX)
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 
-    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'christoomey/vim-tmux-navigator', { 'branch': 'indicator' }
     Plug 'tmux-plugins/vim-tmux-focus-events'
+    source ~/.vim/tmux-navigator.vim
 endif
 
 " Filetype specific plugins
 Plug 'w0rp/ale', { 'for': ['javascript','javascript.jsx'] }
 Plug 'apazzolini/vim-javascript', { 'for': ['javascript','javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript','javascript.jsx'] }
-" Plug 'prettier/vim-prettier', { 'for': ['javascript','javascript.jsx'] }
 Plug 'styled-components/vim-styled-components', { 'for': ['javascript','javascript.jsx'], 'branch': 'main' }
-" Plug 'MaxMEllon/vim-jsx-pretty', { 'for': 'javascript' }
-""Plug 'sbdchd/neoformat', { 'for': ['css','javascript','javascript.jsx'] }
 
 " Colorschemes
 Plug 'apazzolini/vim-wave'
@@ -71,12 +60,8 @@ syntax enable
 set background=dark
 if has('gui_vimr')
     colorscheme base16-ashes
-    "set guifont=Operator\ Mono\ Book:h11
     highlight Normal ctermbg=NONE
     highlight TabLineFill ctermbg=NONE
-elseif exists('neovim_dot_app')
-    colorscheme base16-tomorrow-night
-    set guifont=Operator\ Mono\ Book:h11
 else
     silent! colorscheme wave
     set notermguicolors
@@ -85,8 +70,6 @@ endif
 
 source ~/.vim/base.vim
 source ~/.vim/ale.vim
-source ~/.vim/delimitmate.vim
-source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
 source ~/.vim/fzf.vim
 source ~/.vim/incsearch.vim
@@ -96,21 +79,12 @@ source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
 source ~/.vim/qf.vim
 source ~/.vim/repeat-block.vim
-source ~/.vim/schlepp.vim
 source ~/.vim/surround.vim
 source ~/.vim/targets.vim
-"source ~/.vim/neoformat.vim
-" source ~/.vim/simplenote.vim
 
 silent! source ./.vimlocal
 
 if has('nvim')
     source ~/.vim/deoplete.vim
+    source ~/.vim/lang-client.vim
 endif
-
-if !empty($TMUX)
-    source ~/.vim/tmux-navigator.vim
-endif
-
-let g:javaScript_fold = 1
-let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R','m','M','i','n','N']

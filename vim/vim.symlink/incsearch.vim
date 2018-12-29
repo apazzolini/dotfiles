@@ -11,10 +11,6 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
-" map z/ <Plug>(incsearch-easymotion-/)
-" map z? <Plug>(incsearch-easymotion-?)
-" map zg/ <Plug>(incsearch-easymotion-stay)
-
 augroup incsearch-keymap
     autocmd!
     autocmd VimEnter * call s:incsearch_keymap()
@@ -23,5 +19,3 @@ function! s:incsearch_keymap()
     IncSearchNoreMap <c-j> <Over>(incsearch-next)
     IncSearchNoreMap <c-k> <Over>(incsearch-prev)
 endfunction
-
-

@@ -1,4 +1,3 @@
-" Basic configuration
 set ic
 set scs
 set hlsearch
@@ -27,7 +26,7 @@ set cinoptions+=+1
 set noshowmatch
 set t_ut=
 set timeoutlen=1000 ttimeoutlen=0
-set foldmethod=syntax
+set foldmethod=manual
 set nofoldenable
 set foldlevel=99
 set foldnestmax=2
@@ -51,7 +50,6 @@ map Y y$
 map ; :
 map H 0
 map L $
-map <C-B> <C-6>
 map S i<CR><Esc>k$
 map <Space> 10j
 map <BS> 10k
@@ -65,12 +63,11 @@ map <C-c> :read !pbpaste<CR>
 imap <C-c> <Esc>:read !pbpaste<CR>
 map gz :tab sp<CR>
 map gx :tabclose<CR>
-nnoremap zu 15<c-y>
-nnoremap zd 15<c-e>
 nnoremap <c-d> <c-d>zz
 nnoremap <c-u> <c-u>zz
 noremap 0 ^
 noremap ^ 0
+imap <c-l> <space>=><space>
 
 " Only show cursor line on active split
 set nocursorline
@@ -85,19 +82,14 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" Strip trailing spaces and newlines on save
 autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
-
-autocmd! FileType mkd setlocal syn=off
 autocmd BufWritePre * %s/\s\+$//e
 
-" set winwidth=120
-
-""set winheight=10
-""set winminheight=10
-""set winheight=999
+" Split mappings
 nnoremap c<C-j> :bel sp new<cr>
 nnoremap c<C-k> :abo sp new<cr>
 nnoremap c<C-h> :lefta vsp new<cr>
@@ -116,17 +108,20 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-
-nnoremap <leader><leader> <c-^>
 cnoremap <expr> %% expand('%:h').'/'
-nnoremap <leader>W :source $MYVIMRC<CR>
-vmap <leader>y "*y
-map <leader>p "*p
-map <leader>jst :silent !open -a "/Applications/SourceTree.app" `pwd`<cr>
-map <leader>jsf :silent !open -a "/Applications/Fork.app" `pwd`<cr>
 map <leader>nr :call RenameFile()<cr>
 map <leader>ne :e %%
 map <leader>nt :tabnew<cr>
+
+nnoremap <leader><leader> <c-^>
+nnoremap <leader>W :source $MYVIMRC<CR>
+
+vmap <leader>y "*y
+map <leader>p "*p
+
+map <leader>jst :silent !stree<cr>
+map <leader>jsf :silent !fork<cr>
+
 map ]] :call search('!!!')<cr>zt
 map [[ :call search('!!!', 'b')<cr>zt
 
@@ -136,7 +131,6 @@ map <leader>wj :resize +20<cr>
 map <leader>wk :resize -20<cr>
 map <leader>wh :vert resize -20<cr>
 map <leader>wl :vert resize +20<cr>
-
 nmap <leader>wJ 15<C-e>
 nmap <leader>wK 15<C-y>
 

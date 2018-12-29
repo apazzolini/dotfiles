@@ -5,7 +5,6 @@ export CLICOLOR=true
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:./node_modules/.bin:/usr/local/bin:$PATH"
 export PGDATA='/usr/local/var/postgres'

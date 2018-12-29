@@ -2,9 +2,9 @@
     default = current
 [user]
 	name = Andre Azzolini
-	email = apazzolini@gmail.com
+	email = andre@azzolini.io
 [core]
-    excludesfile = /Users/Andre/.gitignore
+	excludesfile = /Users/Andre/.gitignore
     quotepath = false
     editor = /usr/local/bin/nvim
     autocrlf = input
