@@ -35,6 +35,7 @@ set hidden
 set switchbuf=useopen
 set scrolloff=10
 set colorcolumn=111
+set nomodeline
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 

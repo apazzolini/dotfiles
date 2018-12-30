@@ -1,5 +1,6 @@
 let g:LanguageClient_serverCommands = {
 \ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
+\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
 \ }
 
 let g:LanguageClient_diagnosticsEnable = 0

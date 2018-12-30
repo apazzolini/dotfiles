@@ -42,7 +42,7 @@ function env_setup {
     mkdir -p ~/.config/nvim
     ln -sFv ~/.vimrc ~/.config/nvim/init.vim
     ln -sFv ~/.vim/autoload ~/.config/nvim
-    ln -sFv ~/.vim/ftplugin ~/.config/nvim
+    ln -sFv ~/.vim/after ~/.config/nvim
 
     touch ~/.simplenoterc
 }
