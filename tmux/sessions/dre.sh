@@ -40,6 +40,7 @@ spawn_window () {
 
 spawn_window "pubg.sh-api" "~/GitHub/pubg.sh-api"
 spawn_window "pubg.sh-client" "~/GitHub/pubg.sh-client"
+spawn_window "azzolini.io" "~/GitHub/azzolini.io"
 
 # all done. select starting window and get to work
 tmux select-window -t $SESSION:0
