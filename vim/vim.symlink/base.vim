@@ -36,6 +36,8 @@ set switchbuf=useopen
 set scrolloff=10
 set colorcolumn=111
 set nomodeline
+set completefunc=LanguageClient#complete
+set omnifunc=LanguageClient#complete
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -69,6 +71,7 @@ nnoremap <c-u> <c-u>zz
 noremap 0 ^
 noremap ^ 0
 imap <c-l> <space>=><space>
+nnoremap ZZ $zfa}
 
 " Only show cursor line on active split
 set nocursorline
@@ -120,6 +123,8 @@ nnoremap <leader>W :source $MYVIMRC<CR>
 vmap <leader>y "*y
 map <leader>p "*p
 
+map <leader>q :ccl<cr>
+
 map <leader>jst :silent !stree<cr>
 map <leader>jsf :silent !fork<cr>
 
@@ -132,8 +137,8 @@ map <leader>wj :resize +20<cr>
 map <leader>wk :resize -20<cr>
 map <leader>wh :vert resize -20<cr>
 map <leader>wl :vert resize +20<cr>
-nmap <leader>wJ 15<C-e>
-nmap <leader>wK 15<C-y>
+nnoremap <c-e> 2<c-e>
+nnoremap <c-y> 2<c-y>
 
 nmap <leader>ot mT:%s/test.only/test/ge<cr>'T?test(<cr>cetest.only<esc>'T
 nmap <leader>oa mT?test(<cr>cetest.only<esc>'T
@@ -141,6 +146,7 @@ nmap <leader>ox mT:%s/test.only/test/ge<cr>'T
 
 command! Pjson set ft=json | %!jq '.'
 command! Djson set ft=json | %!jq '.' -c
+command! CopyPath let @* = expand("%:p")
 
 command! BCloseHidden call s:CloseHiddenBuffers()
 function! s:CloseHiddenBuffers()

@@ -31,10 +31,8 @@ tmux send-keys -t ${window}.1 'cd ~/.dotfiles' Enter
 next_session=1
 spawn_window () {
     tmux new-window -t $SESSION:$next_session -k -n $1
-    tmux split-window -h -l 140
     tmux select-pane -t:.1
     tmux send-keys -t ${window}.1 "cd $2" Enter
-    tmux send-keys -t ${window}.2 "cd $2" Enter
     ((next_session++))
 }
 
@@ -44,14 +42,13 @@ tmux split-window -v -p 70
 tmux select-pane -t 1
 tmux split-window -h -p 50
 tmux select-pane -t:.3
-tmux split-window -h -p 20
-tmux select-pane -t:.3
 tmux send-keys -t ${window}.1 "cd ~/Work/Float/dws/sites/web-app" Enter
+tmux send-keys -t ${window}.3 "cd ~/Work/Float/dws/docker-compose" Enter
 
 spawn_window "web-app" "~/Work/Float/dws/sites/web-app"
-#spawn_window "search" "~/Work/Float/ws/float-search"
-#spawn_window "api3" "~/Work/Float/dws/sites/api3"
-#spawn_window "float" "~/Work/Float/dws/sites/float"
+# spawn_window "search" "~/Work/Float/ws/float-search"
+# spawn_window "api3" "~/Work/Float/dws/sites/api3"
+# spawn_window "float" "~/Work/Float/dws/sites/float"
 
 
 # all done. select starting window and get to work

@@ -1,5 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
+let g:node_host_prog = '/Users/Andre/.config/yarn/global/node_modules/.bin/neovim-node-host'
+
 " Generic plugins
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
@@ -26,21 +28,20 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug '/Users/Andre/GitHub/_forks/vim-PairTools'
-
-if has('nvim')
-    let g:node_host_prog = '/Users/Andre/.config/yarn/global/node_modules/.bin/neovim-node-host'
-    Plug 'Shougo/neosnippet.vim'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-endif
+Plug 'lambdalisue/gina.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'Shougo/neosnippet.vim'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'fgrsnau/ncm2-otherbuf'
+Plug 'ncm2/ncm2-path'
+Plug 'roxma/nvim-yarp'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 
 if !empty($TMUX)
-    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-
     Plug 'christoomey/vim-tmux-navigator', { 'branch': 'indicator' }
     Plug 'tmux-plugins/vim-tmux-focus-events'
-    source ~/.vim/tmux-navigator.vim
+    source ~/.vim/tmux.vim
 endif
 
 " Filetype specific plugins
@@ -58,22 +59,24 @@ filetype plugin indent on
 syntax enable
 
 set background=dark
+silent! colorscheme wave
+
 if has('gui_vimr')
-    colorscheme base16-ashes
-    highlight Normal ctermbg=NONE
-    highlight TabLineFill ctermbg=NONE
+    source ~/.vim/gui.vim
 else
-    silent! colorscheme wave
     set notermguicolors
     hi! Normal ctermbg=NONE guibg=NONE
 endif
 
 source ~/.vim/base.vim
 source ~/.vim/ale.vim
+source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
 source ~/.vim/fzf.vim
+source ~/.vim/gina.vim
 source ~/.vim/incsearch.vim
 source ~/.vim/js.vim
+source ~/.vim/lang-client.vim
 source ~/.vim/lightline.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
@@ -83,8 +86,3 @@ source ~/.vim/surround.vim
 source ~/.vim/targets.vim
 
 silent! source ./.vimlocal
-
-if has('nvim')
-    source ~/.vim/deoplete.vim
-    source ~/.vim/lang-client.vim
-endif

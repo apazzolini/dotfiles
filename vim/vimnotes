@@ -12,9 +12,9 @@ set smartindent
 set nocompatible
 set colorcolumn=999
 
-hi MatchParen ctermfg=0
+nmap <Leader>b <Plug>VimwikiGoBackLink
 
-DeopleteDisable
+hi MatchParen ctermfg=0
 
 augroup CursorLine
 	autocmd!
@@ -22,4 +22,4 @@ augroup END
 
 :cd /Users/Andre/Air/Wiki
 
-let g:vimwiki_list = [{'path': '~/Air/Wiki'}]
+let g:vimwiki_list = [{'path': '~/Air/Wiki', 'ext': '.md'}]

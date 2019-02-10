@@ -1,21 +1,77 @@
-snippet new-arrow-function
-alias arr
-options word
-    => {
-    ${0:TARGET}
-    }
+snippet import-lodash
+alias ild
+	import { ${0:TARGET} } from 'lodash'
+
+snippet import-bluebird
+alias ibb
+	import Promise from 'bluebird'
+
+snippet import-react
+alias ir
+	import React from 'react'
+
+snippet import-styled-components
+alias isc
+	import styled from 'styled-components'
+
+snippet react-componentDidMount
+alias cdm
+	componentDidMount() {
+		${0:TARGET}
+	}
+
+snippet react-getDerivedState
+alias gds
+	static getDerivedStateFromProps(props, state) {
+		${0:TARGET}
+	}
+
+snippet react-componentDidUpdate
+alias cdu
+	componentDidUpdate(prevProps, prevState) {
+		${0:TARGET}
+	}
+
+snippet react-componentWillUnmount
+alias cwu
+	componentWillUnmount() {
+		${0:TARGET}
+	}
+
+snippet react-constructor
+alias rc
+	constructor(props) {
+		super(props);
+		${0:TARGET}
+	};
+
+snippet react-setState
+alias ss
+	this.setState({${0:TARGET}})
+
+snippet react-setState-func
+alias ssf
+	this.setState(ps => ({${0:TARGET}}))
+
+snippet react-template
+alias rt
+	import React from 'react';
+
+	class ${1:name} extends React.Component {
+		${0}
+		render() {
+			return (
+				<div></div>
+			);
+		}
+	}
+
+	export default $1;
 
 snippet new-promise
 alias prom
 options word
 	new Promise((resolve, reject) => {
-		${0:TARGET}
-	})
-
-snippet new-transaction
-alias tx
-options indent
-	transaction(async tquery => {
 		${0:TARGET}
 	})
 
@@ -29,106 +85,3 @@ options indent
 		params: [
 		],
 	})
-
-snippet import-pgr
-alias ipgr
-options indent
-	import { query, sql } from 'pgr'
-
-snippet new-pg-query
-alias cpgq
-options indent
-	query(sql\`
-		${0:TARGET}
-	\`, {
-	})
-
-snippet new-query-q1
-alias cq1
-options indent
-	query.one({
-		sql: \`
-			${0:TARGET}
-		\`,
-		params: [
-		],
-	})
-
-snippet new-query-q
-alias cq
-options indent
-	q({
-		sql: \`
-			${0:TARGET}
-		\`,
-		params: [
-		],
-	})
-
-snippet update-query
-alias update
-options indent
-	update({
-		request,
-		table: '${0:TARGET}',
-		props: {},
-		where: {
-			clause: '',
-			params: [],
-		},
-	})
-
-snippet insert-query
-alias insert
-options indent
-	insert({
-		request,
-		table: '${0:TARGET}',
-		mapper: {},
-		rows: [],
-        onDuplicateKey: '',
-	})
-
-snippet delete-query
-alias del
-options indent
-	del({
-		request,
-		table: '${0:TARGET}',
-		where: {
-			clause: '',
-			params: [],
-		},
-	})
-
-snippet server-inject-as-admin
-alias si
-options indent
-	const res = await server.injectAsAdmin({
-		method: 'GET',
-		url: '/api/v3/${0:TARGET}',
-	})
-
-snippet server-inject-as
-alias sia
-options indent
-	const res = await server.injectAs('${0:TARGET}', {
-		method: 'GET',
-		url: '/api/v3/',
-	})
-
-snippet give-logger
-alias clog
-	const log = require('mvp-common').logger(__filename) // eslint-disable-line
-
-snippet import-mvp-common
-alias imc
-	import { ${0:TARGET} } from 'mvp-common'
-
-snippet import-lodash
-alias ild
-    import { ${0:TARGET} } from 'lodash'
-
-snippet import-bluebird
-alias ibb
-	import Promise from 'bluebird'

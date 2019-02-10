@@ -5,9 +5,9 @@ then
 else
     alias ls="ls -F --color"
 fi
-alias l="ls -lh"
+alias l="gls -Flh --group-directories-first --color"
 alias la="ls -A"
-alias ll="ls -lAh"
+alias ll="l -A"
 alias llg="ll | grep"
 
 # easy navigating
@@ -21,10 +21,8 @@ alias hg='history 1 -1 | grep '
 
 # process aliases
 alias pg='ps -Aef | head -1 && ps -Aef | grep'
-alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep | grep -v javascript-typescript-stdio | grep -v 'There Helper'"
-alias ka='killall'
+alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep | grep -v javascript-typescript-stdio | grep -v 'There Helper' | grep -v YakYak"
 alias k='kill -9'
-alias knode='pkill -9 -f '\''node --expose-gc'\'
 alias fk='fkill'
 
 # open current window in path finder
@@ -52,14 +50,9 @@ alias sf='fork'
 # ranger
 alias r='ranger'
 
-# shortcuts for npm run
+# shortcuts for npm/yarn
 alias nr="npm run"
-alias nrt="npm run -s test"
-alias nrl="npm run -s lint"
-alias nrs="npm run -s start"
 alias yr="yarn run"
-alias ys="yarn run start"
-alias yl="yarn run lint"
 alias yt="yarn run test"
 alias ytw="yarn test:watch"
 
@@ -71,21 +64,15 @@ alias tawork="/Users/Andre/.dotfiles/tmux/sessions/work.sh"
 alias tadre="/Users/Andre/.dotfiles/tmux/sessions/dre.sh"
 
 # vim
-alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
-alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
-alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
-alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
+alias v='/usr/local/bin/nvim'
+alias vi='/usr/local/bin/nvim'
+alias vim='/usr/local/bin/nvim'
 alias vf='v "$(fzf)"'
-alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Wiki/diary/diary.wiki ~/Air/Wiki/index.wiki'
+alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Wiki/diary/diary.md ~/Air/Wiki/index.md'
 
 # misc
 alias d='docker'
-alias kafkacat="kafkacat -X broker.version.fallback=0.8.2.2 -b 10.0.101.172"
 alias jest='nocorrect jest'
 alias rg='rg -i'
 alias fix='echo -e "\033c"; stty sane; tput rs1'
-alias lg='lazygit'
-
-# sudo aliases
-alias sv='sudo NVIM_TUI_ENABLE_TRUE_COLOR=1 /usr/local/bin/nvim'
-alias sd='sudo docker'
+alias j='z'

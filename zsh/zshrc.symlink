@@ -4,37 +4,36 @@ export ZSH=$HOME/.dotfiles
 # enable support for colors
 autoload colors && colors
 
-# source every .zsh file in this rep
-for config_file ($ZSH/**/*.zsh) source $config_file
+# source .zsh files in this repo
+source $ZSH/git/gitprompt.zsh
+source $ZSH/system/env.zsh
+source $ZSH/system/env-colors.zsh
+source $ZSH/system/aliases.zsh
+source $ZSH/zsh/completion.zsh
 
 # load functions
 fpath=($ZSH/zsh/functions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
-zle -N newtab
-
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit -u
-
-# load every completion after autocomplete loads
-for config_file ($ZSH/**/completion.sh) source $config_file
-
-# autojump
-if hash brew 2>/dev/null; then
-    [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit
+else
+	compinit -C
 fi
 
-precmd () {
-  if [[ -z "$WINTITLE" ]]; then
-    echo -ne "\033]0;`echo ${PWD##*/}`\007"
-  else
-    echo -ne "\033]0;"$WINTITLE"\007"
-  fi
-}
+# load completions after autocomplete loads
+source $ZSH/git/completion.sh
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/etc/profile.d/z.sh
+
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"

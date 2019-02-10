@@ -6,13 +6,17 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:./node_modules/.bin:/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:./node_modules/.bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PGDATA='/usr/local/var/postgres'
 export IGNOREEOF=50
 
-export RG_GLOBS='-g "*.*" -g "config/local.js" -g "!.git" -g "!es5" -g "!dist" -g "!build" -g "!**/__fixtures__/**" -g "!**/__snapshots__/**" -g "!tmux.symlink/resurrect*" -g "!tmux.symlink/plugins" -g "!vim.symlink/plugged" -g "!yarn.lock" -g "!.DS_Store" -g "!.cache" -g "!*/vim.symlink/plugged" -g "!*/tmux.symlink/plugins"'
+export RG_GLOBS='-g "*.*" -g "config/local.js" -g "!.git" -g "!es5" -g "!dist" -g "!.next" -g "!build" -g "!**/__fixtures__/**" -g "!**/__snapshots__/**" -g "!tmux.symlink/resurrect*" -g "!tmux.symlink/plugins" -g "!vim.symlink/plugged" -g "!yarn.lock" -g "!.DS_Store" -g "!.cache" -g "!*/vim.symlink/plugged" -g "!*/tmux.symlink/plugins"'
 export FZF_DEFAULT_COMMAND="rg --color=never --files --hidden --smart-case --follow $RG_GLOBS"
-export FZF_DEFAULT_OPTS='--reverse --border --bind=ctrl-d:half-page-down,ctrl-u:half-page-up'
+export FZF_DEFAULT_OPTS='--reverse --border --bind=ctrl-d:half-page-down,ctrl-u:half-page-up
+  --color=bg+:18,bg:0,spinner:12,hl:14
+  --color=fg:7,header:14,info:10,pointer:12
+  --color=marker:12,fg+:6,prompt:10,hl+:13
+'
 
 # Environment settings
 setopt NO_BG_NICE # don't nice background tasks
@@ -48,9 +52,9 @@ if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 if [[ `hostname` == *andrembp* ]]; then
-    PROMPT='%{$reset_color%}%{${fg[blue]}%}%10~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
+    PROMPT='%{$reset_color%}%{${fg[blue]}%}%10~ $(gitprompt)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 else
-    PROMPT='[%m] %{$reset_color%}%{${fg[blue]}%}%10~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
+    PROMPT='[%m] %{$reset_color%}%{${fg[blue]}%}%10~ $(gitprompt)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 fi
 
 #RPROMPT='[%*] ${return_code}'
@@ -64,5 +68,3 @@ if $(grc &>/dev/null)
 then
   source `brew --prefix`/etc/grc.bashrc
 fi
-
-source "$HOME/.dotfiles/system/env-colors.zsh"

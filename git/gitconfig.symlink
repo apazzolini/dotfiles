@@ -9,11 +9,12 @@
     editor = /usr/local/bin/nvim
     autocrlf = input
     commentchar = ";"
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [github]
     user = apazzolini
     email = apazzolini@gmail.com
 [color]
-    ui = true
+	ui = true
 [color "status"]
     changed = yellow
     added = green
@@ -22,7 +23,7 @@
     di = diff
     ds = diff --staged
     st = status
-    amend = commit --amend
+    ca = commit --amend
     aa = add --all
     co = checkout
     br = branch
@@ -58,3 +59,17 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[diff]
+	tool = vimdiff
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

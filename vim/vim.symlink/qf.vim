@@ -1,8 +1,5 @@
 let g:qf_mapping_ack_style = 1
 
-nmap <leader>> <Plug>qf_qf_previous
-nmap <leader>. <Plug>qf_qf_next
-
 " https://stackoverflow.com/questions/42905008/quickfix-list-how-to-add-and-remove-entries
 " When using `dd` in the quickfix list, remove the item from the quickfix list.
 function! RemoveQFItem()

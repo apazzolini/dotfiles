@@ -31,10 +31,8 @@ tmux send-keys -t ${window}.1 'cd ~/.dotfiles' Enter
 next_session=1
 spawn_window () {
     tmux new-window -t $SESSION:$next_session -k -n $1
-    tmux split-window -h -l 110
     tmux select-pane -t:.1
     tmux send-keys -t ${window}.1 "cd $2" Enter
-    tmux send-keys -t ${window}.2 "cd $2" Enter
     ((next_session++))
 }
 
