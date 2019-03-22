@@ -26,6 +26,7 @@
     ca = commit --amend
     aa = add --all
     co = checkout
+    cot = checkout --track
     br = branch
     s = stash
     hist = log --pretty=format:\"%h %ad [%an] | %s%d\" --graph --decorate --date=short

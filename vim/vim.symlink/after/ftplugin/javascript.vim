@@ -1,7 +1,3 @@
-" setlocal shiftwidth=4
-" setlocal tabstop=4
-" setlocal softtabstop=4
-" setlocal colorcolumn=111
 setlocal signcolumn=yes
 setlocal winwidth=88
 
@@ -20,10 +16,7 @@ let g:pairtools_javascript_pcexpander = 1
 let g:pairtools_javascript_pceraser   = 1
 let g:pairtools_javascript_tagwrenchhook = 'tagwrench#BuiltinHTML5Hook'
 let g:pairtools_javascript_twexpander = 1
-let g:pairtools_javascript_tweraser   = 1
+let g:pairtools_javascript_tweraser   = 0
 
 nmap <silent> [q :call qf#wrap#WrapCommand('up', 'c')<CR>
 nmap <silent> ]q :call qf#wrap#WrapCommand('down', 'c')<CR>
-
-
-

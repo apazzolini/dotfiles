@@ -7,3 +7,4 @@ go.sh
 .agignore
 .ignore
 jsconfig.json
+.vimlocal

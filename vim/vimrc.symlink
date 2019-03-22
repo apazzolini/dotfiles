@@ -27,16 +27,18 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug '/Users/Andre/GitHub/_forks/vim-PairTools'
-Plug 'lambdalisue/gina.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/neosnippet.vim'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
-Plug 'fgrsnau/ncm2-otherbuf'
-Plug 'ncm2/ncm2-path'
-Plug 'roxma/nvim-yarp'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug '/Users/Andre/GitHub/_forks/vim-PairTools'
+
+Plug 'neoclide/coc.nvim'
+" Plug 'ncm2/ncm2'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'fgrsnau/ncm2-otherbuf'
+" Plug 'ncm2/ncm2-path'
+" Plug 'roxma/nvim-yarp'
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
 
 if !empty($TMUX)
     Plug 'christoomey/vim-tmux-navigator', { 'branch': 'indicator' }
@@ -73,10 +75,12 @@ source ~/.vim/ale.vim
 source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
 source ~/.vim/fzf.vim
-source ~/.vim/gina.vim
 source ~/.vim/incsearch.vim
 source ~/.vim/js.vim
-source ~/.vim/lang-client.vim
+
+source ~/.vim/coc.vim
+" source ~/.vim/lang-client.vim
+
 source ~/.vim/lightline.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
