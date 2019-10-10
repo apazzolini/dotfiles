@@ -20,3 +20,9 @@ let g:pairtools_javascript_tweraser   = 0
 
 nmap <silent> [q :call qf#wrap#WrapCommand('up', 'c')<CR>
 nmap <silent> ]q :call qf#wrap#WrapCommand('down', 'c')<CR>
+
+
+let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
+            \ '`': {'closer': '`', 'not_at': ['^\s*']},
+            \ '/\*\*': {'closer': '\*/'}
+            \ }, 'keep')

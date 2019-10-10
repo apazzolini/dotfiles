@@ -24,6 +24,7 @@
     ds = diff --staged
     st = status
     ca = commit --amend
+    can = commit --amend --no-edit
     aa = add --all
     co = checkout
     cot = checkout --track

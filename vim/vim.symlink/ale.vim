@@ -2,18 +2,15 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
+\   'javascript': [],
 \}
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
 
-let g:ale_javascript_prettier_use_global = 1
-let g:ale_javascript_prettier_executable  = '/Users/Andre/.config/yarn/global/node_modules/.bin/prettier_d'
-let g:ale_javascript_prettier_options = '--local-only --fallback --parser flow --trailing-comma all --single-quote --pkg-conf'
-
 let g:ale_open_list = 0
 let g:ale_sign_column_always = 1
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_insert_leave = 0
+" let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
 nmap <silent> <leader>nl <Plug>(ale_next_wrap)

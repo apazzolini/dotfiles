@@ -1,11 +1,17 @@
 {
-    "coc.preferences.autoTrigger": "trigger",
+    "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact"],
+    "suggest.minTriggerInputLength": 3,
+    "suggest.triggerCompletionWait": 200,
+
+    "suggest.floatEnable": false,
+    "diagnostic.messageTarget": "echo",
+    "signature.target": "echo",
     "coc.preferences.hoverTarget": "echo",
-    "coc.preferences.diagnostic.enable": false,
-    "coc.preferences.minTriggerInputLength": 3,
-    "coc.preferences.triggerCompletionWait": 200,
+    "coc.preferences.messageLevel": "warning",
+
     "javascript.updateImportsOnFileMove.enable": false,
     "javascript.validate.enable": false,
     "javascript.suggest.enabled": true,
-    "typescript.suggest.enabled": true
+    "typescript.suggest.enabled": true,
+    "prettier.onlyUseLocalVersion": true
 }

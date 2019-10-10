@@ -26,18 +26,19 @@ set cinoptions+=+1
 set noshowmatch
 set t_ut=
 set timeoutlen=1000 ttimeoutlen=0
-set foldmethod=manual
+set foldmethod=indent
 set nofoldenable
 set foldlevel=99
-set foldnestmax=2
+set foldnestmax=4
 set noshowcmd
 set hidden
 set switchbuf=useopen
-set scrolloff=10
+set scrolloff=4
 set colorcolumn=111
 set nomodeline
 set completefunc=LanguageClient#complete
 set omnifunc=LanguageClient#complete
+set relativenumber
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -62,16 +63,15 @@ noremap j gj
 noremap k gk
 noremap <ScrollWheelUp> <C-Y>
 noremap <ScrollWheelDown> <C-E>
-map <C-c> :read !pbpaste<CR>
-imap <C-c> <Esc>:read !pbpaste<CR>
 map gz :tab sp<CR>
 map gx :tabclose<CR>
-nnoremap <c-d> <c-d>zz
-nnoremap <c-u> <c-u>zz
+nnoremap <c-d> 10<c-d>zz
+nnoremap <c-u> 10<c-u>zz
 noremap 0 ^
 noremap ^ 0
 imap <c-l> <space>=><space>
 nnoremap ZZ $zfa}
+nnoremap <cr> :noh<cr><cr>
 
 " Only show cursor line on active split
 set nocursorline
@@ -80,6 +80,9 @@ augroup CursorLine
    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
    au WinLeave * setlocal nocursorline
 augroup END
+
+autocmd BufEnter * syntax sync fromstart
+au BufRead,BufNewFile *.jsx set filetype=javascript.jsx
 
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -94,10 +97,10 @@ autocmd BufReadPost *
 autocmd BufWritePre * %s/\s\+$//e
 
 " Split mappings
-nnoremap c<C-j> :bel sp new<cr>
-nnoremap c<C-k> :abo sp new<cr>
-nnoremap c<C-h> :lefta vsp new<cr>
-nnoremap c<C-l> :rightb vsp new<cr>
+nnoremap c<C-j> :bel new<cr>
+nnoremap c<C-k> :abo new<cr>
+nnoremap c<C-h> :lefta vnew<cr>
+nnoremap c<C-l> :rightb vnew<cr>
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -127,9 +130,6 @@ map <leader>q :ccl<cr>
 
 map <leader>jst :silent !stree<cr>
 map <leader>jsf :silent !fork<cr>
-
-map ]] :call search('!!!')<cr>zt
-map [[ :call search('!!!', 'b')<cr>zt
 
 map <leader>we :set winheight=999<cr>
 map <leader>wd :set winheight=10<cr><c-w>=<cr>
@@ -162,3 +162,6 @@ function! s:CloseHiddenBuffers()
     endif
   endfor
 endfunction
+
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv

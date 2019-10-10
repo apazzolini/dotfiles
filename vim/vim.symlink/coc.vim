@@ -17,6 +17,8 @@ function! s:neosnippet_complete_tab()
   endif
 endfunction
 
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 imap <expr><TAB> <SID>neosnippet_complete_tab()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <silent><expr> <c-space> coc#refresh()

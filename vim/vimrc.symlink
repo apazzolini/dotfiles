@@ -5,7 +5,7 @@ let g:node_host_prog = '/Users/Andre/.config/yarn/global/node_modules/.bin/neovi
 " Generic plugins
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
-Plug 'haya14busa/incsearch.vim'
+" Plug 'haya14busa/incsearch.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'wellle/targets.vim'
 Plug 'godlygeek/tabular'
@@ -29,16 +29,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/neosnippet.vim'
-Plug '/Users/Andre/GitHub/_forks/vim-PairTools'
-
-Plug 'neoclide/coc.nvim'
-" Plug 'ncm2/ncm2'
-" Plug 'ncm2/ncm2-bufword'
-" Plug 'fgrsnau/ncm2-otherbuf'
-" Plug 'ncm2/ncm2-path'
-" Plug 'roxma/nvim-yarp'
-" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-
+Plug 'tmsvg/pear-tree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 if !empty($TMUX)
     Plug 'christoomey/vim-tmux-navigator', { 'branch': 'indicator' }
@@ -46,11 +38,16 @@ if !empty($TMUX)
     source ~/.vim/tmux.vim
 endif
 
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Filetype specific plugins
-Plug 'w0rp/ale', { 'for': ['javascript','javascript.jsx'] }
-Plug 'apazzolini/vim-javascript', { 'for': ['javascript','javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript','javascript.jsx'] }
-Plug 'styled-components/vim-styled-components', { 'for': ['javascript','javascript.jsx'], 'branch': 'main' }
+Plug 'w0rp/ale', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
+" Plug 'apazzolini/vim-javascript', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
+" Plug 'pangloss/vim-javascript', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
+" Plug 'mxw/vim-jsx', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
+Plug 'apazzolini/vim-jsx-improve', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
+" Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
+Plug 'styled-components/vim-styled-components', { 'for': ['javascript','javascript.jsx','javascriptreact'], 'branch': 'main' }
 
 " Colorschemes
 Plug 'apazzolini/vim-wave'
@@ -71,21 +68,19 @@ else
 endif
 
 source ~/.vim/base.vim
+
 source ~/.vim/ale.vim
+source ~/.vim/coc.vim
 source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
 source ~/.vim/fzf.vim
-source ~/.vim/incsearch.vim
+" source ~/.vim/incsearch.vim
 source ~/.vim/js.vim
-
-source ~/.vim/coc.vim
-" source ~/.vim/lang-client.vim
-
 source ~/.vim/lightline.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
+source ~/.vim/pear-tree.vim
 source ~/.vim/qf.vim
-source ~/.vim/repeat-block.vim
 source ~/.vim/surround.vim
 source ~/.vim/targets.vim
 

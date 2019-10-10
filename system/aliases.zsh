@@ -60,15 +60,15 @@ alias ytw="yarn test:watch"
 alias t="tmux -u -2"
 alias ta="t attach -t"
 alias td="t detach"
-alias tawork="/Users/Andre/.dotfiles/tmux/sessions/work.sh"
-alias tadre="/Users/Andre/.dotfiles/tmux/sessions/dre.sh"
+alias tawork="base16_ashes && /Users/Andre/.dotfiles/tmux/sessions/work.sh"
+alias tadre="base16_ashes && /Users/Andre/.dotfiles/tmux/sessions/dre.sh"
 
 # vim
 alias v='/usr/local/bin/nvim'
 alias vi='/usr/local/bin/nvim'
 alias vim='/usr/local/bin/nvim'
 alias vf='v "$(fzf)"'
-alias notes='v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Wiki/diary/diary.md ~/Air/Wiki/index.md'
+alias notes='base16_harmonic-light && v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Wiki/diary/diary.md ~/Air/Wiki/index.md'
 
 # misc
 alias d='docker'
@@ -76,3 +76,6 @@ alias jest='nocorrect jest'
 alias rg='rg -i'
 alias fix='echo -e "\033c"; stty sane; tput rs1'
 alias j='z'
+alias har='base16_harmonic-light'
+alias ash='base16_ashes'
+alias trackpad='osascript /Users/Andre/Documents/toggle-internal-trackpad.scpt'
