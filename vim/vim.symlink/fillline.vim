@@ -4,8 +4,16 @@ function! FillLine( str )
   let tw = 80
   .s/[[:space:]]*$//
   let reps = (tw - col("$")) / len(a:str)
+
+  if col("$") == 1
+      let start = ''
+      let reps = reps + 1
+  else
+      let start = ' '
+  endif
+
   if reps > 0
-    .s/$/\=(' '.repeat(a:str, reps))/
+    .s/$/\=(start . repeat(a:str, reps))/
   endif
 endfunction
 
