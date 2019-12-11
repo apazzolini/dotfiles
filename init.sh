@@ -42,6 +42,7 @@ function env_setup {
     ln -sFv ~/.vimrc ~/.config/nvim/init.vim
     ln -sFv ~/.vim/autoload ~/.config/nvim
     ln -sFv ~/.vim/after ~/.config/nvim
+    ln -sFv "$base"/vim/coc-settings.json ~/.config/nvim
 
     mkdir -p ~/.config/alacritty
     ln -sFv "$base"/apps/alacritty.yml ~/.config/alacritty/
