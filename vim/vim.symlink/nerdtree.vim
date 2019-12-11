@@ -18,7 +18,10 @@ function! IsNERDTreeOpen()
 endfunction
 
 function! NERDTreeFindOrDefault()
-    NERDTreeFind
+    try
+        NERDTreeFind
+    catch /.*/
+    endtry
     if !IsNERDTreeOpen()
         NERDTree
     endif

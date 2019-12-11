@@ -43,6 +43,7 @@ tmux select-pane -t 1
 tmux split-window -h -p 50
 tmux select-pane -t:.3
 tmux send-keys -t ${window}.1 "cd ~/Work/Float/dws/sites/web-app" Enter
+tmux send-keys -t ${window}.2 "cd ~/Work/Float/dws/sites/web-app" Enter
 tmux send-keys -t ${window}.3 "cd ~/Work/Float/dws/docker-compose" Enter
 
 spawn_window "web-app" "~/Work/Float/dws/sites/web-app"

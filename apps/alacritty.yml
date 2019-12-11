@@ -3,14 +3,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-env:
+#env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use 'alacritty' if it is
   # available, otherwise 'xterm-256color' is used.
-  TERM: xterm-256color-italic
+  #TERM: xterm-256color-italic
 
 window:
   # Window dimensions (changes require restart)
@@ -69,7 +69,7 @@ scrolling:
   # to allow mouse scrolling for applications like `man`.
   #
   # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
+  # faux_multiplier: 3
 
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
@@ -486,7 +486,8 @@ key_bindings:
   # - { key: K,        mods: Command, action: ClearHistory                 }
   # - { key: K,        mods: Command, chars: "\x0c"                        }
   # - { key: L,        mods: Control, action: ClearLogNotice               }
-  # - { key: L,        mods: Control, chars: "\x0c"                        }
+  # - { key: L,        mods: Control, chars: " "               }
+  - { key: L,        mods: Control, chars: "\x0c"                        }
   - { key: V,        mods: Command, action: Paste                        }
   - { key: C,        mods: Command, action: Copy                         }
   - { key: Paste,                   action: Paste                        }

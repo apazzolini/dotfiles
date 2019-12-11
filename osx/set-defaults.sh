@@ -1,13 +1,10 @@
 # Sets reasonable OS X defaults.
-#
-# The original idea (and a couple settings) were grabbed from:
-#   https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Disable menu bar transparency
-defaults write -g AppleEnableMenuBarTransparency -bool false
+#defaults write -g AppleEnableMenuBarTransparency -bool false
 
 # Expand save panel by default
 defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
@@ -32,21 +29,3 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
-
-# Kill affected applications
-# for app in Safari Finder Dock Mail; do killall "$app"; done
-
-# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
-# echo "0x08000100:0" > ~/.CFUserTextEncoding
-
-# Disable sleepimage file
-# sudo pmset -a hibernatemode 0
-
-# Set the personal global git ignore file
-# git config --global core.excludesfile '~/.cvsignore'
-
-# Grab fuck-you
-# npm install -g fuck-you
-
-# Disable Captive Network Assistant Popup
-# sudo mv Captive\ Network\ Assistant.app Captive\ Network\ Assistant.app.bak

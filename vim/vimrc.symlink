@@ -34,7 +34,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'drzel/vim-scrolloff-fraction'
 
 if !empty($TMUX)
-    Plug 'christoomey/vim-tmux-navigator', { 'branch': 'indicator' }
+    Plug 'christoomey/vim-tmux-navigator', {'branch': 'indicator'}
     Plug 'tmux-plugins/vim-tmux-focus-events'
     source ~/.vim/tmux.vim
 endif
