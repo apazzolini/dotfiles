@@ -25,18 +25,17 @@ function env_setup {
     link git/gitconfig.symlink
     link git/githelpers.symlink
     link git/gitignore.symlink
-    link system/xterm-256color.ti.symlink
-    link system/tmux-256color.ti.symlink
     link vim/vim.symlink
     link vim/vimrc.symlink
     link zsh/zshrc.symlink
     link docker/docker.symlink
 
+    link config/alacritty
+
     if [ `uname` = 'Darwin' ]
     then
         link tmux/tmux.symlink
         link tmux/tmux.conf.symlink
-        link hyper/hyper.js.symlink
     fi
 
     mkdir -p ~/.config/nvim
@@ -44,7 +43,8 @@ function env_setup {
     ln -sFv ~/.vim/autoload ~/.config/nvim
     ln -sFv ~/.vim/after ~/.config/nvim
 
-    touch ~/.simplenoterc
+    mkdir -p ~/.config/alacritty
+    ln -sFv "$base"/apps/alacritty.yml ~/.config/alacritty/
 }
 
 env_setup

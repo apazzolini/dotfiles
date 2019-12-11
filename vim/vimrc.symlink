@@ -31,6 +31,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/neosnippet.vim'
 Plug 'tmsvg/pear-tree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'drzel/vim-scrolloff-fraction'
 
 if !empty($TMUX)
     Plug 'christoomey/vim-tmux-navigator', { 'branch': 'indicator' }
@@ -42,12 +43,12 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Filetype specific plugins
 Plug 'w0rp/ale', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
+Plug 'apazzolini/vim-jsx-improve', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
+Plug 'styled-components/vim-styled-components', { 'for': ['javascript','javascript.jsx','javascriptreact'], 'branch': 'main' }
 " Plug 'apazzolini/vim-javascript', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
 " Plug 'pangloss/vim-javascript', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
 " Plug 'mxw/vim-jsx', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
-Plug 'apazzolini/vim-jsx-improve', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
 " Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
-Plug 'styled-components/vim-styled-components', { 'for': ['javascript','javascript.jsx','javascriptreact'], 'branch': 'main' }
 
 " Colorschemes
 Plug 'apazzolini/vim-wave'

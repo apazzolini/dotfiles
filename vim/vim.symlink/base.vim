@@ -26,7 +26,7 @@ set cinoptions+=+1
 set noshowmatch
 set t_ut=
 set timeoutlen=1000 ttimeoutlen=0
-set foldmethod=indent
+set foldmethod=manual
 set nofoldenable
 set foldlevel=99
 set foldnestmax=4
@@ -165,3 +165,5 @@ endfunction
 
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+nnoremap <leader>W viw"ey:Rg! <c-r>e<cr>
