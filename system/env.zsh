@@ -51,7 +51,7 @@ bindkey -M vicmd g edit-command-line
 if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-if [[ `hostname` == *andrembp* ]]; then
+if [[ `hostname` == *andremb* ]]; then
     PROMPT='%{$reset_color%}%{${fg[blue]}%}%10~ $(gitprompt)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 else
     PROMPT='[%m] %{$reset_color%}%{${fg[blue]}%}%10~ $(gitprompt)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
