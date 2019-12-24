@@ -38,14 +38,19 @@ function env_setup {
         link tmux/tmux.conf.symlink
     fi
 
+    # Link vim configs to neovim
     mkdir -p ~/.config/nvim
     ln -sFv ~/.vimrc ~/.config/nvim/init.vim
     ln -sFv ~/.vim/autoload ~/.config/nvim
     ln -sFv ~/.vim/after ~/.config/nvim
+
+    # coc-settings.json lives in a special place
+    mkdir -p ~/.config
     ln -sFv "$base"/vim/coc-settings.json ~/.config/nvim
 
-    mkdir -p ~/.config/alacritty
-    ln -sFv "$base"/apps/alacritty.yml ~/.config/alacritty/
+    ln -sFv "$base"/apps/alacritty ~/.config
+    ln -sFv "$base"/apps/base16-shell ~/.config
+    ln -sFv "$base"/apps/phoenix ~/.config
 }
 
 env_setup
