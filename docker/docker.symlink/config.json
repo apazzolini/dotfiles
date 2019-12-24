@@ -1,17 +1,17 @@
 {
-  "HttpHeaders" : {
-    "User-Agent" : "Docker-Client/19.03.1 (darwin)"
-  },
-  "credsStore" : "osxkeychain",
-  "psFormat" : "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}",
   "stackOrchestrator" : "swarm",
+  "psFormat" : "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}",
   "credHelpers" : {
     "marketplace.gcr.io" : "gcloud",
     "asia.gcr.io" : "gcloud",
     "us.gcr.io" : "gcloud",
-    "staging-k8s.gcr.io" : "gcloud",
     "eu.gcr.io" : "gcloud",
-    "gcr.io" : "gcloud"
+    "gcr.io" : "gcloud",
+    "staging-k8s.gcr.io" : "gcloud"
+  },
+  "credsStore" : "osxkeychain",
+  "HttpHeaders" : {
+    "User-Agent" : "Docker-Client/19.03.1 (darwin)"
   },
   "auths" : {
     "https://index.docker.io/v1/" : {

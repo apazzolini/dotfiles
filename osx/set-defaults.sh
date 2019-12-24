@@ -29,3 +29,9 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
+
+# External monitor font smoothing setting
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+
+# External mouse acceleration
+defaults write -g com.apple.mouse.scaling -1
