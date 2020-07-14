@@ -6,6 +6,7 @@ let g:ale_fixers = {
 \}
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
+" let g:ale_javascript_eslint_options = '-c /Users/Andre/Work/Float/dws/sites/floatjs/web/.eslintrc'
 
 let g:ale_open_list = 0
 let g:ale_sign_column_always = 1
@@ -44,4 +45,3 @@ function! ToggleList(bufname, pfx)
 endfunction
 
 nmap <silent> <leader>L :call ToggleList("Location List", 'l')<CR>
-

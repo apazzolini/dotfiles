@@ -323,6 +323,7 @@ mouse:
   # or triple click.
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
+  url_launcher: /usr/bin/open
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false

@@ -42,11 +42,12 @@ tmux split-window -v -p 70
 tmux select-pane -t 1
 tmux split-window -h -p 50
 tmux select-pane -t:.3
-tmux send-keys -t ${window}.1 "cd ~/Work/Float/dws/sites/web-app" Enter
-tmux send-keys -t ${window}.2 "cd ~/Work/Float/dws/sites/web-app" Enter
+tmux send-keys -t ${window}.1 "cd ~/Work/Float/dws/sites/floatjs/web" Enter
+tmux send-keys -t ${window}.2 "cd ~/Work/Float/dws/sites/floatjs/helpers" Enter
 tmux send-keys -t ${window}.3 "cd ~/Work/Float/dws/docker-compose" Enter
 
-spawn_window "web-app" "~/Work/Float/dws/sites/web-app"
+spawn_window "web" "~/Work/Float/dws/sites/floatjs/web"
+# spawn_window "helpers" "~/Work/Float/dws/sites/floatjs/float-helpers"
 # spawn_window "search" "~/Work/Float/ws/float-search"
 # spawn_window "api3" "~/Work/Float/dws/sites/api3"
 # spawn_window "float" "~/Work/Float/dws/sites/float"

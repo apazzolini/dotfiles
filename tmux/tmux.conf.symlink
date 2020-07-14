@@ -16,7 +16,7 @@ set -g focus-events on
 set-option -s escape-time 10
 
 # copy mode bindings
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection
+bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "reattach-to-user-namespace pbcopy"
 bind-key -T copy-mode-vi y send -X copy-pipe "reattach-to-user-namespace pbcopy"
 bind-key -T copy-mode-vi v send-keys -X begin-selection
 bind-key -T copy-mode-vi Space send-keys -N 10 -X cursor-down
@@ -57,7 +57,7 @@ set -g status-left ""
 set -g window-status-current-style bg=yellow,fg=black
 set -g window-status-format " #I:#W "
 set -g window-status-current-format " #I:#W "
-set -g status-right "%H:%M %d-%b-%y"
+#set -g status-right "%H:%M %d-%b-%y"
 
 set -g pane-border-style fg=colour241,bg=colour18
 set -g pane-active-border-style fg=colour3

@@ -6,11 +6,11 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:./node_modules/.bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/sbin:$ZSH/bin:$ZSH/bin/private:./node_modules/.bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH:../node_modules/.bin"
 export PGDATA='/usr/local/var/postgres'
 export IGNOREEOF=50
 
-export RG_GLOBS='-g "*.*" -g "config/local.js" -g "!.git" -g "!es5" -g "!dist" -g "!.next" -g "!build/" -g "!**/__fixtures__/**" -g "!**/__snapshots__/**" -g "!tmux.symlink/resurrect*" -g "!tmux.symlink/plugins" -g "!vim.symlink/plugged" -g "!yarn.lock" -g "!.DS_Store" -g "!.cache" -g "!*/vim.symlink/plugged" -g "!*/tmux.symlink/plugins"'
+export RG_GLOBS='-g "*.*" -g "config/local.js" -g "!.git" -g "!es5" -g "!dist" -g "!.next" -g "!build/" -g "!**/__fixtures__/**" -g "!**/__snapshots__/**" -g "!tmux.symlink/resurrect*" -g "!tmux.symlink/plugins" -g "!vim.symlink/plugged" -g "!yarn.lock" -g "!.DS_Store" -g "!.cache" -g "!*/vim.symlink/plugged" -g "!*/tmux.symlink/plugins" -g "!flow-typed"'
 export FZF_DEFAULT_COMMAND="rg --color=never --files --hidden --smart-case --follow $RG_GLOBS"
 export FZF_DEFAULT_OPTS='--reverse --border --bind=ctrl-d:half-page-down,ctrl-u:half-page-up
   --color=bg+:18,bg:0,spinner:12,hl:14

@@ -15,3 +15,4 @@ endfunction
 
 autocmd! FileType qf map <buffer> q :q<cr>
 autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
+autocmd FileType qf map <buffer> D :RemoveQFItem<cr>

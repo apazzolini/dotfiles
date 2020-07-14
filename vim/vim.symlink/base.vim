@@ -3,9 +3,9 @@ set scs
 set hlsearch
 set autoindent
 set smartindent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set vb t_vb=
 set incsearch
@@ -72,6 +72,7 @@ noremap ^ 0
 imap <c-l> <space>=><space>
 nnoremap ZZ $zfa}
 nnoremap <cr> :noh<cr><cr>
+nnoremap <leader>G :G<cr>
 
 " Only show cursor line on active split
 set nocursorline
@@ -90,11 +91,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Strip trailing spaces and newlines on save
-autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
 autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s#\($\n\s*\)\+\%$##e
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
@@ -116,6 +114,7 @@ function! RenameFile()
     endif
 endfunction
 cnoremap <expr> %% expand('%:h').'/'
+cnoremap <expr> %f expand('%')
 map <leader>nr :call RenameFile()<cr>
 map <leader>ne :e %%
 map <leader>nt :tabnew<cr>
@@ -148,7 +147,7 @@ command! Pjson set ft=json | %!jq '.'
 command! Djson set ft=json | %!jq '.' -c
 command! CopyPath let @* = expand("%:p")
 
-command! BCloseHidden call s:CloseHiddenBuffers()
+command! BC call s:CloseHiddenBuffers()
 function! s:CloseHiddenBuffers()
   let open_buffers = []
 

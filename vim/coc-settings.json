@@ -1,5 +1,5 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact"],
+    "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact","html"],
     "suggest.minTriggerInputLength": 3,
     "suggest.triggerCompletionWait": 200,
 

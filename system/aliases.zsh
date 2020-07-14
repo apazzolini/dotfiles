@@ -26,7 +26,8 @@ alias k='kill -9'
 alias fk='fkill'
 
 # open current window in path finder
-alias o='open -a "/Applications/Path Finder.app" .'
+# alias o='open -a "/Applications/Finder.app" .'
+alias o='open .'
 
 # copies public ssh key to clipboard
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
@@ -72,6 +73,7 @@ alias notes='base16_harmonic-light && v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Wik
 
 # misc
 alias d='docker'
+alias dl='docker-compose -f ~/Work/Float/dws/docker-compose/docker-compose.yml -f ~/Work/Float/dws/docker-compose/docker-compose.local.yml'
 alias jest='nocorrect jest'
 alias rg='rg -i'
 alias fix='echo -e "\033c"; stty sane; tput rs1'
