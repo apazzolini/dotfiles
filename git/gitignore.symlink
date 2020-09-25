@@ -8,3 +8,4 @@ go.sh
 .ignore
 jsconfig.json
 .vimlocal
+.prettier_d

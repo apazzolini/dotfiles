@@ -20,6 +20,6 @@ augroup CursorLine
 	autocmd!
 augroup END
 
-:cd /Users/Andre/Air/Wiki
+cd /Users/Andre/Air/Wiki
 
 let g:vimwiki_list = [{'path': '~/Air/Wiki', 'ext': '.md'}]

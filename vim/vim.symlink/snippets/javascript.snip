@@ -22,59 +22,41 @@ snippet import-styled-components
 alias isc
 	import styled from 'styled-components'
 
-snippet react-componentDidMount
-alias cdm
-	componentDidMount() {
+snippet react-useEffect
+alias uE
+	useEffect(() => {
 		${0:TARGET}
-	}
+	}, [])
 
-snippet react-getDerivedState
-alias gds
-	static getDerivedStateFromProps(props, state) {
+snippet react-useLayoutEffect
+alias uLE
+	useLayoutEffect(() => {
 		${0:TARGET}
-	}
+	}, [])
 
-snippet react-componentDidUpdate
-alias cdu
-	componentDidUpdate(prevProps, prevState) {
+snippet react-useState
+alias uS
+	const [${0:TARGET}] = useState();
+
+snippet react-useCallback
+alias uC
+	useCallback(() => {
 		${0:TARGET}
-	}
+	}, [])
 
-snippet react-componentWillUnmount
-alias cwu
-	componentWillUnmount() {
+snippet react-useMemo
+alias uM
+	useMemo(() => {
 		${0:TARGET}
-	}
+	}, [])
 
-snippet react-constructor
-alias rc
-	constructor(props) {
-		super(props);
-		${0:TARGET}
-	};
+snippet react-useReducer
+alias uR
+	const [dispatch, ${0:TARGET}] = useReducer();
 
-snippet react-setState
-alias ss
-	this.setState({${0:TARGET}})
-
-snippet react-setState-func
-alias ssf
-	this.setState(ps => ({${0:TARGET}}))
-
-snippet react-template
-alias rt
-	import React from 'react';
-
-	class ${1:name} extends React.Component {
-		${0}
-		render() {
-			return (
-				<div></div>
-			);
-		}
-	}
-
-	export default $1;
+snippet log-variable
+alias lvar
+	console.log('${1:TARGET}', $1);
 
 snippet new-promise
 alias prom

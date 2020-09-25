@@ -28,4 +28,6 @@ inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> K call CocAction('doHover')<cr>
+nmap <silent> K :call CocAction('doHover')<cr>
+
+map <leader>C mlyiwo<esc>pviw<Plug>(neosnippet_expand_target)lvar<cr><esc>a<tab><esc>'l

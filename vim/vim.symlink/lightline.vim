@@ -20,30 +20,43 @@ let g:lightline = {
     \ },
     \ 'component_expand': {
     \   'linter_errors': 'LightlineLinterErrors',
-    \   'linter_ok': 'LightlineLinterOK',
     \ },
     \ 'component_type': {
     \   'linter_errors': 'error',
-    \   'linter_ok': 'ok'
     \ },
     \ 'subseparator': { 'left': '|', 'right': '|' }
     \ }
 
 function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors + all_non_errors)
-endfunction
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
 
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓' : ''
-endfunction
+  let count = 0
+  if get(info, 'error', 0)
+    let count = count + info['error']
+  endif
+  if get(info, 'warning', 0)
+    let count = count + info['warning']
+  endif
 
-autocmd User ALELintPost call lightline#update()
+  return count == 0 ? '' : printf('%d ✗', count)
+endfunction
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
+" function! LightlineLinterErrors() abort
+  " let l:counts = ale#statusline#Count(bufnr(''))
+  " let l:all_errors = l:counts.error + l:counts.style_error
+  " let l:all_non_errors = l:counts.total - l:all_errors
+  " return l:counts.total == 0 ? '' : printf('%d ✗', all_errors + all_non_errors)
+" endfunction
+
+" function! LightlineLinterOK() abort
+  " let l:counts = ale#statusline#Count(bufnr(''))
+  " let l:all_errors = l:counts.error + l:counts.style_error
+  " let l:all_non_errors = l:counts.total - l:all_errors
+  " return l:counts.total == 0 ? '✓' : ''
+" endfunction
+" autocmd User ALELintPost call lightline#update()
 
 function! LightLineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'

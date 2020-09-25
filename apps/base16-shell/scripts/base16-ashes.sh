@@ -38,6 +38,7 @@ color06="95/AE/C7" # Base 0C - Cyan
 color07="C7/CC/D1" # Base 05 - White
 color08="74/7C/84" # Base 03 - Bright Black
 color09=$color01 # Base 08 - Bright Red
+# color09="8E/83/78" # Base 08 - Bright Red (alternate, used with coc virtual text)
 color10=$color02 # Base 0B - Bright Green
 color11=$color03 # Base 0A - Bright Yellow
 color12=$color04 # Base 0D - Bright Blue
@@ -50,6 +51,8 @@ color18="29/2E/33" # Base 01
 color19="56/5E/65" # Base 02
 color20="AD/B3/BA" # Base 04
 color21="DF/E2/E5" # Base 06
+# color22="8E/83/78" # Base 06
+color22="A2/7F/74" # Base 06
 color_foreground="C7/CC/D1" # Base 05
 color_background="1C/20/23" # Base 00
 
@@ -99,6 +102,7 @@ put_template 18 $color18
 put_template 19 $color19
 put_template 20 $color20
 put_template 21 $color21
+put_template 22 $color22
 
 # foreground / background / cursor color
 if [ -n "$ITERM_SESSION_ID" ]; then
@@ -147,5 +151,6 @@ unset color18
 unset color19
 unset color20
 unset color21
+unset color22
 unset color_foreground
 unset color_background

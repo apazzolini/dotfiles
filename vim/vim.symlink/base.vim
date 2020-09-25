@@ -85,6 +85,10 @@ augroup END
 autocmd BufEnter * syntax sync fromstart
 au BufRead,BufNewFile *.jsx set filetype=javascript.jsx
 
+" if exists('##TextYankPost')
+  " au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
+" endif
+
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -166,3 +170,6 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 nnoremap <leader>W viw"ey:Rg! <c-r>e<cr>
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)

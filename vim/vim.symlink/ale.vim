@@ -1,21 +1,33 @@
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
-let g:ale_fixers = {
-\   'javascript': [],
-\}
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_javascript_eslint_executable = 'eslint_d'
-" let g:ale_javascript_eslint_options = '-c /Users/Andre/Work/Float/dws/sites/floatjs/web/.eslintrc'
+let g:ale_linters_explicit = 1
 
-let g:ale_open_list = 0
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   'typescript': ['eslint'],
+" \}
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\}
+" let g:ale_javascript_eslint_use_global = 1
+" let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_prettier_use_global = 1
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_prettier_executable = 'prettier_d_slim'
+
+" let g:ale_hover_cursor = 0
+" let g:ale_open_list = 0
+" let g:ale_lint_on_enter = 1
 let g:ale_sign_column_always = 1
-" let g:ale_lint_on_insert_leave = 0
-" let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
+let g:ale_fix_on_save = 1
 
 nmap <silent> <leader>nl <Plug>(ale_next_wrap)
-nmap <silent> <leader>nfix <Plug>(ale_fix)
+" nmap <silent> [g <Plug>(ale_previous_wrap)
+" nmap <silent> ]g <Plug>(ale_next_wrap)
+nmap <silent> <leader>nf <Plug>(ale_fix)
+
+" nmap <silent> gd :YcmCompleter GoToDefinition<cr>
+" nmap <silent> gr :ALEFindReferences<cr>
+" nmap <silent> K :ALEHover<cr>
 
 function! GetBufferList()
   redir =>buflist
@@ -45,3 +57,6 @@ function! ToggleList(bufname, pfx)
 endfunction
 
 nmap <silent> <leader>L :call ToggleList("Location List", 'l')<CR>
+
+" set completeopt-=preview
+" let g:deoplete#enable_at_startup = 1

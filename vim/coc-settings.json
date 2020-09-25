@@ -1,17 +1,29 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact","html"],
-    "suggest.minTriggerInputLength": 3,
-    "suggest.triggerCompletionWait": 200,
+  "coc.preferences.formatOnSaveFiletypes": [],
 
-    "suggest.floatEnable": false,
-    "diagnostic.messageTarget": "echo",
-    "signature.target": "echo",
-    "coc.preferences.hoverTarget": "echo",
-    "coc.preferences.messageLevel": "warning",
+  "signature.enable": false,
 
-    "javascript.updateImportsOnFileMove.enable": false,
-    "javascript.validate.enable": false,
-    "javascript.suggest.enabled": true,
-    "typescript.suggest.enabled": true,
-    "prettier.onlyUseLocalVersion": true
+  "diagnostic.enableMessage": "never",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.maxWindowWidth": 120,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.errorSign": ">>",
+  "diagnostic.infoSign": ">>",
+  "diagnostic.hintSign": ">>",
+  "diagnostic.warningSign": ">>",
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.messageDelay": 0,
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.displayByAle": false,
+
+  "suggest.minTriggerInputLength": 2,
+  "suggest.triggerCompletionWait": 100,
+
+  "javascript.updateImportsOnFileMove.enable": false,
+  "javascript.validate.enable": false,
+  "javascript.suggest.enabled": true,
+
+  "typescript.validate.enable": true,
+  "typescript.suggest.enabled": true
 }
