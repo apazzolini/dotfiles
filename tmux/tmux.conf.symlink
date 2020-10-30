@@ -13,7 +13,7 @@ set -g renumber-windows on
 set -g set-titles off
 set -g set-titles-string "#S: #W"
 set -g focus-events on
-set-option -s escape-time 10
+set-option -s escape-time 5
 
 # copy mode bindings
 bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "reattach-to-user-namespace pbcopy"
@@ -54,13 +54,13 @@ set -g @scroll-speed-num-lines-per-scroll "9"
 
 set -g status-style bg=colour18,fg=white
 set -g status-left ""
-set -g window-status-current-style bg=yellow,fg=black
+set -g window-status-current-style bg=green,fg=black
 set -g window-status-format " #I:#W "
 set -g window-status-current-format " #I:#W "
 #set -g status-right "%H:%M %d-%b-%y"
 
 set -g pane-border-style fg=colour241,bg=colour18
-set -g pane-active-border-style fg=colour3
+set -g pane-active-border-style fg=colour2
 set -g window-style 'bg=colour18'
 set -g window-active-style 'bg=colour0'
 

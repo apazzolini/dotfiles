@@ -28,10 +28,15 @@
     # cyan:    '0x96AEC6'
     # white:   '0xF3F4F5'
 
+    # These values were overridden on 10/28/20
+    #color01="C7/AE/95" # Base 08 - Red
+    #color02="95/C7/AE" # Base 0B - Green
+    #color03="AE/C7/95" # Base 0A - Yellow
+
 color00="1C/20/23" # Base 00 - Black
-color01="C7/AE/95" # Base 08 - Red
-color02="95/C7/AE" # Base 0B - Green
-color03="AE/C7/95" # Base 0A - Yellow
+color01="D1/9B/9B" # Base 08 - Red
+color02="A2/C7/A9" # Base 0B - Green
+color03="DC/DC/AA" # Base 0A - Yellow
 color04="AE/95/C7" # Base 0D - Blue
 color05="C7/95/AE" # Base 0E - Magenta
 color06="95/AE/C7" # Base 0C - Cyan

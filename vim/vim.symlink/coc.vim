@@ -31,3 +31,11 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> K :call CocAction('doHover')<cr>
 
 map <leader>C mlyiwo<esc>pviw<Plug>(neosnippet_expand_target)lvar<cr><esc>a<tab><esc>'l
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+highlight CocErrorHighlight ctermfg=DarkRed cterm=none
+highlight CocErrorSign ctermfg=DarkRed cterm=none
+highlight CocErrorVirtualText ctermfg=Red
+highlight CocFloating ctermbg=244

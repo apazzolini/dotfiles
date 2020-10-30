@@ -3,11 +3,11 @@
     "marketplace.gcr.io" : "gcloud",
     "asia.gcr.io" : "gcloud",
     "us.gcr.io" : "gcloud",
+    "eu.gcr.io" : "gcloud",
     "gcr.io" : "gcloud",
-    "staging-k8s.gcr.io" : "gcloud",
-    "eu.gcr.io" : "gcloud"
+    "staging-k8s.gcr.io" : "gcloud"
   },
-  "credsStore" : "osxkeychain",
+  "experimental" : "disabled",
   "stackOrchestrator" : "swarm",
   "HttpHeaders" : {
     "User-Agent" : "Docker-Client/19.03.1 (darwin)"
@@ -18,5 +18,5 @@
 
     }
   },
-  "experimental" : "disabled"
+  "credsStore" : "osxkeychain"
 }

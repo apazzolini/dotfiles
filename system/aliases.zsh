@@ -63,13 +63,14 @@ alias ta="t attach -t"
 alias td="t detach"
 alias tawork="base16_ashes && /Users/Andre/.dotfiles/tmux/sessions/work.sh"
 alias tadre="base16_ashes && /Users/Andre/.dotfiles/tmux/sessions/dre.sh"
+alias iris="tmux new-window -k -n iris -c '/Users/Andre/GitHub/_forks/qmk_firmware/keyboards/keebio/iris/keymaps/apazzolini'"
 
 # vim
 alias v='/usr/local/bin/nvim'
 alias vi='/usr/local/bin/nvim'
 alias vim='/usr/local/bin/nvim'
 alias vf='v "$(fzf)"'
-alias notes='base16_harmonic-light && v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Wiki/diary/diary.md ~/Air/Wiki/index.md'
+alias notes='base16_harmonic-light && VIMNOTES=1 v -u ~/.dotfiles/vim/vimnotes -O ~/Air/Wiki/diary/diary.md ~/Air/Wiki/index.md'
 
 # misc
 alias d='docker'

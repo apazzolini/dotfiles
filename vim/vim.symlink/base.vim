@@ -19,7 +19,7 @@ set autoread
 set formatoptions-=co
 set nojoinspaces
 set backspace=indent,eol,start
-set lazyredraw
+set nolazyredraw
 set autoread
 set shiftround
 set cinoptions+=+1
@@ -39,6 +39,7 @@ set nomodeline
 set completefunc=LanguageClient#complete
 set omnifunc=LanguageClient#complete
 set relativenumber
+set signcolumn=yes
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -71,19 +72,29 @@ noremap 0 ^
 noremap ^ 0
 imap <c-l> <space>=><space>
 nnoremap ZZ $zfa}
-nnoremap <cr> :noh<cr><cr>
+nnoremap <silent> <cr> :noh<cr>:syntax sync fromstart<cr><cr>
 nnoremap <leader>G :G<cr>
 
 " Only show cursor line on active split
 set nocursorline
 augroup CursorLine
-   au!
-   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-   au WinLeave * setlocal nocursorline
-augroup END
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
 
-autocmd BufEnter * syntax sync fromstart
-au BufRead,BufNewFile *.jsx set filetype=javascript.jsx
+  autocmd BufReadPost *.tsx,*.ts,*.jsx,*.js syntax sync fromstart
+  au BufRead,BufNewFile *.jsx set filetype=javascript.jsx
+
+  autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal g`\"" |
+      \ endif
+
+  " Strip trailing spaces and newlines on save
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufWritePre * %s#\($\n\s*\)\+\%$##e
+
+augroup END
 
 " if exists('##TextYankPost')
   " au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
@@ -94,9 +105,6 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Strip trailing spaces and newlines on save
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s#\($\n\s*\)\+\%$##e
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
@@ -161,15 +169,15 @@ function! s:CloseHiddenBuffers()
 
   for num in range(1, bufnr("$") + 1)
     if buflisted(num) && index(open_buffers, num) == -1
-      exec "bdelete ".num
-    endif
-  endfor
+			exec "bdelete ".num
+		endif
+	endfor
 endfunction
 
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-nnoremap <leader>W viw"ey:Rg! <c-r>e<cr>
+nnoremap <leader>W :Rg! <c-r><c-w><cr>
 
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)

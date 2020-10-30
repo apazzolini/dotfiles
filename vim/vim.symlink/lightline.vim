@@ -27,19 +27,20 @@ let g:lightline = {
     \ 'subseparator': { 'left': '|', 'right': '|' }
     \ }
 
+
 function! LightlineLinterErrors() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
+	let info = get(b:, 'coc_diagnostic_info', {})
+	if empty(info) | return '' | endif
 
-  let count = 0
-  if get(info, 'error', 0)
-    let count = count + info['error']
-  endif
-  if get(info, 'warning', 0)
-    let count = count + info['warning']
-  endif
+	let count = 0
+	if get(info, 'error', 0)
+		let count = count + info['error']
+	endif
+	if get(info, 'warning', 0)
+		let count = count + info['warning']
+	endif
 
-  return count == 0 ? '' : printf('%d ✗', count)
+	return count == 0 ? '' : printf('%d ✗', count)
 endfunction
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 

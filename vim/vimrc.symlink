@@ -1,39 +1,39 @@
-call plug#begin('~/.vim/plugged')
-
-let g:javascript_plugin_flow=1
 let g:node_host_prog = '/Users/Andre/.config/yarn/global/node_modules/.bin/neovim-node-host'
 
+call plug#begin('~/.vim/plugged')
+
 " Generic plugins
+" Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
-" Plug 'haya14busa/incsearch.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'wellle/targets.vim'
-Plug 'godlygeek/tabular'
 Plug 'sickill/vim-pasta'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'romainl/vim-qf'
-Plug 'chriskempson/base16-vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'fvictorio/vim-textobj-backticks'
-Plug 'thinca/vim-textobj-function-javascript'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/neosnippet.vim'
 Plug 'tmsvg/pear-tree'
 Plug 'drzel/vim-scrolloff-fraction'
-" Plug 'machakann/vim-highlightedyank'
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
+Plug 'easymotion/vim-easymotion'
+" Plug 'godlygeek/tabular'
+" Plug 'thinca/vim-textobj-function-javascript'
+
+if !empty($VIMNOTES)
+  Plug 'vimwiki/vimwiki'
+endif
 
 if !empty($TMUX)
     Plug 'christoomey/vim-tmux-navigator', {'branch': 'indicator'}
@@ -41,16 +41,19 @@ if !empty($TMUX)
     source ~/.vim/tmux.vim
 endif
 
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-lua/completion-nvim'
 
 " Filetype specific plugins
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['javascript','javascript.jsx','javascriptreact','html']}
-" Plug 'neoclide/coc.nvim', {'branch': 'release' }
+" Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['javascript','javascript.jsx','javascriptreact','html']}
+if empty($VIMNOTES)
+  Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile' }
+endif
 " Plug 'mvolkmann/vim-js-arrow-function'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'ycm-core/YouCompleteMe'
-Plug 'w0rp/ale', { 'for': ['javascript','typescript','javascript.jsx','typescript.tsx','javascriptreact','typescriptreact'] }
-Plug 'apazzolini/vim-jsx-improve', { 'for': ['javascript','typescript','javascript.jsx','typescript.tsx','javascriptreact','typescriptreact'] }
+" Plug 'w0rp/ale', { 'for': ['javascript','typescript','javascript.jsx','typescript.tsx','javascriptreact','typescriptreact'] }
+" Plug 'apazzolini/vim-jsx-improve', { 'for': ['javascript','typescript','javascript.jsx','typescript.tsx','javascriptreact','typescriptreact'] }
 " Plug 'styled-components/vim-styled-components', { 'for': ['javascript','javascript.jsx','javascriptreact'], 'branch': 'main' }
 " Plug 'leafgarland/typescript-vim', { 'for': ['typescript']}
 " Plug 'ianks/vim-tsx'
@@ -63,17 +66,18 @@ Plug 'apazzolini/vim-jsx-improve', { 'for': ['javascript','typescript','javascri
 
 " Colorschemes
 Plug 'apazzolini/vim-wave'
-Plug 'gruvbox-community/gruvbox'
+" Plug 'chriskempson/base16-vim'
+" Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
+
+filetype plugin indent on
+syntax enable
 
 " let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_invert_selection='0'
 " colorscheme gruvbox
 " set background=dark
-
-filetype plugin indent on
-syntax enable
 
 set background=dark
 silent! colorscheme wave
@@ -87,13 +91,14 @@ endif
 
 source ~/.vim/base.vim
 
-source ~/.vim/ale.vim
+" source ~/.vim/ale.vim
 source ~/.vim/coc.vim
 source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
 source ~/.vim/fzf.vim
 " source ~/.vim/incsearch.vim
-source ~/.vim/js.vim
+" source ~/.vim/js.vim
+" source ~/.vim/airline.vim
 source ~/.vim/lightline.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
@@ -120,9 +125,3 @@ silent! source ./.vimlocal
     " ensure_installed = {'typescript'}
 " }
 " EOF
-
-" highlight CocErrorHighlight ctermfg=DarkRed cterm=none
-" highlight CocErrorSign ctermfg=DarkRed cterm=none
-" highlight CocErrorVirtualText ctermfg=Red
-"
-" highlight HighlightedyankRegion cterm=reverse gui=reverse

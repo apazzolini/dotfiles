@@ -11,6 +11,7 @@ set autoindent
 set smartindent
 set nocompatible
 set colorcolumn=999
+set signcolumn=no
 
 nmap <Leader>b <Plug>VimwikiGoBackLink
 
