@@ -1,20 +1,22 @@
-[push]
-    default = current
 [user]
-	name = Andre Azzolini
-	email = andre@azzolini.io
+	  name = Andre Azzolini
+	  email = andre@azzolini.io
 [core]
-	excludesfile = /Users/Andre/.gitignore
+	  excludesfile = /Users/Andre/.gitignore
     quotepath = false
     editor = /usr/local/bin/nvim
     autocrlf = input
     commentchar = ";"
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	  pager = diff-so-fancy | less --tabs=4 -RFX
+[push]
+    default = current
+[pull]
+	  rebase = true
 [github]
     user = apazzolini
     email = apazzolini@gmail.com
 [color]
-	ui = true
+	  ui = true
 [color "status"]
     changed = yellow
     added = green
@@ -54,7 +56,7 @@
     b = "!. ~/.githelpers && pretty_git_branch"
     bs = "!. ~/.githelpers && pretty_git_branch_sorted"
 [credential]
-	helper = osxkeychain
+	  helper = osxkeychain
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -62,18 +64,16 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [diff]
-	tool = vimdiff
+	  tool = vimdiff
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+	  oldNormal = red
+	  oldHighlight = red "#500000"
+	  newNormal = green
+	  newHighlight = green "#003000"
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-[pull]
-	rebase = true
+	  meta = 11
+	  frag = magenta bold
+	  commit = yellow bold
+	  old = red
+	  new = green
+	  whitespace = "#ffff00" reverse

@@ -3,7 +3,6 @@ let g:node_host_prog = '/Users/Andre/.config/yarn/global/node_modules/.bin/neovi
 call plug#begin('~/.vim/plugged')
 
 " Generic plugins
-" Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
@@ -25,11 +24,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'Shougo/neosnippet.vim'
 Plug 'tmsvg/pear-tree'
-Plug 'drzel/vim-scrolloff-fraction'
-Plug 'sheerun/vim-polyglot'
 Plug 'easymotion/vim-easymotion'
-" Plug 'godlygeek/tabular'
-" Plug 'thinca/vim-textobj-function-javascript'
+Plug 'szw/vim-maximizer'
+Plug 'AndrewRadev/splitjoin.vim'
 
 if !empty($VIMNOTES)
   Plug 'vimwiki/vimwiki'
@@ -38,90 +35,43 @@ endif
 if !empty($TMUX)
     Plug 'christoomey/vim-tmux-navigator', {'branch': 'indicator'}
     Plug 'tmux-plugins/vim-tmux-focus-events'
-    source ~/.vim/tmux.vim
+    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+    let g:tmux_navigator_disable_when_zoomed = 1
 endif
 
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
-
 " Filetype specific plugins
-" Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['javascript','javascript.jsx','javascriptreact','html']}
 if empty($VIMNOTES)
   Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile' }
 endif
-" Plug 'mvolkmann/vim-js-arrow-function'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'ycm-core/YouCompleteMe'
-" Plug 'w0rp/ale', { 'for': ['javascript','typescript','javascript.jsx','typescript.tsx','javascriptreact','typescriptreact'] }
-" Plug 'apazzolini/vim-jsx-improve', { 'for': ['javascript','typescript','javascript.jsx','typescript.tsx','javascriptreact','typescriptreact'] }
-" Plug 'styled-components/vim-styled-components', { 'for': ['javascript','javascript.jsx','javascriptreact'], 'branch': 'main' }
-" Plug 'leafgarland/typescript-vim', { 'for': ['typescript']}
-" Plug 'ianks/vim-tsx'
-" Plug 'apazzolini/vim-javascript', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
-" Plug 'pangloss/vim-javascript', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
-" Plug 'mxw/vim-jsx', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
-" Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascript','javascript.jsx','javascriptreact'] }
-" Plug 'nvim-treesitter/nvim-treesitter'
-" Plug 'nvim-treesitter/playground'
+Plug 'sheerun/vim-polyglot'
+" Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'leafgarland/typescript-vim'
 
 " Colorschemes
 Plug 'apazzolini/vim-wave'
-" Plug 'chriskempson/base16-vim'
-" Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
 
 filetype plugin indent on
 syntax enable
 
-" let g:gruvbox_contrast_dark = 'hard'
-" let g:gruvbox_invert_selection='0'
-" colorscheme gruvbox
-" set background=dark
-
-set background=dark
-silent! colorscheme wave
-
-if has('gui_vimr')
-    source ~/.vim/gui.vim
-else
-    set notermguicolors
-    hi! Normal ctermbg=NONE guibg=NONE
-endif
+colorscheme wave
 
 source ~/.vim/base.vim
 
-" source ~/.vim/ale.vim
 source ~/.vim/coc.vim
 source ~/.vim/easymotion.vim
 source ~/.vim/fillline.vim
 source ~/.vim/fzf.vim
-" source ~/.vim/incsearch.vim
-" source ~/.vim/js.vim
-" source ~/.vim/airline.vim
 source ~/.vim/lightline.vim
+source ~/.vim/maximizer.vim
 source ~/.vim/nerdcommenter.vim
 source ~/.vim/nerdtree.vim
 source ~/.vim/pear-tree.vim
 source ~/.vim/qf.vim
+source ~/.vim/refactoring.vim
 source ~/.vim/surround.vim
 source ~/.vim/targets.vim
 
 silent! source ./.vimlocal
-
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-    " highlight = {
-        " enable = true,
-    " },
-    " playground = {
-      " enable = false,
-      " disable = {},
-      " updatetime = 25
-    " },
-    " incremental_selection = {
-        " enable = false,
-    " },
-    " ensure_installed = {'typescript'}
-" }
-" EOF

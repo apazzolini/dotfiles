@@ -5,4 +5,3 @@ map F <Plug>(easymotion-b)
 hi link EasyMotionTarget Search
 hi link EasyMotionTarget2First Search
 hi link EasyMotionTarget2Second Search
-

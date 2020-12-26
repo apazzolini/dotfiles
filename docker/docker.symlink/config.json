@@ -1,4 +1,16 @@
 {
+  "stackOrchestrator" : "swarm",
+  "psFormat" : "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}",
+  "credsStore" : "osxkeychain",
+  "HttpHeaders" : {
+    "User-Agent" : "Docker-Client/19.03.1 (darwin)"
+  },
+  "experimental" : "disabled",
+  "auths" : {
+    "https://index.docker.io/v1/" : {
+
+    }
+  },
   "credHelpers" : {
     "marketplace.gcr.io" : "gcloud",
     "asia.gcr.io" : "gcloud",
@@ -6,17 +18,5 @@
     "eu.gcr.io" : "gcloud",
     "gcr.io" : "gcloud",
     "staging-k8s.gcr.io" : "gcloud"
-  },
-  "experimental" : "disabled",
-  "stackOrchestrator" : "swarm",
-  "HttpHeaders" : {
-    "User-Agent" : "Docker-Client/19.03.1 (darwin)"
-  },
-  "psFormat" : "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}",
-  "auths" : {
-    "https://index.docker.io/v1/" : {
-
-    }
-  },
-  "credsStore" : "osxkeychain"
+  }
 }

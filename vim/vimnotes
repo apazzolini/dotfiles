@@ -17,7 +17,7 @@ nmap <Leader>b <Plug>VimwikiGoBackLink
 
 hi MatchParen ctermfg=0
 
-augroup CursorLine
+augroup Andre
 	autocmd!
 augroup END
 

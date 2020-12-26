@@ -1,6 +1,6 @@
 # Environment Variables
 export EDITOR='nvim'
-export MANPAGER="less -X"
+export MANPAGER='nvim +Man!'
 export CLICOLOR=true
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
@@ -17,6 +17,7 @@ export FZF_DEFAULT_OPTS='--reverse --border --bind=ctrl-d:half-page-down,ctrl-u:
   --color=fg:7,header:14,info:10,pointer:12
   --color=marker:12,fg+:6,prompt:10,hl+:13
 '
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Environment settings
 setopt NO_BG_NICE # don't nice background tasks

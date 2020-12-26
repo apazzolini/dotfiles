@@ -21,7 +21,7 @@ alias hg='history 1 -1 | grep '
 
 # process aliases
 alias pg='ps -Aef | head -1 && ps -Aef | grep'
-alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep | grep -v javascript-typescript-stdio | grep -v 'There Helper' | grep -v YakYak"
+alias pgn="pg node | grep -v Postman | grep -v Hyper | grep -v _d | grep -v '(node)' | grep -v grep | grep -v javascript-typescript-stdio | grep -v 'There Helper' | grep -v YakYak | grep -v tsserver"
 alias k='kill -9'
 alias fk='fkill'
 
@@ -76,6 +76,7 @@ alias notes='base16_harmonic-light && VIMNOTES=1 v -u ~/.dotfiles/vim/vimnotes -
 alias d='docker'
 alias dl='docker-compose -f ~/Work/Float/dws/docker-compose/docker-compose.yml -f ~/Work/Float/dws/docker-compose/docker-compose.local.yml'
 alias jest='nocorrect jest'
+alias ava='nocorrect ava'
 alias rg='rg -i'
 alias fix='echo -e "\033c"; stty sane; tput rs1'
 alias j='z'
