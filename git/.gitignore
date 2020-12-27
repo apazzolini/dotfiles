@@ -1,0 +1,12 @@
+.DS_Store
+.svn
+*~
+*.swp
+*.rbc
+go.sh
+.agignore
+.ignore
+jsconfig.json
+.vimlocal
+.prettier_d
+.nvimlog

@@ -1,0 +1,3 @@
+aoc () {
+  nvim -O "src/2020/day$1/day$1.js" "src/2020/day$1/day$1.test.js"
+}
