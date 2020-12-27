@@ -1,3 +1,0 @@
-copyip() {
-  ifconfig $1 | grep 'inet ' | awk '{print $2}' | pbcopy | echo '=> ip copied to clipboard'
-}

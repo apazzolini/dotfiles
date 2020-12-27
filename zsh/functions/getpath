@@ -1,3 +1,0 @@
-getpath () { 
-    echo "`pwd`/$1" | pbcopy | echo "`pwd`/$1 copied to clipboard"
-}
