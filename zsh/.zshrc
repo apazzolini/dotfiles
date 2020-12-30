@@ -24,11 +24,16 @@ source $ZSH/zsh/env.zsh
 source $ZSH/zsh/aliases.zsh
 source $ZSH/zsh/completion.zsh
 
+function safesource {
+  [ -f "$1" ] && source "$1"
+}
+
 # initialize autosuggetsions and bind accept to ctrl+space
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+safesource /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+safesource /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
-# initialize fasd
-eval "$(fasd --init zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+safesource /usr/local/etc/profile.d/z.sh
+safesource ~/.fzf.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+safesource /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc

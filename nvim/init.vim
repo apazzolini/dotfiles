@@ -1,5 +1,5 @@
 let g:isNotes = argc() >= 1 && argv()[0] == 'D:\Air\Wiki\diary\diary.md'
-let g:home = has('win32') ? 'L:/home/andre' : '/home/andre'
+let g:home = has('win32') ? 'L:/home/andre' : has('osx') ? '/Users/andre' : '/home/andre'
 let g:pluggedHome = has('win32')
   \ ? 'C:/Users/andre/AppData/Local/nvim-data/plugged'
   \ : '~/.dotfiles/nvim/plugged'

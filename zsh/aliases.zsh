@@ -1,11 +1,11 @@
 # ls aliases
 if [ `uname` = 'Darwin' ]
 then
-  alias ls="ls -F"
+  alias ls="gls -F --color"
 else
   alias ls="ls -F --color"
 fi
-alias l="ls -Flh --group-directories-first --color"
+alias l="ls -lh --group-directories-first"
 alias ll="l -A"
 
 # history aliases
@@ -43,14 +43,21 @@ alias vi=nvim
 alias vim=nvim
 alias vf='nvim "$(fzf)"'
 
-# fasd
-alias j='fasd_cd'
-
 # misc
 alias d='docker'
+alias j=z
 alias rg='rg -i'
 alias fix='echo -e "\033c"; stty sane; tput rs1'
 #alias dl='docker-compose -f ~/Work/Float/dws/docker-compose/docker-compose.yml -f ~/Work/Float/dws/docker-compose/docker-compose.local.yml'
 #alias jest='nocorrect jest'
 #alias ava='nocorrect ava'
-#alias trackpad='osascript /Users/Andre/Documents/toggle-internal-trackpad.scpt'
+
+if [ `uname` = 'Darwin' ]
+then
+  alias trackpad='osascript ~/.dotfiles/bin/toggle-internal-trackpad.scpt'
+  alias o='open .'
+  alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+  alias curdir="pwd | tr -d '\n' | pbcopy"
+else
+  alias o='explorer.exe .'
+fi
