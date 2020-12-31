@@ -45,6 +45,7 @@ alias vf='nvim "$(fzf)"'
 
 # misc
 alias d='docker'
+alias da='d ps -a'
 alias j=z
 alias rg='rg -i'
 alias fix='echo -e "\033c"; stty sane; tput rs1'

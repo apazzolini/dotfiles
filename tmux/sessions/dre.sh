@@ -19,8 +19,10 @@ spawn_window () {
 }
 
 spawn_window dotfiles ~/.dotfiles
-spawn_window dotfiles-old ~/dfold
-spawn_window appdata /mnt/c/Users/andre/AppData
+
+if [[ `uname -r` =~ "microsoft" ]]; then
+  spawn_window appdata /mnt/c/Users/andre/AppData
+fi
 
 tmux select-window -t $SESSION:0
 tmux -2 attach -t $SESSION

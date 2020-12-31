@@ -10,6 +10,7 @@ set autoindent
 set smartindent
 set colorcolumn=999
 set signcolumn=no
+set matchpairs=
 
 nmap <Leader>b <Plug>VimwikiGoBackLink
 

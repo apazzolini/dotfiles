@@ -1,8 +1,16 @@
+" ------------------------------------------------------------------------------
+" Environment detection --------------------------------------------------------
+" ------------------------------------------------------------------------------
+
 let g:isNotes = argc() >= 1 && argv()[0] == 'D:\Air\Wiki\diary\diary.md'
 let g:home = has('win32') ? 'L:/home/andre' : has('osx') ? '/Users/andre' : '/home/andre'
 let g:pluggedHome = has('win32')
   \ ? 'C:/Users/andre/AppData/Local/nvim-data/plugged'
   \ : '~/.dotfiles/nvim/plugged'
+
+" ------------------------------------------------------------------------------
+" Plugins ----------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 
 call plug#begin(g:pluggedHome)
 
@@ -31,10 +39,7 @@ Plug 'tmsvg/pear-tree'
 Plug 'easymotion/vim-easymotion'
 Plug 'szw/vim-maximizer'
 Plug 'AndrewRadev/splitjoin.vim'
-
-if exists("g:nvy")
-  Plug 'norcalli/nvim-colorizer.lua'
-endif
+Plug 'norcalli/nvim-colorizer.lua'
 
 if !empty($TMUX)
   Plug 'apazzolini/vim-tmux-navigator', {'branch': 'indicator'}
@@ -51,10 +56,18 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
+" ------------------------------------------------------------------------------
+" Colorscheme ------------------------------------------------------------------
+" ------------------------------------------------------------------------------
+
 exec 'set background=' . (g:isNotes ? 'light' : 'dark')
+set guifont=Operator\ Mono:h8
+set termguicolors
 colorscheme wave
 
-set guifont=Operator\ Mono:h8
+" ------------------------------------------------------------------------------
+" Configs ----------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 
 exec 'source ' . g:home . '/.dotfiles/nvim/base.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/easymotion.vim'
@@ -76,7 +89,8 @@ if (g:isNotes)
   exec 'source ' . g:home . '/.dotfiles/nvim/notes.vim'
 endif
 
-if exists("g:nvy")
-  set termguicolors
-  lua require'colorizer'.setup()
-endif
+" ------------------------------------------------------------------------------
+" Lua --------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
+
+lua require'colorizer'.setup()
