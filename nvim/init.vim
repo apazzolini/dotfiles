@@ -40,6 +40,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'szw/vim-maximizer'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'godlygeek/tabular'
 
 if !empty($TMUX)
   Plug 'apazzolini/vim-tmux-navigator', {'branch': 'indicator'}

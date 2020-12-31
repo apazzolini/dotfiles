@@ -34,7 +34,11 @@ safesource /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 safesource /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
+# ssh-agent
+if [ -f "/usr/bin/keychain" ]; then
+  /usr/bin/keychain --nogui --quiet --noask $HOME/.ssh/id_rsa
+  source $HOME/.keychain/andred-sh
+fi
 
 safesource ~/.fzf.zsh
-
 safesource /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
