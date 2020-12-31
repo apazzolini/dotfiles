@@ -1,6 +1,5 @@
 #!/bin/bash
 
-brew install z
 brew install starship
 brew install coreutils
 brew install diff-so-fancy
