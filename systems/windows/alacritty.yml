@@ -1,5 +1,5 @@
 import:
-  - /home/andre/.dotfiles/systems/shared/alacritty.yml
+  - L:\home\andre\.dotfiles\systems\shared\alacritty.yml
 font:
   size: 9.0
 shell:

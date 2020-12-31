@@ -23,6 +23,7 @@ eval "$(starship init zsh)"
 source $ZSH/zsh/env.zsh
 source $ZSH/zsh/aliases.zsh
 source $ZSH/zsh/completion.zsh
+source $ZSH/bin/z.sh
 
 function safesource {
   [ -f "$1" ] && source "$1"
@@ -33,7 +34,7 @@ safesource /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 safesource /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
-safesource /usr/local/etc/profile.d/z.sh
+
 safesource ~/.fzf.zsh
 
 safesource /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
