@@ -44,7 +44,7 @@ Plug 'godlygeek/tabular'
 
 " Still evaluating -------------------------------------------------------------
 Plug 'ivalkeen/vim-simpledb'
-Plug 'junegunn/gv.vim'
+Plug 'rbong/vim-flog'
 " ------------------------------------------------------------------------------
 
 if !empty($TMUX)
@@ -78,6 +78,7 @@ colorscheme wave
 exec 'source ' . g:home . '/.dotfiles/nvim/base.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/easymotion.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/fillline.vim'
+exec 'source ' . g:home . '/.dotfiles/nvim/flog.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/fugitive.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/fzf.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/lightline.vim'
