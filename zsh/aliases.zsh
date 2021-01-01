@@ -21,8 +21,9 @@ alias k='kill -9'
 # starts up a webserver at the current directory
 alias httpserver="python -m SimpleHTTPServer 9090"
 
-# open current directory in sourcetree
+# git aliases
 alias st='stree'
+alias tig='tig -m'
 
 # shortcuts for npm/yarn
 alias yr="yarn run"

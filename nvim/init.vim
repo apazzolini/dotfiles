@@ -42,6 +42,11 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
 
+" Still evaluating -------------------------------------------------------------
+Plug 'ivalkeen/vim-simpledb'
+Plug 'junegunn/gv.vim'
+" ------------------------------------------------------------------------------
+
 if !empty($TMUX)
   Plug 'apazzolini/vim-tmux-navigator', {'branch': 'indicator'}
   Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -73,6 +78,7 @@ colorscheme wave
 exec 'source ' . g:home . '/.dotfiles/nvim/base.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/easymotion.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/fillline.vim'
+exec 'source ' . g:home . '/.dotfiles/nvim/fugitive.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/fzf.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/lightline.vim'
 exec 'source ' . g:home . '/.dotfiles/nvim/maximizer.vim'

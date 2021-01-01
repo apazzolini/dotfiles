@@ -56,6 +56,10 @@ $#}::Send, !^]
 
 !q::
 
+#IfWinActive, ahk_exe jcpicker.exe ; ------------------------------------------------
+
+$!w::Send !{f4}
+
 #IfWinActive, ahk_exe Discord.exe ; --------------------------------------------
 
 $!{::Send, {alt down}{shift down}[{shift up}{alt up}
