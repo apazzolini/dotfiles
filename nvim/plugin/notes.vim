@@ -1,3 +1,7 @@
+if (!g:isNotes)
+  finish
+endif
+
 set nocursorline
 set norelativenumber
 set winheight=10

@@ -41,10 +41,10 @@ Plug 'szw/vim-maximizer'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
+Plug 'rbong/vim-flog'
 
 " Still evaluating -------------------------------------------------------------
 Plug 'ivalkeen/vim-simpledb'
-Plug 'rbong/vim-flog'
 " ------------------------------------------------------------------------------
 
 if !empty($TMUX)
@@ -71,34 +71,6 @@ set guifont=Operator\ Mono:h8
 set termguicolors
 colorscheme wave
 
-" ------------------------------------------------------------------------------
-" Configs ----------------------------------------------------------------------
-" ------------------------------------------------------------------------------
-
-exec 'source ' . g:home . '/.dotfiles/nvim/base.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/easymotion.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/fillline.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/flog.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/fugitive.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/fzf.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/lightline.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/maximizer.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/neosnippet.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/nerdcommenter.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/nerdtree.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/pear-tree.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/qf.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/surround.vim'
-exec 'source ' . g:home . '/.dotfiles/nvim/targets.vim'
-
 silent! source ./.vimlocal
-
-if (g:isNotes)
-  exec 'source ' . g:home . '/.dotfiles/nvim/notes.vim'
-endif
-
-" ------------------------------------------------------------------------------
-" Lua --------------------------------------------------------------------------
-" ------------------------------------------------------------------------------
 
 "lua require'colorizer'.setup()
