@@ -7,7 +7,25 @@
     editor = nvim
     autocrlf = input
     commentchar = ";"
-    pager = diff-so-fancy
+    pager = delta
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    hunk-header-style = omit
+    paging = never
+    line-numbers = true
+    line-numbers-minus-style = red
+    line-numbers-zero-style = 246
+    line-numbers-plus-style = green
+    minus-style = red
+    minus-non-emph-style = red
+    minus-emph-style = red 52
+    minus-empty-line-marker-style = omit
+    plus-empty-line-marker-style = omit
+    zero-style = normal
+    plus-style = green
+    plus-non-emph-style = green
+    plus-emph-style = green 235
 [push]
     default = current
 [pull]

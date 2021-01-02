@@ -5,6 +5,8 @@ let g:flog_default_arguments = {
 
 " ------------------------------------------------------------------------------
 
+let g:flog_horizontal = 0
+
 " Removes flog_term state from flog and closes terminal buffer if it's open
 function! flog#delete_flog_term()
   let l:state = flog#get_state()
@@ -41,10 +43,12 @@ function! flog#diff_fancy()
   let l:commit = flog#get_commit_at_line(line('.')).short_commit_hash
 
   let l:previous_window_id = win_getid()
-  execute 'vertical botright new +set\ filetype=flog_term_diff'
+  let position = g:flog_horizontal ? 'bot' : 'vertical botright'
+  let pager = g:flog_horizontal ? 'delta --side-by-side' : 'delta'
+  execute position . ' new +set\ filetype=flog_term_diff'
   setlocal buftype=nofile bufhidden=wipe noswapfile nomodeline nonumber norelativenumber
-  let l:state.termid = termopen(['git', '-p', 'show', '-m', l:commit])
-
+  "let l:state.termid = termopen(['git', '-p', 'show', '-m', l:commit])
+  let l:state.termid = termopen('GIT_PAGER="' . pager . '" git -p show -m ' . l:commit)
   call cursor(1, 1)
   let l:state.termbufnr = winbufnr(win_getid())
 
@@ -72,6 +76,7 @@ endfunction
 augroup Myfloggroup
   autocmd!
   autocmd FileType floggraph set colorcolumn=0
+  autocmd FileType floggraph nnoremap <buffer> <silent> <leader>r :let g:flog_horizontal=!g:flog_horizontal <bar> call flog#diff_fancy()<cr>
   autocmd FileType floggraph nnoremap <buffer> <silent> o :call flog#diff_fancy()<CR>
   autocmd FileType floggraph nnoremap <buffer> <silent> j :call flog#fancy_next_commit()<CR>
   autocmd FileType floggraph nnoremap <buffer> <silent> k :call flog#fancy_prev_commit()<CR>
