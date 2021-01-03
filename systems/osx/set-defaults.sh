@@ -37,3 +37,7 @@ defaults -currentHost write -g AppleFontSmoothing -int 0 # Big Sur
 
 # External mouse acceleration
 defaults write -g com.apple.mouse.scaling -1
+
+# Faster key repeat rate
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 10
