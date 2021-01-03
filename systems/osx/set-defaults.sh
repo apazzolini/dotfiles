@@ -41,3 +41,6 @@ defaults write -g com.apple.mouse.scaling -1
 # Faster key repeat rate
 defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 10
+
+# Keep folders on top when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
