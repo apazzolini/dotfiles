@@ -22,7 +22,7 @@ set hidden
 set wrap linebreak nolist
 set splitright
 set backspace=indent,eol,start
-set nolazyredraw
+set lazyredraw
 set cinoptions+=+1
 set noshowmatch
 set noshowcmd
@@ -58,12 +58,13 @@ nnoremap <c-u> 10<c-u>zz
 noremap 0 ^
 noremap ^ 0
 imap <c-l> <space>=><space>
-nnoremap <silent> <cr> :noh<cr>:syntax sync fromstart<cr><cr>
+nnoremap <silent> <cr> :noh<cr><cr>
 map <leader>nt :tabnew<cr>
 nnoremap <leader><leader> <c-^>
 vmap <leader>y "*y
 map <leader>p "*p
 map <leader>jst :silent !stree<cr>
+map <leader>k :write <bar> edit <bar> TSBufEnable highlight<cr>
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>

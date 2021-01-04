@@ -42,3 +42,19 @@ fi
 
 safesource ~/.fzf.zsh
 safesource /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+
+# Extended colors as of 2020-01-04. Unable to specify these colors in
+# Windows Terminal config, enable these lines to mimic the Alacritty cfg.
+# printf "\033]4;16;rgb:c7/c7/95\033\\"
+# printf "\033]4;17;rgb:c7/95/95\033\\"
+# printf "\033]4;18;rgb:29/2e/33\033\\"
+# printf "\033]4;19;rgb:56/5e/65\033\\"
+# printf "\033]4;20;rgb:ad/b3/ba\033\\"
+# printf "\033]4;21;rgb:df/e2/e5\033\\"
+# printf "\033]4;22;rgb:a2/7f/74\033\\"
+# printf "\033]4;244;rgb:2b/30/34\033\\"
+# printf "\033]4;245;rgb:56/5e/65\033\\"
+# printf "\033]4;246;rgb:74/7c/84\033\\"
+# printf "\033]4;247;rgb:ad/b3/ba\033\\"
+# printf "\033]4;248;rgb:c7/cc/d1\033\\"
+# printf "\033]4;249;rgb:df/e2/e5\033\\"

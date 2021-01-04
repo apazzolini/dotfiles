@@ -45,11 +45,13 @@ Plug 'rbong/vim-flog'
 
 " Still evaluating -------------------------------------------------------------
 Plug 'ivalkeen/vim-simpledb'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 " ------------------------------------------------------------------------------
 
 if !empty($TMUX)
-  Plug 'apazzolini/vim-tmux-navigator', {'branch': 'indicator'}
   Plug 'tmux-plugins/vim-tmux-focus-events'
+  Plug 'apazzolini/vim-tmux-navigator', {'branch': 'indicator'}
   let g:tmux_navigator_disable_when_zoomed = 1
 endif
 
@@ -73,4 +75,4 @@ colorscheme wave
 
 silent! source ./.vimlocal
 
-"lua require'colorizer'.setup()
+lua require('init')
