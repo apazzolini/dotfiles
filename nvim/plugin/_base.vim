@@ -14,7 +14,7 @@ set shiftround
 set signcolumn=yes
 set number
 set relativenumber
-set colorcolumn=111
+set colorcolumn=101
 
 set timeoutlen=1000 ttimeoutlen=0
 set autoread
@@ -40,6 +40,8 @@ set foldmethod=manual
 set nofoldenable
 set foldlevel=99
 set foldnestmax=4
+
+" ------------------------------------------------------------------------------
 
 " Convenience mappings
 map ' `
@@ -124,3 +126,15 @@ function! s:CloseHiddenBuffers()
 		endif
 	endfor
 endfunction
+
+"smart indent when entering insert mode with i on empty lines
+function! IndentWith(default)
+    if len(getline('.')) == 0
+        return "\"_cc"
+    else
+        return a:default
+    endif
+endfunction
+
+nnoremap <expr> a IndentWith("a")
+nnoremap <expr> i IndentWith("i")

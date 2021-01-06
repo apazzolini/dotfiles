@@ -1,16 +1,16 @@
-" ------------------------------------------------------------------------------
-" Environment detection --------------------------------------------------------
-" ------------------------------------------------------------------------------
+" --------------------------------------------------------------------------------------------------
+" Environment detection ----------------------------------------------------------------------------
+" --------------------------------------------------------------------------------------------------
 
-let g:isNotes = argc() >= 1 && argv()[0] == 'D:\Air\Wiki\diary\diary.md'
+let g:isNotes = argc() >= 1 && argv()[0] =~ 'diary.md'
 let g:home = has('win32') ? 'L:/home/andre' : has('osx') ? '/Users/andre' : '/home/andre'
 let g:pluggedHome = has('win32')
   \ ? 'C:/Users/andre/AppData/Local/nvim-data/plugged'
   \ : '~/.dotfiles/nvim/plugged'
 
-" ------------------------------------------------------------------------------
-" Plugins ----------------------------------------------------------------------
-" ------------------------------------------------------------------------------
+" --------------------------------------------------------------------------------------------------
+" Plugins ------------------------------------------------------------------------------------------
+" --------------------------------------------------------------------------------------------------
 
 call plug#begin(g:pluggedHome)
 
@@ -27,7 +27,6 @@ Plug 'romainl/vim-qf'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
-Plug 'fvictorio/vim-textobj-backticks'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
@@ -41,14 +40,18 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
 Plug 'rbong/vim-flog'
 Plug 'sbdchd/neoformat'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'alvan/vim-closetag'
 
-" Still evaluating -------------------------------------------------------------
+" Still evaluating ---------------------------------------------------------------------------------
 Plug 'ivalkeen/vim-simpledb'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-Plug 'sheerun/vim-polyglot'
-" ------------------------------------------------------------------------------
+Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'fvictorio/vim-textobj-backticks'
+"Plug 'sheerun/vim-polyglot'
+"Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" --------------------------------------------------------------------------------------------------
 
 if !empty($TMUX)
   Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -58,6 +61,8 @@ endif
 
 if (g:isNotes)
   Plug 'vimwiki/vimwiki'
+else
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 
 call plug#end()
@@ -65,15 +70,13 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
-" ------------------------------------------------------------------------------
-" Colorscheme ------------------------------------------------------------------
-" ------------------------------------------------------------------------------
+" --------------------------------------------------------------------------------------------------
+" Colorscheme --------------------------------------------------------------------------------------
+" --------------------------------------------------------------------------------------------------
 
 exec 'set background=' . (g:isNotes ? 'light' : 'dark')
 set guifont=Consolas:h8
 set termguicolors
 colorscheme wave
-
-silent! source ./.vimlocal
 
 lua require('init')
