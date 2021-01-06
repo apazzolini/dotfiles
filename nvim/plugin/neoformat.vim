@@ -1,0 +1,12 @@
+let g:neoformat_javascript_prettier = {
+            \ 'exe': 'prettier_d_slim',
+            \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+            \ 'stdin': 1,
+            \ }
+
+let g:neoformat_enabled_javascript = ['prettier']
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END

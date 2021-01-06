@@ -25,10 +25,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'wellle/targets.vim'
 Plug 'romainl/vim-qf'
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-indent'
 Plug 'fvictorio/vim-textobj-backticks'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-repeat'
@@ -42,11 +40,14 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
 Plug 'rbong/vim-flog'
+Plug 'sbdchd/neoformat'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Still evaluating -------------------------------------------------------------
 Plug 'ivalkeen/vim-simpledb'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+Plug 'sheerun/vim-polyglot'
 " ------------------------------------------------------------------------------
 
 if !empty($TMUX)
@@ -69,7 +70,7 @@ syntax enable
 " ------------------------------------------------------------------------------
 
 exec 'set background=' . (g:isNotes ? 'light' : 'dark')
-set guifont=Operator\ Mono:h8
+set guifont=Consolas:h8
 set termguicolors
 colorscheme wave
 
