@@ -75,6 +75,7 @@ $#}::Send, !+{Down}
 
 !l::Send, !d
 !t::Send, ^t
+!+n::Send, ^+p
 
 #IfWinActive
 
