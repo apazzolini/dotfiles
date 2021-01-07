@@ -24,3 +24,4 @@ key_bindings:
   - { key: Key7,     mods: Control,       chars: "\x10\x37"        }
   - { key: Key8,     mods: Control,       chars: "\x10\x38"        }
   - { key: Key9,     mods: Control,       chars: "\x10\x39"        }
+  - { key: Slash,    mods: Alt,           chars: ",ct"        }
