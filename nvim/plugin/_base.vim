@@ -67,6 +67,8 @@ vmap <leader>y "*y
 map <leader>p "*p
 map <leader>jst :silent !stree<cr>
 map <leader>k :write <bar> edit <bar> TSBufEnable highlight<cr>
+map <leader>ww :w <bar> source %<cr>
+
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
@@ -138,3 +140,5 @@ endfunction
 
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
+
+autocmd bufnewfile,bufread *.jsx set filetype=javascriptreact

@@ -14,6 +14,8 @@
   "diagnostic.displayByAle": false,
   "diagnostic.format": "[%source%code] [%severity] %message",
 
+  "signature.enable": false,
+
   "suggest.minTriggerInputLength": 2,
   "suggest.triggerCompletionWait": 100,
 

@@ -40,7 +40,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
 Plug 'rbong/vim-flog'
 Plug 'sbdchd/neoformat'
-Plug 'alvan/vim-closetag'
 
 " Still evaluating ---------------------------------------------------------------------------------
 Plug 'ivalkeen/vim-simpledb'

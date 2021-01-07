@@ -1,4 +1,6 @@
-require('colorizer').setup()
+require 'colorizer'.setup({
+  '*';
+}, { mode = 'foreground' })
 
 require'nvim-treesitter.configs'.setup {
   indent = {
@@ -8,9 +10,9 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     custom_captures = {
-      ["classname"] = "ClassName",
-      ["reactHook"] = "ReactHook",
-      ["attribute.jsx"] = "jsxAttribute",
+      ["className"] = "TS_C_ClassName",
+      ["reactHook"] = "TS_C_ReactHook",
+      ["jsxAttribute"] = "TS_C_JsxAttribute",
     },
   },
 

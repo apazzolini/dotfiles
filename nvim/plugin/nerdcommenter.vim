@@ -1,2 +1,2 @@
 let g:NERDSpaceDelims = 1
-map <Leader>ct <Leader>c<space>
+map <Leader>ct <leader>c<space>
