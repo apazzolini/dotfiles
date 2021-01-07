@@ -47,6 +47,7 @@ Plug 'ivalkeen/vim-simpledb'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'MaxMEllon/vim-jsx-pretty'
+
 "Plug 'neovim/nvim-lspconfig'
 "Plug 'fvictorio/vim-textobj-backticks'
 "Plug 'sheerun/vim-polyglot'
