@@ -13,6 +13,7 @@ require'nvim-treesitter.configs'.setup {
       ["className"] = "TS_C_ClassName",
       ["reactHook"] = "TS_C_ReactHook",
       ["jsxAttribute"] = "TS_C_JsxAttribute",
+      ["function.call"] = "TS_C_FunctionCall",
     },
   },
 

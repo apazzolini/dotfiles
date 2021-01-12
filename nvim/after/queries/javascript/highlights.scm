@@ -1,8 +1,6 @@
-
-
 ; Prevent function *calls* from being highlighted
-(call_expression function: (identifier) @none)
-(call_expression function: (member_expression property: (property_identifier) @none))
+(call_expression function: (identifier) @function.call)
+(call_expression function: (member_expression property: (property_identifier) @function.call))
 
 ; Highlight React Hook usage
 (call_expression function: (identifier) @reactHook (#match? @reactHook "^use[A-Z]"))

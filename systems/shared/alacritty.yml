@@ -177,11 +177,6 @@ draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night)
 colors:
-  # Default colors
-  primary:
-    background: '#1c2023'
-    foreground: '#c7ccd1'
-
     # Bright and dim foreground colors
     #
     # The dimmed foreground color is calculated automatically if it is not
@@ -238,16 +233,31 @@ colors:
     #  background: '#c5c8c6'
     #  foreground: '#1d1f21'
 
+  # Default colors
+  primary:
+    background: '#1c2023'
+    foreground: '#c7ccd1'
+
   # Normal colors
   normal:
     black:   '#1c2023'
-    red:     '#d19b9b'
+    red:     '#D5869E'
     green:   '#a2c7a9'
-    yellow:  '#dcdcaa'
-    blue:    '#ae95c7'
-    magenta: '#c795ae'
-    cyan:    '#95aec7'
+    yellow:  '#E7DDBB'
+    blue:    '#95aec7'
+    magenta: '#ae95c7'
+    cyan:    '#68b2c9'
     white:   '#c7ccd1'
+
+    # Pre tree sitter wave refactor
+    # black:   '#1c2023'
+    # red:     '#d19b9b'
+    # green:   '#a2c7a9'
+    # yellow:  '#dcdcaa'
+    # blue:    '#ae95c7'
+    # magenta: '#c795ae'
+    # cyan:    '#95aec7'
+    # white:   '#c7ccd1'
 
   # Bright colors
   bright:
