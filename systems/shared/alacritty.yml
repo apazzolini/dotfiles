@@ -243,7 +243,7 @@ colors:
     black:   '#1c2023'
     red:     '#D5869E'
     green:   '#a2c7a9'
-    yellow:  '#E7DDBB'
+    yellow:  '#EFE7CA'
     blue:    '#95aec7'
     magenta: '#ae95c7'
     cyan:    '#68b2c9'
@@ -258,6 +258,7 @@ colors:
     # magenta: '#c795ae'
     # cyan:    '#95aec7'
     # white:   '#c7ccd1'
+    # other yellow:  '#E7DDBB'
 
   # Bright colors
   bright:
