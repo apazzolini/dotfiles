@@ -51,7 +51,7 @@ alias da='d ps -a'
 alias j=z
 alias rg='rg -i'
 alias fix='echo -e "\033c"; stty sane; tput rs1'
-#alias dl='docker-compose -f ~/Work/Float/dws/docker-compose/docker-compose.yml -f ~/Work/Float/dws/docker-compose/docker-compose.local.yml'
+alias dl='docker-compose -f ~/Work/Float/dws/docker-compose/docker-compose.yml -f ~/Work/Float/dws/docker-compose/docker-compose.local.yml'
 #alias jest='nocorrect jest'
 #alias ava='nocorrect ava'
 
