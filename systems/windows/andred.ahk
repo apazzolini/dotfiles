@@ -41,6 +41,7 @@ $!0::Send ^0
 #IfWinActive, ahk_exe alacritty.exe ; ------------------------------------------
 
 $!w::Send !w
+$!a::Send !a
 !c::Send, ^+c
 !v::
     ClipboardBackup := Clipboard                        ; To restore clipboard contents after paste

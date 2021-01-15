@@ -12,6 +12,7 @@ key_bindings:
   - { key: W,        mods: Alt,           chars: "\x10\x78"        }
   - { key: J,        mods: Alt,           chars: "\x10\x5B"        }
   - { key: K,        mods: Alt,           chars: "\x10\x0C"        }
+  - { key: A,        mods: Alt,           chars: "\x1ba"           }
   - { key: Space,    mods: Control,       chars: "\x00"            }
   - { key: Return,   mods: Alt,           action: None             }
   - { key: Key0,     mods: Control,       chars: "\x10\x30"        }
@@ -24,4 +25,4 @@ key_bindings:
   - { key: Key7,     mods: Control,       chars: "\x10\x37"        }
   - { key: Key8,     mods: Control,       chars: "\x10\x38"        }
   - { key: Key9,     mods: Control,       chars: "\x10\x39"        }
-  - { key: Slash,    mods: Alt,           chars: ",ct"        }
+  - { key: Slash,    mods: Alt,           chars: ",ct"             }
