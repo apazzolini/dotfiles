@@ -3,7 +3,7 @@
 #SingleInstance force
 
 global MonitorWidth := 1294 * 2 ;2588
-global MonitorHeight := 1447
+global MonitorHeight := 1447 - 30
 
 return
 
@@ -120,6 +120,27 @@ if WinExist("Nvy") {
 } else {
   Run, C:\Apps\NeoVim\bin\NvyNotes.lnk
   WinGet, id, ID, Nvy
+  WinActivate, ahk_id %id%
+}
+return
+
+$#d::
+DetectHiddenWindows, On
+if WinExist("ahk_exe Discord.exe") {
+  WinGet, id, ID, ahk_exe Discord.exe
+
+  if WinActive("ahk_id" . id) {
+    WinHide, ahk_id %id%
+    DetectHiddenWindows, Off
+    WinGet, wList, List
+    WinActivate, ahk_id %wList2%
+  } else {
+    WinShow, ahk_id %id%
+    WinActivate, ahk_id %id%
+  }
+} else {
+  Run, "C:\Users\andre\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Discord Inc\Discord.lnk"
+  WinGet, id, ID, ahk_exe Discord.exe
   WinActivate, ahk_id %id%
 }
 return
