@@ -1,6 +1,6 @@
 add_newline = false
 
-format = """$directory$git_branch$git_status$git_state[»](cyan) """
+format = """$directory$git_branch$git_status$git_state[»](purple) """
 
 [directory]
 truncation_length = 1000
