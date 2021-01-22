@@ -150,7 +150,7 @@ return
 ; [x, y, w, h]
 GetWinPadding() {
   if WinActive("ahk_exe firefox.exe") {
-    return [-6, -3, -3, 2]
+    return [-6, -3, -2, 2]
   } else if WinActive("ahk_exe alacritty.exe") {
     return [0, -1, -14, 2]
   } else if WinActive("ahk_exe chrome.exe") {

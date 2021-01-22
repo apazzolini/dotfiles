@@ -24,7 +24,7 @@ augroup ActiveCursorLine
   autocmd!
 augroup END
 
-cd D:/Air/Wiki
+cd C:/Users/andre/iCloudDrive/Wiki
 
-let g:vimwiki_list = [{'path': 'D:/Air/Wiki', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': 'C:/Users/andre/iCloudDrive/Wiki', 'ext': '.md'}]
 let g:vimwiki_autowriteall = 0
