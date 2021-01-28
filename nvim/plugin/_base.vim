@@ -15,6 +15,7 @@ set signcolumn=yes
 set number
 set relativenumber
 set colorcolumn=101
+set scrolloff=4
 
 set timeoutlen=1000 ttimeoutlen=0
 set autoread
@@ -68,7 +69,6 @@ map <leader>p "*p
 map <leader>jst :silent !stree<cr>
 map <leader>k :write <bar> edit <bar> TSBufEnable highlight<cr>
 map <leader>ww :w <bar> source %<cr>
-
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>

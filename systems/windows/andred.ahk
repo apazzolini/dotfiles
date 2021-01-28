@@ -78,6 +78,11 @@ $#}::Send, !+{Down}
 !t::Send, ^t
 !+n::Send, ^+p
 
+#IfWinActive, ahk_exe chrome.exe ; --------------------------------------------
+
+!t::Send, ^t
+!+n::Send, ^+n
+
 #IfWinActive
 
 ; Program Activation -----------------------------------------------------------
