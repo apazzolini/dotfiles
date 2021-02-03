@@ -2,8 +2,8 @@
 
 #SingleInstance force
 
-global MonitorWidth := 1294 * 2 ;2588
-global MonitorHeight := 1447 - 30
+global LDim := [-1442, -610, 1472, 2588]
+global RDim := [0, 0, 2588, 1417]
 
 return
 
@@ -115,71 +115,4 @@ $#d::Activate("ahk_exe Discord.exe", "C:\Users\andre\AppData\Roaming\Microsoft\W
 $#f::Activate("ahk_exe firefox.exe", "C:\Program Files\Mozilla Firefox\firefox.exe")
 ; $#e::Activate("ahk_exe chrome.exe", "C:\Program Files\Google\Chrome\Application\chrome.exe")
 
-; Window management -----------------------------------------------------------
-
-; [x, y, w, h]
-GetWinPadding() {
-  if WinActive("ahk_exe firefox.exe") {
-    return [-6, -3, -2, 2]
-  } else if WinActive("ahk_exe alacritty.exe") {
-    return [0, -1, -14, 2]
-  } else if WinActive("ahk_exe chrome.exe") {
-    return [-7, 29, 0, -32]
-  } else if WinActive("ahk_exe discord.exe") or WinActive("ahk_exe Spotify.exe") {
-    return [0, 0, -14, -7]
-  }
-  return [-7, -1, 0, 1]
-}
-
-!+m::
-  padding := GetWinPadding()
-  WinMove A, , padding[1], padding[2], MonitorWidth - 14 + padding[3], MonitorHeight + padding[4]
-return
-
-!+h::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  isPinned := curX == padding[1]
-
-  if (isPinned && curW == Floor(MonitorWidth / 2) + padding[3]) {
-    w := Floor(MonitorWidth / 3) + padding[3]
-  } else if (isPinned && curW < Floor(MonitorWidth / 2) + padding[3]) {
-    w := Floor(MonitorWidth * 2 / 3) + padding[3]
-  } else {
-    w := Floor(MonitorWidth / 2) + padding[3]
-  }
-
-  WinMove A, , padding[1], padding[2], w, MonitorHeight + padding[4]
-return
-
-!+l::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  targetWidth := 2560 - padding[1]
-
-  if (curX == 1280 + padding[1]) {
-    x := 1280 + padding[1] - Ceil(MonitorWidth / 6)
-  } else if (curX == 1280 + padding[1] - Ceil(MonitorWidth / 6)) {
-    x := 1280 + padding[1] + Floor(MonitorWidth / 6)
-  } else {
-    x := 1280 + padding[1]
-  }
-
-  WinMove A, , x, padding[2], targetWidth - x, MonitorHeight + padding[4]
-return
-
-!+k::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  WinMove A, , curX, padding[2], curW, (MonitorHeight / 2) + padding[4]
-return
-
-!+j::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  WinMove A, , curX, 716 + padding[2], curW, MonitorHeight - 716 + padding[4]
-return
-
-^+r::
-Reload
-return
+#Include L:\home\andre\.dotfiles\systems\windows\winmgt.ahk
