@@ -17,6 +17,7 @@ set signcolumn=no
 set matchpairs=
 
 nmap <Leader>b <Plug>VimwikiGoBackLink
+imap <c-v> <c-r>*
 
 hi MatchParen ctermfg=0
 
