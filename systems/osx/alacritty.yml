@@ -1,7 +1,8 @@
 import:
   - /Users/andre/.dotfiles/systems/shared/alacritty.yml
 font:
-  size: 11.0
+  size: 11.5
+  use_thin_strokes: true
 key_bindings:
   - { key: Key0,     mods: Command,       chars: "\x100"    }
   - { key: Key1,     mods: Command,       chars: "\x101"    }

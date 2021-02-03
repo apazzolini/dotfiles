@@ -14,8 +14,8 @@ set shiftround
 set signcolumn=yes
 set number
 set relativenumber
-set colorcolumn=101
 set scrolloff=4
+set colorcolumn=95
 
 set timeoutlen=1000 ttimeoutlen=0
 set autoread

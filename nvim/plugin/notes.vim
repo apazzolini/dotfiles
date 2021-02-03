@@ -24,7 +24,13 @@ augroup ActiveCursorLine
   autocmd!
 augroup END
 
-cd C:/Users/andre/iCloudDrive/Wiki
+if (has('win32'))
+  let wikipath = C:/Users/andre/iCloudDrive/Wiki
+else
+  let wikipath = '/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki'
+endif
 
-let g:vimwiki_list = [{'path': 'C:/Users/andre/iCloudDrive/Wiki', 'ext': '.md'}]
+cd `=wikipath`
+
+let g:vimwiki_list = [{'path': wikipath, 'ext': '.md'}]
 let g:vimwiki_autowriteall = 0
