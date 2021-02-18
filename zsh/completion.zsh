@@ -6,3 +6,6 @@ zstyle ':completion:*' insert-tab pending
 
 # colors during completion
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# better completion menu
+zstyle ':completion:*' menu select
