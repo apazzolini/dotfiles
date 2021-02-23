@@ -91,6 +91,9 @@ nmap <leader>ot mT:%s/test.only/test/ge<cr>'T?test(<cr>cetest.only<esc>'T
 nmap <leader>oa mT?test(<cr>cetest.only<esc>'T
 nmap <leader>ox mT:%s/test.only/test/ge<cr>'T
 
+" Move cursor to first line in insert mode on git commits
+autocmd FileType gitcommit execute "normal! gg" | startinsert
+
 " Only show cursor line on active split
 set nocursorline
 augroup ActiveCursorLine
