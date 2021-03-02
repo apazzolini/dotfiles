@@ -15,7 +15,7 @@ if( $found ){
 
 #[Ports]
 #All the ports you want to forward separated by coma
-$ports=@(80,443,8080,9090);
+$ports=@(80,443,8080,9090,2222);
 
 #[LOCAL IP] USE EITHER LINE 22 OR LINES 24 AND 25 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #You can change the addr to your ip config to listen to a specific address

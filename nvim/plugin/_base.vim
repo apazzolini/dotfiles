@@ -79,6 +79,8 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+nnoremap <a-[> gT
+nnoremap <a-]> gt
 map <leader>we :set winheight=999<cr>
 map <leader>wd :set winheight=10<cr><c-w>=<cr>
 map <leader>wj :resize +20<cr>

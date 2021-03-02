@@ -52,6 +52,8 @@ $!a::Send !a
     return
 $#{::Send, !^[
 $#}::Send, !^]
+$#[::Send, ![
+$#]::Send, !]
 
 #IfWinActive, ahk_exe Nvy.exe ; ------------------------------------------------
 
