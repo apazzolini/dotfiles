@@ -32,9 +32,9 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 chflags nohidden ~/Library
 
 # External monitor font smoothing setting
-defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO # Catalina
-defaults -currentHost write -g AppleFontSmoothing -int 0 # Big Sur
-defaults write io.alacritty CGFontRenderingFontSmoothingDisabled 0
+# defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO # Catalina
+# defaults -currentHost write -g AppleFontSmoothing -int 0 # Big Sur
+# defaults write io.alacritty CGFontRenderingFontSmoothingDisabled 0
 
 # External mouse acceleration
 defaults write -g com.apple.mouse.scaling -1

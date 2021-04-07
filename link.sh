@@ -18,7 +18,7 @@ function env_setup {
   # neovim
   mkdir -p ~/.config
   mkdir -p ~/.local/share/nvim
-  link nvim/config ~/.config/nvim
+  link nvim ~/.config/nvim
   link nvim/plugged ~/.local/share/nvim/plugged
 
   # tmux
