@@ -27,6 +27,7 @@ alias tig='tig -m'
 
 # shortcuts for npm/yarn
 alias yr="yarn run"
+alias nr="npm run"
 alias yt="yarn run test"
 alias ytw="yarn test:watch"
 
