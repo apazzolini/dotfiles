@@ -13,6 +13,7 @@ export LS_COLORS='rs=0:di=00;34:ln=00;36:mh=00:pi=40;33:so=00;35:do=00;35:bd=40;
 
 export RG_GLOBS='-g "*.*"\
   -g "config/local.js"\
+  -g "!com.googlecode.iterm2.plist"\
   -g "!.git"\
   -g "!es5"\
   -g "!dist"\
