@@ -15,6 +15,7 @@ set smartindent
 set colorcolumn=81
 set signcolumn=no
 set matchpairs=
+set scrolloff=0
 
 nmap <Leader>b <Plug>VimwikiGoBackLink
 imap <c-v> <c-r>*
