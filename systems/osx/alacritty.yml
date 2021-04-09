@@ -1,8 +1,17 @@
 import:
   - /Users/andre/.dotfiles/systems/shared/alacritty.yml
 font:
-  size: 11.5
-  use_thin_strokes: true
+  size: 12.5
+  normal:
+    family: "Operator Mono"
+    style: Extra Light
+  bold:
+    style: Light
+  italic:
+    style: Extra Light Italic
+window:
+  padding:
+    y: 2
 key_bindings:
   - { key: Key0,     mods: Command,       chars: "\x100"    }
   - { key: Key1,     mods: Command,       chars: "\x101"    }
@@ -21,3 +30,4 @@ key_bindings:
   - { key: K,        mods: Command,       chars: "\x10\x0C" }
   - { key: A,        mods: Command,       chars: "\x1ba"    }
   - { key: Space,    mods: Control,       chars: "\x00"     }
+  - { key: Slash,    mods: Command,       chars: ",ct"      }
