@@ -1,6 +1,8 @@
 import:
   - /Users/andre/.dotfiles/systems/shared/alacritty.yml
 font:
+  use_thin_strokes: true
+
   size: 12.5
   normal:
     family: "Operator Mono"
@@ -9,25 +11,35 @@ font:
     style: Light
   italic:
     style: Extra Light Italic
+
+  # size: 11.5
+  # normal:
+    # family: "JetBrains Mono NL"
+    # style: Thin
+  # bold:
+    # style: Thin
+  # italic:
+    # style: Thin Italic
+
 window:
   padding:
     y: 2
 key_bindings:
-  - { key: Key0,     mods: Command,       chars: "\x100"    }
-  - { key: Key1,     mods: Command,       chars: "\x101"    }
-  - { key: Key2,     mods: Command,       chars: "\x102"    }
-  - { key: Key3,     mods: Command,       chars: "\x103"    }
-  - { key: Key4,     mods: Command,       chars: "\x104"    }
-  - { key: Key5,     mods: Command,       chars: "\x105"    }
-  - { key: Key6,     mods: Command,       chars: "\x106"    }
-  - { key: Key7,     mods: Command,       chars: "\x107"    }
-  - { key: Key8,     mods: Command,       chars: "\x108"    }
-  - { key: Key9,     mods: Command,       chars: "\x109"    }
+  - { key: Key0, mods: Command, chars: "\x100" }
+  - { key: Key1, mods: Command, chars: "\x101" }
+  - { key: Key2, mods: Command, chars: "\x102" }
+  - { key: Key3, mods: Command, chars: "\x103" }
+  - { key: Key4, mods: Command, chars: "\x104" }
+  - { key: Key5, mods: Command, chars: "\x105" }
+  - { key: Key6, mods: Command, chars: "\x106" }
+  - { key: Key7, mods: Command, chars: "\x107" }
+  - { key: Key8, mods: Command, chars: "\x108" }
+  - { key: Key9, mods: Command, chars: "\x109" }
   - { key: LBracket, mods: Command|Shift, chars: "\x10\x70" }
   - { key: RBracket, mods: Command|Shift, chars: "\x10\x6E" }
-  - { key: J,        mods: Command,       chars: "\x10\x5b" }
-  - { key: W,        mods: Command,       chars: "\x10\x78" }
-  - { key: K,        mods: Command,       chars: "\x10\x0C" }
-  - { key: A,        mods: Command,       chars: "\x1ba"    }
-  - { key: Space,    mods: Control,       chars: "\x00"     }
-  - { key: Slash,    mods: Command,       chars: ",ct"      }
+  - { key: J, mods: Command, chars: "\x10\x5b" }
+  - { key: W, mods: Command, chars: "\x10\x78" }
+  - { key: K, mods: Command, chars: "\x10\x0C" }
+  - { key: A, mods: Command, chars: "\x1ba" }
+  - { key: Space, mods: Control, chars: "\x00" }
+  - { key: Slash, mods: Command, chars: ",ct" }

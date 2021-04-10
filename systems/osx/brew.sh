@@ -1,5 +1,7 @@
 #!/bin/bash
 
+brew analytics off
+
 brew install starship
 brew install coreutils
 brew install diff-so-fancy
@@ -16,6 +18,7 @@ brew install wget
 brew install qlstephen qlmarkdown quicklook-json qlimagesize
 brew install --HEAD luajit
 brew install --HEAD neovim
+brew install efm-langserver
 
 # brew install python
 # # Python 2 is no longer in homebrew

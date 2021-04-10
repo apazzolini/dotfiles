@@ -1,7 +1,3 @@
-require 'colorizer'.setup({
-  '*';
-}, { mode = 'foreground' })
-
 require'nvim-treesitter.configs'.setup {
   indent = {
     enable = false,
@@ -24,5 +20,3 @@ require'nvim-treesitter.configs'.setup {
     persist_queries = false -- Whether the query persists across vim sessions
   },
 }
-
--- require'lspconfig'.tsserver.setup{}

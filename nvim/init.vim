@@ -17,9 +17,6 @@ call plug#begin(g:pluggedHome)
 Plug 'apazzolini/vim-wave'
 Plug 'apazzolini/nerdtree'
 Plug 'sickill/vim-pasta'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'wellle/targets.vim'
@@ -32,26 +29,35 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'Shougo/neosnippet.vim'
-Plug 'tmsvg/pear-tree'
-Plug 'easymotion/vim-easymotion'
 Plug 'szw/vim-maximizer'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
 Plug 'rbong/vim-flog'
 Plug 'sbdchd/neoformat'
-
-" Still evaluating ---------------------------------------------------------------------------------
-Plug 'ivalkeen/vim-simpledb'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'gavocanov/vim-js-indent'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'phaazon/hop.nvim'
 
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'fvictorio/vim-textobj-backticks'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'tmsvg/pear-tree'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'windwp/nvim-autopairs'
+" Plug 'cohama/lexima.vim'
+
+" Replace these with something else
+" Plug 'easymotion/vim-easymotion'
+" Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'gavocanov/vim-js-indent'
+
+" Still evaluating ---------------------------------------------------------------------------------
+
+Plug 'ivalkeen/vim-simpledb'
+
 " --------------------------------------------------------------------------------------------------
 
 if !empty($TMUX)
@@ -63,7 +69,7 @@ endif
 if (g:isNotes)
   Plug 'vimwiki/vimwiki'
 else
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'hrsh7th/nvim-compe'
 endif
 
 call plug#end()
@@ -80,4 +86,20 @@ set guifont=Consolas:h8
 set termguicolors
 colorscheme wave
 
-lua require('init')
+lua << EOF
+  for k, v in pairs(package.loaded) do
+    if string.match(k, "^andre") then
+      package.loaded[k] = nil
+    end
+  end
+EOF
+
+autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
+autocmd! BufWritePost ~/.dotfiles/nvim/*.lua execute 'luafile %' | source $MYVIMRC
+
+sign define LspDiagnosticsSignError text=>> texthl=LspDiagnosticsSignError linehl= numhl=
+sign define LspDiagnosticsSignWarning text=> texthl=LspDiagnosticsSignWarning linehl= numhl=
+sign define LspDiagnosticsSignInformation text=> texthl=LspDiagnosticsSignInformation linehl= numhl=
+sign define LspDiagnosticsSignHint text=> texthl=LspDiagnosticsSignHint linehl= numhl=
+
+lua require('andre')

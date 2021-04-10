@@ -20,6 +20,11 @@ set colorcolumn=95
 set timeoutlen=1000 ttimeoutlen=0
 set autoread
 set hidden
+set updatetime=300
+set shortmess+=c
+set secure
+set nobackup
+set nowritebackup
 set wrap linebreak nolist
 set splitright
 set backspace=indent,eol,start
@@ -31,6 +36,7 @@ set switchbuf=useopen
 set nomodeline
 set mouse=a
 set inccommand=split
+set completeopt=menuone,noselect
 
 set nojoinspaces
 autocmd FileType * set formatoptions-=o
@@ -61,11 +67,12 @@ nnoremap <c-u> 10<c-u>zz
 noremap 0 ^
 noremap ^ 0
 imap <c-l> <space>=><space>
-nnoremap <silent> <cr> :noh<cr><cr>
+" nnoremap <silent> <cr> :noh<cr><cr>
+map <leader>nn :noh<cr>
 map <leader>nt :tabnew<cr>
 nnoremap <leader><leader> <c-^>
 vmap <leader>y "*y
-map <leader>p "*p
+" map <leader>p "*p
 map <leader>jst :silent !stree<cr>
 map <leader>k :write <bar> edit <bar> TSBufEnable highlight<cr>
 map <leader>ww :w <bar> source %<cr>
@@ -107,6 +114,7 @@ augroup END
 " Strip trailing spaces and newlines on save
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s#\($\n\s*\)\+\%$##e
+
 
 " Restore last position when reopening file
 autocmd BufReadPost *

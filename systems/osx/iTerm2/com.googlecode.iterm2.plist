@@ -4683,13 +4683,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.13725490868091583</real>
+				<real>0.88083832990378141</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.12549020349979401</real>
+				<real>0.94846368732220299</real>
 				<key>Red Component</key>
-				<real>0.10980392247438431</real>
+				<real>0.96929931640625</real>
 			</dict>
 			<key>Cursor Type</key>
 			<integer>2</integer>
@@ -5243,7 +5243,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<integer>4</integer>
+			<integer>3</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>

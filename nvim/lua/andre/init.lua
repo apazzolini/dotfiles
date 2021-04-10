@@ -1,0 +1,6 @@
+require("andre.colorizer")
+require("andre.telescope")
+require("andre.treesitter")
+require("andre.lsp")
+require("andre.galaxyline")
+require("andre.hop")
