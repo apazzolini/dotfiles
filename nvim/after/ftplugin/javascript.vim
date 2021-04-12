@@ -13,12 +13,13 @@ let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
   \                'area', 'base', 'col', 'command', 'embed',
   \                'keygen', 'param', 'source', 'track', 'wbr'
   \              ],
-G \              'not_like': '{[^}]*$\|/$',
+  \              'not_like': '{[^}]*$\|/$',
   \              'until': '[^a-zA-Z0-9-._]',
   \              'not_at': ['[^> ]<[^>]*'],
   \              'not_in': ['String']
   \           }
   \ }, 'keep')
+imap <buffer> <bs> <Plug>(PearTreeBackspace)
 
 " Old config before https://github.com/tmsvg/pear-tree/issues/31
 "\              'not_like': '/$',
