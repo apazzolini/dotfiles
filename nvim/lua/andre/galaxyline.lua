@@ -9,8 +9,9 @@ gl.short_line_list = {'nerdtree'}
 -----------------------------------COLORS----------------------------------- {{{
 
 local dark = {
-  bg = '#565E65',
+  bg = '#2b3034',
   fg = '#c7ccd1',
+  fg_dim = '#747c84',
   error = '#D5869E',
   black = '#1c2023',
 
@@ -45,6 +46,25 @@ function get_color(val)
     return dark[val]
   end
 end
+
+---------------------------------------------------------------------------- }}}
+----------------------------------SHORTLINE--------------------------------- {{{
+
+gls.short_line_left = {
+  {
+    ShortFileName = {
+      provider = function()
+        if vim.fn.expand('%:t'):find('NERD_tree') then return '' end
+
+        local name = '  ' .. vim.fn.expand('%:h') .. '/' .. vim.fn.expand('%:t')
+        if vim.bo.modified then name = name .. ' [+]' end
+        return name
+      end,
+      condition = condition.buffer_not_empty,
+      highlight = {color('fg_dim'), color('bg')}
+    }
+  }
+}
 
 ---------------------------------------------------------------------------- }}}
 ---------------------------------STATUSLINE--------------------------------- {{{
@@ -100,7 +120,7 @@ gls.left = {
   }, {
     FileName = {
       provider = function()
-        local name = '  ' .. vim.fn.expand('%:p')
+        local name = '  ' .. vim.fn.expand('%:h') .. '/' .. vim.fn.expand('%:t')
         if vim.bo.modified then name = name .. ' [+]' end
         return name
       end,

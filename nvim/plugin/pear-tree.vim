@@ -6,4 +6,6 @@ let g:pear_tree_smart_openers = 1
 "let g:pear_tree_smart_closers = 1
 "let g:pear_tree_smart_backspace = 1
 "imap <space> <Plug>(PearTreeSpace)
-" imap <esc> <Plug>(PearTreeFinishExpansion)
+"imap <esc> <Plug>(PearTreeFinishExpansion)
+
+imap <bs> <Plug>(PearTreeBackspace)

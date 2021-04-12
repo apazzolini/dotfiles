@@ -1,0 +1,2 @@
+EditorConfigDisable
+setlocal colorcolumn=0

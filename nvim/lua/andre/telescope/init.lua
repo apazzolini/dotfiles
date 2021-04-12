@@ -67,6 +67,7 @@ require('telescope').setup {
               ["<c-k>"] = actions.move_selection_previous,
               ["<esc>"] = actions.close,
               ["<cr>"] = select_multiple,
+              ["<bs>"] = '<bs>',
               ["<C-o>"] = actions.send_selected_to_qflist + actions.open_qflist,
             },
         }
