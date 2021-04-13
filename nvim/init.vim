@@ -43,14 +43,9 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'phaazon/hop.nvim'
-
 Plug 'tmsvg/pear-tree'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'windwp/nvim-autopairs'
-" Plug 'cohama/lexima.vim'
 
 " Replace these with something else
-" Plug 'easymotion/vim-easymotion'
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'gavocanov/vim-js-indent'
 
