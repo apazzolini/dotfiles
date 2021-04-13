@@ -36,7 +36,7 @@ require('telescope').setup {
 
         prompt_prefix = '> ',
         color_devicons = true,
-        prompt_position = 'bottom',
+        prompt_position = 'top',
         sorting_strategy = 'ascending',
 
         layout_strategy = 'horizontal',
