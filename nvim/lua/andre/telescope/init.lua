@@ -93,9 +93,7 @@ end
 function M.live_grep()
   require('telescope.builtin').live_grep {
     prompt_title = "~ live grep ~",
-    layout_config = {
-      preview_width = 0.5,
-    },
+    layout_strategy = 'vertical',
  }
 end
 
