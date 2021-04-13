@@ -40,6 +40,7 @@ if [ -f "/usr/bin/keychain" ]; then
   source $HOME/.keychain/andred-sh
 fi
 
+safesource /usr/share/doc/fzf/examples/key-bindings.zsh
 safesource ~/.fzf.zsh
 safesource /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
