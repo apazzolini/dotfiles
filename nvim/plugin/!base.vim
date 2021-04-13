@@ -76,7 +76,6 @@ vmap <leader>y "*y
 map <leader>jst :silent !stree<cr>
 map <leader>k :write <bar> edit <bar> TSBufEnable highlight<cr>
 map <leader>ww :w <bar> source %<cr>
-map <leader>wa :edit ~/.config/nvim/plugged/vim-wave/colors/wave.vim<cr>
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
