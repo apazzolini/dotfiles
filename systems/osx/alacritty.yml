@@ -1,5 +1,6 @@
 import:
   - /Users/andre/.dotfiles/systems/shared/alacritty.yml
+alt_send_esc: true
 font:
   use_thin_strokes: true
 
@@ -37,9 +38,11 @@ key_bindings:
   - { key: Key9, mods: Command, chars: "\x109" }
   - { key: LBracket, mods: Command|Shift, chars: "\x10\x70" }
   - { key: RBracket, mods: Command|Shift, chars: "\x10\x6E" }
+  - { key: LBracket, mods: Command, chars: "\x1b\x5b" }
+  - { key: RBracket, mods: Command, chars: "\x1b\x5d" }
   - { key: J, mods: Command, chars: "\x10\x5b" }
   - { key: W, mods: Command, chars: "\x10\x78" }
   - { key: K, mods: Command, chars: "\x10\x0C" }
-  - { key: A, mods: Command, chars: "\x1ba" }
+  - { key: A, mods: Command, chars: "\x01" }
   - { key: Space, mods: Control, chars: "\x00" }
   - { key: Slash, mods: Command, chars: ",ct" }
