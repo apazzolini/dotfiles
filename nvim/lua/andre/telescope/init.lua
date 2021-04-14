@@ -74,7 +74,7 @@ require('telescope').setup {
     },
     extensions = {
         fzy_native = {
-            override_generic_sorter = false,
+            override_generic_sorter = true,
             override_file_sorter = true,
         }
     }
@@ -93,7 +93,9 @@ end
 function M.live_grep()
   require('telescope.builtin').live_grep {
     prompt_title = "~ live grep ~",
-    layout_strategy = 'vertical',
+    layout_strategy = 'horizontal',
+    mirror = true,
+    previewer = false,
  }
 end
 

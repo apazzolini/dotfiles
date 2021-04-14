@@ -1,2 +1,2 @@
 EditorConfigDisable
-setlocal colorcolumn=99999
+setlocal colorcolumn=0

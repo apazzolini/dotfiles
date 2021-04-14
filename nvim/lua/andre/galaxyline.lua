@@ -118,6 +118,11 @@ gls.left = {
       highlight = {color('black'), color('error')},
     }
   }, {
+    Spacer = {
+      provider = function() return ' ' end,
+      highlight = {color('bg'), color('bg')},
+    }
+  }, {
     FileName = {
       provider = function()
         local name = '  ' .. vim.fn.expand('%:h') .. '/' .. vim.fn.expand('%:t')
