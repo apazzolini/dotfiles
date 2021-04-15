@@ -21,6 +21,7 @@ local select_multiple = function(prompt_bufnr)
 end
 
 require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('git_worktree')
 require('telescope').setup {
     defaults = {
         vimgrep_arguments = {
@@ -56,9 +57,14 @@ require('telescope').setup {
         qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
 
         file_ignore_patterns = {
+          "yarn.lock",
+          "package-lock.json",
           "git/*",
           "*.key",
-          "**/node_modules/**"
+          "**/node_modules/**",
+          "davinci",
+          "native",
+          "graphql",
         },
 
         mappings = {
@@ -76,7 +82,7 @@ require('telescope').setup {
         fzy_native = {
             override_generic_sorter = true,
             override_file_sorter = true,
-        }
+        },
     }
 }
 
@@ -93,9 +99,11 @@ end
 function M.live_grep()
   require('telescope.builtin').live_grep {
     prompt_title = "~ live grep ~",
-    layout_strategy = 'horizontal',
-    mirror = true,
-    previewer = false,
+    layout_strategy = 'vertical',
+    layout_config = {
+      mirror = true,
+      preview_height = 0.20,
+    }
  }
 end
 
@@ -148,6 +156,10 @@ function M.builtin()
       return true
     end
   })
+end
+
+function M.git_worktrees()
+  require('telescope').extensions.git_worktree.git_worktrees({})
 end
 
 return setmetatable({}, {

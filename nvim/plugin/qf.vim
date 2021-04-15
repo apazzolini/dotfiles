@@ -19,6 +19,3 @@ autocmd FileType qf map <buffer> D :RemoveQFItem<cr>
 
 nmap <silent> [q :call qf#wrap#WrapCommand('up', 'c')<CR>
 nmap <silent> ]q :call qf#wrap#WrapCommand('down', 'c')<CR>
-
-nmap <silent> ,m :call qf#wrap#WrapCommand('up', 'l')<CR>
-nmap <silent> ,. :call qf#wrap#WrapCommand('down', 'l')<CR>

@@ -35,6 +35,7 @@ map_tele(',fe', 'lsp_workspace_diagnostics', {
 })
 map_tele(',fb', 'builtin')
 map_tele(',a',  'live_grep')
+map_tele(',fw',  'git_worktrees')
 map_tele(',W',  'grep_string', {
   short_path = true,
   word_match = '-w',
