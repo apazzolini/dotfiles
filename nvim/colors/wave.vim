@@ -193,7 +193,7 @@ call s:HL('LspDiagnosticsDefaultError', g:wRed)
 
 " Telescope
 call s:HL('TelescopeMatching', g:wRed)
-call s:HL('TelescopeBorder', 'guifg=#bf568b')
+call s:HL('TelescopeBorder', g:wMagenta)
 hi! link TelescopePromptBorder  TelescopeBorder
 hi! link TelescopeResultsBorder TelescopeBorder
 hi! link TelescopePreviewBorder TelescopeBorder
@@ -203,5 +203,5 @@ hi! link TelescopeSelectionCaret TelescopeSelection
 call s:HL('TelescopeMultiSelection', g:wMagenta)
 
 " Galaxyline
-highlight! StatusLine gui=none guibg=#2b3034 guifg=NONE
-highlight! StatusLineNC gui=underline guibg=#2b3034 guifg=#2b3034
+call s:HL('StatusList', 'gui=none', 'guifg=none', g:wBg1)
+call s:HL('StatusLineNC', 'gui=underline', g:wFg1, g:wBg1)

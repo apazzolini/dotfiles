@@ -20,71 +20,79 @@ local select_multiple = function(prompt_bufnr)
   end
 end
 
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('git_worktree')
+-- require('telescope').load_extension('fzy_native')
 require('telescope').setup {
-    defaults = {
-        vimgrep_arguments = {
-          'rg',
-          '--color=never',
-          '--follow',
-          '--no-heading',
-          '--with-filename',
-          '--line-number',
-          '--column',
-          '--smart-case',
-        },
-
-        prompt_prefix = '> ',
-        color_devicons = true,
-        prompt_position = 'top',
-        sorting_strategy = 'ascending',
-
-        layout_strategy = 'horizontal',
-        layout_defaults = {
-          horizontal = {
-            preview_width = 0.60,
-          },
-          vertical = {
-            mirror = true,
-            preview_height = 0.60,
-          },
-        },
-
-        file_sorter = require('telescope.sorters').get_fzy_sorter,
-        file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
-        grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
-        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-
-        file_ignore_patterns = {
-          "yarn.lock",
-          "package-lock.json",
-          "git/*",
-          "*.key",
-          "**/node_modules/**",
-          "davinci",
-          "native",
-          "graphql",
-        },
-
-        mappings = {
-            i = {
-              ["<c-j>"] = actions.move_selection_next,
-              ["<c-k>"] = actions.move_selection_previous,
-              ["<esc>"] = actions.close,
-              ["<cr>"] = select_multiple,
-              ["<bs>"] = '<bs>',
-              ["<C-o>"] = actions.send_selected_to_qflist + actions.open_qflist,
-            },
-        }
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--follow',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
     },
-    extensions = {
-        fzy_native = {
-            override_generic_sorter = true,
-            override_file_sorter = true,
-        },
+
+    prompt_prefix = '> ',
+    color_devicons = true,
+    prompt_position = 'top',
+    sorting_strategy = 'ascending',
+
+    layout_strategy = 'horizontal',
+    layout_defaults = {
+      horizontal = {
+        preview_width = 0.60,
+      },
+      vertical = {
+        mirror = true,
+        preview_height = 0.60,
+      },
+    },
+
+    -- file_sorter = require('telescope.sorters').get_fzy_sorter,
+    file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
+    grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
+    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+
+    file_ignore_patterns = {
+      "yarn.lock",
+      "package-lock.json",
+      "git/*",
+      "*.key",
+      "**/node_modules/**",
+      "davinci",
+      "native",
+      "graphql",
+    },
+
+    mappings = {
+      i = {
+        ["<c-j>"] = actions.move_selection_next,
+        ["<c-k>"] = actions.move_selection_previous,
+        ["<esc>"] = actions.close,
+        ["<cr>"] = select_multiple,
+        ["<bs>"] = '<bs>',
+        ["<C-o>"] = actions.send_selected_to_qflist + actions.open_qflist,
+      },
     }
+  },
+  extensions = {
+    fzf = {
+      -- override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
+    -- fzy_native = {
+    -- override_generic_sorter = true,
+    -- override_file_sorter = true,
+    -- },
+  }
 }
+
+-- Telescope extensions must be loaded after the setup function
+require('telescope').load_extension('git_worktree')
+require('telescope').load_extension('fzf')
 
 local M = {}
 

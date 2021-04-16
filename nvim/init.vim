@@ -40,6 +40,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'phaazon/hop.nvim'
@@ -52,6 +53,7 @@ Plug 'tmsvg/pear-tree'
 " Still evaluating ---------------------------------------------------------------------------------
 
 Plug 'ivalkeen/vim-simpledb'
+Plug 'ThePrimeagen/git-worktree.nvim'
 
 " --------------------------------------------------------------------------------------------------
 

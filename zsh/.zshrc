@@ -32,6 +32,7 @@ function safesource {
 # initialize autosuggetsions and bind accept to ctrl+space
 safesource /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 safesource /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+safesource /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
 # ssh-agent
