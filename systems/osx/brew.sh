@@ -19,6 +19,7 @@ brew install qlstephen qlmarkdown quicklook-json qlimagesize
 brew install --HEAD luajit
 brew install --HEAD neovim
 brew install efm-langserver
+brew install gawk
 
 # brew install python
 # # Python 2 is no longer in homebrew

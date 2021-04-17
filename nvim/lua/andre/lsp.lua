@@ -1,3 +1,15 @@
+vim.fn.sign_define('LspDiagnosticsSignError',
+  { text = ">>", texthl = "LspDiagnosticsSignError", linehl = '', numhl = '' })
+
+vim.fn.sign_define('LspDiagnosticsSignWarning',
+  { text = ">" , texthl = "LspDiagnosticsSignWarning", linehl = '', numhl = '' })
+
+vim.fn.sign_define('LspDiagnosticsSignInformation',
+  { text = ">" , texthl = "LspDiagnosticsSignInformation", linehl = '', numhl = '' })
+
+vim.fn.sign_define('LspDiagnosticsSignHint',
+  { text = ">" , texthl = "LspDiagnosticsSignHint",  linehl = '', numhl = '' })
+
 local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)

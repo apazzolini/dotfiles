@@ -82,17 +82,27 @@ require('telescope').setup {
       -- override_generic_sorter = true,  -- override the generic sorter
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-    }
+    },
     -- fzy_native = {
     -- override_generic_sorter = true,
     -- override_file_sorter = true,
     -- },
+    -- fzf_writer = {
+      -- minimum_grep_characters = 2,
+      -- minimum_files_characters = 2,
+
+      -- -- Disabled by default.
+      -- -- Will probably slow down some aspects of the sorter, but can make color highlights.
+      -- -- I will work on this more later.
+      -- -- use_highlighter = true,
+    -- }
   }
 }
 
 -- Telescope extensions must be loaded after the setup function
 require('telescope').load_extension('git_worktree')
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('project')
 
 local M = {}
 
@@ -101,10 +111,19 @@ function M.edit_dotfiles()
     prompt_title = "~ dotfiles ~",
     shorten_path = false,
     cwd = "~/.dotfiles",
+    hidden = true,
   }
 end
 
 function M.live_grep()
+  -- require('telescope').extensions.fzf_writer.files({
+    -- prompt_title = "~ live grep1 ~",
+    -- layout_strategy = 'vertical',
+    -- layout_config = {
+      -- mirror = true,
+      -- preview_height = 0.20,
+    -- }
+  -- })
   require('telescope.builtin').live_grep {
     prompt_title = "~ live grep ~",
     layout_strategy = 'vertical',
@@ -112,7 +131,7 @@ function M.live_grep()
       mirror = true,
       preview_height = 0.20,
     }
- }
+  }
 end
 
 function M.buffers()
@@ -147,13 +166,15 @@ function M.find_files()
   require('telescope.builtin').find_files({
     prompt_title = "~ files ~",
     follow = true,
+    hidden = true,
   })
 end
 
 function M.current_dir_files()
   require('telescope.builtin').find_files({
     prompt_title = string.format("~ files in [%s] ~", vim.fn.expand("%:h")),
-    cwd = vim.fn.expand("%:p:h")
+    cwd = vim.fn.expand("%:p:h"),
+    hidden = true,
   })
 end
 
@@ -168,6 +189,18 @@ end
 
 function M.git_worktrees()
   require('telescope').extensions.git_worktree.git_worktrees({})
+end
+
+local project_actions = require("telescope._extensions.project_actions")
+function M.projects()
+  require('telescope').extensions.project.project({
+    change_dir = true,
+    attach_mappings = function(prompt_bufnr, map)
+      map('i', '<cr>', actions.select_default)
+      -- map('i', '<esc>', '<esc>')
+      return true
+    end
+  })
 end
 
 return setmetatable({}, {

@@ -23,6 +23,7 @@ set hidden
 set updatetime=300
 set shortmess+=c
 set secure
+set noswapfile
 set nobackup
 set nowritebackup
 set wrap linebreak nolist

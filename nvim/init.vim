@@ -39,7 +39,6 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
@@ -52,8 +51,12 @@ Plug 'tmsvg/pear-tree'
 
 " Still evaluating ---------------------------------------------------------------------------------
 
+" Plug 'nvim-telescope/telescope-fzf-writer.nvim'
+" Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ivalkeen/vim-simpledb'
 Plug 'ThePrimeagen/git-worktree.nvim'
+Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'ThePrimeagen/harpoon'
 
 " --------------------------------------------------------------------------------------------------
 
@@ -93,10 +96,5 @@ EOF
 
 autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
 autocmd! BufWritePost ~/.dotfiles/nvim/*.lua execute 'luafile %' | source $MYVIMRC
-
-sign define LspDiagnosticsSignError text=>> texthl=LspDiagnosticsSignError linehl= numhl=
-sign define LspDiagnosticsSignWarning text=> texthl=LspDiagnosticsSignWarning linehl= numhl=
-sign define LspDiagnosticsSignInformation text=> texthl=LspDiagnosticsSignInformation linehl= numhl=
-sign define LspDiagnosticsSignHint text=> texthl=LspDiagnosticsSignHint linehl= numhl=
 
 lua require('andre')
