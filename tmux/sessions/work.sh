@@ -18,7 +18,7 @@ spawn_window () {
   ((next_session++))
 }
 
-spawn_window dotfiles ~/.dotfiles
+# spawn_window dotfiles ~/.dotfiles
 
 spawn_window shell ~/Work/Float/dws/sites/floatjs/web
 tmux split-window -v -c ~/Work/Float/dws/docker-compose
