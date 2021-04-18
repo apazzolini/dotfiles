@@ -27,7 +27,7 @@ end
 map_tele(',e',  'find_files')
 map_tele(',E',  'current_dir_files')
 map_tele(',b',  'buffers')
-map_tele(',fd', 'edit_dotfiles')
+map_tele(',fd', 'projects')
 map_tele(',ff', 'git_files')
 map_tele(',fh', 'help_tags')
 map_tele(',fe', 'lsp_workspace_diagnostics', {
@@ -36,7 +36,7 @@ map_tele(',fe', 'lsp_workspace_diagnostics', {
 map_tele(',fb', 'builtin')
 map_tele(',a',  'live_grep')
 map_tele(',fw',  'git_worktrees')
-map_tele(',fp',  'projects')
+-- map_tele(',p',  'projects')
 map_tele(',W',  'grep_string', {
   short_path = true,
   word_match = '-w',

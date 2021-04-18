@@ -46,3 +46,6 @@ key_bindings:
   - { key: A, mods: Command, chars: "\x01" }
   - { key: Space, mods: Control, chars: "\x00" }
   - { key: Slash, mods: Command, chars: ",ct" }
+  - { key: U, mods: Command, chars: ",Pu" }
+  - { key: I, mods: Command, chars: ",Pi" }
+  - { key: O, mods: Command, chars: ",Po" }
