@@ -49,3 +49,4 @@ key_bindings:
   - { key: U, mods: Command, chars: ",Pu" }
   - { key: I, mods: Command, chars: ",Pi" }
   - { key: O, mods: Command, chars: ",Po" }
+  - { key: P, mods: Command, chars: ",PP" }
