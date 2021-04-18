@@ -21,7 +21,7 @@ local select_multiple = function(prompt_bufnr)
 end
 
 -- require('telescope').load_extension('fzy_native')
-require('telescope').setup {
+local telescope_opts = {
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -64,6 +64,8 @@ require('telescope').setup {
       "davinci",
       "native",
       "graphql",
+      "util/cce37d14-ebc8-40c0-b942-cbc8fd7b34cc.json",
+      "util/7236f71d-5a53-11e8-b364-0a58647f9b0f-telemetry.json",
     },
 
     mappings = {
@@ -99,10 +101,19 @@ require('telescope').setup {
   }
 }
 
+if vim.fn.has('win32') == 1 then
+  telescope_opts.defaults.extensions = {}
+end
+
+require('telescope').setup(telescope_opts)
+
 -- Telescope extensions must be loaded after the setup function
 require('telescope').load_extension('git_worktree')
-require('telescope').load_extension('fzf')
 require('telescope').load_extension('project')
+
+if vim.fn.has('win32') == 0 then
+  require('telescope').load_extension('fzf')
+end
 
 local M = {}
 
@@ -197,7 +208,7 @@ function M.projects()
     change_dir = true,
     attach_mappings = function(prompt_bufnr, map)
       map('i', '<cr>', actions.select_default)
-      -- map('i', '<esc>', '<esc>')
+      map('i', '<esc>', '<esc>')
       return true
     end
   })
