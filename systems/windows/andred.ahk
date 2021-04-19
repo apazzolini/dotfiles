@@ -38,6 +38,10 @@ $!0::Send ^0
 
 ; Program specific MacOS similarity bindings -----------------------------------
 
+#IfWinActive, ahk_exe TslGame.exe ; ------------------------------------------
+
+$^a::
+
 #IfWinActive, ahk_exe alacritty.exe ; ------------------------------------------
 
 $!w::Send !w
@@ -114,8 +118,5 @@ Activate(name, executable)
 
 $^a::Activate("Alacritty", "C:\Apps\Alacritty\alacritty.exe")
 $#i::Activate("Nvy", "C:\Apps\NeoVim\bin\NvyNotes.lnk")
-$#d::Activate("ahk_exe Discord.exe", "C:\Users\andre\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Discord Inc\Discord.lnk")
-$#f::Activate("ahk_exe firefox.exe", "C:\Program Files\Mozilla Firefox\firefox.exe")
-; $#e::Activate("ahk_exe chrome.exe", "C:\Program Files\Google\Chrome\Application\chrome.exe")
 
 #Include L:\home\andre\.dotfiles\systems\windows\winmgt.ahk
