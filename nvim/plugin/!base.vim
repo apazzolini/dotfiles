@@ -55,16 +55,17 @@ set foldnestmax=4
 map ' `
 let mapleader = ","
 map Y y$
-map ; :
 map H 0
 map L $
-map <Space> 10j
-map <BS> 10k
 noremap j gj
 noremap k gk
 map gx :tabclose<CR>
-nnoremap <c-d> 10<c-d>zz
-nnoremap <c-u> 10<c-u>zz
+nnoremap <c-d> 10<c-d>
+nnoremap <c-u> 10<c-u>
+" nnoremap <c-d> 10<c-d>zz
+" nnoremap <c-u> 10<c-u>zz
+nnoremap <c-e> 3<c-e>
+nnoremap <c-r> 3<c-y>
 noremap 0 ^
 noremap ^ 0
 imap <c-l> <space>=><space>
@@ -73,11 +74,14 @@ map <leader>nn :noh<cr>
 map <leader>nt :tabnew<cr>
 nnoremap <leader><leader> <c-^>
 vmap <leader>y "*y
-" map <leader>p "*p
 map <leader>jst :silent !stree<cr>
 map <leader>k :write <bar> edit <bar> TSBufEnable highlight<cr>
-map <leader>ww :w <bar> source %<cr>
 map <leader>R :source ~/.config/nvim/init.vim<cr>
+" map <leader>ww :w <bar> source %<cr>
+" map ; :
+" map <Space> 10j
+" map <BS> 10k
+" map <leader>p "*p
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>

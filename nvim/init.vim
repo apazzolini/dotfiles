@@ -95,7 +95,7 @@ lua << EOF
   end
 EOF
 
-autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
-autocmd! BufWritePost ~/.dotfiles/nvim/*.lua execute 'luafile %' | source $MYVIMRC
+" autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
+" autocmd! BufWritePost ~/.dotfiles/nvim/*.lua execute 'luafile %' | source $MYVIMRC
 
 lua require('andre')
