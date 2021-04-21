@@ -50,3 +50,6 @@ key_bindings:
   - { key: I, mods: Command, chars: ",Pi" }
   - { key: O, mods: Command, chars: ",Po" }
   - { key: P, mods: Command, chars: ",PP" }
+
+    # See: https://github.com/alacritty/alacritty/issues/1359#issuecomment-430265381
+  - { key: Q, mods: Control, chars: "\x11" }

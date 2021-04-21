@@ -57,6 +57,7 @@ Plug 'ivalkeen/vim-simpledb'
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'ThePrimeagen/harpoon'
+Plug 'voldikss/vim-floaterm'
 
 " --------------------------------------------------------------------------------------------------
 
