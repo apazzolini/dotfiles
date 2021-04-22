@@ -205,3 +205,14 @@ call s:HL('TelescopeMultiSelection', g:wMagenta)
 " Galaxyline
 call s:HL('StatusList', 'gui=none', 'guifg=none', g:wBg1)
 call s:HL('StatusLineNC', 'gui=underline', g:wFg1, g:wBg1)
+
+" Hop
+if &background ==# 'dark'
+  call s:HL('HopNextKey', 'gui=bold', 'guifg=#ff007c')
+  call s:HL('HopNextKey1', 'gui=bold', 'guifg=#00dfff')
+  call s:HL('HopNextKey2', 'gui=bold', 'guifg=#2b8db3')
+else
+  call s:HL('HopNextKey', 'gui=bold', g:wRed)
+  call s:HL('HopNextKey1', 'gui=bold', g:wCyan)
+  call s:HL('HopNextKey2', 'gui=bold', g:wMagenta)
+endif

@@ -103,6 +103,7 @@ local telescope_opts = {
 
 if vim.fn.has('win32') == 1 then
   telescope_opts.defaults.extensions = {}
+  telescope_opts.defaults.layout_strategy = 'vertical'
 end
 
 require('telescope').setup(telescope_opts)

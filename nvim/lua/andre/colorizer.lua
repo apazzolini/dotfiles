@@ -1,3 +1,3 @@
 require 'colorizer'.setup({
   '*';
-}, { mode = 'background' })
+}, { mode = 'foreground' })
