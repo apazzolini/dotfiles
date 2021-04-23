@@ -38,7 +38,7 @@ alias td="t detach"
 alias tks="t kill-session"
 alias tawork="$HOME/.dotfiles/tmux/sessions/work.sh"
 alias tadre="$HOME/.dotfiles/tmux/sessions/dre.sh"
-alias notes='nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/diary/diary.md" "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/index.md"'
+alias notes='nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/index.md"'
 
 # vim
 alias v=nvim

@@ -122,7 +122,6 @@ call s:HL('diffAdded', g:wGreen)
 call s:HL('diffRemoved', g:wRed)
 
 " Non-code-related
-call s:HL('ColorColumn', g:wBg1)
 call s:HL('Directory', g:wGreen)
 call s:HL('Comment', g:wFg3, g:wItalic)
 call s:HL('Directory', g:wGreen)
@@ -149,6 +148,12 @@ call s:HL('LineNr', g:wFg2)
 call s:HL('CursorLineNr', g:wFg4)
 call s:HL('Folded', g:wNoBg)
 call s:HL('qfLineNr', g:wRed)
+
+if &background ==# 'dark'
+  call s:HL('ColorColumn', g:wBg1)
+else
+  call s:HL('ColorColumn', 'guibg=#d5d6d7')
+endif
 
 " Builtin code types
 call s:HL('Keyword', g:wBlue)
@@ -206,13 +211,12 @@ call s:HL('TelescopeMultiSelection', g:wMagenta)
 call s:HL('StatusList', 'gui=none', 'guifg=none', g:wBg1)
 call s:HL('StatusLineNC', 'gui=underline', g:wFg1, g:wBg1)
 
-" Hop
 if &background ==# 'dark'
   call s:HL('HopNextKey', 'gui=bold', 'guifg=#ff007c')
   call s:HL('HopNextKey1', 'gui=bold', 'guifg=#00dfff')
   call s:HL('HopNextKey2', 'gui=bold', 'guifg=#2b8db3')
 else
   call s:HL('HopNextKey', 'gui=bold', g:wRed)
-  call s:HL('HopNextKey1', 'gui=bold', g:wCyan)
+  call s:HL('HopNextKey1', 'gui=bold', g:wBlue)
   call s:HL('HopNextKey2', 'gui=bold', g:wMagenta)
 endif

@@ -2,7 +2,7 @@
 " Environment detection ----------------------------------------------------------------------------
 " --------------------------------------------------------------------------------------------------
 
-let g:isNotes = argc() >= 0 && argv()[0] =~ 'index.md'
+let g:isNotes = argc() >= 1 && argv()[0] =~ 'index.md'
 let g:home = has('win32') ? 'L:/home/andre' : has('osx') ? '/Users/andre' : '/home/andre'
 let g:pluggedHome = has('win32')
   \ ? 'C:/Users/andre/AppData/Local/nvim-data/plugged'

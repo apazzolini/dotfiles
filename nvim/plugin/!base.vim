@@ -65,6 +65,7 @@ nnoremap <c-u> 10<c-u>
 " nnoremap <c-d> 10<c-d>zz
 " nnoremap <c-u> 10<c-u>zz
 nnoremap <c-e> 3<c-e>
+nnoremap <c-y> 3<c-y>
 nnoremap <c-r> 3<c-y>
 noremap 0 ^
 noremap ^ 0
