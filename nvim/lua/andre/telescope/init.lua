@@ -57,13 +57,9 @@ local telescope_opts = {
 
     file_ignore_patterns = {
       "yarn.lock",
-      "package-lock.json",
+      "package%-lock.json",
       "git/*",
-      "*.key",
-      "**/node_modules/**",
-      "davinci",
-      "native",
-      "graphql",
+      "%/node_modules/%",
       "util/cce37d14-ebc8-40c0-b942-cbc8fd7b34cc.json",
       "util/7236f71d-5a53-11e8-b364-0a58647f9b0f-telemetry.json",
     },
@@ -117,15 +113,6 @@ if vim.fn.has('win32') == 0 then
 end
 
 local M = {}
-
-function M.edit_dotfiles()
-  require('telescope.builtin').find_files {
-    prompt_title = "~ dotfiles ~",
-    shorten_path = false,
-    cwd = "~/.dotfiles",
-    hidden = true,
-  }
-end
 
 function M.live_grep()
   -- require('telescope').extensions.fzf_writer.files({
