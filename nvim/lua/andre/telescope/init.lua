@@ -56,10 +56,17 @@ local telescope_opts = {
     qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
 
     file_ignore_patterns = {
+      "%.jpg",
+      "%.png",
+      "%.woff",
+      "%.ttf",
+      "%.eot",
+      "%.svg",
       "yarn.lock",
       "package%-lock.json",
       "git/*",
       "%/node_modules/%",
+      "systems/osx/iTerm2/com.googlecode.iterm2.plist",
       "util/cce37d14-ebc8-40c0-b942-cbc8fd7b34cc.json",
       "util/7236f71d-5a53-11e8-b364-0a58647f9b0f-telemetry.json",
     },
