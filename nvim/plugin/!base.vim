@@ -77,6 +77,10 @@ vmap <leader>y "*y
 map <leader>jst :silent !stree<cr>
 map <leader>k :write <bar> edit <bar> TSBufEnable highlight<cr>
 map <leader>R :source ~/.config/nvim/init.vim<cr>
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+map <2-MiddleMouse> <Nop>
+imap <2-MiddleMouse> <Nop>
 " map <leader>ww :w <bar> source %<cr>
 " map ; :
 " map <Space> 10j
