@@ -18,15 +18,7 @@ spawn_window () {
   ((next_session++))
 }
 
-# spawn_window dotfiles ~/.dotfiles
-
-spawn_window shell ~/Work/Float/dws/sites/floatjs/web
-tmux split-window -v -c ~/Work/Float/dws/docker-compose
-tmux select-pane -t 1
-tmux split-window -h -c ~/Work/Float/dws/docker-compose
-tmux select-pane -t:.3
-
-spawn_window web ~/Work/Float/dws/sites/floatjs/web
+spawn_window server ~/Work/server
 
 tmux select-window -t $SESSION:0
 tmux -2 attach -t $SESSION
