@@ -38,10 +38,6 @@ $!0::Send ^0
 
 ; Program specific MacOS similarity bindings -----------------------------------
 
-#IfWinActive, ahk_exe TslGame.exe ; ------------------------------------------
-
-$^a::
-
 #IfWinActive, ahk_exe alacritty.exe ; ------------------------------------------
 
 $!w::Send !w
@@ -116,7 +112,12 @@ Activate(name, executable)
   }
 }
 
+
+#IfWinNotActive, ahk_exe TslGame.exe ; ------------------------------------------
+
 $^a::Activate("Alacritty", "C:\Apps\Alacritty\alacritty.exe")
 $#i::Activate("Nvy", "C:\Apps\NeoVim\bin\NvyNotes.lnk")
+
+#IfWinNotActive
 
 #Include L:\home\andre\.dotfiles\systems\windows\winmgt.ahk
