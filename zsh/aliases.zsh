@@ -38,7 +38,13 @@ alias td="t detach"
 alias tks="t kill-session"
 alias tawork="$HOME/.dotfiles/tmux/sessions/work.sh"
 alias tadre="$HOME/.dotfiles/tmux/sessions/dre.sh"
-alias notes='nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/index.md"'
+
+if [ `hostname` = 'andrembw' ]
+then
+  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md" "/Users/andre/Work/notes/index.md"'
+else
+  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/index.md"'
+fi
 
 # vim
 alias v=nvim

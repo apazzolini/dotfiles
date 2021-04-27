@@ -29,10 +29,16 @@ augroup END
 if (has('win32'))
   let wikipath = 'C:/Users/andre/iCloudDrive/Wiki'
 else
-  let wikipath = '/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki'
+  if (expand('$HOST') == 'andrembw')
+    let wikipath = '/Users/andre/Work/notes'
+  else
+    let wikipath = '/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki'
+  endif
 endif
 
 cd `=wikipath`
 
 let g:vimwiki_list = [{'path': wikipath, 'ext': '.md'}]
 let g:vimwiki_autowriteall = 0
+
+let @d='gg/---------0:nohO,lo- =strftime("%Y-%m-%d")k2,lok'
