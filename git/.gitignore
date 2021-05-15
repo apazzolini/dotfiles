@@ -10,3 +10,4 @@ jsconfig.json
 .vimlocal
 .prettier_d
 .nvimlog
+.rgignore

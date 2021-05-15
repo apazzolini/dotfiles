@@ -15,7 +15,7 @@ set signcolumn=yes
 set number
 set relativenumber
 set scrolloff=4
-set colorcolumn=95
+set colorcolumn=
 
 set timeoutlen=1000 ttimeoutlen=0
 set autoread
@@ -66,7 +66,7 @@ nnoremap <c-u> 10<c-u>
 " nnoremap <c-u> 10<c-u>zz
 nnoremap <c-e> 3<c-e>
 nnoremap <c-y> 3<c-y>
-noremap 0 ^
+noremap 0 0^
 noremap ^ 0
 imap <c-l> <space>=><space>
 nnoremap <silent> <cr> :noh<cr><cr>

@@ -23,7 +23,7 @@ Plug 'romainl/vim-qf'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
@@ -32,7 +32,7 @@ Plug 'szw/vim-maximizer'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
 Plug 'rbong/vim-flog'
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
@@ -50,8 +50,8 @@ Plug 'tmsvg/pear-tree'
 
 " Still evaluating ---------------------------------------------------------------------------------
 
-" Plug 'nvim-telescope/telescope-fzf-writer.nvim'
-" Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-writer.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ivalkeen/vim-simpledb'
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'nvim-telescope/telescope-project.nvim'
@@ -61,7 +61,7 @@ Plug 'voldikss/vim-floaterm'
 " --------------------------------------------------------------------------------------------------
 
 if !empty($TMUX)
-  Plug 'tmux-plugins/vim-tmux-focus-events'
+  " Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'apazzolini/vim-tmux-navigator', {'branch': 'indicator'}
   let g:tmux_navigator_disable_when_zoomed = 1
 endif

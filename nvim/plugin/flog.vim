@@ -73,7 +73,7 @@ endfunction
 
 augroup MyFlogGroup
   autocmd!
-  autocmd FileType floggraph set colorcolumn=0
+  autocmd FileType floggraph set colorcolumn=
   autocmd FileType floggraph nnoremap <buffer> <silent> r :let g:flog_horizontal=!g:flog_horizontal<cr>
   autocmd FileType floggraph nnoremap <buffer> <silent> o :call flog#diff_fancy()<CR>
   autocmd FileType floggraph nnoremap <buffer> <silent> j :call flog#fancy_next_commit()<CR>

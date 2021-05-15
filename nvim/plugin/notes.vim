@@ -12,7 +12,7 @@ set laststatus=0
 set noruler
 set autoindent
 set smartindent
-set colorcolumn=81
+set colorcolumn=
 set signcolumn=no
 set matchpairs=
 set scrolloff=0

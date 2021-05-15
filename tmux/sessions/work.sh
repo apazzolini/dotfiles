@@ -18,7 +18,10 @@ spawn_window () {
   ((next_session++))
 }
 
+spawn_window dotfiles ~/.dotfiles
+spawn_window shell ~/Work/server
 spawn_window server ~/Work/server
+spawn_window cli ~/Work/cli
 
 tmux select-window -t $SESSION:0
 tmux -2 attach -t $SESSION

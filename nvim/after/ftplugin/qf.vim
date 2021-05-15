@@ -1,2 +1,2 @@
-setlocal colorcolumn=0
+setlocal colorcolumn=
 setlocal winheight=10
