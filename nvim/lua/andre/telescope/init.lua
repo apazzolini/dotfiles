@@ -36,24 +36,28 @@ local telescope_opts = {
 
     prompt_prefix = '> ',
     color_devicons = true,
-    prompt_position = 'top',
-    sorting_strategy = 'ascending',
+    -- prompt_position = 'top',
+    -- sorting_strategy = 'ascending',
 
-    layout_strategy = 'horizontal',
-    layout_defaults = {
-      horizontal = {
-        preview_width = 0.60,
-      },
-      vertical = {
-        mirror = true,
-        preview_height = 0.60,
-      },
-    },
+    -- layout_strategy = 'horizontal',
+    -- layout_defaults = {
+      -- horizontal = {
+        -- preview_width = 0.60,
+      -- },
+      -- vertical = {
+        -- mirror = true,
+        -- preview_height = 0.60,
+      -- },
+    -- },
 
     -- file_sorter = require('telescope.sorters').get_fzy_sorter,
-    file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
+    -- file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
     grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
     qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+
+    file_previewer   = function() return false end,
+    -- grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
+    -- qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
 
     file_ignore_patterns = {
       "%.jpg",

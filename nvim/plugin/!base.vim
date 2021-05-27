@@ -17,10 +17,10 @@ set relativenumber
 set scrolloff=4
 set colorcolumn=95
 
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=750 ttimeoutlen=0
 set autoread
 set hidden
-set updatetime=300
+set updatetime=200
 set shortmess+=c
 set secure
 set noswapfile
@@ -30,8 +30,8 @@ set wrap linebreak nolist
 set splitright
 set backspace=indent,eol,start
 set lazyredraw
-set cinoptions+=+1
-set noshowmatch
+" set cinoptions+=+1
+" set noshowmatch
 set noshowcmd
 set switchbuf=useopen
 set nomodeline
@@ -40,8 +40,8 @@ set inccommand=split
 set completeopt=menuone,noselect
 
 set nojoinspaces
-autocmd FileType * set formatoptions-=o
-autocmd FileType * set formatoptions-=c
+" autocmd FileType * set formatoptions-=o
+" autocmd FileType * set formatoptions-=c
 autocmd FileType * set formatoptions+=j
 
 set foldmethod=manual
@@ -70,7 +70,6 @@ noremap 0 ^
 noremap ^ 0
 imap <c-l> <space>=><space>
 nnoremap <silent> <cr> :noh<cr><cr>
-map <leader>nn :noh<cr>
 map <leader>nt :tabnew<cr>
 nnoremap <leader><leader> <c-^>
 vmap <leader>y "*y
@@ -106,12 +105,10 @@ map <leader>wh :vert resize -20<cr>
 map <leader>wl :vert resize +20<cr>
 
 " Test mappings
-nmap <leader>ot mT:%s/test.only/test/ge<cr>'T?test(<cr>cetest.only<esc>'T
-nmap <leader>oa mT?test(<cr>cetest.only<esc>'T
-nmap <leader>ox mT:%s/test.only/test/ge<cr>'T
+nmap <leader>ot mT:%s/it.only/it/ge<cr>'T?it(<cr>ceit.only<esc>'T
+nmap <leader>oa mT?it(<cr>ceit.only<esc>'T
+nmap <leader>ox mT:%s/it.only/it/ge<cr>'T
 
-" Move cursor to first line in insert mode on git commits
-autocmd FileType gitcommit execute "normal! gg" | startinsert
 
 " Only show cursor line on active split
 set nocursorline
@@ -125,12 +122,14 @@ augroup END
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s#\($\n\s*\)\+\%$##e
 
-
 " Restore last position when reopening file
 autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
+
+" Move cursor to first line in insert mode on git commits
+autocmd FileType gitcommit execute "normal! gg" | startinsert
 
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -164,4 +163,4 @@ endfunction
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
 
-autocmd bufnewfile,bufread *.jsx set filetype=javascriptreact
+" autocmd bufnewfile,bufread *.jsx set filetype=javascriptreact
