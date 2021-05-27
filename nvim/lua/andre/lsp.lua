@@ -46,14 +46,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 require'lspconfig'.efm.setup {
   filetypes = {
-    'javascriptreact',
+    'javascript',
   },
   init_options = {
     documentFormatting = true,
   },
   settings = {
     languages = {
-      javascriptreact = {
+      javascript = {
         {
           lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
           lintStdin = true,

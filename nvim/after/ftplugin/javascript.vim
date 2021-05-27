@@ -3,7 +3,7 @@ setlocal winwidth=88
 setlocal shiftwidth=2
 setlocal tabstop=2
 setlocal softtabstop=2
-setlocal ft=javascriptreact
+" setlocal ft=javascriptreact
 
 let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
   \ '`'     : {'closer': '`'},

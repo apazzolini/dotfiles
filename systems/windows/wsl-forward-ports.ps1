@@ -15,7 +15,7 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 }
 
 # You should modify '$Ports' for your applications
-$Ports = (2222,80,443,8080,3308,9090)
+$Ports = (2222,80,443,3308,9090)
 
 # Check WSL ip address
 wsl hostname -I | Set-Variable -Name "WSL"
