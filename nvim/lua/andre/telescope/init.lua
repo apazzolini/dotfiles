@@ -67,7 +67,7 @@ local telescope_opts = {
       "%.svg",
       "yarn.lock",
       "package%-lock.json",
-      "git/*",
+      -- "git/*",
       "%/node_modules/*",
       "%external-src/*",
       "systems/osx/iTerm2/com.googlecode.iterm2.plist",

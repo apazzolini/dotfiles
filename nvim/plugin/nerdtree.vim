@@ -2,11 +2,11 @@ let NERDTreeWinPos="left"
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeShowBookmarks = 0
-let NERDTreeIgnore = ['node_modules', 'dist', 'es5', 'jsconfig.json', 'yarn.lock', '.git$', '.DS_Store']
+let NERDTreeIgnore = ['bower_components', 'node_modules', 'dist', 'es5', 'jsconfig.json', 'yarn.lock', '.git$', '.DS_Store']
 let NERDTreeCascadeSingleChildDir=1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeShowHidden = 1
+let NERDTreeShowHidden = 0
 let g:NERDTreeMapOpenSplit = "s"
 let g:NERDTreeMapOpenVSplit = "v"
 
