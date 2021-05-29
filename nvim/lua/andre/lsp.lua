@@ -30,9 +30,9 @@ end
 
 require'lspconfig'.tsserver.setup{
   on_attach = on_attach,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = function() end
-  }
+  -- handlers = {
+    -- ["textDocument/publishDiagnostics"] = function() end
+  -- }
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
