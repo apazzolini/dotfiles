@@ -149,7 +149,7 @@ gls.right = {
     }
   }, {
     GitBranch = {
-      provider = function() return '[' .. string.sub(vcs.get_git_branch(), 0, 25) .. '...]' end,
+      provider = function() return '[' .. string.sub(vcs.get_git_branch(), 0, 25) .. ']' end,
       condition = vcs.get_git_branch,
       separator = ' ',
       separator_highlight = {color('black'), color('bg')},
