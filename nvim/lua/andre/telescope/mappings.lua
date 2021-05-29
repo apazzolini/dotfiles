@@ -28,7 +28,9 @@ map_tele(',e',  'find_files')
 map_tele(',E',  'current_dir_files')
 map_tele(',b',  'buffers')
 map_tele(',fd', 'projects')
+map_tele(',fo', 'oldfiles')
 map_tele(',ff', 'git_files')
+map_tele(',B', 'git_branches')
 map_tele(',fh', 'help_tags')
 map_tele(',fe', 'lsp_workspace_diagnostics', {
   layout_strategy = 'vertical',

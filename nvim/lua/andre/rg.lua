@@ -6,7 +6,7 @@ function M.rg(arg, cwd)
   local entries = {}
 
   local opts = {
-    command = '/opt/homebrew/bin/rg',
+    command = '/usr/local/bin/rg',
     args = {
       '--color=never',
       '--follow',

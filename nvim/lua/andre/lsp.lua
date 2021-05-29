@@ -17,6 +17,8 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
   vim.api.nvim_set_keymap('n', ',m', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
   vim.api.nvim_set_keymap('n', ',.', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', opts)
+
+  client.resolved_capabilities.document_formatting = false
 end
 
 -- ["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -46,6 +48,9 @@ require'lspconfig'.efm.setup {
   filetypes = {
     'javascript',
   },
+  init_options = {
+    documentFormatting = true,
+  },
   settings = {
     languages = {
       javascript = {
@@ -54,6 +59,8 @@ require'lspconfig'.efm.setup {
           lintStdin = true,
           lintFormats = {"%f:%l:%c: %m"},
           lintIgnoreExitCode = true,
+          formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",
+          formatStdin = true
         }
       },
     }

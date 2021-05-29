@@ -23,8 +23,10 @@ let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
 "\              'not_like': '/$',
 "\              'until': '[^a-zA-Z0-9-._]'
 
-augroup fmt
+augroup tsfmt
   autocmd!
   " autocmd BufWritePre * undojoin | Neoformat
-  autocmd BufWritePre * Neoformat
+  " autocmd BufWritePre * Neoformat
+  autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 2000)
+  autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 2000)
 augroup END
