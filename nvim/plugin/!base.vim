@@ -40,9 +40,9 @@ set inccommand=split
 set completeopt=menuone,noselect
 
 set nojoinspaces
-" autocmd FileType * set formatoptions-=o
-" autocmd FileType * set formatoptions-=c
+autocmd FileType * set formatoptions-=o
 autocmd FileType * set formatoptions+=j
+" autocmd FileType * set formatoptions-=c
 
 set foldmethod=manual
 set nofoldenable
@@ -81,7 +81,8 @@ imap <MiddleMouse> <Nop>
 map <2-MiddleMouse> <Nop>
 imap <2-MiddleMouse> <Nop>
 " map <leader>ww :w <bar> source %<cr>
-" map ; :
+map ; :
+" nnoremap : ;
 " map <Space> 10j
 " map <BS> 10k
 " map <leader>p "*p
