@@ -32,9 +32,21 @@ end
 
 require'lspconfig'.tsserver.setup{
   on_attach = on_attach,
-  -- handlers = {
-    -- ["textDocument/publishDiagnostics"] = function() end
-  -- }
+	handlers = {
+		-- ["textDocument/publishDiagnostics"] = function() end
+		["textDocument/publishDiagnostics"] = vim.lsp.with(
+			vim.lsp.diagnostic.on_publish_diagnostics, {
+				underline = false,
+				virtual_text = {
+					severity_limit = "Error"
+				},
+				update_in_insert = false,
+				signs = {
+					severity_limit = "Error"
+				},
+			}
+		)
+	}
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -44,28 +56,32 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-require'lspconfig'.efm.setup {
+local efm_settings = {
+	{
+		lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+		lintStdin = true,
+		lintFormats = {"%f:%l:%c: %m"},
+		lintIgnoreExitCode = true,
+		formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",
+		formatStdin = true
+	}
+}
+
+require'lspconfig'.efm.setup({
   filetypes = {
     'javascript',
+		'typescript',
   },
   init_options = {
     documentFormatting = true,
   },
   settings = {
     languages = {
-      javascript = {
-        {
-          lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
-          lintStdin = true,
-          lintFormats = {"%f:%l:%c: %m"},
-          lintIgnoreExitCode = true,
-          formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",
-          formatStdin = true
-        }
-      },
+      javascript = efm_settings,
+			typescript = efm_settings,
     }
   },
-}
+})
 
 --------------------------------------------------------------------------------------------
 
