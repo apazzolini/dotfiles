@@ -34,6 +34,16 @@ if &background ==# 'dark'
   let g:wRgb247       = '#adb3ba'
   let g:wRgb248       = '#c7ccd1'
   let g:wRgb249       = '#dfe2e5'
+
+  let g:terminal_color_1 = g:wRgbRed
+  let g:terminal_color_2 = g:wRgbGreen
+  let g:terminal_color_3 = g:wRgbYellow
+  let g:terminal_color_4 = g:wRgbBlue
+  let g:terminal_color_5 = g:wRgbMagenta
+  let g:terminal_color_6 = g:wRgbCyan
+  let g:terminal_color_9 = g:wRgbBrightRed
+  " let g:terminal_color_11 = g:wRgbGreen
+
 else
   hi! Normal ctermbg=NONE guibg=#d5d6d7 guifg=#0c1c2b
 
@@ -148,6 +158,7 @@ call s:HL('LineNr', g:wFg2)
 call s:HL('CursorLineNr', g:wFg4)
 call s:HL('Folded', g:wNoBg)
 call s:HL('qfLineNr', g:wRed)
+call s:HL('StatusLine', g:wBg1, g:wNoCterm)
 
 if &background ==# 'dark'
   call s:HL('ColorColumn', g:wBg1)
@@ -207,10 +218,7 @@ call s:HL('TelescopeSelection', g:wCyan)
 hi! link TelescopeSelectionCaret TelescopeSelection
 call s:HL('TelescopeMultiSelection', g:wMagenta)
 
-" Galaxyline
-call s:HL('StatusList', 'gui=none', 'guifg=none', g:wBg1)
-call s:HL('StatusLineNC', 'gui=underline', g:wFg1, g:wBg1)
-
+" Hop
 if &background ==# 'dark'
   call s:HL('HopNextKey', 'gui=bold', 'guifg=#ff007c')
   call s:HL('HopNextKey1', 'gui=bold', 'guifg=#00dfff')
@@ -220,3 +228,5 @@ else
   call s:HL('HopNextKey1', 'gui=bold', g:wBlue)
   call s:HL('HopNextKey2', 'gui=bold', g:wMagenta)
 endif
+
+" Nvim-Tree

@@ -14,7 +14,7 @@ let g:pluggedHome = has('win32')
 
 call plug#begin(g:pluggedHome)
 
-Plug 'preservim/nerdtree'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
