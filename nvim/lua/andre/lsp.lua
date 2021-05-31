@@ -90,7 +90,7 @@ if pcall(require, 'compe') then
     enabled = true;
     autocomplete = true;
     debug = false;
-    min_length = 2;
+    min_length = 1;
     preselect = 'enable';
     throttle_time = 80;
     source_timeout = 200;

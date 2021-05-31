@@ -55,6 +55,7 @@ Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'voldikss/vim-floaterm'
+Plug 'nikvdp/ejs-syntax'
 
 " --------------------------------------------------------------------------------------------------
 
