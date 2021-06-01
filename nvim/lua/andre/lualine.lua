@@ -38,5 +38,15 @@ require'lualine'.setup({
     lualine_z = {}
   },
   tabline = {},
-  extensions = {'quickfix'}
+  extensions = {
+    'quickfix',
+    'nvim-tree',
+    {
+      filetypes = {'fugitive'},
+      sections = {
+        lualine_a = {vim.fn.FugitiveHead},
+        lualine_z = {'location'}
+      },
+    }
+  }
 })
