@@ -19,7 +19,6 @@ spawn_window () {
 }
 
 spawn_window dotfiles ~/.dotfiles
-spawn_window shell ~/Work/swt/andre/1
 spawn_window server ~/Work/swt/andre/1
 
 tmux select-window -t $SESSION:0

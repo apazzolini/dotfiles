@@ -55,6 +55,7 @@
     cm = commit -m
     pr = pull --rebase
     pnv = push --no-verify
+    ri = rebase --interactive
 
     # Fancy logging.
     #   h = head
