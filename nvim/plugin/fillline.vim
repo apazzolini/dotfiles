@@ -1,7 +1,12 @@
 " Fill rest of line with characters
 " http://stackoverflow.com/questions/3364102/how-to-fill-a-line-with-character-x-up-to-column-y-using-vim
 function! FillLine( str )
-  let tw = (&colorcolumn || 88) - 1
+  let tw = &colorcolumn
+  if (!tw)
+    let tw = 81
+  endif
+  let tw = tw - 1
+  echo tw
   .s/[[:space:]]*$//
   let reps = (tw - col("$")) / len(a:str)
 

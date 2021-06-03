@@ -81,3 +81,5 @@ augroup MyFlogGroup
   autocmd FileType floggraph nnoremap <buffer> <silent> q :call flog#smart_quit()<CR>
   autocmd FileType flog_term_diff nnoremap <buffer> <silent> q :wincmd p <bar> call flog#smart_quit()<CR>
 augroup END
+
+nmap <leader>gf :Flog<cr>

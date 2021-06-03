@@ -88,7 +88,7 @@ let g:wYellowBg='ctermbg=3 guibg='.g:wRgbYellow
 let g:wBlueBg='ctermbg=4 guibg='.g:wRgbBlue
 let g:wMagentaBg='ctermbg=5 guibg='.g:wRgbMagenta
 let g:wCyanBg='ctermbg=6 guibg='.g:wRgbCyan
-let g:wWhiteFg='ctermbg=7 guibg='.g:wRgbWhite
+let g:wWhiteBg='ctermbg=7 guibg='.g:wRgbWhite
 let g:wBg1='ctermbg=244 guibg='.g:wRgb244
 let g:wBg2='ctermbg=245 guibg='.g:wRgb245
 let g:wBg3='ctermbg=246 guibg='.g:wRgb246
@@ -230,3 +230,4 @@ else
 endif
 
 " Nvim-Tree
+call s:HL('NvimTreeExecFile', g:wWhite)

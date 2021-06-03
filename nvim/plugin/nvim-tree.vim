@@ -23,4 +23,4 @@ let g:nvim_tree_icons = {
     \ }
 
 nnoremap <leader>no :let g:nvim_tree_quit_on_open=!g:nvim_tree_quit_on_open<cr>
-nnoremap <leader>g :NvimTreeFindFile<CR>
+nnoremap <leader>gg :NvimTreeFindFile<CR>
