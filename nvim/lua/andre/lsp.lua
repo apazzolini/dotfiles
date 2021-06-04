@@ -1,3 +1,6 @@
+local log = require 'vim.lsp.log';
+local util = require 'vim.lsp.util'
+
 vim.fn.sign_define('LspDiagnosticsSignError',
   { text = ">", texthl = "LspDiagnosticsSignError", linehl = '', numhl = '' })
 
@@ -46,7 +49,19 @@ require'lspconfig'.tsserver.setup{
 					severity_limit = "Error"
 				},
 			}
-		)
+		),
+    ["textDocument/definition"] = function(_, method, result)
+      if result == nil or vim.tbl_isempty(result) then
+        local _ = log.info() and log.info(method, 'No location found')
+        return nil
+      end
+
+      if vim.tbl_islist(result) then
+        util.jump_to_location(result[1])
+      else
+        util.jump_to_location(result)
+      end
+    end
 	}
 }
 
@@ -72,6 +87,7 @@ require'lspconfig'.efm.setup({
   filetypes = {
     'javascript',
 		'typescript',
+    'less',
   },
   init_options = {
     documentFormatting = true,
@@ -80,6 +96,12 @@ require'lspconfig'.efm.setup({
     languages = {
       javascript = efm_settings,
 			typescript = efm_settings,
+      less = {
+        {
+          formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",
+          formatStdin = true
+        }
+      },
     }
   },
 })
