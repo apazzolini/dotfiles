@@ -1,3 +1,4 @@
 nmap <leader>gs :G<cr>
-nmap <leader>gl :Git log<cr>
-nmap <leader>gL :Git log shellescape(expand('%'))<cr>
+nmap <leader>gl :Gclog<cr>
+nmap <leader>gL :Gclog -- %<cr>
+nmap <leader>gb :Git blame<cr>
