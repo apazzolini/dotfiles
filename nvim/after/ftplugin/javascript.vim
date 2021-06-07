@@ -26,6 +26,7 @@ let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
 
 augroup jsfmt
   autocmd!
+  autocmd BufWritePre *.cjs lua vim.lsp.buf.formatting_sync(nil, 2000)
   autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 2000)
   autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 2000)
 augroup END
