@@ -57,6 +57,10 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'voldikss/vim-floaterm'
 Plug 'nikvdp/ejs-syntax'
 
+" Plug 'RishabhRD/nvim-lsputils'
+" Plug 'TimUntersberger/neogit'
+" Plug 'rhysd/git-messenger.vim'
+
 " --------------------------------------------------------------------------------------------------
 
 if !empty($TMUX)
