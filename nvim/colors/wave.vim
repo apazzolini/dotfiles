@@ -84,6 +84,7 @@ else
   let s:wRgbWhite     = '#0b1c2c'
   let s:wRgbBrightRed = '#bf8b56'
   let s:wRgb244       = '#dfe2e5'
+  let s:wRgb18        = '#565e65'
   let s:wRgb245       = '#565e65'
   let s:wRgb246       = '#747c84'
   let s:wRgb247       = '#adb3ba'
