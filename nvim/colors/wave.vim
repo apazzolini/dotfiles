@@ -8,7 +8,7 @@ if exists('syntax_on')
   syntax reset
 endif
 
-let g:colors_name = 'wave'
+let s:colors_name = 'wave'
 
 if &background ==# 'dark'
   if empty($TMUX)
@@ -19,87 +19,112 @@ if &background ==# 'dark'
     hi! Normal ctermbg=NONE guibg=NONE guifg=#c7ccd1
   endif
 
-  let g:wRgbBlack     = '#1c2023'
-  let g:wRgbRed       = '#D5869E'
-  let g:wRgbGreen     = '#a2c7a9'
-  let g:wRgbYellow    = '#EFE7CA' " Previously was #E7DDBB
-  let g:wRgbBlue      = '#95aec7'
-  let g:wRgbMagenta   = '#ae95c7'
-  let g:wRgbCyan      = '#68b2c9'
-  let g:wRgbWhite     = '#c7ccd1'
-  let g:wRgbBrightRed = '#d19b9b'
-  let g:wRgb244       = '#2b3034'
-  let g:wRgb245       = '#565e65'
-  let g:wRgb246       = '#747c84'
-  let g:wRgb247       = '#adb3ba'
-  let g:wRgb248       = '#c7ccd1'
-  let g:wRgb249       = '#dfe2e5'
+  let s:bright = 0
+  let s:wRgbBlack     = ''
+  let s:wRgbRed       = ''
+  let s:wRgbGreen     = ''
+  let s:wRgbYellow    = '' " Previously was #E7DDBB
+  let s:wRgbBlue      = ''
+  let s:wRgbMagenta   = ''
+  let s:wRgbCyan      = ''
+  let s:wRgbWhite     = ''
+  let s:wRgbBrightRed = ''
+  let s:wRgb244       = ''
+  let s:wRgb245       = ''
+  let s:wRgb246       = ''
+  let s:wRgb247       = ''
+  let s:wRgb248       = ''
+  let s:wRgb249       = ''
 
-  let g:terminal_color_1 = g:wRgbRed
-  let g:terminal_color_2 = g:wRgbGreen
-  let g:terminal_color_3 = g:wRgbYellow
-  let g:terminal_color_4 = g:wRgbBlue
-  let g:terminal_color_5 = g:wRgbMagenta
-  let g:terminal_color_6 = g:wRgbCyan
-  let g:terminal_color_9 = g:wRgbBrightRed
-  " let g:terminal_color_11 = g:wRgbGreen
+  for line in readfile('/Users/andre/.dotfiles/systems/shared/alacritty.yml')
+    if line =~ 'Bright colors'
+      let s:bright = 1
+    endif
 
+    if s:bright
+      if !len(s:wRgbBrightRed) && line =~ 'red' | let s:wRgbBrightRed = strpart(line, 14, 7) | endif
+    else
+      if !len(s:wRgbBlack) && line =~ 'black'     | let s:wRgbBlack = strpart(line, 14, 7)   | endif
+      if !len(s:wRgbRed) && line =~ 'red'         | let s:wRgbRed = strpart(line, 14, 7)     | endif
+      if !len(s:wRgbGreen) && line =~ 'green'     | let s:wRgbGreen = strpart(line, 14, 7)   | endif
+      if !len(s:wRgbYellow) && line =~ 'yellow'   | let s:wRgbYellow = strpart(line, 14, 7)  | endif
+      if !len(s:wRgbBlue) && line =~ 'blue'       | let s:wRgbBlue = strpart(line, 14, 7)    | endif
+      if !len(s:wRgbMagenta) && line =~ 'magenta' | let s:wRgbMagenta = strpart(line, 14, 7) | endif
+      if !len(s:wRgbCyan) && line =~ 'cyan'       | let s:wRgbCyan = strpart(line, 14, 7)    | endif
+      if !len(s:wRgbWhite) && line =~ 'white'     | let s:wRgbWhite = strpart(line, 14, 7)   | endif
+    endif
+
+    if !len(s:wRgb244) && line =~ 'index: 244' | let s:wRgb244 = strpart(line, 28, 7)   | endif
+    if !len(s:wRgb245) && line =~ 'index: 245' | let s:wRgb245 = strpart(line, 28, 7)   | endif
+    if !len(s:wRgb246) && line =~ 'index: 246' | let s:wRgb246 = strpart(line, 28, 7)   | endif
+    if !len(s:wRgb247) && line =~ 'index: 247' | let s:wRgb247 = strpart(line, 28, 7)   | endif
+    if !len(s:wRgb248) && line =~ 'index: 248' | let s:wRgb248 = strpart(line, 28, 7)   | endif
+    if !len(s:wRgb249) && line =~ 'index: 249' | let s:wRgb249 = strpart(line, 28, 7)   | endif
+  endfor
+
+  let s:terminal_color_1 = s:wRgbRed
+  let s:terminal_color_2 = s:wRgbGreen
+  let s:terminal_color_3 = s:wRgbYellow
+  let s:terminal_color_4 = s:wRgbBlue
+  let s:terminal_color_5 = s:wRgbMagenta
+  let s:terminal_color_6 = s:wRgbCyan
+  let s:terminal_color_9 = s:wRgbBrightRed
 else
   hi! Normal ctermbg=NONE guibg=#d5d6d7 guifg=#0c1c2b
 
-  let g:wRgbBlack     = '#f7f9fb'
-  let g:wRgbRed       = '#bf5656'
-  let g:wRgbGreen     = '#5f8539'
-  let g:wRgbYellow    = '#bfbf56'
-  let g:wRgbBlue      = '#568bbf'
-  let g:wRgbMagenta   = '#bf568b'
-  let g:wRgbCyan      = '#56bf8b'
-  let g:wRgbWhite     = '#0b1c2c'
-  let g:wRgbBrightRed = '#bf8b56'
-  let g:wRgb244       = '#dfe2e5'
-  let g:wRgb245       = '#565e65'
-  let g:wRgb246       = '#747c84'
-  let g:wRgb247       = '#adb3ba'
-  let g:wRgb248       = '#c7ccd1'
-  let g:wRgb249       = '#2b3034'
+  let s:wRgbBlack     = '#f7f9fb'
+  let s:wRgbRed       = '#bf5656'
+  let s:wRgbGreen     = '#5f8539'
+  let s:wRgbYellow    = '#bfbf56'
+  let s:wRgbBlue      = '#568bbf'
+  let s:wRgbMagenta   = '#bf568b'
+  let s:wRgbCyan      = '#56bf8b'
+  let s:wRgbWhite     = '#0b1c2c'
+  let s:wRgbBrightRed = '#bf8b56'
+  let s:wRgb244       = '#dfe2e5'
+  let s:wRgb245       = '#565e65'
+  let s:wRgb246       = '#747c84'
+  let s:wRgb247       = '#adb3ba'
+  let s:wRgb248       = '#c7ccd1'
+  let s:wRgb249       = '#2b3034'
 endif
 
 " Color definitions
-let g:wBlack='ctermfg=0 guifg='.g:wRgbBlack
-let g:wRed='ctermfg=1 guifg='.g:wRgbRed
-let g:wGreen='ctermfg=2 guifg='.g:wRgbGreen
-let g:wYellow='ctermfg=3 guifg='.g:wRgbYellow
-let g:wBlue='ctermfg=4 guifg='.g:wRgbBlue
-let g:wMagenta='ctermfg=5 guifg='.g:wRgbMagenta
-let g:wCyan='ctermfg=6 guifg='.g:wRgbCyan
-let g:wWhite='ctermfg=7 guifg='.g:wRgbWhite
-let g:wBrightRed='ctermfg=9 guifg='.g:wRgbBrightRed
-let g:wFg1='ctermfg=244 guifg='.g:wRgb244
-let g:wFg2='ctermfg=245 guifg='.g:wRgb245
-let g:wFg3='ctermfg=246 guifg='.g:wRgb246
-let g:wFg4='ctermfg=247 guifg='.g:wRgb247
-let g:wFg5='ctermfg=248 guifg='.g:wRgb248
-let g:wFg6='ctermfg=249 guifg='.g:wRgb249
+let s:wBlack='ctermfg=0 guifg='.s:wRgbBlack
+let s:wRed='ctermfg=1 guifg='.s:wRgbRed
+let s:wGreen='ctermfg=2 guifg='.s:wRgbGreen
+let s:wYellow='ctermfg=3 guifg='.s:wRgbYellow
+let s:wBlue='ctermfg=4 guifg='.s:wRgbBlue
+let s:wMagenta='ctermfg=5 guifg='.s:wRgbMagenta
+let s:wCyan='ctermfg=6 guifg='.s:wRgbCyan
+let s:wWhite='ctermfg=7 guifg='.s:wRgbWhite
+let s:wBrightRed='ctermfg=9 guifg='.s:wRgbBrightRed
+let s:wFg1='ctermfg=244 guifg='.s:wRgb244
+let s:wFg2='ctermfg=245 guifg='.s:wRgb245
+let s:wFg3='ctermfg=246 guifg='.s:wRgb246
+let s:wFg4='ctermfg=247 guifg='.s:wRgb247
+let s:wFg5='ctermfg=248 guifg='.s:wRgb248
+let s:wFg6='ctermfg=249 guifg='.s:wRgb249
 
-let g:wBlackBg='ctermbg=0 guibg='.g:wRgbBlack
-let g:wRedBg='ctermbg=1 guibg='.g:wRgbRed
-let g:wGreenBg='ctermbg=2 guibg='.g:wRgbGreen
-let g:wYellowBg='ctermbg=3 guibg='.g:wRgbYellow
-let g:wBlueBg='ctermbg=4 guibg='.g:wRgbBlue
-let g:wMagentaBg='ctermbg=5 guibg='.g:wRgbMagenta
-let g:wCyanBg='ctermbg=6 guibg='.g:wRgbCyan
-let g:wWhiteBg='ctermbg=7 guibg='.g:wRgbWhite
-let g:wBg1='ctermbg=244 guibg='.g:wRgb244
-let g:wBg2='ctermbg=245 guibg='.g:wRgb245
-let g:wBg3='ctermbg=246 guibg='.g:wRgb246
-let g:wBg4='ctermbg=247 guibg='.g:wRgb247
-let g:wBg5='ctermbg=248 guibg='.g:wRgb248
-let g:wBg6='ctermbg=249 guibg='.g:wRgb249
+let s:wBlackBg='ctermbg=0 guibg='.s:wRgbBlack
+let s:wRedBg='ctermbg=1 guibg='.s:wRgbRed
+let s:wGreenBg='ctermbg=2 guibg='.s:wRgbGreen
+let s:wYellowBg='ctermbg=3 guibg='.s:wRgbYellow
+let s:wBlueBg='ctermbg=4 guibg='.s:wRgbBlue
+let s:wMagentaBg='ctermbg=5 guibg='.s:wRgbMagenta
+let s:wCyanBg='ctermbg=6 guibg='.s:wRgbCyan
+let s:wWhiteBg='ctermbg=7 guibg='.s:wRgbWhite
+let s:wBg1='ctermbg=244 guibg='.s:wRgb244
+let s:wBg2='ctermbg=245 guibg='.s:wRgb245
+let s:wBg3='ctermbg=246 guibg='.s:wRgb246
+let s:wBg4='ctermbg=247 guibg='.s:wRgb247
+let s:wBg5='ctermbg=248 guibg='.s:wRgb248
+let s:wBg6='ctermbg=249 guibg='.s:wRgb249
 
-let g:wItalic='cterm=italic gui=italic'
-let g:wNoBg='ctermbg=none guibg=none'
-let g:wNoFg='ctermbg=none guibg=none'
-let g:wNoCterm='cterm=none gui=none'
+let s:wItalic='cterm=italic gui=italic'
+let s:wNoBg='ctermbg=none guibg=none'
+let s:wNoFg='ctermbg=none guibg=none'
+let s:wNoCterm='cterm=none gui=none'
 
 function! s:HL(group, ...)
     let i=0
@@ -113,80 +138,80 @@ endfunction
 
 " Search and Selection
 if &background ==# 'dark'
-  call s:HL('Visual', g:wBg2)
-  call s:HL('QuickFixLine', g:wBg2, g:wFg5)
-  call s:HL('Search', g:wBg2, g:wWhite)
+  call s:HL('Visual', s:wBg2)
+  call s:HL('QuickFixLine', s:wBg2, s:wFg5)
+  call s:HL('Search', s:wBg2, s:wWhite)
   hi! link IncSearch Search
 else
-  call s:HL('Visual', g:wBg5)
-  call s:HL('QuickFixLine', g:wBg2, g:wFg5)
-  call s:HL('Search', g:wBg4)
+  call s:HL('Visual', s:wBg5)
+  call s:HL('QuickFixLine', s:wBg2, s:wFg5)
+  call s:HL('Search', s:wBg4)
   hi! link IncSearch Search
 endif
 
-call s:HL('Pmenu', g:wBg2, g:wFg5)
-call s:HL('PmenuSel', g:wBg1, g:wFg5)
+call s:HL('Pmenu', s:wBg2, s:wFg5)
+call s:HL('PmenuSel', s:wBg1, s:wFg5)
 
 " Diff
-call s:HL('diffAdded', g:wGreen)
-call s:HL('diffRemoved', g:wRed)
+call s:HL('diffAdded', s:wGreen)
+call s:HL('diffRemoved', s:wRed)
 
 " Non-code-related
-call s:HL('Directory', g:wGreen)
-call s:HL('Comment', g:wFg3, g:wItalic)
-call s:HL('Directory', g:wGreen)
-call s:HL('SignColumn', g:wNoBg)
-call s:HL('Error', g:wRed, g:wNoBg)
-call s:HL('ErrorMsg', g:wRed, g:wNoBg)
-call s:HL('DiffText', g:wRed)
-call s:HL('Question', g:wGreen)
-call s:HL('MoreMsg', g:wGreen)
-call s:HL('ModeMsg', g:wGreen, g:wNoCterm)
-call s:HL('MatchParen', g:wBlue, g:wNoBg)
-call s:HL('Title', g:wBlue)
-call s:HL('Special', g:wBlue)
-call s:HL('SpecialKey', g:wBlue)
-call s:HL('NonText', g:wFg1)
-call s:HL('VertSplit', g:wNoBg, g:wFg3, g:wNoCterm)
-call s:HL('CursorLine', g:wBg1, g:wNoCterm)
-call s:HL('Cursor', g:wNoCterm, g:wRedBg, g:wBlack)
-call s:HL('Todo', g:wNoBg, g:wRed, g:wItalic)
-call s:HL('TabLineSel', g:wBg1, g:wGreen, g:wNoCterm)
-call s:HL('TabLineFill', g:wNoBg, g:wNoFg, g:wNoCterm)
-call s:HL('TabLine', g:wNoBg, g:wFg2, g:wNoCterm)
-call s:HL('LineNr', g:wFg2)
-call s:HL('CursorLineNr', g:wFg4)
-call s:HL('Folded', g:wNoBg)
-call s:HL('qfLineNr', g:wRed)
-call s:HL('StatusLine', g:wBg1, g:wNoCterm)
+call s:HL('Directory', s:wGreen)
+call s:HL('Comment', s:wFg3, s:wItalic)
+call s:HL('Directory', s:wGreen)
+call s:HL('SignColumn', s:wNoBg)
+call s:HL('Error', s:wRed, s:wNoBg)
+call s:HL('ErrorMsg', s:wRed, s:wNoBg)
+call s:HL('DiffText', s:wRed)
+call s:HL('Question', s:wGreen)
+call s:HL('MoreMsg', s:wGreen)
+call s:HL('ModeMsg', s:wGreen, s:wNoCterm)
+call s:HL('MatchParen', s:wBlue, s:wNoBg)
+call s:HL('Title', s:wBlue)
+call s:HL('Special', s:wBlue)
+call s:HL('SpecialKey', s:wBlue)
+call s:HL('NonText', s:wFg1)
+call s:HL('VertSplit', s:wNoBg, s:wFg3, s:wNoCterm)
+call s:HL('CursorLine', s:wBg1, s:wNoCterm)
+call s:HL('Cursor', s:wNoCterm, s:wRedBg, s:wBlack)
+call s:HL('Todo', s:wNoBg, s:wRed, s:wItalic)
+call s:HL('TabLineSel', s:wBg1, s:wGreen, s:wNoCterm)
+call s:HL('TabLineFill', s:wNoBg, s:wNoFg, s:wNoCterm)
+call s:HL('TabLine', s:wNoBg, s:wFg2, s:wNoCterm)
+call s:HL('LineNr', s:wFg2)
+call s:HL('CursorLineNr', s:wFg4)
+call s:HL('Folded', s:wNoBg)
+call s:HL('qfLineNr', s:wRed)
+call s:HL('StatusLine', s:wBg1, s:wNoCterm)
 
 if &background ==# 'dark'
-  call s:HL('ColorColumn', g:wBg1)
+  call s:HL('ColorColumn', s:wBg1)
 else
   call s:HL('ColorColumn', 'guibg=#d5d6d7')
 endif
 
 " Builtin code types
-call s:HL('Keyword', g:wBlue)
-call s:HL('Statement', g:wBlue)
-call s:HL('Constant', g:wBlue)
-call s:HL('PreProc', g:wBlue)
-call s:HL('Type', g:wBlue)
-call s:HL('Identifier', g:wBlue)
-call s:HL('Function', g:wMagenta)
-call s:HL('String', g:wGreen)
+call s:HL('Keyword', s:wBlue)
+call s:HL('Statement', s:wBlue)
+call s:HL('Constant', s:wBlue)
+call s:HL('PreProc', s:wBlue)
+call s:HL('Type', s:wBlue)
+call s:HL('Identifier', s:wBlue)
+call s:HL('Function', s:wMagenta)
+call s:HL('String', s:wGreen)
 
 " Tree-sitter code types
 hi! link TSProperty Normal
-call s:HL('TS_C_ReactHook', g:wCyan)
-call s:HL('TS_C_ClassName', g:wRed)
-call s:HL('TS_C_JsxAttribute', g:wGreen)
-call s:HL('TS_C_FunctionCall', g:wYellow)
-call s:HL('TSNamespace', g:wBlue)
-call s:HL('TSConditional', g:wBlue)
-call s:HL('TSOperator', g:wBlue)
-call s:HL('TSIdentifier', g:wMagenta)
-call s:HL('TSTag', g:wCyan)
+call s:HL('TS_C_ReactHook', s:wCyan)
+call s:HL('TS_C_ClassName', s:wRed)
+call s:HL('TS_C_JsxAttribute', s:wGreen)
+call s:HL('TS_C_FunctionCall', s:wYellow)
+call s:HL('TSNamespace', s:wBlue)
+call s:HL('TSConditional', s:wBlue)
+call s:HL('TSOperator', s:wBlue)
+call s:HL('TSIdentifier', s:wMagenta)
+call s:HL('TSTag', s:wCyan)
 hi! link TSTagDelimiter TSTag
 hi! link Whitespace Normal
 hi! link TSPunctDelimiter Normal
@@ -199,24 +224,24 @@ hi! link TSVariable Normal
 hi! link TSVariableBuiltin Normal
 
 " VimWiki
-call s:HL('VimWikiLink', g:wNoBg, g:wNoCterm, g:wBlue)
-call s:HL('VimWikiHr', g:wNoBg, g:wNoCterm, g:wNoFg)
+call s:HL('VimWikiLink', s:wNoBg, s:wNoCterm, s:wBlue)
+call s:HL('VimWikiHr', s:wNoBg, s:wNoCterm, s:wNoFg)
 hi! link VimwikiList Normal
 hi! link VimwikiCode Normal
 
 " LSP
-call s:HL('LspDiagnosticsDefaultError', g:wRed)
+call s:HL('LspDiagnosticsDefaultError', s:wRed)
 
 " Telescope
-call s:HL('TelescopeMatching', g:wRed)
-call s:HL('TelescopeBorder', g:wMagenta)
+call s:HL('TelescopeMatching', s:wRed)
+call s:HL('TelescopeBorder', s:wMagenta)
 hi! link TelescopePromptBorder  TelescopeBorder
 hi! link TelescopeResultsBorder TelescopeBorder
 hi! link TelescopePreviewBorder TelescopeBorder
 hi! link TelescopePromptPrefix TelescopeBorder
-call s:HL('TelescopeSelection', g:wCyan)
+call s:HL('TelescopeSelection', s:wCyan)
 hi! link TelescopeSelectionCaret TelescopeSelection
-call s:HL('TelescopeMultiSelection', g:wMagenta)
+call s:HL('TelescopeMultiSelection', s:wMagenta)
 
 " Hop
 if &background ==# 'dark'
@@ -224,10 +249,10 @@ if &background ==# 'dark'
   call s:HL('HopNextKey1', 'gui=bold', 'guifg=#00dfff')
   call s:HL('HopNextKey2', 'gui=bold', 'guifg=#2b8db3')
 else
-  call s:HL('HopNextKey', 'gui=bold', g:wRed)
-  call s:HL('HopNextKey1', 'gui=bold', g:wBlue)
-  call s:HL('HopNextKey2', 'gui=bold', g:wMagenta)
+  call s:HL('HopNextKey', 'gui=bold', s:wRed)
+  call s:HL('HopNextKey1', 'gui=bold', s:wBlue)
+  call s:HL('HopNextKey2', 'gui=bold', s:wMagenta)
 endif
 
 " Nvim-Tree
-call s:HL('NvimTreeExecFile', g:wWhite)
+call s:HL('NvimTreeExecFile', s:wWhite)

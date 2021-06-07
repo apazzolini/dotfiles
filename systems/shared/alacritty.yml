@@ -249,17 +249,6 @@ colors:
     cyan:    '#68b2c9'
     white:   '#c7ccd1'
 
-    # Pre tree sitter wave refactor
-    # black:   '#1c2023'
-    # red:     '#d19b9b'
-    # green:   '#a2c7a9'
-    # yellow:  '#dcdcaa'
-    # blue:    '#ae95c7'
-    # magenta: '#c795ae'
-    # cyan:    '#95aec7'
-    # white:   '#c7ccd1'
-    # other yellow:  '#E7DDBB'
-
   # Bright colors
   bright:
     black:   '#747c84'
@@ -271,28 +260,7 @@ colors:
     cyan:    '#95aec7'
     white:   '#f3f4f5'
 
-  # Dim colors
-  #
-  # If the dim colors are not set, they will be calculated automatically based
-  # on the `normal` colors.
-  #dim:
-  #  black:   '#131415'
-  #  red:     '#864343'
-  #  green:   '#777c44'
-  #  yellow:  '#9e824c'
-  #  blue:    '#556a7d'
-  #  magenta: '#75617b'
-  #  cyan:    '#5b7d78'
-  #  white:   '#828482'
-
   # Indexed Colors
-  #
-  # The indexed colors include all colors from 16 to 256.
-  # When these are not set, they're filled with sensible defaults.
-  #
-  # Example:
-  #   `- { index: 16, color: '#ff00ff' }`
-  #
   indexed_colors:
     - { index: 16, color: '#c7c795' }
     - { index: 17, color: '#c79595' }
@@ -307,6 +275,20 @@ colors:
     - { index: 247, color: '#adb3ba' }
     - { index: 248, color: '#c7ccd1' }
     - { index: 249, color: '#dfe2e5' }
+
+  # Dim colors
+  #
+  # If the dim colors are not set, they will be calculated automatically based
+  # on the `normal` colors.
+  #dim:
+  #  black:   '#131415'
+  #  red:     '#864343'
+  #  green:   '#777c44'
+  #  yellow:  '#9e824c'
+  #  blue:    '#556a7d'
+  #  magenta: '#75617b'
+  #  cyan:    '#5b7d78'
+  #  white:   '#828482'
 
 # Bell
 #
