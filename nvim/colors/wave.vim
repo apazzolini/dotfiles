@@ -29,6 +29,7 @@ if &background ==# 'dark'
   let s:wRgbCyan      = ''
   let s:wRgbWhite     = ''
   let s:wRgbBrightRed = ''
+  let s:wRgb18        = ''
   let s:wRgb244       = ''
   let s:wRgb245       = ''
   let s:wRgb246       = ''
@@ -54,6 +55,7 @@ if &background ==# 'dark'
       if !len(s:wRgbWhite) && line =~ 'white'     | let s:wRgbWhite = strpart(line, 14, 7)   | endif
     endif
 
+    if !len(s:wRgb18) && line =~ 'index: 18'   | let s:wRgb18 = strpart(line, 28, 7)    | endif
     if !len(s:wRgb244) && line =~ 'index: 244' | let s:wRgb244 = strpart(line, 28, 7)   | endif
     if !len(s:wRgb245) && line =~ 'index: 245' | let s:wRgb245 = strpart(line, 28, 7)   | endif
     if !len(s:wRgb246) && line =~ 'index: 246' | let s:wRgb246 = strpart(line, 28, 7)   | endif
@@ -114,6 +116,7 @@ let s:wBlueBg='ctermbg=4 guibg='.s:wRgbBlue
 let s:wMagentaBg='ctermbg=5 guibg='.s:wRgbMagenta
 let s:wCyanBg='ctermbg=6 guibg='.s:wRgbCyan
 let s:wWhiteBg='ctermbg=7 guibg='.s:wRgbWhite
+let s:wBg0='ctermbg=18 guibg='.s:wRgb18
 let s:wBg1='ctermbg=244 guibg='.s:wRgb244
 let s:wBg2='ctermbg=245 guibg='.s:wRgb245
 let s:wBg3='ctermbg=246 guibg='.s:wRgb246
@@ -149,8 +152,8 @@ else
   hi! link IncSearch Search
 endif
 
-call s:HL('Pmenu', s:wBg2, s:wFg5)
-call s:HL('PmenuSel', s:wBg1, s:wFg5)
+call s:HL('Pmenu', s:wBg1, s:wFg5)
+call s:HL('PmenuSel', s:wBg2, s:wFg5)
 
 " Diff
 call s:HL('diffAdded', s:wGreen)
@@ -167,13 +170,13 @@ call s:HL('DiffText', s:wRed)
 call s:HL('Question', s:wGreen)
 call s:HL('MoreMsg', s:wGreen)
 call s:HL('ModeMsg', s:wGreen, s:wNoCterm)
-call s:HL('MatchParen', s:wBlue, s:wNoBg)
+call s:HL('MatchParen', s:wBrightRed, s:wNoBg)
 call s:HL('Title', s:wBlue)
 call s:HL('Special', s:wBlue)
 call s:HL('SpecialKey', s:wBlue)
 call s:HL('NonText', s:wFg1)
 call s:HL('VertSplit', s:wNoBg, s:wFg3, s:wNoCterm)
-call s:HL('CursorLine', s:wBg1, s:wNoCterm)
+call s:HL('CursorLine', s:wBg0, s:wNoCterm)
 call s:HL('Cursor', s:wNoCterm, s:wRedBg, s:wBlack)
 call s:HL('Todo', s:wNoBg, s:wRed, s:wItalic)
 call s:HL('TabLineSel', s:wBg1, s:wGreen, s:wNoCterm)
@@ -256,3 +259,5 @@ endif
 
 " Nvim-Tree
 call s:HL('NvimTreeExecFile', s:wWhite)
+call s:HL('NvimTreeImageFile', s:wWhite)
+call s:HL('NvimTreeRootFolder', s:wMagenta)

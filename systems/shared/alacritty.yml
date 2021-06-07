@@ -262,13 +262,13 @@ colors:
 
   # Indexed Colors
   indexed_colors:
-    - { index: 16, color: '#c7c795' }
-    - { index: 17, color: '#c79595' }
-    - { index: 18, color: '#292e33' }
-    - { index: 19, color: '#565e65' }
-    - { index: 20, color: '#adb3ba' }
-    - { index: 21, color: '#dfe2e5' }
-    - { index: 22, color: '#a27f74' }
+    - { index: 16,  color: '#c7c795' }
+    - { index: 17,  color: '#c79595' }
+    - { index: 18,  color: '#292e33' }
+    - { index: 19,  color: '#565e65' }
+    - { index: 20,  color: '#adb3ba' }
+    - { index: 21,  color: '#dfe2e5' }
+    - { index: 22,  color: '#a27f74' }
     - { index: 244, color: '#2b3034' }
     - { index: 245, color: '#565e65' }
     - { index: 246, color: '#747c84' }

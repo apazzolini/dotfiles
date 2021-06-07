@@ -19,6 +19,10 @@ let g:nvim_tree_icons = {
     \ 'folder': {
     \   'default': "▸",
     \   'open': "▾",
+    \   'empty':        "▸",
+    \   'empty_open':   "▾",
+    \   'symlink':      "▸",
+    \   'symlink_open': "▾",
     \   },
     \ }
 
