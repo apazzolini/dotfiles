@@ -87,6 +87,7 @@ require'lspconfig'.efm.setup({
   filetypes = {
     'javascript',
 		'typescript',
+    'typescriptreact',
     'less',
   },
   init_options = {

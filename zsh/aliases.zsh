@@ -39,7 +39,7 @@ alias tks="t kill-session"
 alias tawork="$HOME/.dotfiles/tmux/sessions/work.sh"
 alias tadre="$HOME/.dotfiles/tmux/sessions/dre.sh"
 
-if [ `hostname` = 'andrembw' ]
+if [[ `hostname` = andrembw* ]]
 then
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md" "/Users/andre/Work/notes/index.md"'
 else

@@ -29,7 +29,7 @@ augroup END
 if (has('win32'))
   let wikipath = 'C:/Users/andre/iCloudDrive/Wiki'
 else
-  if (expand('$HOST') == 'andrembw')
+  if (expand('$HOST') =~ 'andrembw')
     let wikipath = '/Users/andre/Work/notes'
   else
     let wikipath = '/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki'
