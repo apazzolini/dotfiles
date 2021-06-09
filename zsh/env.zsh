@@ -53,6 +53,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 setopt complete_aliases # don't expand aliases _before_ completion has finished like: git comm-[tab]
+unsetopt correct # disable annoying correct prompt
 
 # Use VI mode in the shell
 bindkey -v
