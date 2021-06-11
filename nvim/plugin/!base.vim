@@ -110,7 +110,6 @@ nmap <leader>ot mT:%s/it.only/it/ge<cr>'T?it(<cr>ceit.only<esc>'T
 nmap <leader>oa mT?it(<cr>ceit.only<esc>'T
 nmap <leader>ox mT:%s/it.only/it/ge<cr>'T
 
-
 " Only show cursor line on active split
 set nocursorline
 augroup ActiveCursorLine
@@ -164,4 +163,4 @@ endfunction
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
 
-" autocmd bufnewfile,bufread *.jsx set filetype=javascriptreact
+nmap <buffer> <leader>la :cexpr system('eslint --format unix *.{js,ts}') <bar> copen<cr>

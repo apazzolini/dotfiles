@@ -22,4 +22,4 @@ function! FillLine( str )
   endif
 endfunction
 
-map <leader>l :call FillLine( '-' )<CR>
+map <leader>L :call FillLine( '-' )<CR>
