@@ -1,6 +1,16 @@
 local log = require 'vim.lsp.log';
 local util = require 'vim.lsp.util'
 
+--------------------------------------------------------------------------------
+
+require('lspinstall').setup()
+local servers = require'lspinstall'.installed_servers()
+for _, server in pairs(servers) do
+  require('lspconfig')[server].setup{}
+end
+
+--------------------------------------------------------------------------------
+
 vim.fn.sign_define('LspDiagnosticsSignError',
   { text = ">", texthl = "LspDiagnosticsSignError", linehl = '', numhl = '' })
 
@@ -25,19 +35,9 @@ local on_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting = false
 end
 
--- ["textDocument/publishDiagnostics"] = vim.lsp.with(
-  -- vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- underline = false,
-    -- virtual_text = false,
-    -- update_in_insert = false,
-    -- signs = false,
-  -- }
--- )
-
 require'lspconfig'.tsserver.setup{
   on_attach = on_attach,
 	handlers = {
-		-- ["textDocument/publishDiagnostics"] = function() end
 		["textDocument/publishDiagnostics"] = vim.lsp.with(
 			vim.lsp.diagnostic.on_publish_diagnostics, {
 				underline = false,
@@ -72,6 +72,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+--------------------------------------------------------------------------------
+
 local efm_settings = {
 	{
 		lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
@@ -97,6 +99,8 @@ require'lspconfig'.efm.setup({
     languages = {
       javascript = efm_settings,
 			typescript = efm_settings,
+      javascriptreact = efm_settings,
+      typescriptreact = efm_settings,
       less = {
         {
           formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",

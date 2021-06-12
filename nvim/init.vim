@@ -57,6 +57,8 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'voldikss/vim-floaterm'
 Plug 'nikvdp/ejs-syntax'
 
+Plug 'kabouzeid/nvim-lspinstall'
+
 " Plug 'RishabhRD/nvim-lsputils'
 " Plug 'TimUntersberger/neogit'
 " Plug 'rhysd/git-messenger.vim'
