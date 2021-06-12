@@ -163,4 +163,4 @@ endfunction
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
 
-nmap <buffer> <leader>la :cexpr system('eslint --format unix *.{js,ts}') <bar> copen<cr>
+nmap <buffer> <leader>la :cexpr system('npm run lint -- --format unix') <bar> copen<cr>
