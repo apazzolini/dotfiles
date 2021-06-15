@@ -41,4 +41,4 @@ cd `=wikipath`
 let g:vimwiki_list = [{'path': wikipath, 'ext': '.md'}]
 let g:vimwiki_autowriteall = 0
 
-let @d='gg/---------0:nohO,lo- =strftime("%Y-%m-%d")k2,lok'
+let @d='gg/---------0:nohO,Lo- =strftime("%Y-%m-%d")k2,Lok'

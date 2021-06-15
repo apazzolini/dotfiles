@@ -86,6 +86,8 @@ map ; :
 " map <Space> 10j
 " map <BS> 10k
 " map <leader>p "*p
+nmap gq :q<cr>
+nmap gQ :qa<cr>
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
@@ -162,5 +164,3 @@ endfunction
 
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
-
-nmap <buffer> <leader>la :cexpr system('npm run lint -- --format unix') <bar> copen<cr>
