@@ -44,6 +44,6 @@ function M.rg(arg, cwd)
 end
 
 local opts = { noremap = true }
-vim.api.nvim_set_keymap('n', ',A', ':lua require("andre.rg").rg ', opts)
+-- vim.api.nvim_set_keymap('n', ',A', ':lua require("andre.rg").rg ', opts)
 
 return M

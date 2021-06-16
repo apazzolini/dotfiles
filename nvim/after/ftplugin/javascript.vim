@@ -30,3 +30,5 @@ augroup jsfmt
   autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 2000)
   autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 2000)
 augroup END
+
+set errorformat+=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m

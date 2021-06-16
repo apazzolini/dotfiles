@@ -20,3 +20,5 @@ augroup tsfmt
   autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 2000)
   autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 2000)
 augroup END
+
+set errorformat+=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m

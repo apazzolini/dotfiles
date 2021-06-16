@@ -85,7 +85,6 @@ local telescope_opts = {
         ["<c-k>"] = actions.move_selection_previous,
         ["<esc>"] = actions.close,
         ["<cr>"] = select_multiple,
-        ["<bs>"] = '<bs>',
         ["<C-o>"] = actions.send_to_qflist + actions.open_qflist,
       },
     }
@@ -121,7 +120,7 @@ require('telescope').setup(telescope_opts)
 
 -- Telescope extensions must be loaded after the setup function
 require('telescope').load_extension('git_worktree')
-require('telescope').load_extension('project')
+-- require('telescope').load_extension('project')
 
 if vim.fn.has('win32') == 0 then
   -- require('telescope').load_extension('fzf')
@@ -217,17 +216,17 @@ function M.git_branches()
   })
 end
 
-local project_actions = require("telescope._extensions.project_actions")
-function M.projects()
-  require('telescope').extensions.project.project({
-    change_dir = true,
-    attach_mappings = function(prompt_bufnr, map)
-      map('i', '<cr>', actions.select_default)
-      map('i', '<esc>', '<esc>')
-      return true
-    end
-  })
-end
+-- local project_actions = require("telescope._extensions.project")
+-- function M.projects()
+  -- require('telescope').extensions.project.project({
+    -- change_dir = true,
+    -- attach_mappings = function(prompt_bufnr, map)
+      -- map('i', '<cr>', actions.select_default)
+      -- map('i', '<esc>', '<esc>')
+      -- return true
+    -- end
+  -- })
+-- end
 
 return setmetatable({}, {
   __index = function(_, k)

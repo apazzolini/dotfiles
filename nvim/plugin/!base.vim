@@ -80,7 +80,7 @@ map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
 map <2-MiddleMouse> <Nop>
 imap <2-MiddleMouse> <Nop>
-" map <leader>ww :w <bar> source %<cr>
+map <leader>ww :w <bar> source %<cr>
 map ; :
 " nnoremap : ;
 " map <Space> 10j
@@ -88,6 +88,8 @@ map ; :
 " map <leader>p "*p
 nmap gq :q<cr>
 nmap gQ :qa<cr>
+nmap <leader>q :q<cr>
+nmap <leader>Q :qa<cr>
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
@@ -133,6 +135,9 @@ autocmd BufReadPost *
 " Move cursor to first line in insert mode on git commits
 autocmd FileType gitcommit execute "normal! gg" | startinsert
 
+" TelescopePrompt after ftplugin stopped working
+autocmd FileType TelescopePrompt imap <buffer> <bs> <bs>
+
 " Show syntax highlighting of current word
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -164,3 +169,9 @@ endfunction
 
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
+
+command! -nargs=+ Rg call s:Ripgrep(<q-args>)
+function! s:Ripgrep(...)
+  cexpr system('rg --follow --no-heading --with-filename --line-number --column --smart-case ' .. a:1)
+endfunction
+nnoremap <leader>A :Rg<space>

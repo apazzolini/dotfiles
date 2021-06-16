@@ -1,2 +1,0 @@
-EditorConfigDisable
-setlocal colorcolumn=
