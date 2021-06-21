@@ -24,6 +24,7 @@ alias httpserver="python -m SimpleHTTPServer 9090"
 # git aliases
 alias st='stree'
 alias tig='tig -m'
+alias lg='lazygit -ucd ~/.config/lazygit'
 
 # shortcuts for npm/yarn
 alias yr="yarn run"

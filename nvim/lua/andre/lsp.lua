@@ -26,6 +26,8 @@ vim.fn.sign_define('LspDiagnosticsSignHint',
 local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+  vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+  vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
   vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
   vim.api.nvim_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
   vim.api.nvim_set_keymap('n', ',H', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
@@ -138,6 +140,7 @@ if pcall(require, 'compe') then
       nvim_lsp = true;
       nvim_lua = true;
       vsnip = false;
+      treesitter = false;
     };
   }
 end

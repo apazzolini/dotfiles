@@ -8,8 +8,13 @@
 (class_declaration name: (identifier) @className)
 
 ; Highlight class properties whose value is an arrow function
-(public_field_definition
+(field_definition
   property: (property_identifier) @function
+  value: (arrow_function)
+)
+
+(field_definition
+  property: (private_property_identifier) @function
   value: (arrow_function)
 )
 
