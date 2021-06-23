@@ -40,6 +40,21 @@ local on_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting = false
 end
 
+function first_match(_, method, result)
+  if result == nil or vim.tbl_isempty(result) then
+    local _ = log.info() and log.info(method, 'No location found')
+    return nil
+  end
+
+  if vim.tbl_islist(result) then
+    util.jump_to_location(result[1])
+  else
+    util.jump_to_location(result)
+  end
+
+  vim.cmd('normal zz')
+end
+
 require'lspconfig'.tsserver.setup{
   on_attach = on_attach,
 	handlers = {
@@ -55,18 +70,8 @@ require'lspconfig'.tsserver.setup{
 				},
 			}
 		),
-    ["textDocument/definition"] = function(_, method, result)
-      if result == nil or vim.tbl_isempty(result) then
-        local _ = log.info() and log.info(method, 'No location found')
-        return nil
-      end
-
-      if vim.tbl_islist(result) then
-        util.jump_to_location(result[1])
-      else
-        util.jump_to_location(result)
-      end
-    end
+    ["textDocument/definition"] = first_match,
+    ["textDocument/typeDefinition"] = first_match
 	}
 }
 
