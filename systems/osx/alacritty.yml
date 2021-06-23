@@ -26,7 +26,7 @@ window:
   padding:
     y: 2
 key_bindings:
-  - { key: Key0, mods: Command, chars: "\x100" }
+  - { key: Key0, mods: Command, action: ResetFontSize }
   - { key: Key1, mods: Command, chars: "\x101" }
   - { key: Key2, mods: Command, chars: "\x102" }
   - { key: Key3, mods: Command, chars: "\x103" }

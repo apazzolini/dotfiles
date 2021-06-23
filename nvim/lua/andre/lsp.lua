@@ -130,8 +130,8 @@ if pcall(require, 'compe') then
     debug = false;
     min_length = 1;
     preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
+    throttle_time = 300;
+    source_timeout = 50;
     incomplete_delay = 400;
     max_abbr_width = 100;
     max_kind_width = 100;

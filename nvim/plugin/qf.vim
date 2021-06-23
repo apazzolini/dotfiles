@@ -16,6 +16,9 @@ endfunction
 autocmd! FileType qf map <buffer> q :q<cr>
 autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 autocmd FileType qf map <buffer> D :RemoveQFItem<cr>
+autocmd FileType qf map <buffer> <s-j> j<cr><c-w><c-w>
+autocmd FileType qf map <buffer> <s-k> k<cr><c-w><c-w>
+
 
 nmap <silent> [q :call qf#wrap#WrapCommand('up', 'c')<CR>
 nmap <silent> ]q :call qf#wrap#WrapCommand('down', 'c')<CR>
