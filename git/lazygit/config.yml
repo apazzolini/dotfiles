@@ -1,0 +1,19 @@
+gui:
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - red
+      - bold
+    inactiveBorderColor:
+      - white
+    optionsTextColor:
+      - blue
+    selectedLineBgColor:
+      - black
+      - reverse
+    selectedRangeBgColor:
+      - underline
+git:
+  paging:
+    colorArg: always
+    pager: delta --paging=never --24-bit-color=never

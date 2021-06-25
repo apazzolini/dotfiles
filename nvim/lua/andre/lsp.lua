@@ -37,7 +37,17 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_set_keymap('n', ',la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
   vim.api.nvim_set_keymap('n', ',lf', '<cmd>%!eslint_d --stdin --fix-to-stdout<cr>', opts)
 
+  if client.config.flags then
+    client.config.flags.allow_incremental_sync = true
+    client.config.flags.debounce_text_changes = 100
+  end
+
   client.resolved_capabilities.document_formatting = false
+
+  client.server_capabilities.completionProvider.triggerCharacters = {
+    ".", '"', "'", "`", "/", "@", "*",
+    "#", "$", "+", "^", "(", "[", "-", ":"
+  }
 end
 
 function first_match(_, method, result)
@@ -126,12 +136,12 @@ require'lspconfig'.efm.setup({
 if pcall(require, 'compe') then
   require'compe'.setup {
     enabled = true;
-    autocomplete = true;
+    autocomplete = false;
     debug = false;
     min_length = 1;
     preselect = 'enable';
-    throttle_time = 300;
-    source_timeout = 50;
+    throttle_time = 80;
+    source_timeout = 200;
     incomplete_delay = 400;
     max_abbr_width = 100;
     max_kind_width = 100;
