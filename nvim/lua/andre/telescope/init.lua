@@ -36,11 +36,10 @@ local telescope_opts = {
 
     prompt_prefix = '> ',
     color_devicons = true,
-    prompt_position = 'top',
     sorting_strategy = 'ascending',
 
-    layout_strategy = 'horizontal',
-    layout_defaults = {
+    layout_config = {
+      prompt_position = 'top',
       horizontal = {
         mirror = true,
         preview_width = 0.6,
@@ -52,6 +51,8 @@ local telescope_opts = {
         height_padding = 0.2,
       },
     },
+
+    layout_strategy = 'horizontal',
 
     -- file_sorter = require('telescope.sorters').get_fzy_sorter,
     -- file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
