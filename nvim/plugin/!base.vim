@@ -17,7 +17,7 @@ set relativenumber
 set scrolloff=4
 set colorcolumn=
 
-set timeoutlen=750 ttimeoutlen=0
+set timeoutlen=400 ttimeoutlen=0
 set autoread
 set hidden
 set updatetime=200
@@ -38,6 +38,7 @@ set nomodeline
 set mouse=a
 set inccommand=split
 set completeopt=menuone,noselect
+set pumheight=17
 
 set nojoinspaces
 autocmd FileType * set formatoptions-=o
@@ -92,10 +93,15 @@ nmap <leader>q :q<cr>
 nmap <leader>Q :qa<cr>
 
 " Split mappings
-nnoremap c<C-j> :bel new<cr>
-nnoremap c<C-k> :abo new<cr>
-nnoremap c<C-h> :lefta vnew<cr>
-nnoremap c<C-l> :rightb vnew<cr>
+" These broke at some point from a neovim update
+" nnoremap c<C-j> :bel new<cr>
+" nnoremap c<C-k> :abo new<cr>
+" nnoremap c<C-h> :lefta vnew<cr>
+" nnoremap c<C-l> :rightb vnew<cr>
+nnoremap cj :bel new<cr>
+nnoremap ck :abo new<cr>
+nnoremap ch :lefta vnew<cr>
+nnoremap cl :rightb vnew<cr>
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k

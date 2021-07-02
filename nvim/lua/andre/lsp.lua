@@ -3,11 +3,11 @@ local util = require 'vim.lsp.util'
 
 --------------------------------------------------------------------------------
 
-require('lspinstall').setup()
-local servers = require'lspinstall'.installed_servers()
-for _, server in pairs(servers) do
-  require('lspconfig')[server].setup{}
-end
+-- require('lspinstall').setup()
+-- local servers = require'lspinstall'.installed_servers()
+-- for _, server in pairs(servers) do
+  -- require('lspconfig')[server].setup{}
+-- end
 
 --------------------------------------------------------------------------------
 
@@ -38,16 +38,10 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_set_keymap('n', ',lf', '<cmd>%!eslint_d --stdin --fix-to-stdout<cr>', opts)
 
   if client.config.flags then
-    client.config.flags.allow_incremental_sync = true
-    client.config.flags.debounce_text_changes = 100
+    client.config.flags.debounce_text_changes = 200
   end
 
   client.resolved_capabilities.document_formatting = false
-
-  client.server_capabilities.completionProvider.triggerCharacters = {
-    ".", '"', "'", "`", "/", "@", "*",
-    "#", "$", "+", "^", "(", "[", "-", ":"
-  }
 end
 
 function first_match(_, method, result)
@@ -67,6 +61,9 @@ end
 
 require'lspconfig'.tsserver.setup{
   on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 200,
+  },
 	handlers = {
 		["textDocument/publishDiagnostics"] = vim.lsp.with(
 			vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -136,24 +133,31 @@ require'lspconfig'.efm.setup({
 if pcall(require, 'compe') then
   require'compe'.setup {
     enabled = true;
-    autocomplete = false;
+    autocomplete = true;
     debug = false;
-    min_length = 1;
+    min_length = 0;
     preselect = 'enable';
     throttle_time = 80;
-    source_timeout = 200;
+    source_timeout = 400;
     incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
+    max_abbr_width = 40;
+    max_kind_width = 40;
+    max_menu_width = 40;
     documentation = true;
 
     source = {
-      path = true;
-      buffer = true;
+      path = false;
+      buffer = {
+        priority = 5
+      };
       calc = false;
-      nvim_lsp = true;
-      nvim_lua = true;
+      nvim_lsp = {
+        priority = 10;
+        dup = false;
+      };
+      nvim_lua = {
+        priority = 10;
+      };
       vsnip = false;
       treesitter = false;
     };

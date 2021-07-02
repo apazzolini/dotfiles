@@ -216,6 +216,8 @@ call s:HL('TSConditional', s:wBlue)
 call s:HL('TSOperator', s:wBlue)
 call s:HL('TSIdentifier', s:wMagenta)
 call s:HL('TSTag', s:wCyan)
+call s:HL('TSType', s:wCyan, 'gui=bold')
+call s:HL('TSTypeBuiltin', s:wCyan, 'gui=bold')
 hi! link TSTagDelimiter TSTag
 hi! link Whitespace Normal
 hi! link TSPunctDelimiter Normal
