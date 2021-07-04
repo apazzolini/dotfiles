@@ -11,6 +11,7 @@ local colors = {
   grey1  = '#adb3ba',
   yellow = '#EFE7CA',
 }
+
 -- LuaFormatter on
 local theme = {
   normal = {

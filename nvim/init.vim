@@ -36,7 +36,6 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'phaazon/hop.nvim'
@@ -48,17 +47,17 @@ Plug 'tmsvg/pear-tree'
 
 " Still evaluating ---------------------------------------------------------------------------------
 
+" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'ivalkeen/vim-simpledb'
-Plug 'ThePrimeagen/git-worktree.nvim'
-Plug 'nvim-telescope/telescope-project.nvim'
+" Plug 'ThePrimeagen/git-worktree.nvim'
+" Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'voldikss/vim-floaterm'
 Plug 'nikvdp/ejs-syntax'
-
 Plug 'kabouzeid/nvim-lspinstall'
 
+" Plug 'ivalkeen/vim-simpledb'
 " Plug 'RishabhRD/nvim-lsputils'
 " Plug 'TimUntersberger/neogit'
 " Plug 'rhysd/git-messenger.vim'

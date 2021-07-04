@@ -20,7 +20,6 @@ local select_multiple = function(prompt_bufnr)
   end
 end
 
--- require('telescope').load_extension('fzy_native')
 local telescope_opts = {
   defaults = {
     vimgrep_arguments = {
@@ -35,33 +34,16 @@ local telescope_opts = {
     },
 
     prompt_prefix = '> ',
-    color_devicons = true,
     sorting_strategy = 'ascending',
-
     layout_config = {
       prompt_position = 'top',
       horizontal = {
-        mirror = true,
-        preview_width = 0.6,
-        height_padding = 0.1,
-      },
-      vertical = {
-        mirror = true,
-        preview_height = 0.6,
-        height_padding = 0.2,
+        preview_width = 0.5,
       },
     },
 
-    layout_strategy = 'horizontal',
-
-    -- file_sorter = require('telescope.sorters').get_fzy_sorter,
-    -- file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
     grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
     qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-
-    file_previewer   = function() return false end,
-    -- grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
-    -- qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
 
     file_ignore_patterns = {
       "%.jpg",
@@ -85,17 +67,55 @@ local telescope_opts = {
         ["<c-j>"] = actions.move_selection_next,
         ["<c-k>"] = actions.move_selection_previous,
         ["<esc>"] = actions.close,
-        ["<cr>"] = select_multiple,
         ["<C-o>"] = actions.send_to_qflist + actions.open_qflist,
       },
     }
   },
+  pickers = {
+    buffers = {
+      prompt_title = "~ buffers ~",
+      sort_lastused = true,
+      mappings = {
+        i = {
+          ["<c-u>"] = require("telescope.actions").delete_buffer,
+          ["<cr>"] = select_multiple,
+        },
+      },
+      previewer = false,
+      theme = "dropdown",
+      layout_config = { width = 110 },
+    },
+    find_files = {
+      prompt_title = "~ files ~",
+      follow = true,
+      hidden = true,
+      mappings = {
+        i = {
+          ["<cr>"] = select_multiple,
+        },
+      },
+      previewer = false,
+      theme = "dropdown",
+      layout_config = { width = 110 },
+
+    },
+    oldfiles = {
+      prompt_title = "~ oldfiles ~",
+      mappings = {
+        i = {
+          ["<cr>"] = select_multiple,
+        },
+      },
+      previewer = false,
+      theme = "dropdown",
+      layout_config = { width = 110 },
+    },
+    lsp_workspace_diagnostics = {
+      layout_strategy = "vertical",
+      layout_config = { mirror = true },
+    },
+  },
   extensions = {
-    -- fzf = {
-      -- override_generic_sorter = true,  -- override the generic sorter
-      -- override_file_sorter = true,     -- override the file sorter
-      -- case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-    -- },
     fzy_native = {
       override_generic_sorter = true,
       override_file_sorter = true,
@@ -103,28 +123,14 @@ local telescope_opts = {
     fzf_writer = {
       minimum_grep_characters = 2,
       minimum_files_characters = 2,
-
-      -- Disabled by default.
-      -- Will probably slow down some aspects of the sorter, but can make color highlights.
-      -- I will work on this more later.
       use_highlighter = true,
     }
   }
 }
 
-if vim.fn.has('win32') == 1 then
-  telescope_opts.defaults.extensions = {}
-  telescope_opts.defaults.layout_strategy = 'vertical'
-end
-
 require('telescope').setup(telescope_opts)
 
--- Telescope extensions must be loaded after the setup function
-require('telescope').load_extension('git_worktree')
--- require('telescope').load_extension('project')
-
 if vim.fn.has('win32') == 0 then
-  -- require('telescope').load_extension('fzf')
   require('telescope').load_extension('fzy_native')
 end
 
@@ -133,56 +139,23 @@ local M = {}
 function M.live_grep()
   require('telescope').extensions.fzf_writer.staged_grep({
     prompt_title = "~ staged grep ~",
-    layout_strategy = 'vertical',
-    layout_config = {
-      mirror = true,
-      preview_height = 0.20,
-    }
-  })
-  -- require('telescope.builtin').live_grep {
-    -- prompt_title = "~ live grep ~",
-    -- layout_strategy = 'vertical',
-    -- layout_config = {
-      -- mirror = true,
-      -- preview_height = 0.20,
-    -- }
-  -- }
-end
-
-function M.buffers()
-  require('telescope.builtin').buffers {
-    prompt_title = "~ buffers ~",
-    shorten_path = false,
     attach_mappings = function(prompt_bufnr, map)
-      local delete_buf = function()
-        local current_picker = action_state.get_current_picker(prompt_bufnr)
-        local multi_selections = current_picker:get_multi_selection()
-
-        if next(multi_selections) == nil then
-          local selection = action_state.get_selected_entry()
-          actions.close(prompt_bufnr)
-          vim.api.nvim_buf_delete(selection.bufnr, {force = true})
-        else
-          actions.close(prompt_bufnr)
-          for _, selection in ipairs(multi_selections) do
-            vim.api.nvim_buf_delete(selection.bufnr, {force = true})
-          end
-        end
-      end
-
-      map('i', '<c-u>', delete_buf)
-
+      map('i', '<cr>', select_multiple)
       return true
     end
-  }
+  })
 end
 
-function M.find_files()
-  require('telescope.builtin').find_files({
-    prompt_title = "~ files ~",
-    follow = true,
-    hidden = true,
-    previewer = false,
+function M.grep_string()
+  require('telescope.builtin').grep_string({
+    prompt_title = "~ grep string ~",
+    short_path = true,
+    word_match = '-w',
+    only_sort_text = true,
+    attach_mappings = function(prompt_bufnr, map)
+      map('i', '<cr>', select_multiple)
+      return true
+    end
   })
 end
 
@@ -193,41 +166,6 @@ function M.current_dir_files()
     hidden = true,
   })
 end
-
-function M.builtin()
-  require('telescope.builtin').builtin({
-    attach_mappings = function(prompt_bufnr, map)
-      map('i', '<cr>', actions.run_builtin)
-      return true
-    end
-  })
-end
-
-function M.git_worktrees()
-  require('telescope').extensions.git_worktree.git_worktrees({})
-end
-
-function M.git_branches()
-  require('telescope.builtin').git_branches({
-    previewer = false,
-    attach_mappings = function(prompt_bufnr, map)
-      map('i', '<cr>', actions.git_checkout)
-      return true
-    end
-  })
-end
-
--- local project_actions = require("telescope._extensions.project")
--- function M.projects()
-  -- require('telescope').extensions.project.project({
-    -- change_dir = true,
-    -- attach_mappings = function(prompt_bufnr, map)
-      -- map('i', '<cr>', actions.select_default)
-      -- map('i', '<esc>', '<esc>')
-      -- return true
-    -- end
-  -- })
--- end
 
 return setmetatable({}, {
   __index = function(_, k)

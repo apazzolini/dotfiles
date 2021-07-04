@@ -1,34 +1,5 @@
-setlocal signcolumn=yes
-setlocal winwidth=88
-setlocal shiftwidth=2
-setlocal tabstop=2
-setlocal softtabstop=2
-" setlocal ft=javascriptreact
-
 let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
   \ '`'     : {'closer': '`'},
-  \ '/\*\*' : {'closer': '\*/'},
-  \ '<*>'   : {'closer': '</*>',
-  \              'not_if': ['br', 'hr', 'img', 'input', 'link', 'meta',
-  \                'area', 'base', 'col', 'command', 'embed',
-  \                'keygen', 'param', 'source', 'track', 'wbr'
-  \              ],
-  \              'not_like': '{[^}]*$\|/$',
-  \              'until': '[^a-zA-Z0-9-._]',
-  \              'not_at': ['[^> ]<[^>]*'],
-  \              'not_in': ['String']
-  \           }
   \ }, 'keep')
-
-" Old config before https://github.com/tmsvg/pear-tree/issues/31
-"\              'not_like': '/$',
-"\              'until': '[^a-zA-Z0-9-._]'
-
-augroup jsfmt
-  autocmd!
-  autocmd BufWritePre *.cjs lua vim.lsp.buf.formatting_sync(nil, 2000)
-  autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 2000)
-  autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 2000)
-augroup END
 
 set errorformat+=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m

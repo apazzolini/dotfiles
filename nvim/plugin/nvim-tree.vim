@@ -28,5 +28,15 @@ let g:nvim_tree_icons = {
     \ }
 
 nnoremap <leader>no :let g:nvim_tree_quit_on_open=!g:nvim_tree_quit_on_open<cr>
-nnoremap <leader>G :NvimTreeFindFile<CR>
+nnoremap <leader>gg :NvimTreeFindFile<CR>
 nnoremap <leader>cd :cd %:p:h<CR>
+
+function! FixNvimTree()
+  echo &ft
+  set number
+  set relativenumber
+endfunction
+
+autocmd FileType * :call FixNvimTree()
+autocmd FileType floaterm setlocal nonumber norelativenumber
+autocmd TermOpen * setlocal nonumber norelativenumber

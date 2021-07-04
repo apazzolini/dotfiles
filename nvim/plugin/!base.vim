@@ -30,20 +30,15 @@ set wrap linebreak nolist
 set splitright
 set backspace=indent,eol,start
 set lazyredraw
-" set cinoptions+=+1
-" set noshowmatch
 set noshowcmd
 set switchbuf=useopen
 set nomodeline
 set mouse=a
 set inccommand=split
 set completeopt=menuone,noselect
-set pumheight=17
+set pumheight=20
 
 set nojoinspaces
-autocmd FileType * set formatoptions-=o
-autocmd FileType * set formatoptions+=j
-" autocmd FileType * set formatoptions-=c
 
 set foldmethod=manual
 set nofoldenable
@@ -53,18 +48,18 @@ set foldnestmax=4
 " ------------------------------------------------------------------------------
 
 " Convenience mappings
-map ' `
 let mapleader = ","
+map ' `
 map Y y$
 map H 0
 map L $
 noremap j gj
 noremap k gk
 map gx :tabclose<CR>
-nnoremap <c-d> 10<c-d>
-nnoremap <c-u> 10<c-u>
-" nnoremap <c-d> 10<c-d>zz
-" nnoremap <c-u> 10<c-u>zz
+" nnoremap <c-d> 10<c-d>
+" nnoremap <c-u> 10<c-u>
+nnoremap <c-d> 10<c-d>zz
+nnoremap <c-u> 10<c-u>zz
 nnoremap <c-e> 3<c-e>
 nnoremap <c-y> 3<c-y>
 noremap 0 0^
@@ -81,27 +76,15 @@ map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
 map <2-MiddleMouse> <Nop>
 imap <2-MiddleMouse> <Nop>
-map <leader>ww :w <bar> source %<cr>
 map ; :
-" nnoremap : ;
-" map <Space> 10j
-" map <BS> 10k
-" map <leader>p "*p
 nmap gq :q<cr>
-nmap gQ :qa<cr>
-nmap <leader>q :q<cr>
-nmap <leader>Q :qa<cr>
 
 " Split mappings
 " These broke at some point from a neovim update
-" nnoremap c<C-j> :bel new<cr>
-" nnoremap c<C-k> :abo new<cr>
-" nnoremap c<C-h> :lefta vnew<cr>
-" nnoremap c<C-l> :rightb vnew<cr>
-nnoremap cj :bel new<cr>
-nnoremap ck :abo new<cr>
-nnoremap ch :lefta vnew<cr>
-nnoremap cl :rightb vnew<cr>
+nnoremap c<C-j> :bel new<cr>
+nnoremap c<C-k> :abo new<cr>
+nnoremap c<C-h> :lefta vnew<cr>
+nnoremap c<C-l> :rightb vnew<cr>
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -110,10 +93,6 @@ nnoremap <a-[> gT
 nnoremap <a-]> gt
 map <leader>we :set winheight=999<cr>
 map <leader>wd :set winheight=10<cr><c-w>=<cr>
-map <leader>wj :resize +20<cr>
-map <leader>wk :resize -20<cr>
-map <leader>wh :vert resize -20<cr>
-map <leader>wl :vert resize +20<cr>
 
 " Test mappings
 nmap <leader>ot mT:%s/it.only/it/ge<cr>'T?it(<cr>ceit.only<esc>'T
@@ -143,11 +122,6 @@ autocmd FileType gitcommit execute "normal! gg" | startinsert
 
 " TelescopePrompt after ftplugin stopped working
 autocmd FileType TelescopePrompt imap <buffer> <bs> <bs>
-
-" Show syntax highlighting of current word
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 command! BC call s:CloseHiddenBuffers()
 function! s:CloseHiddenBuffers()
