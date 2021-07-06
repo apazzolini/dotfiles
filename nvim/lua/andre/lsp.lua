@@ -59,7 +59,7 @@ require'lspconfig'.tsserver.setup{
     client.resolved_capabilities.document_formatting = false
     vim.cmd [[augroup Format]]
     vim.cmd [[autocmd! * <buffer>]]
-    vim.cmd [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)]]
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)]]
     vim.cmd [[augroup END]]
   end,
   flags = {
