@@ -3,7 +3,6 @@ import:
 alt_send_esc: true
 font:
   use_thin_strokes: true
-
   size: 12.5
   normal:
     family: "Operator Mono"
@@ -13,48 +12,34 @@ font:
   italic:
     style: Extra Light Italic
 
-  # size: 11.5
-  # normal:
-    # family: "JetBrains Mono NL"
-    # style: Thin
-  # bold:
-    # style: Thin
-  # italic:
-    # style: Thin Italic
-
 window:
   padding:
     y: 2
 key_bindings:
-  - { key: Key0, mods: Command, action: ResetFontSize }
-  - { key: Key1, mods: Command, chars: "\x101" }
-  - { key: Key2, mods: Command, chars: "\x102" }
-  - { key: Key3, mods: Command, chars: "\x103" }
-  - { key: Key4, mods: Command, chars: "\x104" }
-  - { key: Key5, mods: Command, chars: "\x105" }
-  - { key: Key6, mods: Command, chars: "\x106" }
-  - { key: Key7, mods: Command, chars: "\x107" }
-  - { key: Key8, mods: Command, chars: "\x108" }
-  - { key: Key9, mods: Command, chars: "\x109" }
-  # - { key: LBracket, mods: Command|Shift, chars: "\x10\x70" }
-  # - { key: RBracket, mods: Command|Shift, chars: "\x10\x6E" }
-  # - { key: LBracket, mods: Command, chars: "\x1b\x5b" }
-  # - { key: RBracket, mods: Command, chars: "\x1b\x5d" }
-  - { key: LBracket, mods: Command|Shift, chars: "\x1b\x5b" }
-  - { key: RBracket, mods: Command|Shift, chars: "\x1b\x5d" }
-  - { key: LBracket, mods: Command, chars: "\x10\x70" }
-  - { key: RBracket, mods: Command, chars: "\x10\x6e" }
-  - { key: J, mods: Command, chars: "\x10\x5b" }
-  - { key: W, mods: Command, chars: "\x10\x78" }
-  - { key: K, mods: Command, chars: "\x10\x0C" }
-  - { key: A, mods: Command, chars: "\x01" }
-  - { key: Space, mods: Control, chars: "\x00" }
-  - { key: Slash, mods: Command, chars: ",ct" }
-  - { key: U, mods: Command, chars: ",Pu" }
-  - { key: I, mods: Command, chars: ",Pi" }
-  - { key: O, mods: Command, chars: ",Po" }
-  - { key: P, mods: Command, chars: ",PP" }
-  - { key: E, mods: Command, chars: ",Pe" }
+  - { key: Key0     , mods: Command       , action: ResetFontSize }
+  - { key: Key1     , mods: Command       , chars: "\x101" }
+  - { key: Key2     , mods: Command       , chars: "\x102" }
+  - { key: Key3     , mods: Command       , chars: "\x103" }
+  - { key: Key4     , mods: Command       , chars: "\x104" }
+  - { key: Key5     , mods: Command       , chars: "\x105" }
+  - { key: Key6     , mods: Command       , chars: "\x106" }
+  - { key: Key7     , mods: Command       , chars: "\x107" }
+  - { key: Key8     , mods: Command       , chars: "\x108" }
+  - { key: Key9     , mods: Command       , chars: "\x109" }
+  - { key: LBracket , mods: Command|Shift , chars: "\x1b\x5b" }
+  - { key: RBracket , mods: Command|Shift , chars: "\x1b\x5d" }
+  - { key: LBracket , mods: Command       , chars: "\x10\x70" }
+  - { key: RBracket , mods: Command       , chars: "\x10\x6e" }
+  - { key: Space    , mods: Control       , chars: "\x00" }
+  - { key: Slash    , mods: Command       , chars: ",ct" }
+  - { key: J        , mods: Command       , chars: "\x10\x5b" }
+  - { key: W        , mods: Command       , chars: "\x10\x78" }
+  - { key: K        , mods: Command       , chars: "\x10\x0C" }
+  - { key: A        , mods: Command       , chars: ",Pa" }
+  - { key: E        , mods: Command       , chars: ",Pe" }
+  - { key: I        , mods: Command       , chars: ",Pk" }
+  - { key: O        , mods: Command       , chars: ",Pj" }
+  - { key: P        , mods: Command       , chars: ",PP" }
 
     # See: https://github.com/alacritty/alacritty/issues/1359#issuecomment-430265381
   - { key: Q, mods: Control, chars: "\x11" }

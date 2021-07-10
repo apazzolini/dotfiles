@@ -35,8 +35,10 @@ local telescope_opts = {
 
     prompt_prefix = '> ',
     sorting_strategy = 'ascending',
+    layout_strategy = "vertical",
     layout_config = {
       prompt_position = 'top',
+      mirror = true,
       horizontal = {
         preview_width = 0.5,
       },
@@ -109,10 +111,6 @@ local telescope_opts = {
       previewer = false,
       theme = "dropdown",
       layout_config = { width = 110 },
-    },
-    lsp_workspace_diagnostics = {
-      layout_strategy = "vertical",
-      layout_config = { mirror = true },
     },
   },
   extensions = {
