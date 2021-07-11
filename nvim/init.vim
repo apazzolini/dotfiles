@@ -61,7 +61,8 @@ Plug 'nikvdp/ejs-syntax'
 " Plug 'ivalkeen/vim-simpledb'
 " Plug 'RishabhRD/nvim-lsputils'
 " Plug 'TimUntersberger/neogit'
-" Plug 'rhysd/git-messenger.vim'
+Plug 'rhysd/git-messenger.vim'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " --------------------------------------------------------------------------------------------------
 
@@ -98,8 +99,8 @@ lua << EOF
   end
 EOF
 
-autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
-autocmd! BufWritePost ~/.dotfiles/nvim/*.lua source $MYVIMRC
+" autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
+" autocmd! BufWritePost ~/.dotfiles/nvim/*.lua source $MYVIMRC
 " autocmd! BufWritePost ~/.dotfiles/nvim/*.lua execute 'luafile %' | source $MYVIMRC
 
 lua require('andre')
