@@ -17,11 +17,11 @@ call plug#begin(g:pluggedHome)
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-surround'
-Plug 'wellle/targets.vim'
 Plug 'romainl/vim-qf'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-line'
-Plug 'kana/vim-textobj-entire'
+" Plug 'wellle/targets.vim' " Remove targets.vim when deleting this line
+" Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-line'
+" Plug 'kana/vim-textobj-entire'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
@@ -41,6 +41,8 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'phaazon/hop.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'voldikss/vim-floaterm'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'tpope/vim-commentary'
 
 " Replace these with something else
 " Plug 'AndrewRadev/splitjoin.vim'
@@ -51,8 +53,7 @@ Plug 'rbong/vim-flog'
 " Still evaluating ---------------------------------------------------------------------------------
 
 Plug 'nikvdp/ejs-syntax'
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-Plug 'tpope/vim-commentary'
+" Plug 'hrsh7th/vim-vsnip'
 " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " Plug 'ThePrimeagen/git-worktree.nvim'
 " Plug 'nvim-telescope/telescope-project.nvim'

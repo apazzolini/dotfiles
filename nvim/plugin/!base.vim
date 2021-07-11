@@ -56,8 +56,6 @@ map L $
 noremap j gj
 noremap k gk
 map gx :tabclose<CR>
-" nnoremap <c-d> 10<c-d>
-" nnoremap <c-u> 10<c-u>
 nnoremap <c-d> 10<c-d>zz
 nnoremap <c-u> 10<c-u>zz
 nnoremap <c-e> 3<c-e>
@@ -78,6 +76,8 @@ map <2-MiddleMouse> <Nop>
 imap <2-MiddleMouse> <Nop>
 map ; :
 nmap gq :q<cr>
+nnoremap vae ggVG
+nnoremap dae ggdG
 
 " Split mappings
 " These broke at some point from a neovim update
@@ -98,6 +98,9 @@ map <leader>wd :set winheight=10<cr><c-w>=<cr>
 nmap <leader>ot mT:%s/it.only/it/ge<cr>'T?it(<cr>ceit.only<esc>'T
 nmap <leader>oa mT?it(<cr>ceit.only<esc>'T
 nmap <leader>ox mT:%s/it.only/it/ge<cr>'T
+
+cmap <c-k> <up>
+cmap <c-j> <down>
 
 " Only show cursor line on active split
 set nocursorline
