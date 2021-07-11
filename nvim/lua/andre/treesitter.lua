@@ -20,3 +20,9 @@ require'nvim-treesitter.configs'.setup {
     persist_queries = false -- Whether the query persists across vim sessions
   },
 }
+
+require'nvim-treesitter.configs'.setup {
+  context_commentstring = {
+    enable = true
+  }
+}

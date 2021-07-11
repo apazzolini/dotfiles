@@ -36,6 +36,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'phaazon/hop.nvim'
 Plug 'ThePrimeagen/harpoon'
@@ -45,17 +46,16 @@ Plug 'voldikss/vim-floaterm'
 " Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'tmsvg/pear-tree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'rbong/vim-flog'
 
 " Still evaluating ---------------------------------------------------------------------------------
 
+Plug 'nikvdp/ejs-syntax'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'tpope/vim-commentary'
 " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " Plug 'ThePrimeagen/git-worktree.nvim'
 " Plug 'nvim-telescope/telescope-project.nvim'
-Plug 'nikvdp/ejs-syntax'
-Plug 'kabouzeid/nvim-lspinstall'
-
 " Plug 'sindrets/diffview.nvim'
 " Plug 'ivalkeen/vim-simpledb'
 " Plug 'RishabhRD/nvim-lsputils'
@@ -97,7 +97,8 @@ lua << EOF
   end
 EOF
 
-" autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
+autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
+autocmd! BufWritePost ~/.dotfiles/nvim/*.lua source $MYVIMRC
 " autocmd! BufWritePost ~/.dotfiles/nvim/*.lua execute 'luafile %' | source $MYVIMRC
 
 lua require('andre')
