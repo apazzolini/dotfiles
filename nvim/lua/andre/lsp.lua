@@ -53,6 +53,7 @@ require'lspconfig'.tsserver.setup{
     vim.api.nvim_set_keymap('n', ',lt', '<cmd>cexpr system("tsc --pretty false") <bar> copen<cr>', opts)
     vim.api.nvim_set_keymap('n', ',la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
     vim.api.nvim_set_keymap('n', ',lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
+		vim.api.nvim_set_keymap('n', ',S', '<cmd>silent !touch ~/Work/swt/andre/4/frontend/tailwind.config.js<cr>', opts)
 
     -- disable tsserver's formatting but assume that prettier via efm will exist,
     -- which we want to trigger on save
@@ -60,6 +61,7 @@ require'lspconfig'.tsserver.setup{
     vim.cmd [[augroup Format]]
     vim.cmd [[autocmd! * <buffer>]]
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)]]
+		-- vim.cmd [[autocmd BufWritePost <buffer> <silent> !touch ~/Work/swt/andre/4/frontend/tailwind.config.js]]
     vim.cmd [[augroup END]]
   end,
   flags = {

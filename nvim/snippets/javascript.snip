@@ -26,10 +26,6 @@ snippet import-react
 alias ir
 	import React from 'react'
 
-snippet import-styled-components
-alias isc
-	import styled from 'styled-components'
-
 snippet record-string-any
 alias rsa
 	Record<string, any>
@@ -77,13 +73,14 @@ options word
 		${0:TARGET}
 	})
 
-snippet new-query
-alias cque
-options indent
-	query({
-		sql: \`
-			${0:TARGET}
-		\`,
-		params: [
-		],
-	})
+snippet className
+alias cn
+options word
+	className="${1}"
+
+snippet classNameMultiline
+alias cnn
+options word
+	className={\`
+		${0:TARGET}
+	\`}

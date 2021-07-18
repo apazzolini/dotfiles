@@ -17,3 +17,8 @@ git:
   paging:
     colorArg: always
     pager: delta --paging=never --24-bit-color=never
+
+keybinding:
+  commits:
+    moveDownCommit: '<c-J>' # move commit down one
+    moveUpCommit: '<c-K>' # move commit up one
