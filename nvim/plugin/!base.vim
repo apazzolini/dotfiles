@@ -17,7 +17,7 @@ set relativenumber
 set scrolloff=4
 set colorcolumn=
 
-set timeoutlen=400 ttimeoutlen=0
+set timeoutlen=500 ttimeoutlen=0
 set autoread
 set hidden
 set updatetime=200
