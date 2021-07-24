@@ -1,4 +1,6 @@
 require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+
   indent = {
     enable = true,
   },
@@ -31,9 +33,7 @@ require'nvim-treesitter.configs'.setup {
       },
     }
   },
-}
 
-require'nvim-treesitter.configs'.setup {
   context_commentstring = {
     enable = true
   }
