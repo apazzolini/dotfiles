@@ -18,10 +18,6 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-surround'
 Plug 'romainl/vim-qf'
-" Plug 'wellle/targets.vim' " Remove targets.vim when deleting this line
-" Plug 'kana/vim-textobj-user'
-" Plug 'kana/vim-textobj-line'
-" Plug 'kana/vim-textobj-entire'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
@@ -47,8 +43,12 @@ Plug 'tpope/vim-commentary'
 " Replace these with something else
 " Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/neosnippet.vim'
-Plug 'tmsvg/pear-tree'
+" Plug 'tmsvg/pear-tree'
 Plug 'rbong/vim-flog'
+Plug 'wellle/targets.vim' " Remove targets.vim when deleting this line
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-entire'
 
 " Still evaluating ---------------------------------------------------------------------------------
 
@@ -63,6 +63,10 @@ Plug 'nikvdp/ejs-syntax'
 " Plug 'TimUntersberger/neogit'
 Plug 'rhysd/git-messenger.vim'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
+
+Plug 'folke/lua-dev.nvim'
 
 " --------------------------------------------------------------------------------------------------
 

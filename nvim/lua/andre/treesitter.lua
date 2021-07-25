@@ -36,5 +36,11 @@ require'nvim-treesitter.configs'.setup {
 
   context_commentstring = {
     enable = true
-  }
+  },
+
+  autotag = {
+    enable = true,
+  },
 }
+
+vim.api.nvim_set_keymap("n", "<leader>sh", '<cmd>TSHighlightCapturesUnderCursor<cr>', {})

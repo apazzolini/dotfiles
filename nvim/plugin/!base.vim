@@ -26,7 +26,7 @@ set secure
 set noswapfile
 set nobackup
 set nowritebackup
-set wrap linebreak nolist
+set wrap linebreak breakindent nolist
 set splitright
 set backspace=indent,eol,start
 set lazyredraw
@@ -68,19 +68,17 @@ map <leader>nt :tabnew<cr>
 nnoremap <leader><leader> <c-^>
 vmap <leader>y "*y
 map <leader>jst :silent !stree<cr>
-map <leader>k :write <bar> edit <bar> TSBufEnable highlight<cr>
-map <leader>R :source ~/.config/nvim/init.vim<cr>
+map <leader>k :write <bar> edit <bar> TSBufEnable highlight <bar> LspStop <bar> LspStart<cr>
+map <leader>R :source $MYVIMRC<cr>
+map <leader>ww :autocmd! BufWritePost <buffer> luafile %<cr>
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
 map <2-MiddleMouse> <Nop>
 imap <2-MiddleMouse> <Nop>
 map ; :
 nmap gq :q<cr>
-nnoremap vae ggVG
-nnoremap dae ggdG
 
 " Split mappings
-" These broke at some point from a neovim update
 nnoremap c<C-j> :bel new<cr>
 nnoremap c<C-k> :abo new<cr>
 nnoremap c<C-h> :lefta vnew<cr>
@@ -152,9 +150,3 @@ endfunction
 
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
-
-command! -nargs=+ Rg call s:Ripgrep(<q-args>)
-function! s:Ripgrep(...)
-  cexpr system('rg --follow --no-heading --with-filename --line-number --column --smart-case ' .. a:1)
-endfunction
-nnoremap <leader>A :Rg<space>
