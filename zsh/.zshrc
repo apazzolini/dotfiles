@@ -60,3 +60,5 @@ safesource /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh
 # printf "\033]4;247;rgb:ad/b3/ba\033\\"
 # printf "\033]4;248;rgb:c7/cc/d1\033\\"
 # printf "\033]4;249;rgb:df/e2/e5\033\\"
+
+alias luamake=/Users/andre/.cache/nvim/nlua/sumneko_lua/lua-language-server/3rd/luamake/luamake
