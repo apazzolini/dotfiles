@@ -5,6 +5,7 @@ local colors = {
   fg = '#c7ccd1',
   aqua = '#87c095',
   green = '#a2c7a9',
+  magenta = '#B291D4',
   orange = '#e39b7b',
   purple = '#d39bb6',
   red = '#e68183',
@@ -15,7 +16,7 @@ local colors = {
 -- LuaFormatter on
 local theme = {
   normal = {
-    a = { bg = colors.green, fg = colors.bg0, gui = 'bold' },
+    a = { bg = colors.magenta, fg = colors.bg0, gui = 'bold' },
     b = { bg = colors.bg3, fg = colors.fg },
     c = { bg = colors.bg1, fg = colors.fg },
   },
@@ -35,7 +36,7 @@ local theme = {
     c = { bg = colors.bg1, fg = colors.fg },
   },
   command = {
-    a = { bg = colors.aqua, fg = colors.bg0, gui = 'bold' },
+    a = { bg = colors.green, fg = colors.bg0, gui = 'bold' },
     b = { bg = colors.bg3, fg = colors.fg },
     c = { bg = colors.bg1, fg = colors.fg },
   },

@@ -1,6 +1,7 @@
 import:
   - /Users/andre/.dotfiles/systems/shared/alacritty.yml
 alt_send_esc: true
+
 font:
   use_thin_strokes: true
   size: 12.5
@@ -33,6 +34,7 @@ key_bindings:
   - { key: Space    , mods: Control       , chars: "\x00" }
   - { key: Slash    , mods: Command       , chars: ",ct" }
   - { key: J        , mods: Command       , chars: "\x10\x5b" }
+  # - { key: J        , mods: Command       , chars: "\x1D" }
   - { key: W        , mods: Command       , chars: "\x10\x78" }
   - { key: K        , mods: Command       , chars: "\x10\x0C" }
   - { key: A        , mods: Command       , chars: ",Pa" }
@@ -40,6 +42,8 @@ key_bindings:
   - { key: I        , mods: Command       , chars: ",Pk" }
   - { key: O        , mods: Command       , chars: ",Pj" }
   - { key: P        , mods: Command       , chars: ",PP" }
+  - { key: F        , mods: Command       , chars: "]qzz" }
+  - { key: D        , mods: Command       , chars: "[qzz" }
 
     # See: https://github.com/alacritty/alacritty/issues/1359#issuecomment-430265381
   - { key: Q, mods: Control, chars: "\x11" }

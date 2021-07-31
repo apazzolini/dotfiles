@@ -78,6 +78,17 @@ imap <2-MiddleMouse> <Nop>
 map ; :
 nmap gq :q<cr>
 
+" New ones
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
 nnoremap c<C-k> :abo new<cr>
@@ -150,3 +161,5 @@ endfunction
 
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
+
+nnoremap <leader>sh <cmd>TSHighlightCapturesUnderCursor<CR>

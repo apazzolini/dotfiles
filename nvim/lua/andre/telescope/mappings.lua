@@ -22,8 +22,8 @@ end
 
 map_tele(',e', 'find_files')
 map_tele(',E', 'current_dir_files')
--- map_tele(',b',  'buffers')
-map_tele(',b', 'oldfiles')
+map_tele(',b', 'buffers')
+map_tele(',B', 'oldfiles')
 map_tele(',fh', 'help_tags')
 map_tele(',fe', 'lsp_workspace_diagnostics')
 map_tele(',fb', 'builtin')

@@ -112,6 +112,8 @@ require('lspconfig').efm.setup({
     'typescript',
     'typescriptreact',
     'less',
+    'css',
+    'json'
   },
   init_options = {
     documentFormatting = true,
@@ -123,6 +125,8 @@ require('lspconfig').efm.setup({
       javascriptreact = { prettier, eslint },
       typescriptreact = { prettier, eslint },
       less = { prettier },
+      css = { prettier },
+      json = { prettier },
     },
   },
   handlers = {

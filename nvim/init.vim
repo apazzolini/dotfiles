@@ -42,8 +42,8 @@ Plug 'tpope/vim-commentary'
 
 " Replace these with something else
 " Plug 'AndrewRadev/splitjoin.vim'
-Plug 'Shougo/neosnippet.vim'
 " Plug 'tmsvg/pear-tree'
+Plug 'Shougo/neosnippet.vim'
 Plug 'rbong/vim-flog'
 Plug 'wellle/targets.vim' " Remove targets.vim when deleting this line
 Plug 'kana/vim-textobj-user'
@@ -65,7 +65,6 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
-
 Plug 'folke/lua-dev.nvim'
 
 " --------------------------------------------------------------------------------------------------
