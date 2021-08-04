@@ -135,16 +135,19 @@ end
 
 local M = {}
 
-function M.live_grep()
+function M.custom_grep()
   package.loaded['andre.telescope.grepper'] = nil
   require('andre.telescope.grepper')()
-  -- require('telescope').extensions.fzf_writer.staged_grep({
-  --   prompt_title = '~ staged grep ~',
-  --   attach_mappings = function(prompt_bufnr, map)
-  --     map('i', '<cr>', select_multiple)
-  --     return true
-  --   end,
-  -- })
+end
+
+function M.live_grep()
+  require('telescope').extensions.fzf_writer.staged_grep({
+    prompt_title = '~ staged grep ~',
+    attach_mappings = function(prompt_bufnr, map)
+      map('i', '<cr>', select_multiple)
+      return true
+    end,
+  })
 end
 
 function M.grep_string()

@@ -1,5 +1,5 @@
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+require('nvim-treesitter.configs').setup({
+  ensure_installed = 'maintained',
 
   indent = {
     enable = true,
@@ -8,10 +8,10 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     custom_captures = {
-      ["className"] = "TS_C_ClassName",
-      ["reactHook"] = "TS_C_ReactHook",
-      ["jsxAttribute"] = "TS_C_JsxAttribute",
-      ["function.call"] = "TS_C_FunctionCall",
+      ['className'] = 'TS_C_ClassName',
+      ['reactHook'] = 'TS_C_ReactHook',
+      ['jsxAttribute'] = 'TS_C_JsxAttribute',
+      ['function.call'] = 'TS_C_FunctionCall',
     },
   },
 
@@ -19,28 +19,28 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     disable = {},
     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false -- Whether the query persists across vim sessions
+    persist_queries = false, -- Whether the query persists across vim sessions
   },
 
   textobjects = {
     select = {
       enable = true,
       keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@conditional.outer",
-        ["ic"] = "@conditional.inner",
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@conditional.outer',
+        ['ic'] = '@conditional.inner',
       },
-    }
+    },
   },
 
   context_commentstring = {
-    enable = true
+    enable = true,
   },
 
   autotag = {
     enable = true,
   },
-}
+})
 
-vim.api.nvim_set_keymap("n", "<leader>sh", '<cmd>TSHighlightCapturesUnderCursor<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>sh', '<cmd>TSHighlightCapturesUnderCursor<cr>', {})

@@ -14,12 +14,17 @@ tmux -u -2 new-session -d -s $SESSION
 
 next_session=0
 spawn_window () {
-  tmux new-window -t $SESSION:$next_session -c $2 -k -n $1
+  tmux new-window -t $SESSION:$next_session -c "$2" -k -n "$1"
   ((next_session++))
 }
 
-spawn_window dotfiles ~/.dotfiles
-spawn_window server ~/Work/swt/andre/1
+spawn_window "dotfiles" ~/.dotfiles
+spawn_window "server (react)" ~/Work/swt/andre/1
+# spawn_window "server (2)" ~/Work/swt/andre/2
+# spawn_window "server (3)" ~/Work/swt/andre/3
+# spawn_window "server (4)" ~/Work/swt/andre/4
+# spawn_window "server (develop)" ~/Work/swt/develop
+# spawn_window "server (review)" ~/Work/swt/andre/review
 
 tmux select-window -t $SESSION:0
 tmux -2 attach -t $SESSION

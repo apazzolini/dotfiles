@@ -12,7 +12,7 @@ fi
 # Create a new detached session...
 tmux -u -2 new-session -d -s $SESSION
 
-next_session=0
+next_session=1
 spawn_window () {
   tmux new-window -t $SESSION:$next_session -c $2 -k -n $1
   ((next_session++))

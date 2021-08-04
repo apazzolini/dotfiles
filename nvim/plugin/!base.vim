@@ -79,8 +79,10 @@ map ; :
 nmap gq :q<cr>
 
 " New ones
-nnoremap n nzzzv
-nnoremap N Nzzzv
+nnoremap <c-o> <c-o>zz
+nnoremap <c-i> <c-i>zz
+nnoremap n nzz
+nnoremap N Nzz
 nnoremap J mzJ`z
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
@@ -134,6 +136,8 @@ autocmd FileType gitcommit execute "normal! gg" | startinsert
 
 " TelescopePrompt after ftplugin stopped working
 autocmd FileType TelescopePrompt imap <buffer> <bs> <bs>
+
+autocmd VimResized * :wincmd =
 
 command! BC call s:CloseHiddenBuffers()
 function! s:CloseHiddenBuffers()

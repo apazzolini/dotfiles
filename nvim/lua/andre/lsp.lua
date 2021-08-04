@@ -113,7 +113,7 @@ require('lspconfig').efm.setup({
     'typescriptreact',
     'less',
     'css',
-    'json'
+    'json',
   },
   init_options = {
     documentFormatting = true,
