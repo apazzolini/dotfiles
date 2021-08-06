@@ -233,6 +233,7 @@ colors:
     #  background: '#c5c8c6'
     #  foreground: '#1d1f21'
 
+  # COLORS
   # Default colors
   primary:
     background: '#1c2023'
@@ -241,11 +242,11 @@ colors:
   # Normal colors
   normal:
     black:   '#1c2023'
-    red:     '#DE718B'
+    red:     '#de718b'
     green:   '#b1cfa9'
-    yellow:  '#EFE7CA'
+    yellow:  '#efe7ca'
     blue:    '#95aec7'
-    magenta: '#B291D4'
+    magenta: '#b291d4'
     cyan:    '#68b2c9'
     white:   '#c7ccd1'
 
@@ -253,24 +254,16 @@ colors:
   bright:
     black:   '#747c84'
     red:     '#d19b9b'
-    green:   '#a2c7a9'
-    yellow:  '#dcdcaa'
-    blue:    '#ae95c7'
-    magenta: '#c795ae'
-    cyan:    '#95aec7'
+    green:   '#b1cfa9' # same as non-bright
+    yellow:  '#efe7ca' # same as non-bright
+    blue:    '#95aec7' # same as non-bright
+    magenta: '#ff007c'
+    cyan:    '#81d4bc'
     white:   '#f3f4f5'
 
   # Indexed Colors
   indexed_colors:
-    - { index: 16,  color: '#c7c795' }
-    - { index: 17,  color: '#c79595' }
-    - { index: 18,  color: '#292e33' }
-    - { index: 19,  color: '#3d4348' }
-    - { index: 20,  color: '#adb3ba' }
-    - { index: 21,  color: '#dfe2e5' }
-    - { index: 22,  color: '#a27f74' }
-    - { index: 243, color: '#202427' }
-    - { index: 244, color: '#2b3034' }
+    - { index: 244, color: '#222629' }
     - { index: 245, color: '#3d4348' }
     - { index: 246, color: '#747c84' }
     - { index: 247, color: '#adb3ba' }

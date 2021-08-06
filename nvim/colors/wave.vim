@@ -2,7 +2,7 @@ if !has('gui_running') && &t_Co < 256
   finish
 endif
 
-"hi clear
+" hi clear
 
 if exists('syntax_on')
   syntax reset
@@ -20,22 +20,22 @@ if &background ==# 'dark'
   endif
 
   let s:bright = 0
-  let s:wRgbBlack     = ''
-  let s:wRgbRed       = ''
-  let s:wRgbGreen     = ''
-  let s:wRgbYellow    = '' " Previously was #E7DDBB
-  let s:wRgbBlue      = ''
-  let s:wRgbMagenta   = ''
-  let s:wRgbCyan      = ''
-  let s:wRgbWhite     = ''
-  let s:wRgbBrightRed = ''
-  let s:wRgb18        = ''
-  let s:wRgb244       = ''
-  let s:wRgb245       = ''
-  let s:wRgb246       = ''
-  let s:wRgb247       = ''
-  let s:wRgb248       = ''
-  let s:wRgb249       = ''
+  let s:wRgbBlack         = ''
+  let s:wRgbRed           = ''
+  let s:wRgbGreen         = ''
+  let s:wRgbYellow        = ''
+  let s:wRgbBlue          = ''
+  let s:wRgbMagenta       = ''
+  let s:wRgbCyan          = ''
+  let s:wRgbWhite         = ''
+  let s:wRgbBrightRed     = ''
+  let s:wRgbBrightMagenta = ''
+  let s:wRgb244           = ''
+  let s:wRgb245           = ''
+  let s:wRgb246           = ''
+  let s:wRgb247           = ''
+  let s:wRgb248           = ''
+  let s:wRgb249           = ''
 
   for line in readfile(g:home .. '/.dotfiles/systems/shared/alacritty.yml')
     if line =~ 'Bright colors'
@@ -44,6 +44,7 @@ if &background ==# 'dark'
 
     if s:bright
       if !len(s:wRgbBrightRed) && line =~ 'red' | let s:wRgbBrightRed = strpart(line, 14, 7) | endif
+      if !len(s:wRgbBrightMagenta) && line =~ 'magenta' | let s:wRgbBrightMagenta = strpart(line, 14, 7) | endif
     else
       if !len(s:wRgbBlack) && line =~ 'black'     | let s:wRgbBlack = strpart(line, 14, 7)   | endif
       if !len(s:wRgbRed) && line =~ 'red'         | let s:wRgbRed = strpart(line, 14, 7)     | endif
@@ -55,7 +56,6 @@ if &background ==# 'dark'
       if !len(s:wRgbWhite) && line =~ 'white'     | let s:wRgbWhite = strpart(line, 14, 7)   | endif
     endif
 
-    if !len(s:wRgb18) && line =~ 'index: 18'   | let s:wRgb18 = strpart(line, 28, 7)    | endif
     if !len(s:wRgb244) && line =~ 'index: 244' | let s:wRgb244 = strpart(line, 28, 7)   | endif
     if !len(s:wRgb245) && line =~ 'index: 245' | let s:wRgb245 = strpart(line, 28, 7)   | endif
     if !len(s:wRgb246) && line =~ 'index: 246' | let s:wRgb246 = strpart(line, 28, 7)   | endif
@@ -71,6 +71,7 @@ if &background ==# 'dark'
   let s:terminal_color_5 = s:wRgbMagenta
   let s:terminal_color_6 = s:wRgbCyan
   let s:terminal_color_9 = s:wRgbBrightRed
+  let s:terminal_color_13 = s:wRgbBrightMagenta
 else
   hi! Normal ctermbg=NONE guibg=#d5d6d7 guifg=#0c1c2b
 
@@ -83,8 +84,8 @@ else
   let s:wRgbCyan      = '#56bf8b'
   let s:wRgbWhite     = '#0b1c2c'
   let s:wRgbBrightRed = '#bf8b56'
+  let s:wRgbBrightMagenta = '#bf568b'
   let s:wRgb244       = '#dfe2e5'
-  let s:wRgb18        = '#565e65'
   let s:wRgb245       = '#565e65'
   let s:wRgb246       = '#747c84'
   let s:wRgb247       = '#adb3ba'
@@ -102,6 +103,7 @@ let s:wMagenta='ctermfg=5 guifg='.s:wRgbMagenta
 let s:wCyan='ctermfg=6 guifg='.s:wRgbCyan
 let s:wWhite='ctermfg=7 guifg='.s:wRgbWhite
 let s:wBrightRed='ctermfg=9 guifg='.s:wRgbBrightRed
+let s:wBrightMagenta='ctermfg=13 guifg='.s:wRgbBrightMagenta
 let s:wFg1='ctermfg=244 guifg='.s:wRgb244
 let s:wFg2='ctermfg=245 guifg='.s:wRgb245
 let s:wFg3='ctermfg=246 guifg='.s:wRgb246
@@ -109,15 +111,14 @@ let s:wFg4='ctermfg=247 guifg='.s:wRgb247
 let s:wFg5='ctermfg=248 guifg='.s:wRgb248
 let s:wFg6='ctermfg=249 guifg='.s:wRgb249
 
-let s:wBlackBg='ctermbg=0 guibg='.s:wRgbBlack
-let s:wRedBg='ctermbg=1 guibg='.s:wRgbRed
-let s:wGreenBg='ctermbg=2 guibg='.s:wRgbGreen
-let s:wYellowBg='ctermbg=3 guibg='.s:wRgbYellow
-let s:wBlueBg='ctermbg=4 guibg='.s:wRgbBlue
-let s:wMagentaBg='ctermbg=5 guibg='.s:wRgbMagenta
-let s:wCyanBg='ctermbg=6 guibg='.s:wRgbCyan
-let s:wWhiteBg='ctermbg=7 guibg='.s:wRgbWhite
-let s:wBg0='ctermbg=18 guibg='.s:wRgb18
+let s:wBgBlack='ctermbg=0 guibg='.s:wRgbBlack
+let s:wBgRed='ctermbg=1 guibg='.s:wRgbRed
+let s:wBgGreen='ctermbg=2 guibg='.s:wRgbGreen
+let s:wBgYellow='ctermbg=3 guibg='.s:wRgbYellow
+let s:wBgBlue='ctermbg=4 guibg='.s:wRgbBlue
+let s:wBgMagenta='ctermbg=5 guibg='.s:wRgbMagenta
+let s:wBgCyan='ctermbg=6 guibg='.s:wRgbCyan
+let s:wBgWhite='ctermbg=7 guibg='.s:wRgbWhite
 let s:wBg1='ctermbg=244 guibg='.s:wRgb244
 let s:wBg2='ctermbg=245 guibg='.s:wRgb245
 let s:wBg3='ctermbg=246 guibg='.s:wRgb246
@@ -126,9 +127,9 @@ let s:wBg5='ctermbg=248 guibg='.s:wRgb248
 let s:wBg6='ctermbg=249 guibg='.s:wRgb249
 
 let s:wItalic='cterm=italic gui=italic'
+let s:wBold='cterm=bold gui=bold'
 let s:wNoBg='ctermbg=none guibg=none'
-let s:wNoFg='ctermbg=none guibg=none'
-let s:wNoCterm='cterm=none gui=none'
+let s:wNoFg='cterm=none gui=none'
 
 function! s:HL(group, ...)
     let i=0
@@ -154,7 +155,7 @@ else
 endif
 
 call s:HL('Pmenu', s:wBg1, s:wFg5)
-call s:HL('PmenuSel', s:wGreenBg, s:wBlack)
+call s:HL('PmenuSel', s:wBgGreen, s:wBlack)
 
 " Diff
 call s:HL('diffAdded', s:wGreen)
@@ -169,27 +170,27 @@ call s:HL('ErrorMsg', s:wRed, s:wNoBg)
 call s:HL('DiffText', s:wRed)
 call s:HL('Question', s:wGreen)
 call s:HL('MoreMsg', s:wGreen)
-call s:HL('ModeMsg', s:wGreen, s:wNoCterm)
+call s:HL('ModeMsg', s:wGreen, s:wNoFg)
 call s:HL('MatchParen', s:wMagenta, s:wNoBg)
 call s:HL('Title', s:wBlue)
 call s:HL('Special', s:wBlue)
 call s:HL('SpecialKey', s:wBlue)
 call s:HL('NonText', s:wFg1)
-call s:HL('VertSplit', s:wNoBg, s:wFg3, s:wNoCterm)
-call s:HL('CursorLine', s:wBg0, s:wNoCterm)
-call s:HL('Cursor', s:wNoCterm, s:wRedBg, s:wBlack)
+call s:HL('VertSplit', s:wNoBg, s:wFg3, s:wNoFg)
+call s:HL('CursorLine', s:wBg1, s:wNoFg)
+call s:HL('Cursor', s:wNoFg, s:wBgRed, s:wBlack)
 call s:HL('Todo', s:wNoBg, s:wRed, s:wItalic)
-call s:HL('TabLineSel', s:wBg1, s:wMagenta, s:wNoCterm)
-call s:HL('TabLineFill', s:wNoBg, s:wNoFg, s:wNoCterm)
-call s:HL('TabLine', s:wNoBg, s:wFg2, s:wNoCterm)
+call s:HL('TabLineSel', s:wBg1, s:wMagenta, s:wNoFg)
+call s:HL('TabLineFill', s:wNoBg, s:wNoFg, s:wNoFg)
+call s:HL('TabLine', s:wNoBg, s:wFg2, s:wNoFg)
 call s:HL('LineNr', s:wFg2)
-call s:HL('CursorLineNr', s:wFg4)
+call s:HL('CursorLineNr', s:wFg4, s:wNoFg)
 call s:HL('Folded', s:wNoBg)
 call s:HL('qfLineNr', s:wRed)
-call s:HL('StatusLine', s:wBg1, s:wNoCterm)
+call s:HL('StatusLine', s:wBg1, s:wNoFg)
 
 if &background ==# 'dark'
-  call s:HL('ColorColumn', s:wBg1)
+  call s:HL('ColorColumn', s:wBg2)
 else
   call s:HL('ColorColumn', 'guibg=#d5d6d7')
 endif
@@ -215,8 +216,8 @@ call s:HL('TSConditional', s:wBlue)
 call s:HL('TSOperator', s:wBlue)
 call s:HL('TSIdentifier', s:wMagenta)
 call s:HL('TSTag', s:wCyan)
-call s:HL('TSType', s:wCyan, 'gui=bold')
-call s:HL('TSTypeBuiltin', s:wCyan, 'gui=bold')
+call s:HL('TSType', s:wCyan, s:wBold)
+call s:HL('TSTypeBuiltin', s:wCyan, s:wBold)
 hi! link TSTagDelimiter TSTag
 hi! link Whitespace Normal
 hi! link TSPunctDelimiter Normal
@@ -229,8 +230,8 @@ hi! link TSVariable Normal
 hi! link TSVariableBuiltin Normal
 
 " VimWiki
-call s:HL('VimWikiLink', s:wNoBg, s:wNoCterm, s:wBlue)
-call s:HL('VimWikiHr', s:wNoBg, s:wNoCterm, s:wNoFg)
+call s:HL('VimWikiLink', s:wNoBg, s:wNoFg, s:wBlue)
+call s:HL('VimWikiHr', s:wNoBg, s:wNoFg, s:wNoFg)
 hi! link VimwikiList Normal
 hi! link VimwikiCode Normal
 
@@ -250,13 +251,16 @@ call s:HL('TelescopeMultiSelection', s:wMagenta)
 
 " Hop
 if &background ==# 'dark'
-  call s:HL('HopNextKey', 'gui=bold', 'guifg=#ff007c')
-  call s:HL('HopNextKey1', 'gui=bold', 'guifg=#00dfff')
-  call s:HL('HopNextKey2', 'gui=bold', 'guifg=#2b8db3')
+  " call s:HL('HopNextKey',  s:wBold, 'guifg=#ff007c')
+  " call s:HL('HopNextKey1', s:wBold, 'guifg=#00dfff')
+  " call s:HL('HopNextKey2', s:wBold, 'guifg=#2b8db3')
+  call s:HL('HopNextKey',  s:wBold, s:wBrightMagenta, s:wBg1)
+  call s:HL('HopNextKey1', s:wBold, s:wBrightMagenta, s:wBg1)
+  call s:HL('HopNextKey2', s:wBold, s:wBrightMagenta, s:wBg1)
 else
-  call s:HL('HopNextKey', 'gui=bold', s:wRed)
-  call s:HL('HopNextKey1', 'gui=bold', s:wBlue)
-  call s:HL('HopNextKey2', 'gui=bold', s:wMagenta)
+  call s:HL('HopNextKey',  s:wBold, s:wRed)
+  call s:HL('HopNextKey1', s:wBold, s:wBlue)
+  call s:HL('HopNextKey2', s:wBold, s:wMagenta)
 endif
 
 " Nvim-Tree
