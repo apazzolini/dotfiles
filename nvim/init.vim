@@ -90,7 +90,7 @@ syntax enable
 " --------------------------------------------------------------------------------------------------
 
 exec 'set background=' . (g:isNotes ? 'light' : 'dark')
-set guifont=Consolas:h8
+set guifont="Operator Mono Book":h8
 set termguicolors
 colorscheme wave
 

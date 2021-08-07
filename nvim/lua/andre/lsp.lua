@@ -64,6 +64,15 @@ require('lspconfig').tailwindcss.setup({})
 require('lspconfig').lua.setup(require('lua-dev').setup({
   lspconfig = {
     on_attach = set_lsp_keymaps,
+    settings = {
+      Lua = {
+        workspace = {
+          library = {
+            ['/Users/andre/GitHub/_forks/hammerspoon/build/stubs'] = true,
+          },
+        },
+      },
+    },
   },
 }))
 

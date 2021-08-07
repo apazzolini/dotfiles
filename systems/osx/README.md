@@ -11,6 +11,7 @@ Invoke to install default homebrew packages
 
 Applies my OS X default settings
 
-# phoenix
+# others
 
 `ln -s ~/.dotfiles/systems/osx/phoenix ~/.config`
+`ln -s ~/.dotfiles/systems/osx/hammerspoon ~/.hammerspoon`
