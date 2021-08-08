@@ -115,6 +115,12 @@ local eslint = {
   lintIgnoreExitCode = true,
 }
 
+local shellcheck = {
+  lintCommand = 'shellcheck -f gcc -x',
+  lintSource = 'shellcheck',
+  lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
+}
+
 require('lspconfig').efm.setup({
   filetypes = {
     'javascript',
@@ -123,6 +129,7 @@ require('lspconfig').efm.setup({
     'less',
     'css',
     'json',
+    'sh',
   },
   init_options = {
     documentFormatting = true,
@@ -136,6 +143,7 @@ require('lspconfig').efm.setup({
       less = { prettier },
       css = { prettier },
       json = { prettier },
+      sh = { shellcheck },
     },
   },
   handlers = {

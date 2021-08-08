@@ -67,6 +67,7 @@ Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'folke/lua-dev.nvim'
 Plug 'ojroques/vim-oscyank'
+Plug 'jason0x43/vim-js-indent'
 
 " --------------------------------------------------------------------------------------------------
 
