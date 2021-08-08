@@ -66,7 +66,7 @@ imap <c-l> <space>=><space>
 nnoremap <silent> <cr> :noh<cr><cr>
 map <leader>nt :tabnew<cr>
 nnoremap <leader><leader> <c-^>
-vmap <leader>y "*y
+vmap <leader>y "+y
 map <leader>jst :silent !stree<cr>
 map <leader>k :write <bar> edit <bar> TSBufEnable highlight <bar> LspStop <bar> LspStart<cr>
 map <leader>R :source $MYVIMRC<cr>
@@ -139,6 +139,8 @@ autocmd FileType gitcommit execute "normal! gg" | startinsert
 autocmd FileType TelescopePrompt imap <buffer> <bs> <bs>
 
 autocmd VimResized * :wincmd =
+
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif
 
 command! BC call s:CloseHiddenBuffers()
 function! s:CloseHiddenBuffers()
