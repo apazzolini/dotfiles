@@ -38,11 +38,17 @@ key_bindings:
   # - { key: J        , mods: Command       , chars: "\x1D" }
   - { key: W        , mods: Command       , chars: "\x10\x78" }
   - { key: K        , mods: Command       , chars: "\x10\x0C" }
-  - { key: A        , mods: Command       , chars: ",Pa" }
-  - { key: E        , mods: Command       , chars: ",Pe" }
-  - { key: I        , mods: Command       , chars: ",Pk" }
-  - { key: O        , mods: Command       , chars: ",Pj" }
-  - { key: P        , mods: Command       , chars: ",PP" }
+
+  - { key: Y        , mods: Command       , chars: ",Hy" }
+  - { key: U        , mods: Command       , chars: ",Hu" }
+  - { key: I        , mods: Command       , chars: ",Hi" }
+  - { key: O        , mods: Command       , chars: ",Ho" }
+  - { key: P        , mods: Command       , chars: ",Hp" }
+  - { key: Y        , mods: Command|Shift , chars: ",HY" }
+  - { key: U        , mods: Command|Shift , chars: ",HU" }
+  - { key: I        , mods: Command|Shift , chars: ",HI" }
+  - { key: O        , mods: Command|Shift , chars: ",HO" }
+  - { key: P        , mods: Command|Shift , chars: ",HP" }
   - { key: F        , mods: Command       , chars: "]qzz" }
   - { key: D        , mods: Command       , chars: "[qzz" }
 

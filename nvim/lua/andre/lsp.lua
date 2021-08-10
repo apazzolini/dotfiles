@@ -16,7 +16,7 @@ local function set_lsp_keymaps(client, bufnr)
   vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
   vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
   vim.api.nvim_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-  vim.api.nvim_set_keymap('n', ',H', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  -- vim.api.nvim_set_keymap('n', ',H', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
   local diagnosticOpts = '{ severity_limit = "Error", popup_opts = { severity_limit = "Error" }}'
   vim.api.nvim_set_keymap('n', ',m', '<cmd>lua vim.lsp.diagnostic.goto_prev(' .. diagnosticOpts .. ')<cr>zz', opts)
