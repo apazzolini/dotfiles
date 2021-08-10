@@ -16,7 +16,7 @@ local custom_grep = finders.new_job(function(prompt)
     return nil
   end
 
-  local prompt_split = vim.split(prompt, ' ')
+  local prompt_split = vim.split(prompt, '  ')
 
   local args = {
     'rg',
@@ -46,11 +46,13 @@ local custom_grep = finders.new_job(function(prompt)
   -- end
   -- table.insert(args, '.')
 
-  if prompt_split[2] then
+  if prompt_split[2] and prompt_split[2] ~= "" then
     table.insert(args, prompt_split[2])
   else
     table.insert(args, '.')
   end
+
+  print(vim.inspect(args))
 
   return flatten(args)
 end, make_entry.gen_from_vimgrep(
