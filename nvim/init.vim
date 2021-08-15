@@ -24,7 +24,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'szw/vim-maximizer'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -39,16 +39,14 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'voldikss/vim-floaterm'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'tpope/vim-commentary'
-
-" Replace these with something else
-" Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'tmsvg/pear-tree'
-Plug 'Shougo/neosnippet.vim'
-Plug 'rbong/vim-flog'
-Plug 'wellle/targets.vim' " Remove targets.vim when deleting this line
+Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
+
+" Replace these with something else
+Plug 'Shougo/neosnippet.vim'
+Plug 'rbong/vim-flog'
 
 " Still evaluating ---------------------------------------------------------------------------------
 
@@ -61,12 +59,11 @@ Plug 'nikvdp/ejs-syntax'
 " Plug 'ivalkeen/vim-simpledb'
 " Plug 'RishabhRD/nvim-lsputils'
 " Plug 'TimUntersberger/neogit'
-Plug 'rhysd/git-messenger.vim'
+" Plug 'rhysd/git-messenger.vim'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'folke/lua-dev.nvim'
-Plug 'ojroques/vim-oscyank'
 Plug 'jason0x43/vim-js-indent'
 
 " --------------------------------------------------------------------------------------------------
@@ -93,7 +90,7 @@ syntax enable
 
 exec 'set background=' . (g:isNotes ? 'light' : 'dark')
 set guifont="Operator Mono Book":h8
-set termguicolors
+set notermguicolors
 colorscheme wave
 
 lua << EOF

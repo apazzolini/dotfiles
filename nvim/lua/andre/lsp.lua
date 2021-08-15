@@ -13,7 +13,7 @@ local function set_lsp_keymaps(client, bufnr)
 
   vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
   vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<cr>zz', opts)
-  vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
+  vim.api.nvim_set_keymap('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
   vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
   vim.api.nvim_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
   -- vim.api.nvim_set_keymap('n', ',H', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
@@ -81,15 +81,8 @@ require('lspconfig').lua.setup(require('lua-dev').setup({
 require('lspconfig').tsserver.setup({
   on_attach = function(client, bufnr)
     set_lsp_keymaps(client, bufnr)
-
     -- use prettier via efm on save instead of tsserver's builtin formatting
     client.resolved_capabilities.document_formatting = false
-    vim.cmd([[
-      augroup Format
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
-      augroup END
-    ]])
   end,
   flags = {
     debounce_text_changes = 200,
@@ -134,6 +127,14 @@ require('lspconfig').efm.setup({
   init_options = {
     documentFormatting = true,
   },
+  on_attach = function(client, bufnr)
+    vim.cmd([[
+      augroup Format
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+      augroup END
+    ]])
+  end,
   settings = {
     languages = {
       javascript = { prettier, eslint },

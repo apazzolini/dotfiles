@@ -171,6 +171,14 @@ function M.current_dir_files()
   })
 end
 
+function M.dotfiles()
+  require('telescope.builtin').find_files({
+    prompt_title = string.format('~ dotfiles ~'),
+    cwd = '~/.dotfiles',
+    hidden = true,
+  })
+end
+
 return setmetatable({}, {
   __index = function(_, k)
     if M[k] then

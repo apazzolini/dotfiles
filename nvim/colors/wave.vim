@@ -12,11 +12,11 @@ let s:colors_name = 'wave'
 
 if &background ==# 'dark'
   if empty($TMUX)
-    hi! Normal ctermbg=NONE guibg=#1c2023 guifg=#c7ccd1
+    hi! Normal ctermbg=NONE ctermfg=7 guibg=#1c2023 guifg=#c7ccd1
   else
     " When we're using vim in tmux, we want the background to be transparent
     " so that the active tmux pane is more readily apparant.
-    hi! Normal ctermbg=NONE guibg=NONE guifg=#c7ccd1
+    hi! Normal ctermbg=NONE ctermfg=7 guibg=NONE guifg=#c7ccd1
   endif
 
   let s:bright = 0
@@ -218,6 +218,7 @@ call s:HL('TSIdentifier', s:wMagenta)
 call s:HL('TSTag', s:wCyan)
 call s:HL('TSType', s:wCyan, s:wBold)
 call s:HL('TSTypeBuiltin', s:wCyan, s:wBold)
+call s:HL('TSFunction', s:wMagenta, s:wBold)
 hi! link TSTagDelimiter TSTag
 hi! link Whitespace Normal
 hi! link TSPunctDelimiter Normal

@@ -90,7 +90,6 @@ inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-imap ;; <esc>A;<esc>
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
@@ -139,8 +138,6 @@ autocmd FileType gitcommit execute "normal! gg" | startinsert
 autocmd FileType TelescopePrompt imap <buffer> <bs> <bs>
 
 autocmd VimResized * :wincmd =
-
-autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif
 
 command! BC call s:CloseHiddenBuffers()
 function! s:CloseHiddenBuffers()
