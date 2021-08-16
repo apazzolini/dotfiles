@@ -24,6 +24,7 @@ source $ZSH/zsh/env.zsh
 source $ZSH/zsh/aliases.zsh
 source $ZSH/zsh/completion.zsh
 source $ZSH/bin/z.sh
+source $ZSH/bin/borg.zsh
 
 function safesource {
   [ -f "$1" ] && source "$1"

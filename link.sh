@@ -1,15 +1,14 @@
 #!/bin/bash
 
-base=~/.dotfiles
-
 function link {
-  src=$base/$1
-  dst=$2
+  src="$HOME/.dotfiles/$1"
+  dst="$2"
   ln -sfv "$src" "$dst"
 }
 
-
 function env_setup {
+  mkdir -p ~/.config
+
   #git
   link git/.gitconfig ~/
   link git/.githelpers ~/
@@ -19,21 +18,15 @@ function env_setup {
   # neovim
   mkdir -p ~/.config
   mkdir -p ~/.local/share/nvim
-  link nvim ~/.config/nvim
-  link nvim/plugged ~/.local/share/nvim/plugged
+  link nvim ~/.config/
+  link nvim/plugged ~/.local/share/nvim/
 
   # tmux
   link tmux/.tmux.conf ~/
 
   # zsh
-  link zsh/.zshrc ~/
+  link zsh/zshrc.zsh ~/.zshrc
   link zsh/starship.toml ~/.config
 }
 
 env_setup
-
-#link docker/docker.symlink
-
-# coc-settings.json lives in a special place
-#mkdir -p ~/.config
-#ln -sFv "$base"/vim/coc-settings.json ~/.config/nvim
