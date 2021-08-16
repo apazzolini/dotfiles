@@ -52,6 +52,8 @@ local theme = {
   },
 }
 
+package.loaded['lualine'] = nil
+
 require('lualine').setup({
   options = {
     icons_enabled = false,
