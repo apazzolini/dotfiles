@@ -173,7 +173,7 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
 colors:
@@ -244,9 +244,9 @@ colors:
     black:   '#1c2023'
     red:     '#de718b'
     green:   '#b1cfa9'
-    yellow:  '#efe7ca'
-    blue:    '#95aec7'
-    magenta: '#b291d4'
+    yellow:  '#e8dcb0'
+    blue:    '#9494bc'
+    magenta: '#b088d7'
     cyan:    '#68b2c9'
     white:   '#c7ccd1'
 
@@ -255,10 +255,10 @@ colors:
     black:   '#747c84'
     red:     '#d19b9b'
     green:   '#b1cfa9' # same as non-bright
-    yellow:  '#efe7ca' # same as non-bright
-    blue:    '#95aec7' # same as non-bright
+    yellow:  '#e8dcb0' # same as non-bright
+    blue:    '#9494bc' # same as non-bright
     magenta: '#ff007c'
-    cyan:    '#81d4bc'
+    cyan:    '#87cfc7'
     white:   '#f3f4f5'
 
   # Indexed Colors
