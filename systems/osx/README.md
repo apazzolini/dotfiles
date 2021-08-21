@@ -13,5 +13,6 @@ Applies my OS X default settings
 
 # others
 
-`ln -s ~/.dotfiles/systems/osx/phoenix ~/.config`
 `ln -s ~/.dotfiles/systems/osx/hammerspoon ~/.hammerspoon`
+`ln -s ~/.dotfiles/systems/osx/borg.plist ~/Library/LaunchAgents/borg.plist`
+`launchctl load ~/Library/LaunchAgents/borg.plist`

@@ -76,6 +76,10 @@ endif
 
 if (g:isNotes)
   Plug 'vimwiki/vimwiki'
+  Plug 'simplenote-vim/simplenote.vim'
+  source ~/.simplenoterc
+  command SN SimplenoteOpen 24176b52e39845c7904d4500da8157df
+  let g:SimplenoteSingleWindow=1
 else
   Plug 'hrsh7th/nvim-compe'
 endif
