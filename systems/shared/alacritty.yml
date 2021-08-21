@@ -263,6 +263,8 @@ colors:
 
   # Indexed Colors
   indexed_colors:
+    - { index: 237, color: '#343d42' }
+    - { index: 238, color: '#464e53' }
     - { index: 244, color: '#222629' }
     - { index: 245, color: '#3d4348' }
     - { index: 246, color: '#747c84' }
