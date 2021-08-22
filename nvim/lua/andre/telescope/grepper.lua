@@ -4,6 +4,9 @@ local pickers = require('telescope.pickers')
 local sorters = require('telescope.sorters')
 local conf = require('telescope.config').values
 
+local shortcuts = {}
+shortcuts['f'] = 'systems/osx'
+
 return function(opts)
   local rg_args = {
     { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
@@ -24,7 +27,12 @@ return function(opts)
     end
 
     if prompt_split[2] and prompt_split[2] ~= '' then
-      table.insert(args, prompt_split[2])
+      if shortcuts[prompt_split[2]:sub(1, 1)] then
+        local path = shortcuts[prompt_split[2]:sub(1, 1)] .. prompt_split[2]:sub(2)
+        table.insert(args, path)
+      else
+        table.insert(args, prompt_split[2])
+      end
     else
       table.insert(args, '.')
     end
