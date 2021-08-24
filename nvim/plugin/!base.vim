@@ -90,6 +90,7 @@ inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+xnoremap <leader>p "_dP
 
 " Split mappings
 nnoremap c<C-j> :bel new<cr>

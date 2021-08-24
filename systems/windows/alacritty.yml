@@ -26,3 +26,19 @@ key_bindings:
   - { key: Key8,     mods: Control,       chars: "\x10\x38"        }
   - { key: Key9,     mods: Control,       chars: "\x10\x39"        }
   - { key: Slash,    mods: Alt,           chars: ",ct"             }
+  - { key: Y        , mods: Alt       , chars: ",Hy" }
+  - { key: U        , mods: Alt       , chars: ",Hu" }
+  - { key: I        , mods: Alt       , chars: ",Hi" }
+  - { key: O        , mods: Alt       , chars: ",Ho" }
+  - { key: P        , mods: Alt       , chars: ",Hp" }
+  - { key: Y        , mods: Alt|Shift , chars: ",HY" }
+  - { key: U        , mods: Alt|Shift , chars: ",HU" }
+  - { key: I        , mods: Alt|Shift , chars: ",HI" }
+  - { key: O        , mods: Alt|Shift , chars: ",HO" }
+  - { key: P        , mods: Alt|Shift , chars: ",HP" }
+  - { key: F        , mods: Alt       , chars: "]qzz" }
+  - { key: D        , mods: Alt       , chars: "[qzz" }
+  - { key: LBracket , mods: Alt|Shift , chars: "\x1b\x5b" }
+  - { key: RBracket , mods: Alt|Shift , chars: "\x1b\x5d" }
+  - { key: LBracket , mods: Alt       , chars: "\x10\x70" }
+  - { key: RBracket , mods: Alt       , chars: "\x10\x6e" }

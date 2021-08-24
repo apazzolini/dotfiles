@@ -30,6 +30,7 @@ if &background ==# 'dark'
   let s:wRgbWhite         = ''
   let s:wRgbBrightRed     = ''
   let s:wRgbBrightMagenta = ''
+  let s:wRgbBrightCyan    = ''
   let s:wRgb244           = ''
   let s:wRgb245           = ''
   let s:wRgb246           = ''
@@ -45,6 +46,7 @@ if &background ==# 'dark'
     if s:bright
       if !len(s:wRgbBrightRed) && line =~ 'red' | let s:wRgbBrightRed = strpart(line, 14, 7) | endif
       if !len(s:wRgbBrightMagenta) && line =~ 'magenta' | let s:wRgbBrightMagenta = strpart(line, 14, 7) | endif
+      if !len(s:wRgbBrightCyan) && line =~ 'cyan' | let s:wRgbBrightCyan = strpart(line, 14, 7) | endif
     else
       if !len(s:wRgbBlack) && line =~ 'black'     | let s:wRgbBlack = strpart(line, 14, 7)   | endif
       if !len(s:wRgbRed) && line =~ 'red'         | let s:wRgbRed = strpart(line, 14, 7)     | endif
@@ -85,6 +87,7 @@ else
   let s:wRgbWhite     = '#0b1c2c'
   let s:wRgbBrightRed = '#bf8b56'
   let s:wRgbBrightMagenta = '#bf568b'
+  let s:wRgbBrightCyan = '#bf568b'
   let s:wRgb244       = '#dfe2e5'
   let s:wRgb245       = '#565e65'
   let s:wRgb246       = '#747c84'
@@ -104,6 +107,7 @@ let s:wCyan='ctermfg=6 guifg='.s:wRgbCyan
 let s:wWhite='ctermfg=7 guifg='.s:wRgbWhite
 let s:wBrightRed='ctermfg=9 guifg='.s:wRgbBrightRed
 let s:wBrightMagenta='ctermfg=13 guifg='.s:wRgbBrightMagenta
+let s:wBrightCyan='ctermfg=14 guifg='.s:wRgbBrightCyan
 let s:wFg1='ctermfg=244 guifg='.s:wRgb244
 let s:wFg2='ctermfg=245 guifg='.s:wRgb245
 let s:wFg3='ctermfg=246 guifg='.s:wRgb246
@@ -257,7 +261,7 @@ if &background ==# 'dark'
   " call s:HL('HopNextKey2', s:wBold, 'guifg=#2b8db3')
   call s:HL('HopNextKey',  s:wBold, s:wBrightMagenta, s:wBg1)
   call s:HL('HopNextKey1', s:wBold, s:wBrightMagenta, s:wBg1)
-  call s:HL('HopNextKey2', s:wBold, s:wBrightMagenta, s:wBg1)
+  call s:HL('HopNextKey2', s:wBold, s:wBrightCyan, s:wBg1)
 else
   call s:HL('HopNextKey',  s:wBold, s:wRed)
   call s:HL('HopNextKey1', s:wBold, s:wBlue)

@@ -1,5 +1,7 @@
 ; Autoexec --------------------------------------------------------------------
 
+; https://www.autohotkey.com/docs/KeyList.htm#modifier
+
 #SingleInstance force
 
 global LDim := [-1442, -610, 1472, 2588]
@@ -40,8 +42,13 @@ $!0::Send ^0
 
 #IfWinActive, ahk_exe alacritty.exe ; ------------------------------------------
 
+$!{::Send, !+[
+$!}::Send, !+]
 $!w::Send !w
 $!a::Send !a
+$!y::Send !y
+$!p::Send !p
+
 !c::Send, ^+c
 !v::
     ClipboardBackup := Clipboard                        ; To restore clipboard contents after paste
@@ -50,10 +57,6 @@ $!a::Send !a
     Send ^+v                                            ; Paste text
     Clipboard := ClipboardBackup                        ; Restore clipboard that has windows endings
     return
-$#{::Send, !^[
-$#}::Send, !^]
-$#[::Send, ![
-$#]::Send, !]
 
 #IfWinActive, ahk_exe Nvy.exe ; ------------------------------------------------
 
