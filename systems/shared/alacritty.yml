@@ -236,19 +236,19 @@ colors:
   # COLORS
   # Default colors
   primary:
-    background: '#1c2023'
-    foreground: '#c7ccd1'
+    background: '#1e2027'
+    foreground: '#c8cedc'
 
   # Normal colors
   normal:
-    black:   '#1c2023'
+    black:   '#1e2027'
     red:     '#de718b'
     green:   '#b1cfa9'
     yellow:  '#e8dcb0'
     blue:    '#9494bc'
     magenta: '#b088d7'
     cyan:    '#68b2c9'
-    white:   '#c7ccd1'
+    white:   '#c8cedc'
 
   # Bright colors
   bright:
@@ -265,7 +265,7 @@ colors:
   indexed_colors:
     - { index: 237, color: '#343d42' }
     - { index: 238, color: '#464e53' }
-    - { index: 244, color: '#222629' }
+    - { index: 244, color: '#282b34' }
     - { index: 245, color: '#3d4348' }
     - { index: 246, color: '#747c84' }
     - { index: 247, color: '#adb3ba' }
