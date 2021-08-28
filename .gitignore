@@ -1,12 +1,7 @@
-vim/vim.symlink/.netrwhist
-vim/vim.symlink/bundle
-private
 bin/private
 nvim/.netrwhist
 nvim/.swap
 nvim/.bak
-vim/vim.symlink/.swap
-vim/vim.symlink/.bak
 plugged
 tmux/tmux.symlink/plugins
 docker/docker.symlink/daemon.json

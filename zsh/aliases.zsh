@@ -23,14 +23,11 @@ alias httpserver="python -m SimpleHTTPServer 9090"
 
 # git aliases
 alias st='stree'
-alias tig='tig -m'
 alias lg='lazygit -ucd ~/.config/lazygit'
 
 # shortcuts for npm/yarn
 alias yr="yarn run"
 alias nr="npm run"
-alias yt="yarn run test"
-alias ytw="yarn test:watch"
 
 # tmux
 alias t="tmux -u -2"
@@ -60,10 +57,7 @@ alias d='docker'
 alias da='d ps -a'
 alias j=z
 alias rg='rg -i'
-alias fix='echo -e "\033c"; stty sane; tput rs1'
 alias dl='docker-compose -f ~/work/docker/docker-compose.yml'
-#alias jest='nocorrect jest'
-#alias ava='nocorrect ava'
 
 if [ `uname` = 'Darwin' ]
 then
