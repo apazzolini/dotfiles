@@ -57,8 +57,8 @@ require('lualine').setup({
   options = {
     icons_enabled = false,
     theme = theme,
-    component_separators = { '', '' },
-    section_separators = { '', '' },
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {},
   },
   sections = {

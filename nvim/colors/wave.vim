@@ -261,7 +261,7 @@ if &background ==# 'dark'
   " call s:HL('HopNextKey2', s:wBold, 'guifg=#2b8db3')
   call s:HL('HopNextKey',  s:wBold, s:wBrightMagenta, s:wBg1)
   call s:HL('HopNextKey1', s:wBold, s:wBrightMagenta, s:wBg1)
-  call s:HL('HopNextKey2', s:wBold, s:wBrightCyan, s:wBg1)
+  call s:HL('HopNextKey2', s:wBold, s:wBrightMagenta, s:wBg1)
 else
   call s:HL('HopNextKey',  s:wBold, s:wRed)
   call s:HL('HopNextKey1', s:wBold, s:wBlue)

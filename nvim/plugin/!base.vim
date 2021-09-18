@@ -92,6 +92,15 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 xnoremap <leader>p "_dP
 
+set nrformats=
+nnoremap + <C-a>
+nnoremap - <C-x>
+xnoremap + g<C-a>
+xnoremap - g<C-x>
+set breakindent
+set breakindentopt=shift:2
+set showbreak=\\\\\
+
 " Split mappings
 nnoremap c<C-j> :bel new<cr>
 nnoremap c<C-k> :abo new<cr>

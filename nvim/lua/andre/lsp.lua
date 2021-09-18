@@ -42,7 +42,8 @@ local function handler_publishDiagnostics(level)
   })
 end
 
-local function first_match(_, method, result)
+local function first_match(_, result, context)
+  local method = context.method
   if result == nil or vim.tbl_isempty(result) then
     local _ = log.info() and log.info(method, 'No location found')
     return nil
