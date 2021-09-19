@@ -21,6 +21,8 @@ brew install --HEAD neovim
 brew install efm-langserver
 brew install gawk
 
+brew install yt-dlp/taps/yt-dlp
+
 # brew install python
 # # Python 2 is no longer in homebrew
 # cd /tmp
