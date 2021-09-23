@@ -28,6 +28,7 @@ alias lg='lazygit -ucd ~/.config/lazygit'
 # shortcuts for npm/yarn
 alias yr="yarn run"
 alias nr="npm run"
+alias pr="pnpm run"
 
 # tmux
 alias t="tmux -u -2"
@@ -58,6 +59,7 @@ alias da='d ps -a'
 alias j=z
 alias rg='rg -i'
 alias dl='docker-compose -f ~/work/docker/docker-compose.yml'
+alias dop='doppler'
 
 if [ `uname` = 'Darwin' ]
 then

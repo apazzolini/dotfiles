@@ -3,3 +3,4 @@ if not pcall(require, 'hop') then
 end
 
 vim.api.nvim_set_keymap('n', ' ', "<cmd>lua require'hop'.hint_words()<cr>", {})
+vim.api.nvim_set_keymap('x', ' ', "<cmd>lua require'hop'.hint_words()<cr>", {})

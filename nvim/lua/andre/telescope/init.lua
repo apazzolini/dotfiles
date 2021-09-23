@@ -137,7 +137,12 @@ local M = {}
 
 function M.custom_grep()
   package.loaded['andre.telescope.grepper'] = nil
-  require('andre.telescope.grepper')({})
+  require('andre.telescope.grepper')({
+    attach_mappings = function(prompt_bufnr, map)
+      map('i', '<cr>', select_multiple)
+      return true
+    end,
+  })
 end
 
 function M.live_grep()

@@ -68,7 +68,7 @@ map <leader>nt :tabnew<cr>
 nnoremap <leader><leader> <c-^>
 vmap <leader>y "+y
 map <leader>jst :silent !stree<cr>
-map <leader>k :write <bar> edit <bar> TSBufEnable highlight <bar> LspStop <bar> LspStart<cr>
+map <leader>k :write <bar> edit <bar> TSBufEnable highlight <bar> LspStop <bar> sleep 3 <bar> LspStart<cr>
 map <leader>R :source $MYVIMRC<cr>
 map <leader>ww :autocmd! BufWritePost <buffer> luafile %<cr>
 map <MiddleMouse> <Nop>

@@ -17,7 +17,7 @@ local c = { bg = colors.bg1, fg = colors.fg2 };
 
 local theme = {
   normal = {
-    a = { bg = colors.magenta, fg = colors.fg },
+    a = { bg = colors.blue, fg = colors.fg },
     b = b,
     c = c,
   },
@@ -42,7 +42,7 @@ local theme = {
     c = c,
   },
   terminal = {
-    a = { bg = colors.blue, fg = colors.fg },
+    a = { bg = colors.magenta, fg = colors.fg },
     b = b,
     c = c,
   },
@@ -109,7 +109,7 @@ require('lualine').setup({
     {
       filetypes = { 'fugitive' },
       sections = {
-        lualine_a = { vim.fn.FugitiveHead },
+        lualine_a = { 'FugitiveHead' },
         lualine_z = { 'location' },
       },
     },

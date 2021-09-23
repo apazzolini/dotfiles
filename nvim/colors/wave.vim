@@ -164,6 +164,10 @@ call s:HL('PmenuSel', s:wBgGreen, s:wBlack)
 " Diff
 call s:HL('diffAdded', s:wGreen)
 call s:HL('diffRemoved', s:wRed)
+call s:HL('DiffAdd', s:wBgGreen, s:wFg1)
+call s:HL('DiffRemove', s:wBgRed, s:wFg1)
+call s:HL('DiffChange', s:wBgMagenta, s:wFg1)
+call s:HL('DiffDelete', s:wBg2, s:wFg1)
 
 " Non-code-related
 call s:HL('Comment', s:wFg3, s:wItalic)

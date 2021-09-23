@@ -55,6 +55,7 @@
     cm = commit -m
     pr = pull --rebase
     pnv = push --no-verify
+    pfwl = push --force-with-lease
     ri = rebase --interactive
     rod = "!git fetch && git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git pull"
 
