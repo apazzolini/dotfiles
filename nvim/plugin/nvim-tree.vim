@@ -1,9 +1,8 @@
 " let g:nvim_tree_root_folder_modifier = ':~'
 " let g:nvim_tree_add_trailing = 1
 " let g:nvim_tree_lsp_diagnostics = 1
-let g:nvim_tree_update_cwd = 1
 let g:nvim_tree_quit_on_open = 0
-let g:nvim_tree_width = 30
+let g:nvim_tree_width = 40
 let g:nvim_tree_ignore = [ '.git', 'node_modules', 'bower_components', '.DS_Store', 'dist' ]
 let g:nvim_tree_hide_dotfiles = 1
 let g:nvim_tree_highlight_opened_files = 1

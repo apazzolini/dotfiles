@@ -6,6 +6,7 @@ require('andre.compe')
 require('andre.lualine')
 require('andre.telescope')
 require('andre.treesitter')
+require('andre.nvimtree')
 
 require('nvim-autopairs').setup()
 
