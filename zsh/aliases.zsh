@@ -60,6 +60,7 @@ alias j=z
 alias rg='rg -i'
 alias dl='docker-compose -f ~/work/docker/docker-compose.yml'
 alias dop='doppler'
+alias dse='~/work/cli/doppler secrets edit'
 
 if [ `uname` = 'Darwin' ]
 then

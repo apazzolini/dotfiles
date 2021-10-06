@@ -66,6 +66,7 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'folke/lua-dev.nvim'
 Plug 'jason0x43/vim-js-indent'
 Plug 'rhysd/clever-f.vim'
+Plug 'pwntester/octo.nvim'
 
 " --------------------------------------------------------------------------------------------------
 

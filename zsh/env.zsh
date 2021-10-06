@@ -1,5 +1,5 @@
 # Environment Variables
-export EDITOR='nvim'
+export EDITOR='/usr/local/bin/nvim'
 export MANPAGER='nvim +Man!'
 export CLICOLOR=true
 export HISTFILE=~/.zsh_history

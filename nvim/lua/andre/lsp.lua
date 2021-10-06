@@ -61,6 +61,17 @@ end
 --------------------------------------------------------------------------------
 
 require('lspinstall').setup()
+require('lspconfig').go.setup({
+    on_attach = function(client, bufnr)
+      set_lsp_keymaps(client, bufnr)
+      vim.cmd([[
+        augroup Format
+          autocmd! * <buffer>
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+        augroup END
+      ]])
+    end,
+})
 require('lspconfig').tailwindcss.setup({})
 require('lspconfig').lua.setup(require('lua-dev').setup({
   lspconfig = {
@@ -124,6 +135,7 @@ require('lspconfig').efm.setup({
     'css',
     'json',
     'sh',
+    'markdown',
   },
   init_options = {
     documentFormatting = true,
@@ -145,6 +157,7 @@ require('lspconfig').efm.setup({
       less = { prettier },
       css = { prettier },
       json = { prettier },
+      markdown = { prettier },
       sh = { shellcheck },
     },
   },
