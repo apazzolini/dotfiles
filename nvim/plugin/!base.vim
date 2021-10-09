@@ -144,9 +144,6 @@ autocmd BufReadPost *
 " Move cursor to first line in insert mode on git commits
 autocmd FileType gitcommit execute "normal! gg" | startinsert
 
-" TelescopePrompt after ftplugin stopped working
-autocmd FileType TelescopePrompt imap <buffer> <bs> <bs>
-
 autocmd VimResized * :wincmd =
 
 command! BC call s:CloseHiddenBuffers()

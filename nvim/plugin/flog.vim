@@ -5,7 +5,7 @@ let g:flog_default_arguments = {
 
 " ------------------------------------------------------------------------------
 
-let g:flog_horizontal = 0
+let g:flog_horizontal = 1
 
 " Removes flog_term state from flog and closes terminal buffer if it's open
 function! flog#delete_flog_term()

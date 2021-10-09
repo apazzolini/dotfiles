@@ -1,3 +1,7 @@
+if not pcall(require, 'cmp') then
+  return
+end
+
 local log = require('vim.lsp.log')
 local util = require('vim.lsp.util')
 
@@ -61,50 +65,65 @@ end
 --------------------------------------------------------------------------------
 
 require('lspinstall').setup()
-require('lspconfig').go.setup({
+local lspconfig = require('lspconfig')
+
+if lspconfig.go then
+  lspconfig.go.setup({
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = function(client, bufnr)
       set_lsp_keymaps(client, bufnr)
       vim.cmd([[
-        augroup Format
-          autocmd! * <buffer>
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
-        augroup END
-      ]])
+          augroup Format
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+          augroup END
+        ]])
     end,
-})
-require('lspconfig').tailwindcss.setup({})
-require('lspconfig').lua.setup(require('lua-dev').setup({
-  lspconfig = {
-    on_attach = set_lsp_keymaps,
-    settings = {
-      Lua = {
-        workspace = {
-          library = {
-            ['/Users/andre/GitHub/_forks/hammerspoon/build/stubs'] = true,
+  })
+end
+
+if lspconfig.tailwindcss then
+  lspconfig.tailwindcss.setup({
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  })
+end
+
+if lspconfig.lua then
+  lspconfig.lua.setup(require('lua-dev').setup({
+    lspconfig = {
+      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+      on_attach = set_lsp_keymaps,
+      settings = {
+        Lua = {
+          workspace = {
+            library = {
+              ['/Users/andre/GitHub/_forks/hammerspoon/build/stubs'] = true,
+            },
           },
         },
       },
     },
-  },
-}))
+  }))
+end
 
---------------------------------------------------------------------------------
-
-require('lspconfig').tsserver.setup({
-  on_attach = function(client, bufnr)
-    set_lsp_keymaps(client, bufnr)
-    -- use prettier via efm on save instead of tsserver's builtin formatting
-    client.resolved_capabilities.document_formatting = false
-  end,
-  flags = {
-    debounce_text_changes = 200,
-  },
-  handlers = {
-    ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error'),
-    ['textDocument/definition'] = first_match,
-    ['textDocument/typeDefinition'] = first_match,
-  },
-})
+if lspconfig.tsserver then
+  lspconfig.tsserver.setup({
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = function(client, bufnr)
+      set_lsp_keymaps(client, bufnr)
+      -- use prettier via efm on save instead of tsserver's builtin formatting
+      client.resolved_capabilities.document_formatting = false
+    end,
+    flags = {
+      debounce_text_changes = 200,
+    },
+    handlers = {
+      ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error'),
+      ['textDocument/definition'] = first_match,
+      ['textDocument/typeDefinition'] = first_match,
+    },
+  })
+end
 
 --------------------------------------------------------------------------------
 

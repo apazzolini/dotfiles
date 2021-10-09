@@ -1,0 +1,30 @@
+if not pcall(require, 'cmp') then
+  return
+end
+
+local ls = require('luasnip')
+
+ls.snippets = {
+  javascript = {
+    ls.parser.parse_snippet('ibb', "import Bluebird from 'bluebird';"),
+    ls.parser.parse_snippet('ir', "import React from 'react';"),
+    ls.parser.parse_snippet('ild', "import { ${0:} } from 'lodash';"),
+    ls.parser.parse_snippet('iui', "import { ${0:} } from 'ui';"),
+    ls.parser.parse_snippet('id', "import { ${1:} } from '${0:}';"),
+    ls.parser.parse_snippet('ii', "import ${1:} from '${0:}';"),
+    ls.parser.parse_snippet('cl', 'console.log(${0:});'),
+    ls.parser.parse_snippet('rsa', 'Record<string, any>'),
+    ls.parser.parse_snippet('uS', 'const [${0:}] = useState();'),
+    ls.parser.parse_snippet('uR', 'const [${0:}, dispatch] = useReducer();'),
+    ls.parser.parse_snippet('uE', 'useEffect(() => {\n\t${0:}\n}, []);'),
+    ls.parser.parse_snippet('uLE', 'useLayoutEffect(() => {\n\t${0:}\n}, []);'),
+    ls.parser.parse_snippet('uC', 'useCallback(() => {\n\t${0:}\n}, []);'),
+    ls.parser.parse_snippet('uM', 'useMemo(() => {\n\t${0:}\n}, []);'),
+    ls.parser.parse_snippet('prom', 'new Promise((resolve, reject) => {\n\t${0:}\n});'),
+    ls.parser.parse_snippet('cn', 'className="${0:}"'),
+    ls.parser.parse_snippet('cnn', 'className={`\n\t${0:}\n`}'),
+  },
+}
+
+ls.filetype_extend('typescript', { 'javascript' })
+ls.filetype_extend('typescriptreact', { 'javascript' })

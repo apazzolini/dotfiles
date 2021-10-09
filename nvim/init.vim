@@ -29,11 +29,11 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-writer.nvim'
+" Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
-Plug 'shadmansaleh/lualine.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'phaazon/hop.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'voldikss/vim-floaterm'
@@ -43,29 +43,15 @@ Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
-
-" Replace these with something else
-Plug 'Shougo/neosnippet.vim'
-Plug 'rbong/vim-flog'
+Plug 'rhysd/clever-f.vim'
 
 " Still evaluating ---------------------------------------------------------------------------------
 
 Plug 'nikvdp/ejs-syntax'
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-" Plug 'ThePrimeagen/git-worktree.nvim'
-" Plug 'nvim-telescope/telescope-project.nvim'
-" Plug 'sindrets/diffview.nvim'
-" Plug 'ivalkeen/vim-simpledb'
-" Plug 'RishabhRD/nvim-lsputils'
-" Plug 'TimUntersberger/neogit'
-" Plug 'rhysd/git-messenger.vim'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'windwp/nvim-autopairs'
-Plug 'windwp/nvim-ts-autotag'
 Plug 'folke/lua-dev.nvim'
 Plug 'jason0x43/vim-js-indent'
-Plug 'rhysd/clever-f.vim'
+Plug 'rbong/vim-flog'
 Plug 'pwntester/octo.nvim'
 
 " --------------------------------------------------------------------------------------------------
@@ -82,7 +68,13 @@ if (g:isNotes)
   command SN SimplenoteOpen 24176b52e39845c7904d4500da8157df
   " let g:SimplenoteSingleWindow=1
 else
-  Plug 'hrsh7th/nvim-compe'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'windwp/nvim-autopairs'
+  Plug 'windwp/nvim-ts-autotag'
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'saadparwaiz1/cmp_luasnip'
 endif
 
 call plug#end()
