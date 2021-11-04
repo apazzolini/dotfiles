@@ -46,18 +46,18 @@
     ca = commit --amend
     can = commit --amend --no-edit
     aa = add --all
-    co = checkout
-    cot = checkout --track
-    coi = checkout --ignore-other-worktrees
+    co = checkout --ignore-other-worktrees
     br = branch
     s = stash
     hist = log --pretty=format:\"%h %ad [%an] | %s%d\" --graph --decorate --date=short
     cm = commit -m
     pr = pull --rebase
     pnv = push --no-verify
-    pfwl = push --force-with-lease
+    pf = push --force-with-lease
     ri = rebase --interactive
     rod = "!git fetch && git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git pull"
+    work = !sh -c 'git fetch && git checkout origin/develop --ignore-other-worktrees --no-track -b \"$@\" && git push -u' _
+    wip = "!git add --all && git commit -m 'wip'"
 
     # Fancy logging.
     #   h = head
@@ -99,3 +99,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[branch]
+  autosetuprebase = always
