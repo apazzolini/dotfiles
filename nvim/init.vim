@@ -29,7 +29,6 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
@@ -51,7 +50,6 @@ Plug 'nikvdp/ejs-syntax'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'folke/lua-dev.nvim'
 Plug 'jason0x43/vim-js-indent'
-Plug 'rbong/vim-flog'
 Plug 'pwntester/octo.nvim'
 
 " --------------------------------------------------------------------------------------------------
@@ -66,7 +64,6 @@ if (g:isNotes)
   Plug 'simplenote-vim/simplenote.vim'
   source ~/.simplenoterc
   command SN SimplenoteOpen 24176b52e39845c7904d4500da8157df
-  " let g:SimplenoteSingleWindow=1
 else
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
