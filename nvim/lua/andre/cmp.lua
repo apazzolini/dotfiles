@@ -57,10 +57,11 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
     { name = 'buffer', keyword_length = 5 },
+    { name = 'path' },
   },
   -- experimental = {
-    -- native_menu = false,
-    -- ghost_text = false,
+  -- native_menu = false,
+  -- ghost_text = false,
   -- },
 })
 

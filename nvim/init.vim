@@ -65,9 +65,10 @@ if (g:isNotes)
   source ~/.simplenoterc
   command SN SimplenoteOpen 24176b52e39845c7904d4500da8157df
 else
+  Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-path'
   Plug 'windwp/nvim-autopairs'
   Plug 'windwp/nvim-ts-autotag'
   Plug 'L3MON4D3/LuaSnip'
