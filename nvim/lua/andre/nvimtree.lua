@@ -24,6 +24,10 @@ require('nvim-tree').setup({
   update_cwd = true,
   nvim_tree_hide_dotfiles = true,
   nvim_tree_ignore = { '.git', 'node_modules', 'bower_components', '.DS_Store', 'dist' },
+  view = {
+    width = 37,
+    auto_resize = true,
+  },
 })
 
 vim.api.nvim_set_keymap('n', ',no', '<cmd>let g:nvim_tree_quit_on_open=!g:nvim_tree_quit_on_open<cr>', {})

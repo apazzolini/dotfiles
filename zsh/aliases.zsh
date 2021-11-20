@@ -60,6 +60,7 @@ alias j=z
 alias rg='rg -i'
 alias dl='docker-compose -f ~/work/docker/docker-compose.yml'
 alias dop='doppler'
+alias doplocal="doppler --api-host https://api.dopplerlocal.com:3030 --no-verify-tls"
 alias dse='~/work/cli/doppler secrets edit'
 
 if [ `uname` = 'Darwin' ]

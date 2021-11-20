@@ -1,3 +1,9 @@
+require("harpoon").setup({
+  menu = {
+    width = 100,
+  }
+})
+
 vim.api.nvim_set_keymap('n', ',Hy', "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", {})
 vim.api.nvim_set_keymap('n', ',HY', "<cmd>lua require('harpoon.mark').set_current_at(1)<cr>", {})
 vim.api.nvim_set_keymap('n', ',Hu', "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", {})

@@ -13,6 +13,7 @@ ls.snippets = {
     ls.parser.parse_snippet('id', "import { ${1:} } from '${0:}';"),
     ls.parser.parse_snippet('ii', "import ${1:} from '${0:}';"),
     ls.parser.parse_snippet('cl', 'console.log(${0:});'),
+    ls.parser.parse_snippet('js', 'JSON.stringify(${0:}, null, 2)'),
     ls.parser.parse_snippet('rsa', 'Record<string, any>'),
     ls.parser.parse_snippet('uS', 'const [${0:}] = useState();'),
     ls.parser.parse_snippet('uR', 'const [${0:}, dispatch] = useReducer();'),
