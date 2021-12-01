@@ -118,6 +118,7 @@ Activate(name, executable)
 
 #IfWinNotActive, ahk_exe TslGame.exe ; ------------------------------------------
 
+$!z::
 $^a::Activate("Alacritty", "C:\Apps\Alacritty\alacritty.exe")
 $#i::Activate("Nvy", "C:\Apps\NeoVim\bin\NvyNotes.lnk")
 

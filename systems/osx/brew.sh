@@ -16,11 +16,12 @@ brew install tmux
 brew install zsh-autosuggestions
 brew install wget
 brew install qlstephen qlmarkdown quicklook-json qlimagesize
-brew install --HEAD luajit
-brew install efm-langserver
+brew install go
+# brew install efm-langserver
 brew install gawk
 
 # Neovim Deps instead of brew install --HEAD neovim
+brew install --HEAD luajit
 brew install ninja libtool automake cmake pkg-config gettext curl
 # Commands to build neovim directly from source
 # git pull

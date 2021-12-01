@@ -64,7 +64,7 @@ end
 
 --------------------------------------------------------------------------------
 
-local lspconfig = require('lspconfig')
+-- local lspconfig = require('lspconfig')
 local lsp_installer = require('nvim-lsp-installer')
 
 -- Register a handler that will be called for all installed servers.
@@ -72,7 +72,6 @@ local lsp_installer = require('nvim-lsp-installer')
 -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 lsp_installer.on_server_ready(function(server)
   local opts = {}
-  print('generic', server.name)
 
   opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   opts.on_attach = function(client, bufnr)
@@ -130,68 +129,71 @@ lsp_installer.on_server_ready(function(server)
     }
     opts = require('lua-dev').setup(lspconfig_opts)
   end
+
+  if server.name == 'efm' then
+    local prettier = {
+      formatCommand = 'prettier_d_slim --stdin --stdin-filepath ${INPUT}',
+      formatStdin = true,
+    }
+
+    local eslint = {
+      lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
+      lintStdin = true,
+      lintFormats = { '%f:%l:%c: %m' },
+      lintIgnoreExitCode = true,
+    }
+
+    local shellcheck = {
+      lintCommand = 'shellcheck -f gcc -x',
+      lintSource = 'shellcheck',
+      lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
+    }
+
+    opts.filetypes = {
+      'javascript',
+      'typescript',
+      'typescriptreact',
+      'less',
+      'css',
+      'json',
+      'sh',
+      'markdown',
+    }
+
+    opts.init_options = {
+      documentFormatting = true,
+    }
+
+    opts.on_attach = function(client, bufnr)
+      vim.cmd([[
+        augroup Format
+          autocmd! * <buffer>
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+        augroup END
+      ]])
+    end
+    opts.settings = {
+      languages = {
+        javascript = { prettier, eslint },
+        typescript = { prettier, eslint },
+        javascriptreact = { prettier, eslint },
+        typescriptreact = { prettier, eslint },
+        less = { prettier },
+        css = { prettier },
+        json = { prettier },
+        markdown = { prettier },
+        sh = { shellcheck },
+      },
+    }
+    opts.handlers = {
+      ['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = false,
+        update_in_insert = false,
+      }),
+    }
+  end
+
   server:setup(opts)
 end)
 
 --------------------------------------------------------------------------------
-
-local prettier = {
-  formatCommand = 'prettier_d_slim --stdin --stdin-filepath ${INPUT}',
-  formatStdin = true,
-}
-
-local eslint = {
-  lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
-  lintStdin = true,
-  lintFormats = { '%f:%l:%c: %m' },
-  lintIgnoreExitCode = true,
-}
-
-local shellcheck = {
-  lintCommand = 'shellcheck -f gcc -x',
-  lintSource = 'shellcheck',
-  lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
-}
-
-require('lspconfig').efm.setup({
-  filetypes = {
-    'javascript',
-    'typescript',
-    'typescriptreact',
-    'less',
-    'css',
-    'json',
-    'sh',
-    'markdown',
-  },
-  init_options = {
-    documentFormatting = true,
-  },
-  on_attach = function(client, bufnr)
-    vim.cmd([[
-      augroup Format
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
-      augroup END
-    ]])
-  end,
-  settings = {
-    languages = {
-      javascript = { prettier, eslint },
-      typescript = { prettier, eslint },
-      javascriptreact = { prettier, eslint },
-      typescriptreact = { prettier, eslint },
-      less = { prettier },
-      css = { prettier },
-      json = { prettier },
-      markdown = { prettier },
-      sh = { shellcheck },
-    },
-  },
-  handlers = {
-    ['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = false,
-      update_in_insert = false,
-    }),
-  },
-})

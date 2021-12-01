@@ -36,6 +36,7 @@ key_bindings:
   - { key: I        , mods: Alt|Shift , chars: ",HI" }
   - { key: O        , mods: Alt|Shift , chars: ",HO" }
   - { key: P        , mods: Alt|Shift , chars: ",HP" }
+  - { key: L        , mods: Alt       , chars: "\x10z" }
   - { key: F        , mods: Alt       , chars: "]qzz" }
   - { key: D        , mods: Alt       , chars: "[qzz" }
   - { key: LBracket , mods: Alt|Shift , chars: "\x1b\x5b" }
