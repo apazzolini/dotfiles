@@ -64,66 +64,74 @@ end
 
 --------------------------------------------------------------------------------
 
-require('lspinstall').setup()
 local lspconfig = require('lspconfig')
+local lsp_installer = require('nvim-lsp-installer')
 
-if lspconfig.go then
-  lspconfig.go.setup({
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = function(client, bufnr)
-      set_lsp_keymaps(client, bufnr)
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+lsp_installer.on_server_ready(function(server)
+  local opts = {}
+  print('generic', server.name)
+
+  opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  opts.on_attach = function(client, bufnr)
+    set_lsp_keymaps(client, bufnr)
+  end
+
+  if server.name == 'tsserver' then
+    local original_on_attach = opts.on_attach
+    opts.on_attach = function(client, bufnr)
+      original_on_attach(client, bufnr)
+      -- use prettier via efm on save instead of tsserver's builtin formatting
+      client.resolved_capabilities.document_formatting = false
+    end
+
+    opts.flags = {
+      debounce_text_changes = 200,
+    }
+
+    opts.handlers = {
+      ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error'),
+      ['textDocument/definition'] = first_match,
+      ['textDocument/typeDefinition'] = first_match,
+    }
+  end
+
+  if server.name == 'go' then
+    local original_on_attach = opts.on_attach
+    opts.on_attach = function(client, bufnr)
+      original_on_attach(client, bufnr)
       vim.cmd([[
           augroup Format
             autocmd! * <buffer>
             autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
           augroup END
         ]])
-    end,
-  })
-end
+    end
+  end
 
-if lspconfig.tailwindcss then
-  lspconfig.tailwindcss.setup({
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  })
-end
-
-if lspconfig.lua then
-  lspconfig.lua.setup(require('lua-dev').setup({
-    lspconfig = {
-      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-      on_attach = set_lsp_keymaps,
-      settings = {
-        Lua = {
-          workspace = {
-            library = {
-              ['/Users/andre/GitHub/_forks/hammerspoon/build/stubs'] = true,
-            },
+  if server.name == 'sumneko_lua' then
+    local lspconfig_opts = { lspconfig = opts }
+    lspconfig_opts.lspconfig.settings = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim', 'use' },
+          disable = { 'lowercase-global' },
+        },
+        workspace = {
+          library = {
+            ['/Users/andre/GitHub/_forks/hammerspoon/build/stubs'] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
           },
         },
       },
-    },
-  }))
-end
-
-if lspconfig.tsserver then
-  lspconfig.tsserver.setup({
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = function(client, bufnr)
-      set_lsp_keymaps(client, bufnr)
-      -- use prettier via efm on save instead of tsserver's builtin formatting
-      client.resolved_capabilities.document_formatting = false
-    end,
-    flags = {
-      debounce_text_changes = 200,
-    },
-    handlers = {
-      ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error'),
-      ['textDocument/definition'] = first_match,
-      ['textDocument/typeDefinition'] = first_match,
-    },
-  })
-end
+    }
+    opts = require('lua-dev').setup(lspconfig_opts)
+  end
+  server:setup(opts)
+end)
 
 --------------------------------------------------------------------------------
 

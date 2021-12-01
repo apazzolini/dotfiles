@@ -17,9 +17,18 @@ brew install zsh-autosuggestions
 brew install wget
 brew install qlstephen qlmarkdown quicklook-json qlimagesize
 brew install --HEAD luajit
-brew install --HEAD neovim
 brew install efm-langserver
 brew install gawk
+
+# Neovim Deps instead of brew install --HEAD neovim
+brew install ninja libtool automake cmake pkg-config gettext curl
+# Commands to build neovim directly from source
+# git pull
+# make clean
+# sudo make distclean
+# make CMAKE_BUILD_TYPE=Release -j4
+# sudo make install
+
 
 brew install yt-dlp/taps/yt-dlp
 
