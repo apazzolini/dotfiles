@@ -22,8 +22,11 @@ ls.snippets = {
     ls.parser.parse_snippet('uC', 'useCallback(() => {\n\t${0:}\n}, []);'),
     ls.parser.parse_snippet('uM', 'useMemo(() => {\n\t${0:}\n}, []);'),
     ls.parser.parse_snippet('prom', 'new Promise((resolve, reject) => {\n\t${0:}\n});'),
+    ls.parser.parse_snippet('a', '(${1:}) => {\n\t${0:}\n}'),
+    ls.parser.parse_snippet('c', 'const ${0:}'),
     ls.parser.parse_snippet('cn', 'className="${0:}"'),
     ls.parser.parse_snippet('cnn', 'className={`\n\t${0:}\n`}'),
+    ls.parser.parse_snippet('fn', 'function ${1:}(${2:}) {\n\t${0:}\n}'),
   },
 }
 
