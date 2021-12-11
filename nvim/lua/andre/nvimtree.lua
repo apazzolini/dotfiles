@@ -22,11 +22,13 @@ vim.g.nvim_tree_icons = {
 
 require('nvim-tree').setup({
   update_cwd = true,
-  nvim_tree_hide_dotfiles = true,
   nvim_tree_ignore = { '.git', 'node_modules', 'bower_components', '.DS_Store', 'dist' },
   view = {
     width = 37,
     auto_resize = true,
+  },
+  filters = {
+    dotfiles = true,
   },
 })
 
