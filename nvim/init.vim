@@ -49,9 +49,10 @@ Plug 'rhysd/clever-f.vim'
 Plug 'nikvdp/ejs-syntax'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'folke/lua-dev.nvim'
-" Plug 'pwntester/octo.nvim'
+Plug 'pwntester/octo.nvim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " --------------------------------------------------------------------------------------------------
 
