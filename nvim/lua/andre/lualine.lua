@@ -1,19 +1,19 @@
 local colors = {
-  bg0 = 238,
-  bg1 = 237,
-  fg = 0,
-  fg2 = 7,
-  red = 1,
-  green = 2,
-  yellow = 3,
-  blue = 4,
-  magenta = 5,
-  bold_red = 9,
+  bg0 = '#464e53',
+  bg1 = '#343d42',
+  fg = '#1e2027',
+  fg2 = '#c8cedc',
+  red = '#de718b',
+  green = '#b1cfa9',
+  yellow = '#e8dcb0',
+  blue = '#9494bc',
+  magenta = '#b088d7',
+  bold_red = '#d19b9b',
 }
 
 -- LuaFormatter on
-local b = { bg = colors.bg0, fg = colors.fg2, gui = 'bold' };
-local c = { bg = colors.bg1, fg = colors.fg2 };
+local b = { bg = colors.bg0, fg = colors.fg2, gui = 'bold' }
+local c = { bg = colors.bg1, fg = colors.fg2 }
 
 local theme = {
   normal = {
@@ -78,7 +78,7 @@ require('lualine').setup({
         -- displays diagnostics from defined severity
         sections = { 'error', 'warn', 'info' }, -- 'hint'
         -- all colors are in format #rrggbb
-        color_error = nil, -- changes diagnostic's error foreground color
+        color_error = colors.red, -- changes diagnostic's error foreground color
         color_warn = nil, -- changes diagnostic's warn foreground color
         color_info = nil, -- Changes diagnostic's info foreground color
         color_hint = nil, -- Changes diagnostic's hint foreground color

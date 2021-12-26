@@ -246,6 +246,7 @@ hi! link VimwikiCode Normal
 
 " LSP
 call s:HL('LspDiagnosticsDefaultError', s:wRed)
+call s:HL('DiagnosticError', s:wRed)
 
 " Telescope
 call s:HL('TelescopeMatching', s:wRed)

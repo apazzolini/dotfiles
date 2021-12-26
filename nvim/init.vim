@@ -52,7 +52,7 @@ Plug 'folke/lua-dev.nvim'
 Plug 'pwntester/octo.nvim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
-Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'kyazdani42/nvim-web-devicons'
 
 " --------------------------------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ syntax enable
 
 exec 'set background=' . (g:isNotes ? 'light' : 'dark')
 set guifont="Operator Mono Book":h8
-set notermguicolors
+set termguicolors
 colorscheme wave
 
 lua << EOF
