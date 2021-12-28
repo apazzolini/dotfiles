@@ -1,4 +1,5 @@
 gui:
+  showFileTree: false
   theme:
     lightTheme: false
     activeBorderColor:

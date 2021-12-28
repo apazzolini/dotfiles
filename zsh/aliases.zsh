@@ -54,11 +54,12 @@ alias vrc='nvim -c "cd ~/.dotfiles" -- ~/.dotfiles/nvim/init.vim'
 alias vp='nvim package.json'
 
 # misc
+alias se='sudoedit'
 alias d='docker'
 alias da='d ps -a'
 alias j=z
 alias rg='rg -i'
-alias dl='docker-compose -f ~/work/docker/docker-compose.yml'
+alias dl='docker-compose -f /apps/docker-compose.yml'
 alias dop='doppler'
 alias doplocal="doppler --api-host https://api.dopplerlocal.com:3030 --no-verify-tls"
 alias dse='~/work/cli/doppler secrets edit'

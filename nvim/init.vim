@@ -12,6 +12,12 @@ let g:pluggedHome = has('win32')
 " Plugins ------------------------------------------------------------------------------------------
 " --------------------------------------------------------------------------------------------------
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin(g:pluggedHome)
 
 Plug 'kyazdani42/nvim-tree.lua'
@@ -49,7 +55,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'nikvdp/ejs-syntax'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'folke/lua-dev.nvim'
-Plug 'pwntester/octo.nvim'
+" Plug 'pwntester/octo.nvim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 " Plug 'kyazdani42/nvim-web-devicons'

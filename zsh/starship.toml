@@ -1,6 +1,10 @@
 add_newline = false
 
-format = """$directory$git_branch$git_status$git_state[»](purple) """
+format = """$custom$directory$git_branch$git_status$git_state[»](purple) """
+
+[custom.linode]
+command = 'echo "[linode]"'
+when = 'test `hostname` = "linode"'
 
 [directory]
 truncation_length = 1000

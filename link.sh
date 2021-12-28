@@ -13,6 +13,7 @@ function env_setup {
   link git/.gitconfig ~/
   link git/.githelpers ~/
   link git/.gitignore ~/
+  mkdir -p ~/.config/lazygit
   link git/lazygit/config.yml ~/.config/lazygit/
 
   # neovim
