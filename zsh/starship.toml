@@ -6,6 +6,10 @@ format = """$custom$directory$git_branch$git_status$git_state[»](purple) """
 command = 'echo "[linode]"'
 when = 'test `hostname` = "linode"'
 
+[custom.andrembw]
+command = 'echo "[andrembw]"'
+when = 'test `hostname` = "andrembw"'
+
 [directory]
 truncation_length = 1000
 truncate_to_repo = false
