@@ -31,10 +31,11 @@ alias nr="npm run"
 alias pr="pnpm run"
 
 # tmux
-alias t="tmux -u -2"
-alias ta="t attach -t"
-alias td="t detach"
-alias tks="t kill-session"
+# alias t="tmux -u -2"
+alias t="$HOME/.dotfiles/tmux/sessions/default.sh"
+alias ta="tmux -u -2 attach -t"
+alias td="tmux -u -2 detach"
+alias tks="tmux -u -2 kill-session"
 alias tawork="$HOME/.dotfiles/tmux/sessions/work.sh"
 alias tadre="$HOME/.dotfiles/tmux/sessions/dre.sh"
 
