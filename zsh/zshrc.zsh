@@ -47,3 +47,7 @@ safesource ~/.fzf.zsh
 safesource /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
 alias luamake=/Users/andre/.cache/nvim/nlua/sumneko_lua/lua-language-server/3rd/luamake/luamake
+
+if [ -z "$TMUX" ]; then
+  safesource ~/.dotfiles/tmux/sessions/default.sh
+fi
