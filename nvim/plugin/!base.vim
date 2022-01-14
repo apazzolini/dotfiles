@@ -53,6 +53,7 @@ map ' `
 map Y y$
 map H 0
 map L $
+xnoremap L g_
 noremap j gj
 noremap k gk
 map gx :tabclose<CR>
