@@ -9,8 +9,6 @@
     commentchar = ";"
     pager = delta
 [delta]
-    plus-color = "#012800"
-    minus-color = "#340001"
     hunk-header-style = omit
     paging = never
     line-numbers = true
