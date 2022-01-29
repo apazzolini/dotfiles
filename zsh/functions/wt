@@ -1,0 +1,27 @@
+wt () {
+  if [[ "$1" == "done" ]]; then
+    TREE="${PWD##*/}"
+    cd /home/andre/work/server
+    git worktree remove $TREE
+    git branch -d andre/$TREE
+    return;
+  fi
+
+  if [ -d "/home/andre/work/server/$1" ]; then
+    cd "/home/andre/work/server/$1"
+    return;
+  fi
+
+  cd /home/andre/work/server
+  git fetch
+  git worktree add -f $1 origin/develop
+  cd $1
+  git co -b andre/$1
+  pnpm i
+  mkdir -p server/env
+  mkdir -p tokens-server/env
+  doppler setup
+  cd tokens-server
+  doppler setup
+  cd ..
+}

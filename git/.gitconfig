@@ -53,8 +53,10 @@
     pnv = push --no-verify
     pf = push --force-with-lease
     ri = rebase --interactive
+    wt = worktree
     rod = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git pull && git reset --hard"
-    work = !sh -c 'git fetch && git checkout origin/develop --ignore-other-worktrees --no-track -b \"$@\" && git push -u' _
+    #work = "!f() { cd /home/andre/work/server/$1; }; f"
+    # work = !sh -c 'cdgit fetch && git checkout origin/develop --ignore-other-worktrees --no-track -b \"$@\" && git push -u' _
     wip = "!git add --all && git commit -m 'wip'"
 
     # Fancy logging.
