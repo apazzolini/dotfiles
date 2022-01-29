@@ -20,7 +20,9 @@ spawn_window () {
 
 spawn_window "dotfiles" ~/.dotfiles
 # spawn_window "docker" ~/work/docker
-spawn_window "server" ~/work/server/1
+spawn_window "review" ~/work/server/review
+spawn_window "develop" ~/work/server/develop
+spawn_window "small" ~/work/server/small
 # spawn_window "server (2)" ~/Work/swt/andre/2
 # spawn_window "server (3)" ~/Work/swt/andre/3
 # spawn_window "server (4)" ~/Work/swt/andre/4
