@@ -8,7 +8,7 @@ when = 'test `hostname` = "linode"'
 
 [custom.andrembw]
 command = 'echo "[andrembw]"'
-when = 'test `hostname` = "andrembw"'
+when = 'test `hostname` = "andrembw.local"'
 
 [directory]
 truncation_length = 1000
