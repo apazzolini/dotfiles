@@ -1,0 +1,5 @@
+branch_done () {
+  BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  git rod
+  git branch -D $BRANCH
+}

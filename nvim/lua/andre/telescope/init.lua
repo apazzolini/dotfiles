@@ -64,6 +64,8 @@ local telescope_opts = {
       'systems/osx/iTerm2/com.googlecode.iterm2.plist',
       'util/cce37d14-ebc8-40c0-b942-cbc8fd7b34cc.json',
       'util/7236f71d-5a53-11e8-b364-0a58647f9b0f-telemetry.json',
+      'server/src/apps/team/public/js/codemirror',
+      'server/src/apps/team/public/less/codemirror',
     },
 
     mappings = {

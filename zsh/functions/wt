@@ -20,8 +20,8 @@ wt () {
   pnpm i
   mkdir -p server/env
   mkdir -p tokens-server/env
-  doppler setup
+  doppler setup -p server -c dev_andre
   cd tokens-server
-  doppler setup
+  doppler setup -p tokens-server -c dev_andre
   cd ..
 }
