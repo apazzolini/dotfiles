@@ -21,7 +21,7 @@ fi
 if [[ "$(hostname)" = "linode" ]]; then
   tmux -u -2 new-session -d -s $SESSION -c /apps
   tmux -2 attach -t $SESSION
-elif [[ "$(hostname)" = "andrembw.local" ]]; then
+elif [[ "$(hostname)" =~ ^andrembw ]]; then
   return;
 else
   tmux -u -2 new-session -d -s $SESSION
