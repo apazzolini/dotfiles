@@ -101,3 +101,5 @@
 	trustExitCode = true
 [branch]
   autosetuprebase = always
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
