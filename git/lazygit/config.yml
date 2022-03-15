@@ -17,8 +17,8 @@ gui:
 git:
   paging:
     colorArg: always
-    # pager: delta --paging=never --24-bit-color=never --side-by-side
-    pager: delta --paging=never --24-bit-color=never
+    pager: delta --paging=never --24-bit-color=never --side-by-side
+    # pager: delta --paging=never --24-bit-color=never
 
 os:
   editCommand: 'floaterm'
