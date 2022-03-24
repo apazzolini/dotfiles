@@ -1,7 +1,5 @@
-vim.g.nvim_tree_quit_on_open = 0
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_special_files = {}
 vim.g.nvim_tree_show_icons = {
   git = 0,
@@ -29,6 +27,14 @@ require('nvim-tree').setup({
   },
   filters = {
     dotfiles = true,
+  },
+  actions = {
+    open_file = {
+      quit_on_open = false,
+      window_picker = {
+        enable = false,
+      },
+    },
   },
 })
 

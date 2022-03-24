@@ -54,9 +54,9 @@ local function first_match(_, result, context)
   end
 
   if vim.tbl_islist(result) then
-    util.jump_to_location(result[1])
+    util.jump_to_location(result[1], vim.lsp.get_client_by_id(context.client_id).offset_encoding)
   else
-    util.jump_to_location(result)
+    util.jump_to_location(result, vim.lsp.get_client_by_id(context.client_id).offset_encoding)
   end
 
   vim.cmd('normal zz')
