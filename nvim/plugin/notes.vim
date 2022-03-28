@@ -43,3 +43,6 @@ let g:vimwiki_autowriteall = 0
 let g:vimwiki_url_maxsave = 0
 
 let @d='gg/---------0:nohO,Lo- =strftime("%Y-%m-%d")k2,Lok'
+
+autocmd FileType vimwiki inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn 3 5<CR>
+autocmd FileType vimwiki inoremap <silent><buffer> <C-L><C-L> <Esc>:VimwikiReturn 2 2<CR>
