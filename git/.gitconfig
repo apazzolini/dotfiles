@@ -7,7 +7,7 @@
     editor = nvim
     autocrlf = input
     commentchar = ";"
-    pager = delta
+    pager = delta --side-by-side
 [delta]
     hunk-header-style = omit
     paging = never

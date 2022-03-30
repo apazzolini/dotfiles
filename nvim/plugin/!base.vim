@@ -117,9 +117,9 @@ map <leader>we :set winheight=999<cr>
 map <leader>wd :set winheight=10<cr><c-w>=<cr>
 
 " Test mappings
-nmap <leader>ot mT:%s/it.only/it/ge<cr>'T?it(<cr>ceit.only<esc>'T
-nmap <leader>oa mT?it(<cr>ceit.only<esc>'T
-nmap <leader>ox mT:%s/it.only/it/ge<cr>'T
+nmap <leader>ot mT:%s/test.only/test/ge<cr>'T?test(<cr>cetest.only<esc>'T
+nmap <leader>oa mT?test(<cr>cetest.only<esc>'T
+nmap <leader>ox mT:%s/test.only/test/ge<cr>'T
 
 cmap <c-k> <up>
 cmap <c-j> <down>
@@ -175,3 +175,9 @@ nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
 
 nnoremap <leader>sh <cmd>TSHighlightCapturesUnderCursor<CR>
+
+function! s:FormatJSON()
+  exe "%!/usr/bin/python -m 'json.tool'"
+  set ft=json
+endfunction
+command! JSON call s:FormatJSON()

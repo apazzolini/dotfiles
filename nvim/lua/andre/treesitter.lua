@@ -7,12 +7,6 @@ require('nvim-treesitter.configs').setup({
 
   highlight = {
     enable = true,
-    custom_captures = {
-      ['className'] = 'TS_C_ClassName',
-      ['reactHook'] = 'TS_C_ReactHook',
-      ['jsxAttribute'] = 'TS_C_JsxAttribute',
-      ['function.call'] = 'TS_C_FunctionCall',
-    },
   },
 
   playground = {
@@ -43,4 +37,9 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', '<leader>sh', '<cmd>TSHighlightCapturesUnderCursor<cr>', {})
+require('nvim-treesitter.highlight').set_custom_captures({
+  ['className'] = 'TS_C_ClassName',
+  ['reactHook'] = 'TS_C_ReactHook',
+  ['jsxAttribute'] = 'TS_C_JsxAttribute',
+  ['function.call'] = 'TS_C_FunctionCall',
+})

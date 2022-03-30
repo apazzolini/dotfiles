@@ -23,8 +23,8 @@ local function set_lsp_keymaps(client, bufnr)
   -- vim.api.nvim_set_keymap('n', ',H', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
   local diagnosticOpts = '{ severity_limit = "Error", popup_opts = { severity_limit = "Error" }}'
-  vim.api.nvim_set_keymap('n', ',m', '<cmd>lua vim.lsp.diagnostic.goto_prev(' .. diagnosticOpts .. ')<cr>zz', opts)
-  vim.api.nvim_set_keymap('n', ',.', '<cmd>lua vim.lsp.diagnostic.goto_next(' .. diagnosticOpts .. ')<cr>zz', opts)
+  vim.api.nvim_set_keymap('n', ',m', '<cmd>lua vim.diagnostic.goto_prev(' .. diagnosticOpts .. ')<cr>zz', opts)
+  vim.api.nvim_set_keymap('n', ',.', '<cmd>lua vim.diagnostic.goto_next(' .. diagnosticOpts .. ')<cr>zz', opts)
 
   vim.api.nvim_set_keymap('n', ',lt', '<cmd>cexpr system("tsc --pretty false") <bar> copen<cr>', opts)
   vim.api.nvim_set_keymap('n', ',la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
@@ -137,9 +137,13 @@ lsp_installer.on_server_ready(function(server)
     }
 
     local eslint = {
-      lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
+      lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
       lintStdin = true,
-      lintFormats = { '%f:%l:%c: %m' },
+      -- lintFormats = { '%f:%l:%c: %m' },
+      lintFormats = {
+        "%f(%l,%c): %tarning %m",
+        "%f(%l,%c): %rror %m"
+      },
       lintIgnoreExitCode = true,
     }
 

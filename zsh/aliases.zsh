@@ -64,6 +64,8 @@ alias dl='docker-compose -f /apps/docker-compose.yml'
 alias dop='doppler'
 alias doplocal="doppler --api-host https://api.dopplerlocal.com:3030 --no-verify-tls"
 alias dse='~/work/cli/doppler secrets edit'
+alias pgbak='~/work/backup-pg.sh'
+alias pgres='~/work/restore-pg.sh'
 
 if [ `uname` = 'Darwin' ]
 then
