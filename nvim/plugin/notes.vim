@@ -46,3 +46,9 @@ let @d='gg/---------0:nohO,Lo- =strftime("%Y-%m-%d")k2,Lok'
 
 autocmd FileType vimwiki inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn 3 5<CR>
 autocmd FileType vimwiki inoremap <silent><buffer> <C-L><C-L> <Esc>:VimwikiReturn 2 2<CR>
+
+if (expand('$HOST') =~ 'andrembw')
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gl :e /Users/andre/Work/notes/log.md<CR>
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gi :e /Users/andre/Work/notes/index.md<CR>
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gs :e /Users/andre/Work/notes/scratch.md<CR>
+endif
