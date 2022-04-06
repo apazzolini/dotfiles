@@ -60,12 +60,18 @@ alias d='docker'
 alias da='d ps -a'
 alias j=z
 alias rg='rg -i'
+
+# work
 alias dl='docker-compose -f /apps/docker-compose.yml'
 alias dop='doppler'
 alias doplocal="doppler --api-host https://api.dopplerlocal.com:3030 --no-verify-tls"
 alias dse='~/work/cli/doppler secrets edit'
 alias pgbak='~/work/backup-pg.sh'
 alias pgres='~/work/restore-pg.sh'
+alias pgls='ll /home/andre/work/docker/pgdatabackup/'
+alias pgcd='cd /home/andre/work/docker/pgdatabackup/'
+alias houston='HOST="https://houston.doppler.team" /home/andre/work/houston/scripts/houston.sh'
+alias houston-staging='HOST="https://houston.staging.doppler.team" /home/andre/work/houston/scripts/houston.sh'
 
 if [ `uname` = 'Darwin' ]
 then
