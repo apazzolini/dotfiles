@@ -4,6 +4,9 @@
 
 #SingleInstance force
 
+GroupAdd, games, ahk_exe TslGame.exe
+GroupAdd, games, ahk_exe ProjectZomboid64.exe
+
 global LDim := [-1442, -610, 1472, 2588]
 global RDim := [0, 0, 2588, 1417]
 
@@ -115,8 +118,7 @@ Activate(name, executable)
   }
 }
 
-
-#IfWinNotActive, ahk_exe TslGame.exe ; ------------------------------------------
+#IfWinNotActive, ahk_group games ; ------------------------------------------
 
 $!z::
 $^a::Activate("Alacritty", "C:\Apps\Alacritty\alacritty.exe")
