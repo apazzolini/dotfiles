@@ -1,6 +1,7 @@
-let g:floaterm_width=0.9
+let g:floaterm_width=0.95
 let g:floaterm_opener='edit'
-let g:floaterm_height=0.9
+let g:floaterm_height=0.98
+let g:floaterm_position='top'
 
 nnoremap <c-q> :FloatermToggle<cr>
 tnoremap <c-q> <c-\><c-n>:FloatermToggle<cr>

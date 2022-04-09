@@ -1,4 +1,5 @@
 require('andre.cmp')
+require('andre.dap')
 require('andre.colorizer')
 require('andre.harpoon')
 require('andre.hop')

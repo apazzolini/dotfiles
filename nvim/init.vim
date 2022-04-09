@@ -59,6 +59,8 @@ Plug 'folke/lua-dev.nvim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 " Plug 'kyazdani42/nvim-web-devicons'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 
 " --------------------------------------------------------------------------------------------------
 
