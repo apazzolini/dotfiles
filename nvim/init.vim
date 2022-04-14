@@ -61,6 +61,7 @@ Plug 'pangloss/vim-javascript'
 " Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'mfussenegger/nvim-ts-hint-textobject'
 
 " --------------------------------------------------------------------------------------------------
 
