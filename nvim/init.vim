@@ -2,6 +2,10 @@
 " Environment detection ----------------------------------------------------------------------------
 " --------------------------------------------------------------------------------------------------
 
+" Only use the new filetype.lua detection
+let g:do_filetype_lua = 1
+let g:did_load_filetypes = 0
+
 let g:isNotes = expand('$IS_NOTES') == 1 || (argc() >= 1 && argv()[0] =~ 'index.md')
 let g:home = has('win32') ? 'L:/home/andre' : has('osx') ? '/Users/andre' : '/home/andre'
 let g:pluggedHome = has('win32')
