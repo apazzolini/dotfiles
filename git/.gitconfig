@@ -40,6 +40,7 @@
 [alias]
     di = diff
     ds = diff --staged
+    dp = diff @{push}
     st = status
     ca = commit --amend
     can = commit --amend --no-edit
