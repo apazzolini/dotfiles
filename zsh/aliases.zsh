@@ -41,7 +41,7 @@ alias tadre="$HOME/.dotfiles/tmux/sessions/dre.sh"
 
 if [[ `hostname` = andrembw* ]]
 then
-  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md" "/Users/andre/Work/notes/index.md"'
+  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md"'
 else
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/index.md"'
 fi

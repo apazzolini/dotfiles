@@ -4592,13 +4592,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.87450981140136719</real>
+				<real>0.84313725490196079</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.87058824300765991</real>
+				<real>0.83921568627450982</real>
 				<key>Red Component</key>
-				<real>0.86666667461395264</real>
+				<real>0.83529411764705885</real>
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
@@ -4649,7 +4649,7 @@
 			<key>Close Sessions On End</key>
 			<true/>
 			<key>Columns</key>
-			<integer>170</integer>
+			<integer>85</integer>
 			<key>Command</key>
 			<string>notes</string>
 			<key>Cursor Color</key>
