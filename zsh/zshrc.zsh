@@ -53,5 +53,9 @@ if [ -z "$TMUX" ]; then
     return;
   fi;
 
+  if [[ "$__CFBundleIdentifier" =~ iterm2$ ]]; then
+    return;
+  fi;
+
   tmux-sessionizer ~/
 fi
