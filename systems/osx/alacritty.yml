@@ -36,9 +36,13 @@ key_bindings:
   - { key: Space    , mods: Control       , chars: "\x00" }
   - { key: Slash    , mods: Command       , chars: ",ct" }
   - { key: J        , mods: Command       , chars: "\x10\x5b" }
-  # - { key: J        , mods: Command       , chars: "\x1D" }
   - { key: W        , mods: Command       , chars: "\x10\x78" }
   - { key: K        , mods: Command       , chars: "\x10\x0C" }
+
+  - { key: Return   , mods: Control       , chars: "\x1b[13;5u" }
+  - { key: Return   , mods: Shift         , chars: "\x1b[13;2u" }
+  - { key: Tab      , mods: Control       , chars: "\x1b[9;5u" }
+  - { key: Tab      , mods: Control|Shift , chars: "\x1b[9;6u" }
 
   - { key: Y        , mods: Command       , chars: ",Hy" }
   - { key: U        , mods: Command       , chars: ",Hu" }
@@ -54,5 +58,5 @@ key_bindings:
   - { key: F        , mods: Command       , chars: "]qzz" }
   - { key: D        , mods: Command       , chars: "[qzz" }
 
-    # See: https://github.com/alacritty/alacritty/issues/1359#issuecomment-430265381
-  - { key: Q, mods: Control, chars: "\x11" }
+  # See: https://github.com/alacritty/alacritty/issues/1359#issuecomment-430265381
+  - { key: Q        , mods: Control       , chars: "\x11" }
