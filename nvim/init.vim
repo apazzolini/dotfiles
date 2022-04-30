@@ -64,6 +64,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mfussenegger/nvim-ts-hint-textobject'
+Plug 'vladdoster/remember.nvim'
 
 " --------------------------------------------------------------------------------------------------
 

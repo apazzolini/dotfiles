@@ -141,10 +141,10 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s#\($\n\s*\)\+\%$##e
 
 " Restore last position when reopening file
-autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+" autocmd BufReadPost *
+"     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"     \   exe "normal g`\"" |
+"     \ endif
 
 " Move cursor to first line in insert mode on git commits
 autocmd FileType gitcommit execute "normal! gg" | startinsert
