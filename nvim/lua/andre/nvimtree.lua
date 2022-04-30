@@ -20,16 +20,16 @@ vim.g.nvim_tree_icons = {
 
 require('nvim-tree').setup({
   update_cwd = true,
-  nvim_tree_ignore = { '.git', 'node_modules', 'bower_components', '.DS_Store', 'dist' },
   view = {
     width = 37,
-    auto_resize = true,
   },
   filters = {
     dotfiles = true,
+    custom = { '.git', 'node_modules', 'bower_components', '.DS_Store', 'dist' },
   },
   actions = {
     open_file = {
+      resize_window = true,
       quit_on_open = false,
       window_picker = {
         enable = false,

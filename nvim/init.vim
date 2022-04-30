@@ -59,10 +59,8 @@ Plug 'rhysd/clever-f.vim'
 Plug 'nikvdp/ejs-syntax'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'folke/lua-dev.nvim'
-" Plug 'pwntester/octo.nvim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
-" Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mfussenegger/nvim-ts-hint-textobject'
@@ -111,10 +109,6 @@ lua << EOF
     end
   end
 EOF
-
-let b:javascript_fold = 0
-let g:javascript_plugin_jsdoc = 1
-let g:jsx_ext_required = 0
 
 " autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
 " autocmd! BufWritePost ~/.dotfiles/nvim/*.lua source $MYVIMRC
