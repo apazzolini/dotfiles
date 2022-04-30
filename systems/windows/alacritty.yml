@@ -5,7 +5,7 @@ font:
 shell:
   program: C:\Users\andre\AppData\Local\Microsoft\WindowsApps\debian.exe
 key_bindings:
-  - { key: V,        mods: Control|Shift, action: Paste            }
+  - { key: V,        mods: Alt|Control,   action: Paste            }
   - { key: C,        mods: Control|Shift, action: Copy             }
   - { key: LBracket, mods: Alt|Control,   chars: "\x10\x70"        }
   - { key: RBracket, mods: Alt|Control,   chars: "\x10\x6E"        }
