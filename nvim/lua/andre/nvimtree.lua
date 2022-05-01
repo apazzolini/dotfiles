@@ -38,7 +38,7 @@ require('nvim-tree').setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', ',no', '<cmd>let g:nvim_tree_quit_on_open=!g:nvim_tree_quit_on_open<cr>', {})
-vim.api.nvim_set_keymap('n', ',gg', '<cmd>NvimTreeFindFile<cr>', {})
-vim.api.nvim_set_keymap('n', ',go', '<cmd>NvimTreeToggle<cr>', {})
-vim.api.nvim_set_keymap('n', ',cd', '<cmd>cd %:p:h<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>no', '<cmd>let g:nvim_tree_quit_on_open=!g:nvim_tree_quit_on_open<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>NvimTreeFindFile<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>go', '<cmd>NvimTreeToggle<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>cd', '<cmd>cd %:p:h<cr>', {})

@@ -23,14 +23,14 @@ local function set_lsp_keymaps(client, bufnr)
   -- vim.api.nvim_set_keymap('n', ',H', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
   local diagnosticOpts = '{ severity_limit = "Error", popup_opts = { severity_limit = "Error" }}'
-  vim.api.nvim_set_keymap('n', ',m', '<cmd>lua vim.diagnostic.goto_prev(' .. diagnosticOpts .. ')<cr>zz', opts)
-  vim.api.nvim_set_keymap('n', ',.', '<cmd>lua vim.diagnostic.goto_next(' .. diagnosticOpts .. ')<cr>zz', opts)
+  vim.api.nvim_set_keymap('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. diagnosticOpts .. ')<cr>zz', opts)
+  vim.api.nvim_set_keymap('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. diagnosticOpts .. ')<cr>zz', opts)
 
-  vim.api.nvim_set_keymap('n', ',lt', '<cmd>cexpr system("tsc --pretty false") <bar> copen<cr>', opts)
-  vim.api.nvim_set_keymap('n', ',la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
-  vim.api.nvim_set_keymap('n', ',lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>lt', '<cmd>cexpr system("tsc --pretty false") <bar> copen<cr>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
 
-  vim.api.nvim_set_keymap('n', ',F', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>F', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
 end
 
 local function handler_publishDiagnostics(level)
@@ -141,8 +141,8 @@ lsp_installer.on_server_ready(function(server)
       lintStdin = true,
       -- lintFormats = { '%f:%l:%c: %m' },
       lintFormats = {
-        "%f(%l,%c): %tarning %m",
-        "%f(%l,%c): %rror %m"
+        '%f(%l,%c): %tarning %m',
+        '%f(%l,%c): %rror %m',
       },
       lintIgnoreExitCode = true,
     }
