@@ -24,4 +24,4 @@ local ft_str = table.concat(
 )
 vim.cmd('autocmd Filetype ' .. ft_str .. ' setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
 
-require('remember')
+require('nvim-lastplace').setup({})
