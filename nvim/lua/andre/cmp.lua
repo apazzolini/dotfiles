@@ -25,8 +25,10 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<C-j>'] = cmp.mapping.select_next_item({ 'i', 'c' }),
+    ['<C-k>'] = cmp.mapping.select_prev_item({ 'i', 'c' }),
+    ['<Down>'] = cmp.mapping.select_next_item({ 'i', 'c' }),
+    ['<Up>'] = cmp.mapping.select_prev_item({ 'i', 'c' }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()

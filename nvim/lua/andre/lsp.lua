@@ -64,140 +64,142 @@ end
 
 --------------------------------------------------------------------------------
 
--- local lspconfig = require('lspconfig')
-local lsp_installer = require('nvim-lsp-installer')
+require('nvim-lsp-installer').setup({})
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lspconfig = require('lspconfig')
 
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
--- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
+-- TSSERVER --------------------------------------------------------------------
 
-  opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  opts.on_attach = function(client, bufnr)
+lspconfig.tsserver.setup({
+  capabilities = capabilities,
+
+  init_options = {
+    preferences = {
+      importModuleSpecifierPreference = 'non-relative',
+    },
+  },
+
+  on_attach = function(client, bufnr)
+    -- use prettier via efm on save instead of tsserver's builtin formatting
+    client.resolved_capabilities.document_formatting = false
     set_lsp_keymaps(client, bufnr)
-  end
+  end,
 
-  if server.name == 'tsserver' then
-    local original_on_attach = opts.on_attach
-    opts.on_attach = function(client, bufnr)
-      original_on_attach(client, bufnr)
-      -- use prettier via efm on save instead of tsserver's builtin formatting
-      client.resolved_capabilities.document_formatting = false
-    end
+  flags = {
+    debounce_text_changes = 200,
+  },
 
-    opts.flags = {
-      debounce_text_changes = 200,
-    }
+  handlers = {
+    ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error'),
+    ['textDocument/definition'] = first_match,
+    ['textDocument/typeDefinition'] = first_match,
+  },
+})
 
-    opts.handlers = {
-      ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error'),
-      ['textDocument/definition'] = first_match,
-      ['textDocument/typeDefinition'] = first_match,
-    }
-  end
+-- EFM -------------------------------------------------------------------------
 
-  if server.name == 'go' then
-    local original_on_attach = opts.on_attach
-    opts.on_attach = function(client, bufnr)
-      original_on_attach(client, bufnr)
-      vim.cmd([[
-          augroup Format
-            autocmd! * <buffer>
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
-          augroup END
-        ]])
-    end
-  end
+local prettier = {
+  formatCommand = 'prettier_d_slim --stdin --stdin-filepath ${INPUT}',
+  formatStdin = true,
+}
 
-  if server.name == 'sumneko_lua' then
-    local lspconfig_opts = { lspconfig = opts }
-    lspconfig_opts.lspconfig.settings = {
-      Lua = {
-        diagnostics = {
-          globals = { 'vim', 'use' },
-          disable = { 'lowercase-global' },
+local eslint = {
+  lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
+  lintStdin = true,
+  -- lintFormats = { '%f:%l:%c: %m' },
+  lintFormats = {
+    '%f(%l,%c): %tarning %m',
+    '%f(%l,%c): %rror %m',
+  },
+  lintIgnoreExitCode = true,
+}
+
+local shellcheck = {
+  lintCommand = 'shellcheck -f gcc -x',
+  lintSource = 'shellcheck',
+  lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
+}
+
+lspconfig.efm.setup({
+  filetypes = {
+    'javascript',
+    'typescript',
+    'typescriptreact',
+    'less',
+    'css',
+    'json',
+    'sh',
+    'markdown',
+  },
+
+  init_options = {
+    documentFormatting = true,
+  },
+
+  on_attach = function(client, bufnr)
+    vim.cmd([[
+      augroup Format
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+      augroup END
+    ]])
+  end,
+
+  settings = {
+    languages = {
+      javascript = { prettier, eslint },
+      typescript = { prettier, eslint },
+      javascriptreact = { prettier, eslint },
+      typescriptreact = { prettier, eslint },
+      less = { prettier },
+      css = { prettier },
+      json = { prettier },
+      markdown = { prettier },
+      sh = { shellcheck },
+    },
+  },
+
+  handlers = {
+    ['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      underline = false,
+      update_in_insert = false,
+    }),
+  },
+})
+
+-- SUMNEKO ---------------------------------------------------------------------
+
+lspconfig.sumneko_lua.setup({
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim', 'use' },
+        disable = { 'lowercase-global' },
+      },
+      workspace = {
+        library = {
+          ['/Users/andre/GitHub/_forks/hammerspoon/build/stubs'] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
         },
-        workspace = {
-          library = {
-            ['/Users/andre/GitHub/_forks/hammerspoon/build/stubs'] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-          },
-        },
       },
-    }
-    opts = require('lua-dev').setup(lspconfig_opts)
-  end
+    },
+  },
+})
 
-  if server.name == 'efm' then
-    local prettier = {
-      formatCommand = 'prettier_d_slim --stdin --stdin-filepath ${INPUT}',
-      formatStdin = true,
-    }
+-- TAILWIND --------------------------------------------------------------------
 
-    local eslint = {
-      lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
-      lintStdin = true,
-      -- lintFormats = { '%f:%l:%c: %m' },
-      lintFormats = {
-        '%f(%l,%c): %tarning %m',
-        '%f(%l,%c): %rror %m',
-      },
-      lintIgnoreExitCode = true,
-    }
+lspconfig.tailwindcss.setup({})
 
-    local shellcheck = {
-      lintCommand = 'shellcheck -f gcc -x',
-      lintSource = 'shellcheck',
-      lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
-    }
+-- GO --------------------------------------------------------------------------
 
-    opts.filetypes = {
-      'javascript',
-      'typescript',
-      'typescriptreact',
-      'less',
-      'css',
-      'json',
-      'sh',
-      'markdown',
-    }
-
-    opts.init_options = {
-      documentFormatting = true,
-    }
-
-    opts.on_attach = function(client, bufnr)
-      vim.cmd([[
-        augroup Format
-          autocmd! * <buffer>
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
-        augroup END
-      ]])
-    end
-    opts.settings = {
-      languages = {
-        javascript = { prettier, eslint },
-        typescript = { prettier, eslint },
-        javascriptreact = { prettier, eslint },
-        typescriptreact = { prettier, eslint },
-        less = { prettier },
-        css = { prettier },
-        json = { prettier },
-        markdown = { prettier },
-        sh = { shellcheck },
-      },
-    }
-    opts.handlers = {
-      ['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = false,
-        update_in_insert = false,
-      }),
-    }
-  end
-
-  server:setup(opts)
-end)
-
---------------------------------------------------------------------------------
+-- lspconfig.go.setup({
+--   on_attach = function(client, bufnr)
+--     vim.cmd([[
+--         augroup Format
+--           autocmd! * <buffer>
+--           autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+--         augroup END
+--       ]])
+--   end,
+-- })
