@@ -17,6 +17,7 @@ require('nvim-treesitter.configs').setup({
     'json5',
     'lua',
     'make',
+    'markdown',
     'regex',
     'scss',
     'svelte',
