@@ -176,7 +176,7 @@ nnoremap <leader>sh <cmd>TSHighlightCapturesUnderCursor<CR>
 
 " Format JSON
 function! s:FormatJSON()
-  exe "%!/usr/bin/python -m 'json.tool'"
+  exe "%!/usr/bin/python3 -m 'json.tool'"
   set ft=json
 endfunction
 command! JSON call s:FormatJSON()
