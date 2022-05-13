@@ -29,3 +29,14 @@ keybinding:
     moveUpCommit: 'K' # move commit up one
 
 promptToReturnFromSubprocess: false
+
+customCommands:
+  - key: "S"
+    description: "Stash unstaged changes"
+    command: "git stash --keep-index"
+    context: "files"
+  - key: "o"
+    description: "Show selected commit"
+    command: "git -c delta.paging=always show {{.SelectedLocalCommit.Sha}}"
+    context: "commits"
+    subprocess: true
