@@ -1,5 +1,6 @@
 local Path = require('plenary.path')
 local Job = require('plenary.job')
+
 local lspconfig_util = require('lspconfig.util')
 
 local cached_configs = {}
@@ -20,6 +21,12 @@ local stylua_finder = function(path)
       end
 
       local stylua_path = Path:new({ dir, 'stylua.toml' })
+      if stylua_path:exists() then
+        cached_configs[path] = stylua_path:absolute()
+        break
+      end
+
+      stylua_path = Path:new({ dir, '.stylua.toml' })
       if stylua_path:exists() then
         cached_configs[path] = stylua_path:absolute()
         break
