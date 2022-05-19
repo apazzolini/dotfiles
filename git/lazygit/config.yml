@@ -1,4 +1,5 @@
 gui:
+  sidePanelWidth: 0.22
   showFileTree: false
   theme:
     lightTheme: false
@@ -15,9 +16,10 @@ gui:
     selectedRangeBgColor:
       - underline
 git:
+  autoFetch: false
+  autoRefresh: false
   paging:
     colorArg: always
-    # pager: delta --paging=never --24-bit-color=never --side-by-side
     pager: delta --paging=never --24-bit-color=never
 
 os:
@@ -25,8 +27,8 @@ os:
 
 keybinding:
   commits:
-    moveDownCommit: 'J' # move commit down one
-    moveUpCommit: 'K' # move commit up one
+    moveDownCommit: 'J'
+    moveUpCommit: 'K'
 
 promptToReturnFromSubprocess: false
 
@@ -35,8 +37,15 @@ customCommands:
     description: "Stash unstaged changes"
     command: "git stash --keep-index"
     context: "files"
+
   - key: "o"
     description: "Show selected commit"
-    command: "git -c delta.paging=always show {{.SelectedLocalCommit.Sha}}"
+    command: "git show -w {{.SelectedLocalCommit.Sha}}"
+    context: "commits"
+    subprocess: true
+
+  - key: "<c-r>"
+    description: "Toggle side by side"
+    command: "[[ $(git config delta.side-by-side) == \"true\" ]] && git config delta.side-by-side false || git config delta.side-by-side true"
     context: "commits"
     subprocess: true

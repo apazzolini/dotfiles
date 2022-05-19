@@ -1,4 +1,5 @@
--- vim.cmd('set termguicolors')
--- require('colorizer').setup({
---   '*',
--- }, { mode = 'background' })
+if not pcall(require, 'colorizer') then
+  return
+end
+
+require('colorizer').setup({ '*' }, { mode = 'background' })

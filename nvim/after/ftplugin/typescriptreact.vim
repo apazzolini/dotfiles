@@ -1,1 +1,1 @@
-set errorformat+=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
+source <sfile>:h/javascript.vim

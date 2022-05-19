@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    ARRAY=("$HOME")
+    ARRAY=("$HOME/.dotfiles")
 
     if [[ "$(hostname)" = "linode" ]]; then
       ARRAY+=("/apps")

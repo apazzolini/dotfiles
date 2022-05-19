@@ -1,3 +1,7 @@
+if not pcall(require, 'nvim-tree') then
+  return
+end
+
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_special_files = {}
@@ -30,7 +34,7 @@ require('nvim-tree').setup({
   actions = {
     open_file = {
       resize_window = true,
-      quit_on_open = false,
+      quit_on_open = true,
       window_picker = {
         enable = false,
       },

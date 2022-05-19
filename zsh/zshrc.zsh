@@ -57,5 +57,5 @@ if [ -z "$TMUX" ]; then
     return;
   fi;
 
-  tmux-sessionizer ~/
+  tmux-sessionizer ~/.dotfiles
 fi

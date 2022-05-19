@@ -1,6 +1,6 @@
-if not pcall(require, 'cmp') then
-  return
-end
+-- if not pcall(require, 'cmp') or pcall(require, 'luasnip') then
+--   return
+-- end
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
@@ -17,7 +17,7 @@ cmp.setup({
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = {

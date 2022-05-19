@@ -71,7 +71,6 @@ map gx :tabclose<CR>
 nmap gq :q<cr>
 nnoremap <silent> <cr> :noh<cr><cr>
 nnoremap <leader><leader> <c-^>
-map <leader>R :source $MYVIMRC<cr>
 imap <c-l> <space>=><space>
 xnoremap L g_
 vmap <leader>y "+y
@@ -85,7 +84,7 @@ imap <MiddleMouse> <Nop>
 map <2-MiddleMouse> <Nop>
 imap <2-MiddleMouse> <Nop>
 
-" New ones
+" Set line to middle of screen on jump operations
 nnoremap <c-o> <c-o>zz
 nnoremap <c-i> <c-i>zz
 nnoremap n nzz
@@ -126,10 +125,8 @@ nnoremap <a-]> gt
 map <leader>we :set winheight=999<cr>
 map <leader>wd :set winheight=10<cr><c-w>=<cr>
 
-" Test mappings
-nmap <leader>ot mT:%s/test.only/test/ge<cr>'T?test(<cr>cetest.only<esc>'T
-nmap <leader>oa mT?test(<cr>cetest.only<esc>'T
-nmap <leader>ox mT:%s/test.only/test/ge<cr>'T
+" Make splits equal when resizing vim
+autocmd VimResized * :wincmd =
 
 " Only show cursor line on active split
 set nocursorline
@@ -142,9 +139,6 @@ augroup END
 " Strip trailing spaces and newlines on save
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s#\($\n\s*\)\+\%$##e
-
-" Make splits equal when resizing vim
-autocmd VimResized * :wincmd =
 
 " Close all hidden buffers
 command! BC call s:CloseHiddenBuffers()
@@ -162,11 +156,11 @@ endfunction
 
 " Smart indent when entering insert mode with i on empty lines
 function! IndentWith(default)
-    if len(getline('.')) == 0
-        return "\"_cc"
-    else
-        return a:default
-    endif
+  if len(getline('.')) == 0
+    return "\"_cc"
+  else
+    return a:default
+  endif
 endfunction
 nnoremap <expr> a IndentWith("a")
 nnoremap <expr> i IndentWith("i")
