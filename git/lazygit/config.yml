@@ -1,6 +1,7 @@
 gui:
   sidePanelWidth: 0.22
   showFileTree: false
+  showBottomLine: false
   theme:
     lightTheme: false
     activeBorderColor:
