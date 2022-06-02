@@ -1,6 +1,6 @@
--- if not pcall(require, 'cmp') or pcall(require, 'luasnip') then
---   return
--- end
+if not pcall(require, 'cmp') or pcall(require, 'luasnip') then
+  return
+end
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
