@@ -1,4 +1,4 @@
-if not pcall(require, 'cmp') or pcall(require, 'luasnip') then
+if not pcall(require, 'cmp') or not pcall(require, 'luasnip') then
   return
 end
 

@@ -260,6 +260,7 @@ hi! link TelescopePromptPrefix TelescopeBorder
 call s:HL('TelescopeSelection', s:wCyan)
 hi! link TelescopeSelectionCaret TelescopeSelection
 call s:HL('TelescopeMultiSelection', s:wMagenta)
+call s:HL('TelescopePromptCounter', s:wMagenta)
 
 " Hop
 if &background ==# 'dark'
