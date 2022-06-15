@@ -65,6 +65,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mfussenegger/nvim-ts-hint-textobject'
 Plug 'ethanholz/nvim-lastplace'
+Plug 'lewis6991/gitsigns.nvim'
 
 " --------------------------------------------------------------------------------------------------
 

@@ -34,17 +34,6 @@ keybinding:
 promptToReturnFromSubprocess: false
 
 customCommands:
-  - key: "S"
-    description: "Stash unstaged changes"
-    command: "git stash --keep-index"
-    context: "files"
-
-  - key: "o"
-    description: "Show selected commit"
-    command: "git show -w {{.SelectedLocalCommit.Sha}}"
-    context: "commits"
-    subprocess: true
-
   - key: "<c-r>"
     description: "Toggle side by side"
     command: "[[ $(git config delta.side-by-side) == \"true\" ]] && git config delta.side-by-side false || git config delta.side-by-side true"

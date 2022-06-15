@@ -9,7 +9,7 @@ require('nvim-tree').setup({
   },
   filters = {
     dotfiles = true,
-    custom = { '.git', 'node_modules', 'bower_components', '.DS_Store', 'dist' },
+    custom = { '\\.git', 'node_modules', 'bower_components', '.DS_Store', 'dist' },
   },
   actions = {
     open_file = {

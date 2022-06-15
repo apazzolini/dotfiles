@@ -3,6 +3,7 @@ vim.g.mapleader = ','
 require('andre.cmp')
 require('andre.dap')
 require('andre.colorizer')
+require('andre.gitsigns')
 require('andre.harpoon')
 require('andre.hop')
 require('andre.lsp')
