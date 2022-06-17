@@ -73,6 +73,7 @@ local lspconfig = require('lspconfig')
 
 lspconfig.tsserver.setup({
   capabilities = capabilities,
+  root_dir = lspconfig.util.root_pattern('package.json'),
 
   init_options = {
     preferences = {
@@ -95,6 +96,23 @@ lspconfig.tsserver.setup({
     ['textDocument/definition'] = first_match,
     ['textDocument/typeDefinition'] = first_match,
   },
+})
+
+-- DENO ------------------------------------------------------------------------
+
+lspconfig.denols.setup({
+  capabilities = capabilities,
+  root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
+
+  on_attach = function(client, bufnr)
+    vim.cmd([[
+      augroup Format
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+      augroup END
+    ]])
+    set_lsp_keymaps(client, bufnr)
+  end,
 })
 
 -- EFM -------------------------------------------------------------------------
@@ -132,6 +150,15 @@ lspconfig.efm.setup({
     'sh',
     'markdown',
   },
+
+  single_file_support = false,
+  root_dir = function(fname)
+    is_deno = lspconfig.util.root_pattern('deno.json', 'deno.jsonc')(fname)
+    if is_deno then
+      return nil
+    end
+    return lspconfig.util.root_pattern('.git')(fname)
+  end,
 
   init_options = {
     documentFormatting = true,

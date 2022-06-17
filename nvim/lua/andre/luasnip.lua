@@ -4,7 +4,7 @@ end
 
 local ls = require('luasnip')
 
-ls.add_snippets("javascript", {
+ls.add_snippets('javascript', {
   ls.parser.parse_snippet('ibb', "import Bluebird from 'bluebird';"),
   ls.parser.parse_snippet('ir', "import React from 'react';"),
   ls.parser.parse_snippet('ild', "import { ${0:} } from 'lodash';"),
@@ -21,8 +21,6 @@ ls.add_snippets("javascript", {
   ls.parser.parse_snippet('uC', 'useCallback(() => {\n\t${0:}\n}, []);'),
   ls.parser.parse_snippet('uM', 'useMemo(() => {\n\t${0:}\n}, []);'),
   ls.parser.parse_snippet('prom', 'new Promise((resolve, reject) => {\n\t${0:}\n});'),
-  ls.parser.parse_snippet('a', '(${1:}) => {\n\t${0:}\n}'),
-  ls.parser.parse_snippet('c', 'const ${0:}'),
   ls.parser.parse_snippet('cn', 'className="${0:}"'),
   ls.parser.parse_snippet('cnn', 'className={`\n\t${0:}\n`}'),
   ls.parser.parse_snippet('fn', 'function ${1:}(${2:}) {\n\t${0:}\n}'),
