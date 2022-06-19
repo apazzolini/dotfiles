@@ -43,6 +43,14 @@ key_bindings:
   - { key: Return   , mods: Shift         , chars: "\x1b[13;2u" }
   - { key: Tab      , mods: Control       , chars: "\x1b[9;5u" }
   - { key: Tab      , mods: Control|Shift , chars: "\x1b[9;6u" }
+  # - { key: H, mods: Control|Shift, chars: "\x1b[72;6u" }
+  # - { key: J, mods: Control|Shift, chars: "\x1b[74;6u" }
+  # - { key: K, mods: Control|Shift, chars: "\x1b[75;6u" }
+  # - { key: L, mods: Control|Shift, chars: "\x1b[76;6u" }
+  # - { key: I, mods: Control, chars: "\x1b[105;5u" }
+  # - { key: Period, mods: Control, chars: "\x1b[46;5u" }
+  # - { key: Comma, mods: Control, chars: "\x1b[44;5u" }
+  # - { key: Semicolon, mods: Control, chars: "\x1b[59;5u" }
 
   - { key: Y        , mods: Command       , chars: ",Hy" }
   - { key: U        , mods: Command       , chars: ",Hu" }
