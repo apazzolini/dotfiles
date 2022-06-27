@@ -24,3 +24,6 @@ augroup END
 
 nmap <silent> [q :call qf#wrap#WrapCommand('up', 'c')<CR>
 nmap <silent> ]q :call qf#wrap#WrapCommand('down', 'c')<CR>
+
+nmap [Q :colder<cr>
+nmap ]Q :cnewer<cr>
