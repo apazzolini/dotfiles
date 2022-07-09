@@ -9,6 +9,7 @@ else
       ARRAY+=("/apps")
     elif [[ "$(hostname)" =~ ^andrevm ]]; then
       ARRAY+=($(find ~/work/server -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
+      ARRAY+=($(find ~/work -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
     fi
 
     ARRAY+=($(find ~/GitHub ~/GitHub/_forks -mindepth 1 -maxdepth 1 -type d))
