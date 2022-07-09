@@ -1,12 +1,30 @@
 # Environment Variables
+export ZSH=$HOME/.dotfiles
 export EDITOR='/usr/local/bin/nvim'
 export MANPAGER='nvim +Man!'
 export CLICOLOR=true
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000000
 export SAVEHIST=$HISTSIZE
+export BUN_INSTALL="/Users/andre/.bun"
 export DENO_INSTALL="/home/andre/.deno"
-export PATH="$HOME/.dotfiles/bin:/usr/local/go/bin:/Users/andre/.cargo/bin:/home/andre/.local/bin:$DENO_INSTALL/bin:./node_modules/.bin:/usr/local/opt:/usr/local/sbin:/usr/local/opt/postgresql@11/bin:$PATH:../node_modules/.bin"
+
+path=(
+  $HOME/.dotfiles/bin
+  $HOME/.cargo/bin
+  $HOME/.local/bin
+  /opt/homebrew/bin
+  /usr/local/opt
+  /usr/local/sbin
+  /usr/local/opt/postgresql@11/bin
+  $BUN_INSTALL/bin
+  # $DENO_INSTALL/bin
+  # /usr/local/go/bin
+  ./node_modules/.bin
+  ../node_modules/.bin
+  $path
+)
+
 export PGDATA='/usr/local/var/postgres'
 export IGNOREEOF=50
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"

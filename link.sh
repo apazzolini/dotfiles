@@ -27,6 +27,8 @@ function env_setup {
 
   # zsh
   link zsh/zshrc.zsh ~/.zshrc
+  link zsh/zprofile.zsh ~/.zprofile
+  link zsh/zshenv.zsh ~/.zshenv
   link zsh/starship.toml ~/.config
 }
 

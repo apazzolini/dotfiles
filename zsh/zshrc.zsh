@@ -1,5 +1,3 @@
-export ZSH=$HOME/.dotfiles
-
 # initialize colors
 autoload colors && colors
 
@@ -19,8 +17,6 @@ bindkey -M vicmd g edit-command-line
 # initialize prompt
 eval "$(starship init zsh)"
 
-# source .zsh files in this repo
-source $ZSH/zsh/env.zsh
 source $ZSH/zsh/aliases.zsh
 source $ZSH/zsh/completion.zsh
 source $ZSH/bin/z.sh
@@ -41,6 +37,9 @@ if [ -f "/usr/bin/keychain" ]; then
   /usr/bin/keychain --nogui --quiet --noask $HOME/.ssh/id_rsa
   source $HOME/.keychain/andred-sh
 fi
+
+# bun completions
+[ -s "/Users/andre/.bun/_bun" ] && source "/Users/andre/.bun/_bun"
 
 safesource /usr/share/doc/fzf/examples/key-bindings.zsh
 safesource ~/.fzf.zsh
