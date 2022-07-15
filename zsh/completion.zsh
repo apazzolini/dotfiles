@@ -10,5 +10,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # better completion menu
 zstyle ':completion:*' menu select
 
-source "$ZSH/zsh/completions/doppler.zsh"
-source "/usr/local/opt/fzf/shell/completion.zsh"
+safesource "$ZSH/zsh/completions/doppler.zsh"
+safesource "/usr/local/opt/fzf/shell/completion.zsh"
+safesource "/opt/homebrew/opt/fzf/shell/completion.zsh"
+safesource "/usr/share/doc/fzf/examples/completion.zsh"

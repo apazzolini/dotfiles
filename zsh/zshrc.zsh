@@ -18,16 +18,24 @@ bindkey -M vicmd g edit-command-line
 eval "$(starship init zsh)"
 export RPROMPT="[%D{%L:%M:%S}]"
 
+function safesource {
+  [ -f "$1" ] && source "$1"
+}
+
 source $ZSH/zsh/aliases.zsh
 source $ZSH/zsh/completion.zsh
 source $ZSH/bin/z.sh
 source $ZSH/bin/borg.zsh
 
 # initialize autosuggetsions and bind accept to ctrl+space
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+safesource /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+safesource /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+safesource /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+safesource "/usr/local/opt/fzf/shell/key-bindings.zsh"
+safesource "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+safesource "/usr/share/doc/fzf/examples/key-bindings.zsh"
 
 if [ -z "$TMUX" ]; then
   # if [[ "$(hostname)" =~ ^andrembw ]]; then
@@ -46,12 +54,3 @@ fi
 #   /usr/bin/keychain --nogui --quiet --noask $HOME/.ssh/id_rsa
 #   source $HOME/.keychain/andred-sh
 # fi
-# function safesource {
-#   [ -f "$1" ] && source "$1"
-# }
-# safesource /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# safesource /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# safesource ~/.bun/_bun
-# safesource /usr/share/doc/fzf/examples/key-bindings.zsh
-# safesource /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-# alias luamake=/Users/andre/.cache/nvim/nlua/sumneko_lua/lua-language-server/3rd/luamake/luamake
