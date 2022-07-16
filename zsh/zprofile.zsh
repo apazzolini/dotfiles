@@ -6,8 +6,7 @@ export CLICOLOR=true
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000000
 export SAVEHIST=$HISTSIZE
-export BUN_INSTALL="/Users/andre/.bun"
-export DENO_INSTALL="/home/andre/.deno"
+# export BUN_INSTALL="$HOME/.bun"
 
 path=(
   $HOME/.dotfiles/bin
@@ -17,8 +16,7 @@ path=(
   /usr/local/opt
   /usr/local/sbin
   /usr/local/opt/postgresql@11/bin
-  $BUN_INSTALL/bin
-  # $DENO_INSTALL/bin
+  # $BUN_INSTALL/bin
   # /usr/local/go/bin
   ./node_modules/.bin
   ../node_modules/.bin

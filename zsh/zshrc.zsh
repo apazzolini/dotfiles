@@ -2,11 +2,15 @@
 autoload colors && colors
 
 # initialize autocomplete
+fpath=(
+  $ZSH/zsh/functions
+  /opt/homebrew/share/zsh/site-functions
+  $fpath
+)
 autoload -Uz compinit
 compinit -C
 
 # initialize custom functions
-fpath=($ZSH/zsh/functions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
 # allow editing current command in $EDITOR
