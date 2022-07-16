@@ -10,8 +10,10 @@ require('andre.lsp')
 require('andre.lualine')
 require('andre.luasnip')
 require('andre.nvimtree')
+require('andre.surround')
 require('andre.telescope')
 require('andre.treesitter')
+
 require('andre.autopairs') -- this has to load after cmp
 
 require('nvim-lastplace').setup({})

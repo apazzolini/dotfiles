@@ -26,7 +26,7 @@ call plug#begin(g:pluggedHome)
 
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sickill/vim-pasta'
-Plug 'tpope/vim-surround'
+Plug 'kylechui/nvim-surround'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
