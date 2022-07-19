@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+filename=$(basename -- "$1")
+filename="${filename%.*}"
+gifname="$filename.gif"
+
+ffmpeg -i "$1" -pix_fmt rgb8 "$gifname" && gifsicle --optimize=3 "$gifname" -o "$gifname"
