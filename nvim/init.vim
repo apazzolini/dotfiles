@@ -24,7 +24,7 @@ endif
 
 call plug#begin(g:pluggedHome)
 
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-tree.lua', { 'commit': '21fadc1f38e4c6b6a4ae3ebf5ac922e2390175ca' }
 Plug 'sickill/vim-pasta'
 Plug 'kylechui/nvim-surround'
 Plug 'romainl/vim-qf'
