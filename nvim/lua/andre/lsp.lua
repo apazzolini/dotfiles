@@ -218,7 +218,40 @@ lspconfig.sumneko_lua.setup({
 
 -- TAILWIND --------------------------------------------------------------------
 
-lspconfig.tailwindcss.setup({})
+lspconfig.tailwindcss.setup({
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          'tw`([^`]*)',
+          { 'classnames\\(([^)]*)\\)', "'([^']*)'" },
+        },
+      },
+    },
+  },
+  handlers = {
+    ['textDocument/hover'] = function(_, result, ctx, config)
+      config = config or {}
+      config.focus_id = ctx.method
+      if not (result and result.contents) then
+        -- return { 'No information available' }
+        return
+      end
+      local markdown_lines = util.convert_input_to_markdown_lines(result.contents)
+      markdown_lines = util.trim_empty_lines(markdown_lines)
+      if vim.tbl_isempty(markdown_lines) then
+        -- return { 'No information available' }
+        return
+      end
+
+      -- return util.open_floating_preview(markdown_lines, 'markdown', config)
+      local bufnr, winnr = util.open_floating_preview(markdown_lines, 'markdown', config)
+      require('colorizer').attach_to_buffer(bufnr)
+      -- vim.api.nvim_buf_set_option(bufnr, 'filetype', '...')
+      return bufnr, winnr
+    end,
+  },
+})
 
 -- GO --------------------------------------------------------------------------
 
