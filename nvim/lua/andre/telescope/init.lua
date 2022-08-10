@@ -50,22 +50,7 @@ local telescope_opts = {
     qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
 
     file_ignore_patterns = {
-      '%.jpg',
-      '%.png',
-      '%.woff',
-      '%.ttf',
-      '%.eot',
       '%.svg',
-      'yarn.lock',
-      'package%-lock.json',
-      '^%.git%/*',
-      '%/node_modules/*',
-      '%external-src/*',
-      'systems/osx/iTerm2/com.googlecode.iterm2.plist',
-      'util/cce37d14-ebc8-40c0-b942-cbc8fd7b34cc.json',
-      'util/7236f71d-5a53-11e8-b364-0a58647f9b0f-telemetry.json',
-      'server/src/apps/team/public/js/codemirror',
-      'server/src/apps/team/public/less/codemirror',
     },
 
     mappings = {
@@ -147,22 +132,33 @@ function M.custom_grep()
   })
 end
 
-function M.live_grep()
-  require('telescope.builtin').live_grep({
-    prompt_title = '~ live grep ~',
+function M.custom_grep_hidden()
+  package.loaded['andre.telescope.grepper'] = nil
+  require('andre.telescope.grepper')({
+    hidden = true,
     attach_mappings = function(prompt_bufnr, map)
       map('i', '<cr>', select_multiple)
       return true
     end,
   })
-  -- require('telescope').extensions.fzf_writer.staged_grep({
-  --   prompt_title = '~ staged grep ~',
-  --   attach_mappings = function(prompt_bufnr, map)
-  --     map('i', '<cr>', select_multiple)
-  --     return true
-  --   end,
-  -- })
 end
+
+-- function M.live_grep()
+--   require('telescope.builtin').live_grep({
+--     prompt_title = '~ live grep ~',
+--     attach_mappings = function(prompt_bufnr, map)
+--       map('i', '<cr>', select_multiple)
+--       return true
+--     end,
+--   })
+--   -- require('telescope').extensions.fzf_writer.staged_grep({
+--   --   prompt_title = '~ staged grep ~',
+--   --   attach_mappings = function(prompt_bufnr, map)
+--   --     map('i', '<cr>', select_multiple)
+--   --     return true
+--   --   end,
+--   -- })
+-- end
 
 function M.grep_string()
   require('telescope.builtin').grep_string({

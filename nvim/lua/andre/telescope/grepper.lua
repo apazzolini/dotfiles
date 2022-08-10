@@ -12,6 +12,10 @@ return function(opts)
     { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
   }
 
+  if opts.hidden then
+    table.insert(rg_args[1], '--hidden')
+  end
+
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
 
   local custom_grepper = finders.new_job(function(prompt)
@@ -42,8 +46,13 @@ return function(opts)
     opts
   ), opts.max_results, opts.cwd)
 
+  local prompt_title = 'Custom Grep'
+  if opts.hidden then
+    prompt_title = prompt_title .. ' (with hidden files)'
+  end
+
   pickers.new(opts, {
-    prompt_title = 'Custom Grep',
+    prompt_title = prompt_title,
     finder = custom_grepper,
     previewer = conf.grep_previewer(opts),
     sorter = sorters.highlighter_only(opts),

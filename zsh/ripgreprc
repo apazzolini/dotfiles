@@ -1,0 +1,27 @@
+--smart-case
+--follow
+
+# Git related
+--glob=!.git/*
+--glob=!.gitkeep
+
+# Artifacts and generated
+--glob=!.cache
+--glob=!es5
+--glob=!dist
+--glob=!build/
+--glob=!.next
+--glob=!yarn.lock
+--glob=!package-lock.json
+--glob=!pnpm-lock.yaml
+
+# Personal
+--glob=!com.googlecode.iterm2.plist
+--glob=!.DS_Store
+--glob=!**/nvim/plugged
+--glob=!**/__fixtures__/**
+--glob=!**/__snapshots__/**
+
+# Work
+--glob=!**/external-src/**
+--glob=!bugsnag.ejs
