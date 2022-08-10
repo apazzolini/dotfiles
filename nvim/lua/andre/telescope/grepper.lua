@@ -3,48 +3,58 @@ local make_entry = require('telescope.make_entry')
 local pickers = require('telescope.pickers')
 local sorters = require('telescope.sorters')
 local conf = require('telescope.config').values
-
-local shortcuts = {}
-shortcuts['f'] = 'systems/osx'
+local flatten = vim.tbl_flatten
 
 return function(opts)
-  local rg_args = {
-    { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
-  }
-
-  if opts.hidden then
-    table.insert(rg_args[1], '--hidden')
-  end
-
+  opts = opts or {}
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
+  opts.shortcuts = opts.shortcuts or {
+    ['l'] = '*.lua',
+    ['v'] = '*.vim',
+    ['n'] = '*.{vim,lua}',
+  }
+  opts.pattern = opts.pattern or '%s'
 
-  local custom_grepper = finders.new_job(function(prompt)
-    if not prompt or prompt == '' then
-      return nil
-    end
-
-    local prompt_split = vim.split(prompt, '  ')
-    local args = {}
-
-    if prompt_split[1] then
-      table.insert(args, prompt_split[1])
-    end
-
-    if prompt_split[2] and prompt_split[2] ~= '' then
-      if shortcuts[prompt_split[2]:sub(1, 1)] then
-        local path = shortcuts[prompt_split[2]:sub(1, 1)] .. prompt_split[2]:sub(2)
-        table.insert(args, path)
-      else
-        table.insert(args, prompt_split[2])
+  local custom_grepper = finders.new_async_job({
+    command_generator = function(prompt)
+      if not prompt or prompt == '' then
+        return nil
       end
-    else
-      table.insert(args, '.')
-    end
 
-    return vim.tbl_flatten({ rg_args, args })
-  end, opts.entry_maker or make_entry.gen_from_vimgrep(
-    opts
-  ), opts.max_results, opts.cwd)
+      local prompt_split = vim.split(prompt, '  ')
+
+      local args = { 'rg' }
+      if prompt_split[1] then
+        table.insert(args, '-e')
+        table.insert(args, prompt_split[1])
+      end
+
+      if prompt_split[2] then
+        table.insert(args, '-g')
+
+        local pattern
+        if opts.shortcuts[prompt_split[2]] then
+          pattern = opts.shortcuts[prompt_split[2]]
+        else
+          if prompt_split[2]:sub(1, 1) == ' ' then
+            pattern = prompt_split[2]:sub(2) .. '**'
+          else
+            pattern = prompt_split[2] .. '**/**'
+          end
+        end
+
+        table.insert(args, string.format(opts.pattern, pattern))
+      end
+
+      local result = flatten({
+        args,
+        { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
+      })
+      return result
+    end,
+    entry_maker = make_entry.gen_from_vimgrep(opts),
+    cwd = opts.cwd,
+  })
 
   local prompt_title = 'Custom Grep'
   if opts.hidden then
@@ -52,9 +62,11 @@ return function(opts)
   end
 
   pickers.new(opts, {
+    -- debounce = 100,
     prompt_title = prompt_title,
     finder = custom_grepper,
     previewer = conf.grep_previewer(opts),
-    sorter = sorters.highlighter_only(opts),
+    sorter = require('telescope.sorters').empty(),
+    --     sorter = sorters.highlighter_only(opts),
   }):find()
 end
