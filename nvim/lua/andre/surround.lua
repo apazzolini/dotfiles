@@ -3,18 +3,20 @@ if not pcall(require, 'nvim-surround') then
 end
 
 require('nvim-surround').setup({
-  delimiters = {
-    pairs = {
-      ['c'] = function()
+  surrounds = {
+    ['c'] = {
+      add = function()
         return {
-          'try {',
-          '} catch (e) {}',
+          { 'try {' },
+          { '} catch (e) {}' },
         }
       end,
-      ['i'] = function()
+    },
+    ['i'] = {
+      add = function()
         return {
-          'if () {',
-          '}',
+          { 'if () {' },
+          { '}' },
         }
       end,
     },

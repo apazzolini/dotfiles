@@ -17,14 +17,15 @@ gui:
     selectedRangeBgColor:
       - underline
 git:
-  autoFetch: false
-  autoRefresh: false
+  # autoFetch: false
+  # autoRefresh: false
   paging:
     colorArg: always
     pager: delta --paging=never --24-bit-color=never
 
 os:
   editCommand: 'floaterm'
+  editCommandTemplate: '{{editor}} {{filename}}'
 
 keybinding:
   commits:
