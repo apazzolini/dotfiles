@@ -14,6 +14,7 @@
 --glob=!yarn.lock
 --glob=!package-lock.json
 --glob=!pnpm-lock.yaml
+--glob=!node_modules
 
 # Personal
 --glob=!com.googlecode.iterm2.plist

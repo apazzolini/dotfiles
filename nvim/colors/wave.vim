@@ -12,11 +12,11 @@ let s:colors_name = 'wave'
 
 if &background ==# 'dark'
   if empty($TMUX)
-    hi! Normal ctermbg=NONE ctermfg=7 guibg=#1c2023 guifg=#c7ccd1
+    hi! Normal ctermbg=NONE ctermfg=7 guibg=#1c2023 guifg=#C4CAD5
   else
     " When we're using vim in tmux, we want the background to be transparent
     " so that the active tmux pane is more readily apparant.
-    hi! Normal ctermbg=NONE ctermfg=7 guibg=NONE guifg=#c7ccd1
+    hi! Normal ctermbg=NONE ctermfg=7 guibg=NONE guifg=#C4CAD5
   endif
 
   let s:bright = 0
@@ -193,6 +193,7 @@ call s:HL('TabLineFill', s:wNoBg, s:wNoFg, s:wNoFg)
 call s:HL('TabLine', s:wNoBg, s:wFg2, s:wNoFg)
 call s:HL('LineNr', s:wFg2)
 call s:HL('CursorLineNr', s:wFg4, s:wNoFg)
+call s:HL('TreesitterContextLineNumber', s:wGreen)
 call s:HL('Folded', s:wNoBg)
 call s:HL('qfLineNr', s:wRed)
 call s:HL('StatusLine', s:wBg1, s:wNoFg)

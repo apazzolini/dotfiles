@@ -78,6 +78,7 @@ lspconfig.tsserver.setup({
   init_options = {
     preferences = {
       importModuleSpecifierPreference = 'non-relative',
+      includePackageJsonAutoImports = 'off',
     },
   },
 
@@ -96,6 +97,22 @@ lspconfig.tsserver.setup({
     ['textDocument/definition'] = first_match,
     ['textDocument/typeDefinition'] = first_match,
   },
+})
+
+-- JSONLS ----------------------------------------------------------------------
+
+lspconfig.jsonls.setup({
+  capabilities = capabilities,
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
+  },
+  on_attach = function(client, bufnr)
+    set_lsp_keymaps(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+  end,
 })
 
 -- DENO ------------------------------------------------------------------------
@@ -144,6 +161,7 @@ lspconfig.efm.setup({
   filetypes = {
     'javascript',
     'typescript',
+    'javascriptreact',
     'typescriptreact',
     'less',
     'css',
@@ -214,6 +232,9 @@ lspconfig.sumneko_lua.setup({
       },
     },
   },
+  on_attach = function(client, bufnr)
+    set_lsp_keymaps(client, bufnr)
+  end,
 })
 
 -- TAILWIND --------------------------------------------------------------------

@@ -1,5 +1,7 @@
 vim.g.mapleader = ','
 
+require('impatient')
+
 require('andre.cmp')
 require('andre.dap')
 require('andre.colorizer')

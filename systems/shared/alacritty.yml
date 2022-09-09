@@ -237,7 +237,7 @@ colors:
   # Default colors
   primary:
     background: '#1e2027'
-    foreground: '#c8cedc'
+    foreground: '#C4CAD5'
 
   # Normal colors
   normal:
@@ -248,18 +248,18 @@ colors:
     blue:    '#9494bc'
     magenta: '#C6A0F6'
     cyan:    '#68b2c9'
-    white:   '#c8cedc'
+    white:   '#C4CAD5'
 
   # Bright colors
   bright:
-    black:   '#747c84'
+    black:   '#5B6078'
     red:     '#EE99A0'
     green:   '#b1cfa9' # same as non-bright
     yellow:  '#e8dcb0' # same as non-bright
     blue:    '#9494bc' # same as non-bright
     magenta: '#ff007c'
     cyan:    '#87cfc7'
-    white:   '#f3f4f5'
+    white:   '#A5ADCB'
 
   # Indexed Colors
   indexed_colors:

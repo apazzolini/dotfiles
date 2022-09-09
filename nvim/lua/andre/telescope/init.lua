@@ -74,7 +74,7 @@ local telescope_opts = {
       },
       previewer = false,
       theme = 'dropdown',
-      layout_config = { width = 110 },
+      layout_config = { width = 120 },
     },
     find_files = {
       prompt_title = '~ files ~',
@@ -87,7 +87,7 @@ local telescope_opts = {
       },
       previewer = false,
       theme = 'dropdown',
-      layout_config = { width = 110 },
+      layout_config = { width = 120 },
     },
     oldfiles = {
       prompt_title = '~ oldfiles ~',
@@ -98,7 +98,18 @@ local telescope_opts = {
       },
       previewer = false,
       theme = 'dropdown',
-      layout_config = { width = 110 },
+      layout_config = { width = 120 },
+    },
+    git_status = {
+      prompt_title = '~ git changed ~',
+      mappings = {
+        i = {
+          ['<cr>'] = select_multiple,
+        },
+      },
+      previewer = false,
+      theme = 'dropdown',
+      layout_config = { width = 120 },
     },
   },
   extensions = {
@@ -187,6 +198,26 @@ function M.dotfiles()
     cwd = '~/.dotfiles',
     hidden = true,
   })
+end
+
+function M.git_changed_on_branch()
+  local pickers = require('telescope.pickers')
+  local finders = require('telescope.finders')
+  local sorters = require('telescope.sorters')
+
+  pickers.new({
+    prompt_title = '~ git changed (current branch) ~',
+    finder = finders.new_oneshot_job({ 'git', 'diff', '--name-only', '--diff-filter=ACMR', '--relative', 'develop' }, {}),
+    sorter = sorters.get_fzy_sorter(),
+    mappings = {
+      i = {
+        ['<cr>'] = select_multiple,
+      },
+    },
+    previewer = false,
+    theme = 'dropdown',
+    layout_config = { width = 120, height = 25 },
+  }, {}):find()
 end
 
 return setmetatable({}, {
