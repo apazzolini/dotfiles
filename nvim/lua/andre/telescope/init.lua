@@ -105,11 +105,10 @@ local telescope_opts = {
       mappings = {
         i = {
           ['<cr>'] = select_multiple,
+          ['<Tab>'] = actions.toggle_selection + actions.move_selection_worse,
         },
       },
-      previewer = false,
-      theme = 'dropdown',
-      layout_config = { width = 120 },
+      layout_config = { width = 140, height = 0.8 },
     },
   },
   extensions = {
@@ -204,6 +203,7 @@ function M.git_changed_on_branch()
   local pickers = require('telescope.pickers')
   local finders = require('telescope.finders')
   local sorters = require('telescope.sorters')
+  local previewers = require('telescope.previewers')
 
   pickers.new({
     prompt_title = '~ git changed (current branch) ~',
@@ -214,9 +214,8 @@ function M.git_changed_on_branch()
         ['<cr>'] = select_multiple,
       },
     },
-    previewer = false,
-    theme = 'dropdown',
-    layout_config = { width = 120, height = 25 },
+    previewer = previewers.git_file_diff.new({}),
+    layout_config = { width = 140, height = 0.8 },
   }, {}):find()
 end
 
