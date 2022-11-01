@@ -61,8 +61,8 @@ map H 0
 map L $
 noremap j gj
 noremap k gk
-nnoremap <c-d> 10<c-d>zz
-nnoremap <c-u> 10<c-u>zz
+nnoremap <c-d> 20<c-d>zz
+nnoremap <c-u> 20<c-u>zz
 nnoremap <c-e> 3<c-e>
 nnoremap <c-y> 3<c-y>
 noremap 0 0^
@@ -169,11 +169,7 @@ nnoremap <expr> i IndentWith("i")
 nnoremap <leader>sh <cmd>TSHighlightCapturesUnderCursor<CR>
 
 " Format JSON
-function! s:FormatJSON()
-  exe "%!/usr/bin/python3 -m 'json.tool'"
-  set ft=json
-endfunction
-command! JSON call s:FormatJSON()
+command! -range=% JSON set ft=json | <line1>,<line2>!jq
 
 " Reload treesitter and LSP
 function! s:ReloadTSLSP()

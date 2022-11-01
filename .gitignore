@@ -7,3 +7,4 @@ tmux/tmux.symlink/plugins
 docker/docker.symlink/daemon.json
 docker/docker.symlink/.buildNodeID
 server.pem
+zsh/plugins

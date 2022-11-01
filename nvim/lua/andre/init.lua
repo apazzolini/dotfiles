@@ -18,4 +18,5 @@ require('andre.treesitter')
 
 require('andre.autopairs') -- this has to load after cmp
 
-require('nvim-lastplace').setup({})
+-- require('nvim-lastplace').setup({})
+require('remember')

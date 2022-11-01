@@ -5,7 +5,7 @@ end
 require('nvim-tree').setup({
   update_cwd = true,
   view = {
-    width = 37,
+    width = 80,
   },
   filters = {
     dotfiles = true,
