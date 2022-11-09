@@ -31,7 +31,7 @@ local function set_lsp_keymaps(client, bufnr)
   vim.api.nvim_set_keymap('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
   vim.api.nvim_set_keymap('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
 
-  vim.api.nvim_set_keymap('n', '<leader>F', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>F', '<cmd>lua vim.lsp.buf.format({ timeout_ms = 2000 })<cr>', opts)
 end
 
 local function handler_publishDiagnostics(level)
@@ -66,7 +66,7 @@ end
 --------------------------------------------------------------------------------
 
 require('nvim-lsp-installer').setup({})
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 
 -- TSSERVER --------------------------------------------------------------------
@@ -84,7 +84,8 @@ lspconfig.tsserver.setup({
 
   on_attach = function(client, bufnr)
     -- use prettier via efm on save instead of tsserver's builtin formatting
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
     set_lsp_keymaps(client, bufnr)
   end,
 
@@ -111,7 +112,8 @@ lspconfig.jsonls.setup({
   },
   on_attach = function(client, bufnr)
     set_lsp_keymaps(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
   end,
 })
 
@@ -126,7 +128,7 @@ lspconfig.denols.setup({
     vim.cmd([[
       augroup Format
         autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 2000 })
       augroup END
     ]])
     set_lsp_keymaps(client, bufnr)
@@ -187,7 +189,7 @@ lspconfig.efm.setup({
     vim.cmd([[
       augroup Format
         autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 2000 })
       augroup END
     ]])
   end,
@@ -281,7 +283,7 @@ lspconfig.tailwindcss.setup({
 --     vim.cmd([[
 --         augroup Format
 --           autocmd! * <buffer>
---           autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(null, 2000)
+--           autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 2000 })
 --         augroup END
 --       ]])
 --   end,
