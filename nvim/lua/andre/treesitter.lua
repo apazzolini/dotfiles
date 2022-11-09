@@ -63,13 +63,6 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
-require('nvim-treesitter.highlight').set_custom_captures({
-  ['className'] = 'TS_C_ClassName',
-  ['reactHook'] = 'TS_C_ReactHook',
-  ['jsxAttribute'] = 'TS_C_JsxAttribute',
-  ['function.call'] = 'TS_C_FunctionCall',
-})
-
 -- local parsers = require('nvim-treesitter.parsers')
 -- local configs = parsers.get_parser_configs()
 -- local ft_str = table.concat(

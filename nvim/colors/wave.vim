@@ -216,28 +216,29 @@ call s:HL('String', s:wGreen)
 
 " Tree-sitter code types
 hi! link TSProperty Normal
-call s:HL('TS_C_ReactHook', s:wCyan)
-call s:HL('TS_C_ClassName', s:wRed)
-call s:HL('TS_C_JsxAttribute', s:wGreen)
-call s:HL('TS_C_FunctionCall', s:wYellow)
-call s:HL('TSNamespace', s:wBlue)
-call s:HL('TSConditional', s:wBlue)
-call s:HL('TSOperator', s:wBlue)
-call s:HL('TSIdentifier', s:wMagenta)
-call s:HL('TSTag', s:wCyan)
-call s:HL('TSType', s:wCyan, s:wBold)
-call s:HL('TSTypeBuiltin', s:wCyan, s:wBold)
-call s:HL('TSFunction', s:wMagenta, s:wBold)
-hi! link TSTagDelimiter TSTag
-hi! link Whitespace Normal
-hi! link TSPunctDelimiter Normal
-hi! link TSPunctBracket Normal
-hi! link TSPunctSpecial Normal
-hi! link TSConstructor Normal
-hi! link TSParameter Normal
-hi! link TSConstant Normal
-hi! link TSVariable Normal
-hi! link TSVariableBuiltin Normal
+call s:HL('@reactHook', s:wCyan)
+call s:HL('@className', s:wRed)
+call s:HL('@jsxAttribute', s:wGreen)
+call s:HL('@function.call', s:wYellow)
+call s:HL('@namespace', s:wBlue)
+call s:HL('@conditional', s:wBlue)
+call s:HL('@operator', s:wBlue)
+call s:HL('@tag', s:wCyan)
+call s:HL('@type', s:wCyan, s:wBold)
+call s:HL('@type.builtin', s:wCyan, s:wBold)
+call s:HL('@function', s:wMagenta, s:wBold)
+hi! link @tag.delimiter TSTag
+hi! link @punctuation.delimiter Normal
+hi! link @punctuation.bracket Normal
+hi! link @punctuation.special Normal
+hi! link @constructor Normal
+hi! link @parameter Normal
+hi! link @constant Normal
+hi! link @variable Normal
+hi! link @variable.builtin Normal
+" These seem to have been unused
+" call s:HL('@identifier', s:wMagenta)
+" hi! link Whitespace Normal
 
 " VimWiki
 call s:HL('VimWikiLink', s:wNoBg, s:wNoFg, s:wBlue)

@@ -1,3 +1,4 @@
+; extends
 ; Prevent function *calls* from being highlighted
 (call_expression function: (identifier) @function.call)
 (call_expression function: (member_expression property: (property_identifier) @function.call))
