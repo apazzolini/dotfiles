@@ -215,7 +215,6 @@ call s:HL('Function', s:wMagenta)
 call s:HL('String', s:wGreen)
 
 " Tree-sitter code types
-hi! link TSProperty Normal
 call s:HL('@reactHook', s:wCyan)
 call s:HL('@className', s:wRed)
 call s:HL('@jsxAttribute', s:wGreen)
@@ -227,6 +226,7 @@ call s:HL('@tag', s:wCyan)
 call s:HL('@type', s:wCyan, s:wBold)
 call s:HL('@type.builtin', s:wCyan, s:wBold)
 call s:HL('@function', s:wMagenta, s:wBold)
+hi! link @property Normal
 hi! link @tag.delimiter TSTag
 hi! link @punctuation.delimiter Normal
 hi! link @punctuation.bracket Normal
@@ -242,7 +242,7 @@ hi! link @variable.builtin Normal
 
 " VimWiki
 call s:HL('VimWikiLink', s:wNoBg, s:wNoFg, s:wBlue)
-call s:HL('VimWikiHr', s:wNoBg, s:wNoFg, s:wNoFg)
+hi! link VimwikiHr Normal
 hi! link VimwikiList Normal
 hi! link VimwikiCode Normal
 

@@ -182,3 +182,6 @@ function! s:ReloadTSLSP()
 endfunction
 command! ReloadTSLSP call s:ReloadTSLSP()
 nnoremap <leader>k <cmd>ReloadTSLSP<cr>
+nnoremap <leader>K <cmd>TSContextToggle<cr>
+
+nnoremap <leader>r :silent !tmux send -t 2 "./go.sh" Enter<cr>

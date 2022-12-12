@@ -3,7 +3,6 @@ import:
 alt_send_esc: true
 
 font:
-  use_thin_strokes: true
   size: 12.5
   normal:
     # family: "Operator Mono"

@@ -42,7 +42,7 @@ safesource "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 safesource "/usr/share/doc/fzf/examples/key-bindings.zsh"
 
 if [ -z "$TMUX" ]; then
-  # if [[ "$(hostname)" =~ ^andrembw ]]; then
+  # if [[ "$(hostname)" =~ ^andrem2 ]]; then
   #   return;
   # fi;
 

@@ -2,10 +2,6 @@
 " Environment detection ----------------------------------------------------------------------------
 " --------------------------------------------------------------------------------------------------
 
-" Only use the new filetype.lua detection
-let g:do_filetype_lua = 1
-let g:did_load_filetypes = 0
-
 let g:isNotes = expand('$IS_NOTES') == 1 || (argc() >= 1 && argv()[0] =~ 'index.md')
 let g:home = has('win32') ? 'L:/home/andre' : has('osx') ? '/Users/andre' : '/home/andre'
 let g:pluggedHome = has('win32')
@@ -34,7 +30,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'szw/vim-maximizer'
 Plug 'apazzolini/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'v0.8.0', 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'

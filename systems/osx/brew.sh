@@ -2,23 +2,24 @@
 
 brew analytics off
 
+brew install lazygit
 brew install starship
 brew install coreutils
 brew install diff-so-fancy
-brew install dnsmasq
+# brew install dnsmasq
 brew install fzf
 brew install git
 brew install git-delta
 brew install htop
-brew install reattach-to-user-namespace
+# brew install reattach-to-user-namespace
 brew install ripgrep
 brew install tmux
 brew install zsh-autosuggestions
 brew install wget
-brew install qlstephen qlmarkdown quicklook-json qlimagesize
-brew install go
+# brew install qlstephen qlmarkdown quicklook-json qlimagesize
+# brew install go
 # brew install efm-langserver
-brew install gawk
+# brew install gawk
 
 # Neovim Deps instead of brew install --HEAD neovim
 brew install --HEAD luajit
@@ -30,8 +31,7 @@ brew install ninja libtool automake cmake pkg-config gettext curl
 # make CMAKE_BUILD_TYPE=Release -j4
 # sudo make install
 
-
-brew install yt-dlp/taps/yt-dlp
+# brew install yt-dlp/taps/yt-dlp
 
 # brew install python
 # # Python 2 is no longer in homebrew

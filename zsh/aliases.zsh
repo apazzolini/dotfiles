@@ -10,7 +10,7 @@ else
   alias o='explorer.exe .'
 fi
 
-if [[ `hostname` = andrembw* ]]
+if [[ `hostname` = andrem2* ]]
 then
   alias dl='docker-compose -f /Users/andre/Work/docker/docker-compose.yml'
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md"'
@@ -73,3 +73,5 @@ alias houston='HOST="https://houston.doppler.team" /Users/andre/Work/houston/scr
 alias houston-staging='HOST="https://houston.staging.doppler.team" /Users/andre/Work/houston/scripts/houston.sh'
 alias dop='doppler'
 alias ds='doppler secrets'
+
+alias sudoedit='sudo -e'

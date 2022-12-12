@@ -29,7 +29,7 @@ augroup END
 if (has('win32'))
   let wikipath = 'C:/Users/andre/iCloudDrive/Wiki'
 else
-  if (expand('$HOST') =~ 'andrembw')
+  if (expand('$HOST') =~ 'andrem2')
     let wikipath = '/Users/andre/Work/notes'
   else
     let wikipath = '/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki'
@@ -47,7 +47,7 @@ let @d='gg/---------0:nohO,Lo- =strftime("%Y-%m-%d")k2,Lok'
 autocmd FileType vimwiki inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn 3 5<CR>
 autocmd FileType vimwiki inoremap <silent><buffer> <C-L><C-L> <Esc>:VimwikiReturn 2 2<CR>
 
-if (expand('$HOST') =~ 'andrembw')
+if (expand('$HOST') =~ 'andrem2')
   autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gl :e /Users/andre/Work/notes/log.md<CR>
   autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gi :e /Users/andre/Work/notes/index.md<CR>
   autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gs :e /Users/andre/Work/notes/scratch.md<CR>

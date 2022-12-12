@@ -40,3 +40,10 @@ customCommands:
     command: "[[ $(git config delta.side-by-side) == \"true\" ]] && git config delta.side-by-side false || git config delta.side-by-side true"
     context: "commits"
     subprocess: true
+  - key: "b"
+    description: "Create new branch from origin/develop"
+    command: "git fetch && git checkout origin/develop --no-track -b {{index .PromptResponses 0}}"
+    context: "localBranches"
+    prompts:
+      - type: 'input'
+        title: 'New Branch Name:'

@@ -7,7 +7,7 @@ else
 
     if [[ "$(hostname)" = "linode" ]]; then
       ARRAY+=("/apps")
-    elif [[ "$(hostname)" =~ andrembw ]]; then
+    elif [[ "$(hostname)" =~ andrem2 ]]; then
       ARRAY+=($(find ~/Work/server -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
       ARRAY+=($(find ~/Work -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
     elif [[ "$(hostname)" =~ ^andrevm ]]; then

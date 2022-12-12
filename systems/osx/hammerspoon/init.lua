@@ -13,7 +13,7 @@ spoon.MiroWindowsManager:bindHotkeys({
 hs.loadSpoon('ReloadConfiguration')
 spoon.ReloadConfiguration:start()
 
-local k = hs.hotkey.modal.new('cmd-shift', '.')
+local k = hs.hotkey.modal.new('cmd-shift-ctrl', '.')
 function k:entered()
   local window = hs.window.focusedWindow()
   local frame = window:screen():fullFrame().string
