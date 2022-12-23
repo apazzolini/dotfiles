@@ -30,7 +30,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'szw/vim-maximizer'
 Plug 'apazzolini/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
-Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'v0.8.0', 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'

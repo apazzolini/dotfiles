@@ -58,3 +58,9 @@ fi
 #   /usr/bin/keychain --nogui --quiet --noask $HOME/.ssh/id_rsa
 #   source $HOME/.keychain/andred-sh
 # fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/andre/GitHub/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andre/GitHub/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/andre/GitHub/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andre/GitHub/google-cloud-sdk/completion.zsh.inc'; fi

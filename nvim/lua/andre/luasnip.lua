@@ -7,6 +7,7 @@ local ls = require('luasnip')
 ls.add_snippets('javascript', {
   ls.parser.parse_snippet('ibb', "import Bluebird from 'bluebird';"),
   ls.parser.parse_snippet('ir', "import React from 'react';"),
+  ls.parser.parse_snippet('icn', "import cn from 'lib/classnames';"),
   ls.parser.parse_snippet('ild', "import { ${0:} } from 'lodash';"),
   ls.parser.parse_snippet('iui', "import { ${0:} } from 'ui';"),
   ls.parser.parse_snippet('ii', "import ${1:} from '${0:}';"),

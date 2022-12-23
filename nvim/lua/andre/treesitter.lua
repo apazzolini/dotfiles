@@ -29,7 +29,7 @@ if pcall(require, 'nvim-treesitter.configs') then
     },
 
     indent = {
-      enable = true,
+      enable = false,
     },
 
     highlight = {

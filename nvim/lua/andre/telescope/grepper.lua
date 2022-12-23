@@ -8,11 +8,17 @@ local flatten = vim.tbl_flatten
 return function(opts)
   opts = opts or {}
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
-  opts.shortcuts = opts.shortcuts or {
-    ['l'] = '*.lua',
-    ['v'] = '*.vim',
-    ['n'] = '*.{vim,lua}',
-  }
+  opts.shortcuts = opts.shortcuts
+    or {
+      ['l'] = '*.lua',
+      ['v'] = '*.vim',
+      ['n'] = '*.{vim,lua}',
+      ['t'] = 'tokens-server/src/**/**',
+      ['s'] = 'server/src/**/**',
+      ['f'] = 'frontend/src/**/**',
+      ['c'] = 'common/src/**/**',
+      ['b'] = 'common-backend/src/**/**',
+    }
   opts.pattern = opts.pattern or '%s'
 
   local custom_grepper = finders.new_async_job({
