@@ -1,4 +1,0 @@
-#!/bin/bash
-
-stdin="$([[ -p /dev/stdin ]] && cat -)"
-lemonade copy $stdin
