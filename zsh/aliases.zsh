@@ -43,6 +43,8 @@ alias lg='lazygit -ucd ~/.config/lazygit'
 alias yr="yarn run"
 alias nr="npm run"
 alias pr="pnpm run"
+alias pi='CXXFLAGS="--std=c++17" pnpm install'
+alias rt='~/.dotfiles/bin/review-tags.sh'
 
 # tmux
 alias t="tmux-sessionizer"

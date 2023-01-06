@@ -76,9 +76,9 @@ endif
 
 if (g:isNotes)
   Plug 'vimwiki/vimwiki'
-  Plug 'simplenote-vim/simplenote.vim'
-  source ~/.simplenoterc
-  command SN SimplenoteOpen 24176b52e39845c7904d4500da8157df
+  " Plug 'simplenote-vim/simplenote.vim'
+  " source ~/.simplenoterc
+  " command SN SimplenoteOpen 24176b52e39845c7904d4500da8157df
 else
   Plug 'apazzolini/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -115,5 +115,6 @@ EOF
 " autocmd! BufWritePost ~/.dotfiles/nvim/*.vim source $MYVIMRC
 " autocmd! BufWritePost ~/.dotfiles/nvim/*.lua source $MYVIMRC
 " autocmd! BufWritePost ~/.dotfiles/nvim/*.lua execute 'luafile %' | source $MYVIMRC
+" autocmd! BufWritePost ~/.dotfiles/nvim/*.lua execute 'luafile %'
 
 lua require('andre')

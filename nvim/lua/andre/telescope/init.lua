@@ -4,6 +4,9 @@ end
 
 package.loaded['andre.telescope'] = nil
 
+package.loaded['andre.telescope.sorter'] = nil
+local andre_sorter = require('andre.telescope.sorter')
+
 require('andre.telescope.mappings')
 
 local action_state = require('telescope.actions.state')
@@ -16,7 +19,7 @@ local select_multiple = function(prompt_bufnr)
 
   if #multi_selections > 0 then
     actions.send_selected_to_qflist(prompt_bufnr)
-    actions.open_qflist()
+    actions.open_qflist(prompt_bufnr)
   else
     action_set.select(prompt_bufnr, 'default')
   end
@@ -61,6 +64,10 @@ local telescope_opts = {
         ['<C-o>'] = actions.send_to_qflist + actions.open_qflist,
       },
     },
+    file_sorter = function()
+      return andre_sorter()
+    end,
+    generic_sorter = andre_sorter()
   },
   pickers = {
     buffers = {
@@ -111,31 +118,16 @@ local telescope_opts = {
       layout_config = { width = 140, height = 0.8 },
     },
   },
-  extensions = {
-    fzy_native = {
-      override_generic_sorter = true,
-      override_file_sorter = true,
-    },
-    fzf_writer = {
-      minimum_grep_characters = 2,
-      minimum_files_characters = 2,
-      use_highlighter = true,
-    },
-  },
 }
 
 require('telescope').setup(telescope_opts)
-
-if vim.fn.has('win32') == 0 then
-  require('telescope').load_extension('fzy_native')
-end
 
 local M = {}
 
 function M.custom_grep()
   package.loaded['andre.telescope.grepper'] = nil
   require('andre.telescope.grepper')({
-    attach_mappings = function(prompt_bufnr, map)
+    attach_mappings = function(_, map)
       map('i', '<cr>', select_multiple)
       return true
     end,
@@ -146,7 +138,7 @@ function M.custom_grep_hidden()
   package.loaded['andre.telescope.grepper'] = nil
   require('andre.telescope.grepper')({
     hidden = true,
-    attach_mappings = function(prompt_bufnr, map)
+    attach_mappings = function(_, map)
       map('i', '<cr>', select_multiple)
       return true
     end,
@@ -176,7 +168,7 @@ function M.grep_string()
     short_path = true,
     word_match = '-w',
     only_sort_text = true,
-    attach_mappings = function(prompt_bufnr, map)
+    attach_mappings = function(_, map)
       map('i', '<cr>', select_multiple)
       return true
     end,
