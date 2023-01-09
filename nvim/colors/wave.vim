@@ -38,7 +38,7 @@ if &background ==# 'dark'
   let s:wRgb248           = ''
   let s:wRgb249           = ''
 
-  for line in readfile(g:home .. '/.dotfiles/systems/shared/alacritty.yml')
+  for line in readfile('/Users/andre/.dotfiles/systems/shared/alacritty.yml')
     if line =~ 'Bright colors'
       let s:bright = 1
     endif

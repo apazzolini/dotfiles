@@ -23,7 +23,7 @@ function env_setup {
   link nvim/plugged ~/.local/share/nvim/
 
   # tmux
-  link tmux/.tmux.conf ~/
+  link tmux/tmux.conf ~/.tmux.conf
 
   # zsh
   link zsh/zshrc.zsh ~/.zshrc

@@ -1,7 +1,3 @@
-if not pcall(require, 'cmp') then
-  return
-end
-
 local ls = require('luasnip')
 
 ls.add_snippets('javascript', {

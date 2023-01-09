@@ -57,7 +57,7 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias vf='nvim "$(fzf)"'
-alias vrc='nvim -c "cd ~/.dotfiles" -- ~/.dotfiles/nvim/init.vim'
+alias vrc='nvim -c "cd ~/.dotfiles" -- ~/.dotfiles/nvim/init.lua'
 alias vp='nvim package.json'
 
 # misc

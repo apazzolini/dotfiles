@@ -12,6 +12,7 @@ path=(
   $HOME/.dotfiles/bin
   $HOME/.cargo/bin
   $HOME/.local/bin
+  $HOME/.go/bin
   /opt/homebrew/bin
   /usr/local/opt
   /usr/local/sbin
@@ -24,6 +25,7 @@ path=(
   $path
 )
 
+export GOPATH=$HOME/.go
 export PGDATA='/usr/local/var/postgres'
 export IGNOREEOF=50
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
