@@ -9,6 +9,7 @@
 --glob=!.cache
 --glob=!es5
 --glob=!dist
+--glob=!vendor
 --glob=!build/
 --glob=!.next
 --glob=!yarn.lock

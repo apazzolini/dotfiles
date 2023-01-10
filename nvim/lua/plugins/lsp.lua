@@ -293,6 +293,7 @@ return {
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
         format_on_save(bufnr)
+        client.server_capabilities.snippetSupport = false
       end,
     })
 
