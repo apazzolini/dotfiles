@@ -1,4 +1,5 @@
 return {
+  cond = vim.g.isNotes == false,
   'nvim-lualine/lualine.nvim',
   config = function()
     local colors = {

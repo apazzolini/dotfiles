@@ -182,6 +182,7 @@ return {
         -- use prettier via efm on save instead of tsserver's builtin formatting
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
+        client.server_capabilities.semanticTokensProvider = nil
         set_lsp_keymaps(client, bufnr)
       end,
 
@@ -210,6 +211,7 @@ return {
         set_lsp_keymaps(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
+        client.server_capabilities.semanticTokensProvider = nil
       end,
     })
 
@@ -245,6 +247,7 @@ return {
         },
       },
       on_attach = function(client, bufnr)
+        client.server_capabilities.semanticTokensProvider = nil
         set_lsp_keymaps(client, bufnr)
       end,
     })
@@ -294,6 +297,7 @@ return {
         set_lsp_keymaps(client, bufnr)
         format_on_save(bufnr)
         client.server_capabilities.snippetSupport = false
+        client.server_capabilities.semanticTokensProvider = nil
       end,
     })
 
@@ -314,8 +318,9 @@ return {
           end),
         }),
       },
-      on_attach = function(_, bufnr)
+      on_attach = function(client, bufnr)
         format_on_save(bufnr)
+        client.server_capabilities.semanticTokensProvider = nil
       end,
       handlers = {
         ['textDocument/publishDiagnostics'] = vim.diagnostic.config({

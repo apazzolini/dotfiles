@@ -7,6 +7,7 @@ local flatten = vim.tbl_flatten
 
 return function(opts)
   opts = opts or {}
+  opts.temp__scrolling_limit = 10000
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
   opts.shortcuts = opts.shortcuts
     or {
@@ -67,12 +68,14 @@ return function(opts)
     prompt_title = prompt_title .. ' (with hidden files)'
   end
 
-  pickers.new(opts, {
-    -- debounce = 100,
-    prompt_title = prompt_title,
-    finder = custom_grepper,
-    previewer = conf.grep_previewer(opts),
-    sorter = require('telescope.sorters').empty(),
-    --     sorter = sorters.highlighter_only(opts),
-  }):find()
+  pickers
+    .new(opts, {
+      -- debounce = 100,
+      prompt_title = prompt_title,
+      finder = custom_grepper,
+      previewer = conf.grep_previewer(opts),
+      sorter = require('telescope.sorters').empty(),
+      --     sorter = sorters.highlighter_only(opts),
+    })
+    :find()
 end

@@ -104,6 +104,12 @@ return {
           layout_config = { width = 140, height = 0.8 },
         },
       },
+      -- extensions = {
+      --   fzy_native = {
+      --     override_generic_sorter = false,
+      --     override_file_sorter = true,
+      --   },
+      -- },
     }
 
     require('telescope').setup(telescope_opts)

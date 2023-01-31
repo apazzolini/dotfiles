@@ -19,6 +19,7 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'VimResized' }, { command = ':wincmd =' })
+vim.api.nvim_create_autocmd({ 'VimResized' }, { command = 'FloatermUpdate' })
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, { command = [[%s/\s\+$//e]] })
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, { command = [[%s#\($\n\s*\)\+\%$##e]] })

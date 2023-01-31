@@ -2,11 +2,6 @@
 
 set -eo pipefail
 
-if [[ $# -lt 1 ]]; then
-  echo "usage: review-tags.sh <command>"
-  exit 1
-fi
-
 branch_name=''
 
 read_tracking_branch() {
@@ -20,7 +15,7 @@ read_tracking_remote() {
 fetch_branch_name() {
   branch_name=$(read_tracking_branch)
   if ! git rev-parse "$branch_name" > /dev/null 2>&1; then
-    echo "$branch_name does not exist"
+    echo "\"$branch_name\" tracking branch does not exist"
     return 1
   fi
 }
@@ -85,6 +80,25 @@ fetch_diff_params() {
   echo "${diff_params[0]} -> ${diff_params[1]}"
 }
 
+print_help() {
+  echo "usage: review-tags.sh <command> [options]"
+  echo "Available commands:"
+  echo "    s|status - Prints the tracking branch"
+  echo "    c|create - Create a tag on the on the tracking branch head"
+  echo "    l|list - Lists tags"
+  echo "    rd|range-diff [[from_tag] to_tag] - Compare two commit ranges with the base set to the default branch (develop|main|master) on the remote"
+  echo "    d|diff [[from_tag] to_tag] - Show changes between commits"
+  echo "    p|pull [branch] - Safely resets your local branch to upstream and creates a tag"
+  echo "    g|goto [tag] - Safely resets your local branch to the given tag"
+  echo "    prune - Delete all review tags which no longer have upstream branches"
+  echo "    help - Prints this help documentation"
+}
+
+if [[ $# -lt 1 ]]; then
+  print_help
+  exit 1
+fi
+
 command="$1"
 case $command in
   s|stat|status)
@@ -134,8 +148,23 @@ case $command in
     git reset --keep "$checkout_branch"
     ;;
 
+  prune)
+    for tag in $(git tag -l); do
+      if [[ "$tag" =~ ^review/(.*)/[0-9]+$ ]]; then
+        if ! git rev-parse "${BASH_REMATCH[1]}" > /dev/null 2>&1; then
+          git tag -d "$tag"
+        fi
+      fi
+    done
+    ;;
+
+  help|--help)
+    print_help
+    ;;
+
   *)
     echo "Unknown command $command"
+    print_help
     exit 1
     ;;
 esac
