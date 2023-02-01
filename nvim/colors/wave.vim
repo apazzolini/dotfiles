@@ -10,6 +10,8 @@ endif
 
 let s:colors_name = 'wave'
 
+let s:home = has('osx') ? '/Users/andre' : '/home/andre'
+
 if &background ==# 'dark'
   if empty($TMUX)
     hi! Normal ctermbg=NONE ctermfg=7 guibg=#1c2023 guifg=#C4CAD5
@@ -38,7 +40,7 @@ if &background ==# 'dark'
   let s:wRgb248           = ''
   let s:wRgb249           = ''
 
-  for line in readfile('/Users/andre/.dotfiles/systems/shared/alacritty.yml')
+  for line in readfile(s:home .. '/.dotfiles/systems/shared/alacritty.yml')
     if line =~ 'Bright colors'
       let s:bright = 1
     endif

@@ -18,7 +18,7 @@ path=(
   /usr/local/sbin
   /usr/local/opt/postgresql@11/bin
   # $BUN_INSTALL/bin
-  # /usr/local/go/bin
+  /usr/local/go/bin
   ./node_modules/.bin
   ../node_modules/.bin
   /usr/local/opt/fzf/bin
