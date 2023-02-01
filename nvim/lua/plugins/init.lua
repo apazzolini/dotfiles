@@ -16,14 +16,6 @@ return {
   { 'vladdoster/remember.nvim', config = true, opts = {} },
 
   {
-    'tpope/vim-fugitive',
-    config = function()
-      vim.keymap.set('n', '<leader>gL', ':Gclog -- %<cr>')
-      vim.keymap.set('n', '<leader>gb', ':Git blame<cr>')
-    end,
-  },
-
-  {
     'romainl/vim-qf',
     config = function()
       vim.g.qf_mapping_ack_style = 1
