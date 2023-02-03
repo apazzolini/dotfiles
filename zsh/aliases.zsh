@@ -77,3 +77,5 @@ alias dop='doppler'
 alias ds='doppler secrets'
 
 alias sudoedit='sudo -e'
+
+alias lazy='cd ~/.local/share/nvim/lazy'

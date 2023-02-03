@@ -19,8 +19,10 @@ vim.keymap.set('i', '<c-l>', '<space>=><space>')
 vim.keymap.set('x', 'L', 'g_')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('x', '<leader>p', '"_dP')
-vim.keymap.set('c', '<c-k>', '<up>')
-vim.keymap.set('c', '<c-j>', '<down>')
+vim.keymap.set('c', '<c-k>', '<c-p>')
+vim.keymap.set('c', '<c-j>', '<c-n>')
+vim.keymap.set('c', '<up>', '<c-p>')
+vim.keymap.set('c', '<down>', '<c-n>')
 vim.keymap.set('n', '<cr>', ':noh<cr><cr>', { silent = true })
 
 -- Disable mouse pasting

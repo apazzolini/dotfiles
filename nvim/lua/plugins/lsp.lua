@@ -42,8 +42,8 @@ return {
         ['<Down>'] = cmp.mapping.select_next_item({ 'i', 'c' }),
         ['<Up>'] = cmp.mapping.select_prev_item({ 'i', 'c' }),
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+          if luasnip.expandable() then
+            luasnip.expand()
           elseif cmp.visible() then
             cmp.select_next_item({ cmp.SelectBehavior.Insert })
           elseif has_words_before() then

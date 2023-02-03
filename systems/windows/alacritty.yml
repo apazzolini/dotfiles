@@ -43,5 +43,5 @@ key_bindings:
   - { key: D        , mods: Alt       , chars: "[qzz" }
   - { key: LBracket , mods: Alt|Shift , chars: "\x1b\x5b" }
   - { key: RBracket , mods: Alt|Shift , chars: "\x1b\x5d" }
-  - { key: LBracket , mods: Alt       , chars: "\x10\x70" }
-  - { key: RBracket , mods: Alt       , chars: "\x10\x6e" }
+  - { key: LBracket , mods: Alt       , chars: "\x10\x50" }
+  - { key: RBracket , mods: Alt       , chars: "\x10\x4e" }
