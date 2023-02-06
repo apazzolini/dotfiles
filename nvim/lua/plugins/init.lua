@@ -10,7 +10,7 @@ return {
 
   'nikvdp/ejs-syntax',
   'maxmellon/vim-jsx-pretty',
-  'pangloss/vim-javascript',
+  -- 'pangloss/vim-javascript',
   'b0o/schemastore.nvim',
 
   { 'vladdoster/remember.nvim', config = true, opts = {} },

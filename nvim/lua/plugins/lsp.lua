@@ -94,10 +94,14 @@ return {
     local log = require('vim.lsp.log')
     local util = require('vim.lsp.util')
 
-    vim.fn.sign_define('LspDiagnosticsSignError', { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignHint', { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignError',
+      { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignWarning',
+      { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignInformation',
+      { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignHint',
+      { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
 
     local function set_lsp_keymaps(client, bufnr)
       local opts = { noremap = true, silent = true }
@@ -128,6 +132,12 @@ return {
         end,
         buffer = bufnr,
       })
+    end
+
+    local function disable_semantic_tokens(client)
+      if client and client.server_capabilities then
+        client.server_capabilities.semanticTokensProvider = nil
+      end
     end
 
     local function handler_publishDiagnostics(level)
@@ -182,7 +192,7 @@ return {
         -- use prettier via efm on save instead of tsserver's builtin formatting
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
-        client.server_capabilities.semanticTokensProvider = nil
+        disable_semantic_tokens(client)
         set_lsp_keymaps(client, bufnr)
       end,
 
@@ -211,7 +221,19 @@ return {
         set_lsp_keymaps(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
-        client.server_capabilities.semanticTokensProvider = nil
+        disable_semantic_tokens(client)
+      end,
+    })
+
+    -- ASTRO -------------------------------------------------------------------
+
+    lspconfig.astro.setup({
+      capabilities = capabilities,
+      on_attach = function(client, bufnr)
+        set_lsp_keymaps(client, bufnr)
+        format_on_save(bufnr)
+        client.server_capabilities.snippetSupport = false
+        disable_semantic_tokens(client)
       end,
     })
 
@@ -247,7 +269,7 @@ return {
         },
       },
       on_attach = function(client, bufnr)
-        client.server_capabilities.semanticTokensProvider = nil
+        disable_semantic_tokens(client)
         set_lsp_keymaps(client, bufnr)
       end,
     })
@@ -297,7 +319,7 @@ return {
         set_lsp_keymaps(client, bufnr)
         format_on_save(bufnr)
         client.server_capabilities.snippetSupport = false
-        client.server_capabilities.semanticTokensProvider = nil
+        disable_semantic_tokens(client)
       end,
     })
 
@@ -316,11 +338,19 @@ return {
           cwd = nls_h.cache.by_bufnr(function(params)
             return nls_u.root_pattern('.git')(params.bufname)
           end),
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "vue",
+            "astro"
+          }
         }),
       },
       on_attach = function(client, bufnr)
         format_on_save(bufnr)
-        client.server_capabilities.semanticTokensProvider = nil
+        disable_semantic_tokens(client)
       end,
       handlers = {
         ['textDocument/publishDiagnostics'] = vim.diagnostic.config({

@@ -19,6 +19,7 @@ return {
   config = function()
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
+        'astro',
         'bash',
         'c',
         'cmake',
@@ -48,7 +49,7 @@ return {
       },
 
       indent = {
-        enable = false,
+        enable = true,
       },
 
       highlight = {
