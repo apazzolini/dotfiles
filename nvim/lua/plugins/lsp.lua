@@ -80,6 +80,7 @@ return {
     })
 
     require('nvim-autopairs').setup()
+
     -- If you want insert `(` after select function or method item
     -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     -- local cmp = require('cmp')
@@ -94,14 +95,10 @@ return {
     local log = require('vim.lsp.log')
     local util = require('vim.lsp.util')
 
-    vim.fn.sign_define('LspDiagnosticsSignError',
-      { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignWarning',
-      { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignInformation',
-      { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignHint',
-      { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignError', { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignHint', { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
 
     local function set_lsp_keymaps(client, bufnr)
       local opts = { noremap = true, silent = true }
@@ -339,13 +336,13 @@ return {
             return nls_u.root_pattern('.git')(params.bufname)
           end),
           filetypes = {
-            "javascript",
-            "javascriptreact",
-            "typescript",
-            "typescriptreact",
-            "vue",
-            "astro"
-          }
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+            'vue',
+            'astro',
+          },
         }),
       },
       on_attach = function(client, bufnr)
