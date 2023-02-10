@@ -6,6 +6,7 @@ return {
   'sickill/vim-pasta',
   'tpope/vim-repeat',
   'tpope/vim-unimpaired',
+  'tpope/vim-abolish',
   'godlygeek/tabular',
 
   'nikvdp/ejs-syntax',
