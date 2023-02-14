@@ -10,7 +10,7 @@ return {
       'saadparwaiz1/cmp_luasnip',
     } },
     'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
+    'williamboman/mason.nvim',
     'jose-elias-alvarez/null-ls.nvim',
   },
   config = function()
@@ -177,7 +177,7 @@ return {
 
     ----------------------------------------------------------------------------
 
-    require('nvim-lsp-installer').setup({})
+    require('mason').setup({})
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lspconfig = require('lspconfig')
 
@@ -258,7 +258,7 @@ return {
 
     -- SUMNEKO -----------------------------------------------------------------
 
-    lspconfig.sumneko_lua.setup({
+    lspconfig.lua_ls.setup({
       settings = {
         Lua = {
           diagnostics = {
