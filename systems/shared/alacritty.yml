@@ -177,14 +177,14 @@ draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
 colors:
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not
-    # present. If the bright foreground color is not set, or
-    # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
-    # color will be used.
-    #dim_foreground: '#828482'
-    #bright_foreground: '#eaeaea'
+  # Bright and dim foreground colors
+  #
+  # The dimmed foreground color is calculated automatically if it is not
+  # present. If the bright foreground color is not set, or
+  # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
+  # color will be used.
+  #dim_foreground: '#828482'
+  #bright_foreground: '#eaeaea'
 
   # Cursor colors
   #
@@ -233,21 +233,56 @@ colors:
     #  background: '#c5c8c6'
     #  foreground: '#1d1f21'
 
-  # COLORS
-  # Default colors
+  # Cursor colors
+  cursor:
+    text: '#1E1E2E' # base
+    cursor: '#F5E0DC' # rosewater
+  vi_mode_cursor:
+    text: '#1E1E2E' # base
+    cursor: '#B4BEFE' # lavender
+
+  # Search colors
+  search:
+    matches:
+      foreground: '#1E1E2E' # base
+      background: '#A6ADC8' # subtext0
+    focused_match:
+      foreground: '#1E1E2E' # base
+      background: '#A6E3A1' # green
+    footer_bar:
+      foreground: '#1E1E2E' # base
+      background: '#A6ADC8' # subtext0
+
+  # Keyboard regex hints
+  hints:
+    start:
+      foreground: '#1E1E2E' # base
+      background: '#F9E2AF' # yellow
+    end:
+      foreground: '#1E1E2E' # base
+      background: '#A6ADC8' # subtext0
+
+  # Selection colors
+  selection:
+    text: '#1E1E2E' # base
+    background: '#F5E0DC' # rosewater
+
   primary:
-    background: '#1e2027'
-    foreground: '#C4CAD5'
+    background: '#1E1F2B' # base
+    foreground: '#CDD6F4' # text
+    # These were mine pre-catpuccin
+    # background: '#1e2027'
+    # foreground: '#C4CAD5'
 
   # Normal colors
   normal:
     black:   '#1e2027'
-    red:     '#ED8796'
+    red:     '#F38BA8'
     green:   '#b1cfa9'
     yellow:  '#F9E2AF'
     blue:    '#9494bc'
     magenta: '#be95ff'
-    cyan:    '#68b2c9'
+    cyan:    '#73BECC'
     white:   '#C4CAD5'
 
   # Bright colors
@@ -258,33 +293,50 @@ colors:
     yellow:  '#e8dcb0' # same as non-bright
     blue:    '#9494bc' # same as non-bright
     magenta: '#ff007c'
-    cyan:    '#87cfc7'
+    cyan:    '#94E2D5'
     white:   '#A5ADCB'
 
   # Indexed Colors
   indexed_colors:
-    - { index: 237, color: '#343d42' }
-    - { index: 238, color: '#464e53' }
-    - { index: 244, color: '#282b34' }
+    # Not sure how these commented out ones are used
+    # - { index: 16,  color: "#FAB387" }
+    # - { index: 17,  color: "#F5E0DC" }
+    # - { index: 237, color: '#343d42' }
+    # - { index: 238, color: '#464e53' }
+    - { index: 232, color: '#1E1F2B' }
+    - { index: 244, color: '#262833' }
     - { index: 245, color: '#3d4348' }
     - { index: 246, color: '#747c84' }
     - { index: 247, color: '#adb3ba' }
     - { index: 248, color: '#c7ccd1' }
     - { index: 249, color: '#dfe2e5' }
 
+  # Normal colors (catpuccin)
+  # normal:
+  #   black:   '#45475A' # surface1
+  #   red:     '#F38BA8' # red
+  #   green:   '#A6E3A1' # green
+  #   yellow:  '#F9E2AF' # yellow
+  #   blue:    '#89B4FA' # blue
+  #   magenta: '#F5C2E7' # pink
+  #   cyan:    '#94E2D5' # teal
+  #   white:   '#BAC2DE' # subtext1
+
+  # Bright colors (catpuccin)
+  # bright:
+  #   black:   '#585B70' # surface2
+  #   red:     '#F38BA8' # red
+  #   green:   '#A6E3A1' # green
+  #   yellow:  '#F9E2AF' # yellow
+  #   blue:    '#89B4FA' # blue
+  #   magenta: '#F5C2E7' # pink
+  #   cyan:    '#94E2D5' # teal
+  #   white:   '#A6ADC8' # subtext0
+
   # Dim colors
-  #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
   #dim:
-  #  black:   '#131415'
-  #  red:     '#864343'
-  #  green:   '#777c44'
-  #  yellow:  '#9e824c'
-  #  blue:    '#556a7d'
-  #  magenta: '#75617b'
-  #  cyan:    '#5b7d78'
-  #  white:   '#828482'
 
 # Bell
 #

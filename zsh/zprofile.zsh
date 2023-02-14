@@ -35,7 +35,7 @@ export RIPGREP_CONFIG_PATH="$ZSH/zsh/ripgreprc"
 
 export FZF_DEFAULT_COMMAND="rg --color=never --files --hidden"
 export FZF_DEFAULT_OPTS='--reverse --border --bind=ctrl-d:half-page-down,ctrl-u:half-page-up
-  --color=bg+:244,bg:0,spinner:12,hl:14
+  --color=bg+:0,bg:-1,spinner:12,hl:14
   --color=fg:7,header:14,info:10,pointer:12
   --color=marker:12,fg+:6,prompt:10,hl+:13'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

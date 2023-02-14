@@ -33,6 +33,7 @@ if &background ==# 'dark'
   let s:wRgbBrightRed     = ''
   let s:wRgbBrightMagenta = ''
   let s:wRgbBrightCyan    = ''
+  let s:wRgb232           = ''
   let s:wRgb244           = ''
   let s:wRgb245           = ''
   let s:wRgb246           = ''
@@ -45,21 +46,26 @@ if &background ==# 'dark'
       let s:bright = 1
     endif
 
-    if s:bright
-      if !len(s:wRgbBrightRed) && line =~ 'red' | let s:wRgbBrightRed = strpart(line, 14, 7) | endif
-      if !len(s:wRgbBrightMagenta) && line =~ 'magenta' | let s:wRgbBrightMagenta = strpart(line, 14, 7) | endif
-      if !len(s:wRgbBrightCyan) && line =~ 'cyan' | let s:wRgbBrightCyan = strpart(line, 14, 7) | endif
-    else
-      if !len(s:wRgbBlack) && line =~ 'black'     | let s:wRgbBlack = strpart(line, 14, 7)   | endif
-      if !len(s:wRgbRed) && line =~ 'red'         | let s:wRgbRed = strpart(line, 14, 7)     | endif
-      if !len(s:wRgbGreen) && line =~ 'green'     | let s:wRgbGreen = strpart(line, 14, 7)   | endif
-      if !len(s:wRgbYellow) && line =~ 'yellow'   | let s:wRgbYellow = strpart(line, 14, 7)  | endif
-      if !len(s:wRgbBlue) && line =~ 'blue'       | let s:wRgbBlue = strpart(line, 14, 7)    | endif
-      if !len(s:wRgbMagenta) && line =~ 'magenta' | let s:wRgbMagenta = strpart(line, 14, 7) | endif
-      if !len(s:wRgbCyan) && line =~ 'cyan'       | let s:wRgbCyan = strpart(line, 14, 7)    | endif
-      if !len(s:wRgbWhite) && line =~ 'white'     | let s:wRgbWhite = strpart(line, 14, 7)   | endif
+    if line =~ '^\s*#'
+      continue
     endif
 
+    if s:bright
+      if !len(s:wRgbBrightRed) && line =~ 'red:' | let s:wRgbBrightRed = strpart(line, 14, 7) | endif
+      if !len(s:wRgbBrightMagenta) && line =~ 'magenta:' | let s:wRgbBrightMagenta = strpart(line, 14, 7) | endif
+      if !len(s:wRgbBrightCyan) && line =~ 'cyan:' | let s:wRgbBrightCyan = strpart(line, 14, 7) | endif
+    else
+      if !len(s:wRgbBlack) && line =~ 'black:'     | let s:wRgbBlack = strpart(line, 14, 7)   | endif
+      if !len(s:wRgbRed) && line =~ 'red:'         | let s:wRgbRed = strpart(line, 14, 7)     | endif
+      if !len(s:wRgbGreen) && line =~ 'green:'     | let s:wRgbGreen = strpart(line, 14, 7)   | endif
+      if !len(s:wRgbYellow) && line =~ 'yellow:'   | let s:wRgbYellow = strpart(line, 14, 7)  | endif
+      if !len(s:wRgbBlue) && line =~ 'blue:'       | let s:wRgbBlue = strpart(line, 14, 7)    | endif
+      if !len(s:wRgbMagenta) && line =~ 'magenta:' | let s:wRgbMagenta = strpart(line, 14, 7) | endif
+      if !len(s:wRgbCyan) && line =~ 'cyan:'       | let s:wRgbCyan = strpart(line, 14, 7)    | endif
+      if !len(s:wRgbWhite) && line =~ 'white:'     | let s:wRgbWhite = strpart(line, 14, 7)   | endif
+    endif
+
+    if !len(s:wRgb232) && line =~ 'index: 232' | let s:wRgb232 = strpart(line, 28, 7)   | endif
     if !len(s:wRgb244) && line =~ 'index: 244' | let s:wRgb244 = strpart(line, 28, 7)   | endif
     if !len(s:wRgb245) && line =~ 'index: 245' | let s:wRgb245 = strpart(line, 28, 7)   | endif
     if !len(s:wRgb246) && line =~ 'index: 246' | let s:wRgb246 = strpart(line, 28, 7)   | endif
@@ -110,6 +116,7 @@ let s:wWhite='ctermfg=7 guifg='.s:wRgbWhite
 let s:wBrightRed='ctermfg=9 guifg='.s:wRgbBrightRed
 let s:wBrightMagenta='ctermfg=13 guifg='.s:wRgbBrightMagenta
 let s:wBrightCyan='ctermfg=14 guifg='.s:wRgbBrightCyan
+let s:wFgTermBg='ctermfg=232 guifg='.s:wRgb232
 let s:wFg1='ctermfg=244 guifg='.s:wRgb244
 let s:wFg2='ctermfg=245 guifg='.s:wRgb245
 let s:wFg3='ctermfg=246 guifg='.s:wRgb246
@@ -125,6 +132,7 @@ let s:wBgBlue='ctermbg=4 guibg='.s:wRgbBlue
 let s:wBgMagenta='ctermbg=5 guibg='.s:wRgbMagenta
 let s:wBgCyan='ctermbg=6 guibg='.s:wRgbCyan
 let s:wBgWhite='ctermbg=7 guibg='.s:wRgbWhite
+let s:wBgTermBg='ctermfg=232 guifg='.s:wRgb232
 let s:wBg1='ctermbg=244 guibg='.s:wRgb244
 let s:wBg2='ctermbg=245 guibg='.s:wRgb245
 let s:wBg3='ctermbg=246 guibg='.s:wRgb246
@@ -248,6 +256,9 @@ call s:HL('VimWikiLink', s:wNoBg, s:wNoFg, s:wBlue)
 hi! link VimwikiHr Normal
 hi! link VimwikiList Normal
 hi! link VimwikiCode Normal
+
+" Floaterm
+call s:HL('FloatermBorder', s:wFgTermBg)
 
 " LSP
 call s:HL('LspDiagnosticsDefaultError', s:wRed)
