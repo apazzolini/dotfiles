@@ -10,7 +10,7 @@ return {
   'godlygeek/tabular',
 
   'nikvdp/ejs-syntax',
-  'maxmellon/vim-jsx-pretty',
+  -- 'maxmellon/vim-jsx-pretty',
   -- 'pangloss/vim-javascript',
   'b0o/schemastore.nvim',
 

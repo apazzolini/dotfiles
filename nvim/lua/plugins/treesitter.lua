@@ -6,6 +6,7 @@ return {
     -- 'nvim-treesitter/nvim-treesitter-context',
     'JoosepAlviste/nvim-ts-context-commentstring',
     -- 'mfussenegger/nvim-treehopper',
+    'yioneko/nvim-yati',
     'windwp/nvim-ts-autotag',
     {
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -50,6 +51,18 @@ return {
 
       indent = {
         enable = true,
+        disable = {
+          'javascript',
+          'typescript',
+          'tsx',
+        },
+      },
+
+      yati = {
+        enable = true,
+        disable = {
+          'lua',
+        },
       },
 
       highlight = {
