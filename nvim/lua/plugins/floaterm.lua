@@ -1,7 +1,8 @@
-vim.g.floaterm_width = 0.95
+vim.g.floaterm_width = 0.98
 vim.g.floaterm_opener = 'edit'
-vim.g.floaterm_height = 0.98
+vim.g.floaterm_height = 0.99
 vim.g.floaterm_position = 'top'
+vim.g.floaterm_title = ''
 
 return {
   'voldikss/vim-floaterm',
