@@ -96,6 +96,7 @@ else
   let s:wRgbBrightRed = '#bf8b56'
   let s:wRgbBrightMagenta = '#bf568b'
   let s:wRgbBrightCyan = '#bf568b'
+  let s:wRgb232       = '#dfe2e5'
   let s:wRgb244       = '#dfe2e5'
   let s:wRgb245       = '#565e65'
   let s:wRgb246       = '#747c84'

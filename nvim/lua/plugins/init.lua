@@ -1,6 +1,4 @@
 return {
-  'folke/neodev.nvim',
-  'folke/lua-dev.nvim',
   'nvim-lua/plenary.nvim',
 
   'sickill/vim-pasta',

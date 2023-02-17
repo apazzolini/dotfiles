@@ -52,15 +52,18 @@ return {
       indent = {
         enable = true,
         disable = {
+          'json',
           'javascript',
           'typescript',
           'tsx',
+          'json',
         },
       },
 
       yati = {
         enable = true,
         disable = {
+          'css',
           'lua',
         },
       },

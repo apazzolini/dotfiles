@@ -12,8 +12,17 @@ return {
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
     'jose-elias-alvarez/null-ls.nvim',
+    'folke/neodev.nvim',
   },
   config = function()
+    require('neodev').setup({
+      override = function(_, options)
+        options.enabled = true
+        options.plugins = true
+        options.types = true
+        options.runtime = true
+      end,
+    })
     local cmp = require('cmp')
     local luasnip = require('luasnip')
 
@@ -35,7 +44,7 @@ return {
       mapping = {
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-Space>'] = cmp.mapping.complete({}),
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ['<C-j>'] = cmp.mapping.select_next_item({ 'i', 'c' }),
         ['<C-k>'] = cmp.mapping.select_prev_item({ 'i', 'c' }),
@@ -186,14 +195,12 @@ return {
     lspconfig.tsserver.setup({
       capabilities = capabilities,
       root_dir = lspconfig.util.root_pattern('package.json'),
-
       init_options = {
         preferences = {
           importModuleSpecifierPreference = 'non-relative',
           includePackageJsonAutoImports = 'off',
         },
       },
-
       on_attach = function(client, bufnr)
         -- use prettier via efm on save instead of tsserver's builtin formatting
         client.server_capabilities.documentFormattingProvider = false
@@ -201,11 +208,9 @@ return {
         disable_semantic_tokens(client)
         set_lsp_keymaps(client, bufnr)
       end,
-
       flags = {
         debounce_text_changes = 200,
       },
-
       handlers = {
         ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error'),
         ['textDocument/definition'] = first_match,
@@ -256,21 +261,25 @@ return {
     --   end,
     -- })
 
-    -- SUMNEKO -----------------------------------------------------------------
+    -- LUA_LS ------------------------------------------------------------------
 
     lspconfig.lua_ls.setup({
       settings = {
         Lua = {
-          diagnostics = {
-            globals = { 'vim', 'use' },
-            disable = { 'lowercase-global' },
-          },
+    --       runtime = {
+    --         path = { 'lua/?.lua', 'init.lua' },
+    --         pathStrict = true,
+    --       },
+    --       diagnostics = {
+    --         globals = { 'vim' },
+    --         -- disable = { 'lowercase-global' },
+    --       },
           workspace = {
-            library = {
-              ['/Users/andre/GitHub/_forks/hammerspoon/build/stubs'] = true,
-              [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-            },
+    --         library = vim.api.nvim_get_runtime_file('', true),
+            checkThirdParty = false,
+          },
+          telemetry = {
+            enable = false,
           },
         },
       },
