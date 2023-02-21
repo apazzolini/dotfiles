@@ -5,7 +5,7 @@ vim.g.floaterm_position = 'top'
 vim.g.floaterm_title = ''
 
 return {
-  'voldikss/vim-floaterm',
+  'apazzolini/vim-floaterm',
   config = function()
     vim.keymap.set('n', '<c-g>', ':FloatermNew --autoclose=2  lazygit -ucd ~/.config/lazygit<CR>')
     vim.keymap.set('n', '<c-t>', ':FloatermNew --autoclose=2  /usr/local/bin/doppler tui --debug-tui<CR>')
