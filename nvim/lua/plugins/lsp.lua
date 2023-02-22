@@ -133,7 +133,7 @@ return {
       vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. diagnosticOpts .. ')<cr>zz', opts)
 
       vim.keymap.set('n', '<leader>lq', '<cmd>lua vim.diagnostic.setqflist(' .. diagnosticOpts .. ')<cr>zz', opts)
-      vim.keymap.set('n', '<leader>lt', '<cmd>cexpr system("tsc --pretty false") <bar> copen<cr>', opts)
+      vim.keymap.set('n', '<leader>lt', '<cmd>cexpr system("tsc -p frontend -p server --pretty false") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
 
@@ -194,8 +194,14 @@ return {
 
     lspconfig.tsserver.setup({
       capabilities = capabilities,
-      root_dir = lspconfig.util.root_pattern('package.json'),
+      root_dir = function(fname)
+        return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
+          or lspconfig.util.root_pattern('tsconfig.json')(fname)
+          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+      end,
+      single_file_support = false,
       init_options = {
+        maxTsServerMemory = 6144,
         preferences = {
           importModuleSpecifierPreference = 'non-relative',
           includePackageJsonAutoImports = 'off',
@@ -266,16 +272,16 @@ return {
     lspconfig.lua_ls.setup({
       settings = {
         Lua = {
-    --       runtime = {
-    --         path = { 'lua/?.lua', 'init.lua' },
-    --         pathStrict = true,
-    --       },
-    --       diagnostics = {
-    --         globals = { 'vim' },
-    --         -- disable = { 'lowercase-global' },
-    --       },
+          -- runtime = {
+          --   path = { 'lua/?.lua', 'init.lua' },
+          --   pathStrict = true,
+          -- },
+          -- diagnostics = {
+          --   globals = { 'vim' },
+          --   -- disable = { 'lowercase-global' },
+          -- },
           workspace = {
-    --         library = vim.api.nvim_get_runtime_file('', true),
+            -- library = vim.api.nvim_get_runtime_file('', true),
             checkThirdParty = false,
           },
           telemetry = {
