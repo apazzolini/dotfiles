@@ -2,9 +2,9 @@ add_newline = false
 
 format = """$custom$directory$git_branch$git_status$git_state[»](purple) """
 
-[custom.linode]
-command = 'echo "[linode]"'
-when = 'test `hostname` = "linode"'
+[custom.hertzner]
+command = 'echo "[dre-ash-1]"'
+when = 'test `hostname` = "dre-ash-1"'
 
 # [custom.andrem2]
 # command = 'echo "[andrem2]"'
