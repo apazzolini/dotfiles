@@ -32,7 +32,7 @@ key_bindings:
   - { key: RBracket , mods: Command|Shift , chars: "\x1b\x5d" }
   - { key: LBracket , mods: Command       , chars: "\x10\x50" }
   - { key: RBracket , mods: Command       , chars: "\x10\x4e" }
-  - { key: Space    , mods: Control       , chars: "\x00" }
+  # - { key: Space    , mods: Control       , chars: "\x00" }
   - { key: Slash    , mods: Command       , chars: ",ct" }
   - { key: J        , mods: Command       , chars: "\x10\x5b" }
   - { key: W        , mods: Command       , chars: "\x10\x78" }
