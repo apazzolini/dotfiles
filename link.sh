@@ -10,9 +10,9 @@ function env_setup {
   mkdir -p ~/.config
 
   #git
-  link git/.gitconfig ~/
-  link git/.githelpers ~/
-  link git/.gitignore ~/
+  link git/gitconfig ~/.gitconfig
+  link git/githelpers ~/.githelpers
+  link git/gitignore ~/.gitignore
   mkdir -p ~/.config/lazygit
   link git/lazygit/config.yml ~/.config/lazygit/
 

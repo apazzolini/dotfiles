@@ -117,6 +117,7 @@ return {
       vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
       vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
       vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+      vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
       vim.keymap.set('n', '<leader>tb', function()
         vim.lsp.buf.code_action({
@@ -126,7 +127,6 @@ return {
           end,
         })
       end)
-      -- vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action({ filter = function})<cr>', opts)
 
       local diagnosticOpts = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
       vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. diagnosticOpts .. ')<cr>zz', opts)

@@ -248,9 +248,6 @@ hi! link @parameter Normal
 hi! link @constant Normal
 hi! link @variable Normal
 hi! link @variable.builtin Normal
-" These seem to have been unused
-" call s:HL('@identifier', s:wMagenta)
-" hi! link Whitespace Normal
 
 " VimWiki
 call s:HL('VimWikiLink', s:wNoBg, s:wNoFg, s:wBlue)
@@ -281,9 +278,6 @@ call s:HL('TelescopePromptCounter', s:wMagenta)
 
 " Hop
 if &background ==# 'dark'
-  " call s:HL('HopNextKey',  s:wBold, 'guifg=#ff007c')
-  " call s:HL('HopNextKey1', s:wBold, 'guifg=#00dfff')
-  " call s:HL('HopNextKey2', s:wBold, 'guifg=#2b8db3')
   call s:HL('HopNextKey',  s:wBold, s:wBrightMagenta, s:wBg1)
   call s:HL('HopNextKey1', s:wBold, s:wBrightMagenta, s:wBg1)
   call s:HL('HopNextKey2', s:wBold, s:wBrightMagenta, s:wBg1)
@@ -297,12 +291,3 @@ endif
 call s:HL('NvimTreeExecFile', s:wWhite)
 call s:HL('NvimTreeImageFile', s:wWhite)
 call s:HL('NvimTreeRootFolder', s:wMagenta)
-
-" VS Code theme colors
-" https://www.reddit.com/r/neovim/comments/r42njg/here_are_the_vs_code_theme_colors_for_the_new/
-" highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-" highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-" highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-" highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-" highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-" highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
