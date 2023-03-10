@@ -43,6 +43,13 @@ return {
           },
         },
       },
+      buffers = {
+        window = {
+          mappings = {
+            ['d'] = 'buffer_delete',
+          },
+        },
+      },
     })
 
     vim.keymap.set('n', '<leader>go', '<cmd>Neotree toggle current reveal_force_cwd dir=%:p:h<cr>')

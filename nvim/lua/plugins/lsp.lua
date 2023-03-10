@@ -179,7 +179,7 @@ return {
       if vim.tbl_islist(result) then
         location = result[1]
       end
-      util.jump_to_location(location, vim.lsp.get_client_by_id(context.client_id).offset_encoding, true)
+      util.jump_to_location(location, vim.lsp.get_client_by_id(context.client_id).offset_encoding, false)
 
       vim.cmd('normal zz')
     end
@@ -351,8 +351,14 @@ return {
     local nls_u = require('null-ls.utils')
     null_ls.setup({
       sources = {
+        -- git clone https://github.com/apazzolini/prettier_d_slim.git ~/GitHub/prettier_d_slim
+        -- cd ~/GitHub/prettier_d_slim
+        -- npm i
+        -- ./script/build
+        -- npm i -g ~/GitHub/prettier_d_slim
         null_ls.builtins.formatting.prettier_d_slim,
-        null_ls.builtins.formatting.goimports,
+
+        -- npm i -g eslint_d
         null_ls.builtins.diagnostics.eslint_d.with({
           diagnostics_format = '#{c}: #{m}',
           root_dir = nls_u.root_pattern('.git'),
@@ -368,6 +374,9 @@ return {
             'astro',
           },
         }),
+
+        -- Install with Mason
+        null_ls.builtins.formatting.goimports,
       },
       on_attach = function(client, bufnr)
         format_on_save(bufnr)

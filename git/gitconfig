@@ -59,6 +59,7 @@
     rod = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git pull && git reset --hard origin/develop"
     work = "!git fetch && git checkout origin/develop --ignore-other-worktrees --no-track -b \"$@\""
     wip = "!git add --all && git commit -m 'wip'"
+    rdp = "!git range-diff origin/develop origin/$(git branch --show-current) HEAD"
 
     # Fancy logging.
     #   h = head
