@@ -33,6 +33,7 @@ return {
         'graphql',
         'help',
         'html',
+        'http',
         'javascript',
         'jsdoc',
         'json',
