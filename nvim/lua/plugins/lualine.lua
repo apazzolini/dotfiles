@@ -107,7 +107,7 @@ return {
       tabline = {},
       extensions = {
         'quickfix',
-        'nvim-tree',
+        'neo-tree',
         {
           filetypes = { 'fugitive' },
           sections = {

@@ -8,7 +8,7 @@ return {
   'apazzolini/vim-floaterm',
   config = function()
     vim.keymap.set('n', '<c-g>', ':FloatermNew --autoclose=2  lazygit -ucd ~/.config/lazygit<CR>')
-    vim.keymap.set('n', '<c-t>', ':FloatermNew --autoclose=2  /usr/local/bin/doppler tui --debug-tui<CR>')
+    vim.keymap.set('n', '<leader><c-g>', ':FloatermNew --autoclose=2  /usr/local/bin/doppler tui --debug-tui<CR>')
     vim.keymap.set('n', '<leader>gd', ':FloatermNew --autoclose=2  make && cd ~/Work/andre-test && ~/Work/cli/doppler tui --debug-tui<CR>')
     vim.keymap.set('n', '<c-q>', ':FloatermToggle<CR>')
 

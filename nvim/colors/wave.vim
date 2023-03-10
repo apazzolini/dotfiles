@@ -287,7 +287,5 @@ else
   call s:HL('HopNextKey2', s:wBold, s:wMagenta)
 endif
 
-" Nvim-Tree
-call s:HL('NvimTreeExecFile', s:wWhite)
-call s:HL('NvimTreeImageFile', s:wWhite)
-call s:HL('NvimTreeRootFolder', s:wMagenta)
+" Neo-Tree
+call s:HL('NeoTreeRootName', s:wMagenta)
