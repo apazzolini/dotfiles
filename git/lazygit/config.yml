@@ -24,8 +24,7 @@ git:
     pager: delta --paging=never --24-bit-color=never
 
 os:
-  editCommand: 'floaterm'
-  editCommandTemplate: '{{editor}} {{filename}}'
+  editCommandTemplate: 'floaterm {{filename}} 2>/dev/null || nvim {{filename}}'
 
 keybinding:
   commits:
