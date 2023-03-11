@@ -23,12 +23,3 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, { command = 'FloatermUpdate' })
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, { command = [[%s/\s\+$//e]] })
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, { command = [[%s#\($\n\s*\)\+\%$##e]] })
-
-if vim.fn.executable('stylua') == 1 then
-  vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-    pattern = '*.lua',
-    callback = function()
-      require('andre.stylua').format()
-    end,
-  })
-end

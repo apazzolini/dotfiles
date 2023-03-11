@@ -288,4 +288,4 @@ else
 endif
 
 " Neo-Tree
-call s:HL('NeoTreeRootName', s:wMagenta)
+call s:HL('NeoTreeRootName', s:wNoFg, s:wMagenta)

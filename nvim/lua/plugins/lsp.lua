@@ -6,9 +6,12 @@ return {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'windwp/nvim-autopairs',
-    { 'L3MON4D3/LuaSnip', dependencies = {
-      'saadparwaiz1/cmp_luasnip',
-    } },
+    {
+      'L3MON4D3/LuaSnip',
+      dependencies = {
+        'saadparwaiz1/cmp_luasnip',
+      },
+    },
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
     'jose-elias-alvarez/null-ls.nvim',
@@ -128,11 +131,14 @@ return {
         })
       end)
 
-      local diagnosticOpts = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
-      vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. diagnosticOpts .. ')<cr>zz', opts)
-      vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. diagnosticOpts .. ')<cr>zz', opts)
+      local errorDiagnostics = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
+      vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)
+      vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. errorDiagnostics .. ')<cr>zz', opts)
 
-      vim.keymap.set('n', '<leader>lq', '<cmd>lua vim.diagnostic.setqflist(' .. diagnosticOpts .. ')<cr>zz', opts)
+      vim.keymap.set('n', '<leader>M', '<cmd>lua vim.diagnostic.goto_prev()<cr>zz', opts)
+      vim.keymap.set('n', '<leader>>', '<cmd>lua vim.diagnostic.goto_next()<cr>zz', opts)
+
+      vim.keymap.set('n', '<leader>lq', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
       vim.keymap.set('n', '<leader>lt', '<cmd>cexpr system("tsc -p frontend -p server --pretty false") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
@@ -188,6 +194,7 @@ return {
 
     require('mason').setup({})
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local capabilitiesWithoutSnippets = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = false })
     local lspconfig = require('lspconfig')
 
     -- TSSERVER ----------------------------------------------------------------
@@ -249,39 +256,27 @@ return {
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
         format_on_save(bufnr)
-        client.server_capabilities.snippetSupport = false
         disable_semantic_tokens(client)
       end,
     })
 
-    -- DENO --------------------------------------------------------------------
+    -- RUST --------------------------------------------------------------------
 
-    -- lspconfig.denols.setup({
-    --   capabilities = capabilities,
-    --   single_file_support = false,
-    --   root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
-
-    --   on_attach = function(client, bufnr)
-    --     set_lsp_keymaps(client, bufnr)
-    --     format_on_save(bufnr)
-    --   end,
-    -- })
+    lspconfig.rust_analyzer.setup({
+      capabilities = capabilities,
+      on_attach = function(client, bufnr)
+        set_lsp_keymaps(client, bufnr)
+        format_on_save(bufnr)
+        disable_semantic_tokens(client)
+      end,
+    })
 
     -- LUA_LS ------------------------------------------------------------------
 
     lspconfig.lua_ls.setup({
       settings = {
         Lua = {
-          -- runtime = {
-          --   path = { 'lua/?.lua', 'init.lua' },
-          --   pathStrict = true,
-          -- },
-          -- diagnostics = {
-          --   globals = { 'vim' },
-          --   -- disable = { 'lowercase-global' },
-          -- },
           workspace = {
-            -- library = vim.api.nvim_get_runtime_file('', true),
             checkThirdParty = false,
           },
           telemetry = {
@@ -293,6 +288,9 @@ return {
         disable_semantic_tokens(client)
         set_lsp_keymaps(client, bufnr)
       end,
+      handlers = {
+        ['textDocument/definition'] = first_match,
+      },
     })
 
     -- TAILWIND ----------------------------------------------------------------
@@ -335,11 +333,18 @@ return {
     -- GO ----------------------------------------------------------------------
 
     lspconfig.gopls.setup({
-      capabilities = capabilities,
+      capabilities = capabilitiesWithoutSnippets,
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
         format_on_save(bufnr)
-        client.server_capabilities.snippetSupport = false
+        disable_semantic_tokens(client)
+      end,
+    })
+
+    lspconfig.vimls.setup({
+      capabilities = capabilities,
+      on_attach = function(client, bufnr)
+        set_lsp_keymaps(client, bufnr)
         disable_semantic_tokens(client)
       end,
     })
@@ -377,6 +382,7 @@ return {
 
         -- Install with Mason
         null_ls.builtins.formatting.goimports,
+        null_ls.builtins.formatting.stylua,
       },
       on_attach = function(client, bufnr)
         format_on_save(bufnr)
@@ -389,5 +395,18 @@ return {
         }),
       },
     })
+
+    -- DENO --------------------------------------------------------------------
+
+    -- lspconfig.denols.setup({
+    --   capabilities = capabilities,
+    --   single_file_support = false,
+    --   root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
+
+    --   on_attach = function(client, bufnr)
+    --     set_lsp_keymaps(client, bufnr)
+    --     format_on_save(bufnr)
+    --   end,
+    -- })
   end,
 }
