@@ -12,6 +12,7 @@ path=(
   $HOME/.cargo/bin
   $HOME/.go/bin
   /opt/homebrew/bin
+  /opt/homebrew/sbin
   /usr/local/opt
   /usr/local/go/bin
   ./node_modules/.bin

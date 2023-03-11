@@ -1,0 +1,4 @@
+pg () {
+  ps -Aef | head -1
+  ps -Aef | rg -i --color=always "$@" | rg -v "rg -i"
+}
