@@ -11,6 +11,7 @@ path=(
   $HOME/.dotfiles/bin
   $HOME/.cargo/bin
   $HOME/.go/bin
+  $HOME/.local/bin
   /opt/homebrew/bin
   /opt/homebrew/sbin
   /usr/local/opt
