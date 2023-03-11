@@ -4,6 +4,8 @@ font:
   normal:
     family: "OperatorMono Nerd Font"
   size: 9.0
+window:
+  decorations: none
 shell:
   program: C:\Users\andre\AppData\Local\Microsoft\WindowsApps\ubuntu.exe
 key_bindings:
