@@ -61,7 +61,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  decorations: none
+  decorations: buttonless
 
   # Startup Mode (changes require restart)
   #
@@ -268,11 +268,15 @@ colors:
     background: '#F5E0DC' # rosewater
 
   primary:
-    background: '#1E1F2B' # base
-    foreground: '#CDD6F4' # text
     # These were mine pre-catpuccin
     # background: '#1e2027'
     # foreground: '#C4CAD5'
+    # Tokyo Night
+    background: '#1a1b26'
+    # foreground: "#a9b1d6"
+    # Catpuccin
+    # background: '#1E1F2B' # base
+    foreground: '#CDD6F4' # text
 
   # Normal colors
   normal:
@@ -280,9 +284,9 @@ colors:
     red:     '#F38BA8'
     green:   '#b1cfa9'
     yellow:  '#F9E2AF'
-    blue:    '#9494bc'
+    blue:    '#9098CA'
     magenta: '#be95ff'
-    cyan:    '#73BECC'
+    cyan:    '#7AC5CC'
     white:   '#C4CAD5'
 
   # Bright colors
@@ -291,9 +295,9 @@ colors:
     red:     '#EE99A0'
     green:   '#b1cfa9' # same as non-bright
     yellow:  '#e8dcb0' # same as non-bright
-    blue:    '#9494bc' # same as non-bright
+    blue:    '#9098CA' # same as non-bright
     magenta: '#ff007c'
-    cyan:    '#94E2D5'
+    cyan:    '#7AC5CC' # same as non-bright
     white:   '#A5ADCB'
 
   # Indexed Colors

@@ -1,6 +1,6 @@
 return {
   cond = vim.g.isNotes == false,
-  'apazzolini/nvim-cmp',
+  'hrsh7th/nvim-cmp',
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
@@ -277,6 +277,7 @@ return {
       settings = {
         Lua = {
           workspace = {
+            library = { '/Users/andre/GitHub/_forks/hammerspoon/build/stubs' },
             checkThirdParty = false,
           },
           telemetry = {
@@ -308,26 +309,16 @@ return {
       },
       handlers = {
         ['textDocument/hover'] = function(_, result, ctx, config)
-          config = config or {}
-          config.focus_id = ctx.method
-          if not (result and result.contents) then
-            -- return { 'No information available' }
-            return
+          local bufnr, winnr = vim.lsp.handlers.hover(_, result, ctx, config)
+          if bufnr ~= nil then
+            require('colorizer').attach_to_buffer(bufnr, { mode = 'background', css = true })
           end
-          local markdown_lines = util.convert_input_to_markdown_lines(result.contents, {})
-          markdown_lines = util.trim_empty_lines(markdown_lines)
-          if vim.tbl_isempty(markdown_lines) then
-            -- return { 'No information available' }
-            return
-          end
-
-          -- return util.open_floating_preview(markdown_lines, 'markdown', config)
-          local bufnr, winnr = util.open_floating_preview(markdown_lines, 'markdown', config)
-          require('colorizer').attach_to_buffer(bufnr)
-          -- vim.api.nvim_buf_set_option(bufnr, 'filetype', '...')
           return bufnr, winnr
         end,
       },
+      on_attach = function(client, bufnr)
+        set_lsp_keymaps(client, bufnr)
+      end,
     })
 
     -- GO ----------------------------------------------------------------------

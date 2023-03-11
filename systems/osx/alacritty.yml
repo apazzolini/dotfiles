@@ -13,8 +13,21 @@ font:
   italic:
     style: Extra Light Italic
 
+colors:
+  primary:
+    # These were mine pre-catpuccin
+    # background: '#1e2027'
+    # foreground: '#C4CAD5'
+    # Tokyo Night
+    background: '#1a1b26'
+    # foreground: "#a9b1d6"
+    # Catpuccin
+    # background: '#1E1F2B' # base
+    foreground: '#CDD6F4' # text
+
 window:
   padding:
+    x: 3
     y: 2
 key_bindings:
   - { key: Key0     , mods: Command|Shift , action: ResetFontSize }
@@ -32,24 +45,14 @@ key_bindings:
   - { key: RBracket , mods: Command|Shift , chars: "\x1b\x5d" }
   - { key: LBracket , mods: Command       , chars: "\x10\x50" }
   - { key: RBracket , mods: Command       , chars: "\x10\x4e" }
-  # - { key: Space    , mods: Control       , chars: "\x00" }
   - { key: Slash    , mods: Command       , chars: ",ct" }
   - { key: J        , mods: Command       , chars: "\x10\x5b" }
   - { key: W        , mods: Command       , chars: "\x10\x78" }
   - { key: K        , mods: Command       , chars: "\x10\x0C" }
-
   - { key: Return   , mods: Control       , chars: "\x1b[13;5u" }
   - { key: Return   , mods: Shift         , chars: "\x1b[13;2u" }
   - { key: Tab      , mods: Control       , chars: "\x1b[9;5u" }
   - { key: Tab      , mods: Control|Shift , chars: "\x1b[9;6u" }
-  # - { key: H, mods: Control|Shift, chars: "\x1b[72;6u" }
-  # - { key: J, mods: Control|Shift, chars: "\x1b[74;6u" }
-  # - { key: K, mods: Control|Shift, chars: "\x1b[75;6u" }
-  # - { key: L, mods: Control|Shift, chars: "\x1b[76;6u" }
-  # - { key: I, mods: Control, chars: "\x1b[105;5u" }
-  # - { key: Period, mods: Control, chars: "\x1b[46;5u" }
-  # - { key: Comma, mods: Control, chars: "\x1b[44;5u" }
-  # - { key: Semicolon, mods: Control, chars: "\x1b[59;5u" }
 
   - { key: Y        , mods: Command       , chars: ",Hy" }
   - { key: U        , mods: Command       , chars: ",Hu" }
