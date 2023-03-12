@@ -6,6 +6,9 @@
 
 GroupAdd, games, ahk_exe TslGame.exe
 GroupAdd, games, ahk_exe ProjectZomboid64.exe
+GroupAdd, games, ahk_exe Raft.exe
+GroupAdd, games, ahk_exe DungeonCrawler.exe
+GroupAdd, games, ahk_exe HITMAN3.exe
 
 global LDim := [-1442, -610, 1472, 2588]
 global RDim := [0, 0, 2588, 1417]
@@ -49,6 +52,7 @@ $!{::Send, !+[
 $!}::Send, !+]
 $!w::Send !w
 $!a::Send !a
+$!f::Send !f
 $!y::Send !y
 $!p::Send !p
 
@@ -120,10 +124,10 @@ Activate(name, executable)
 
 #IfWinNotActive, ahk_group games ; ------------------------------------------
 
-$!z::
+; $!z::
 $^a::Activate("Alacritty", "C:\Apps\Alacritty\alacritty.exe")
-$#i::Activate("Nvy", "C:\Apps\NeoVim\bin\NvyNotes.lnk")
+$#i::Activate("Nvy", "C:\Apps\Nvy\notes.lnk")
 
 #IfWinNotActive
 
-#Include L:\home\andre\.dotfiles\systems\windows\winmgt.ahk
+#Include D:\Other\winmgt.ahk
