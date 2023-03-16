@@ -122,14 +122,14 @@ return {
       vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
       vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
-      vim.keymap.set('n', '<leader>tb', function()
-        vim.lsp.buf.code_action({
-          apply = true,
-          filter = function(ca)
-            return ca.title:match('Add braces to arrow function') ~= nil or ca.title:match('Remove braces from arrow function') ~= nil
-          end,
-        })
-      end)
+      -- vim.keymap.set('n', '<leader>tb', function()
+      --   vim.lsp.buf.code_action({
+      --     apply = true,
+      --     filter = function(ca)
+      --       return ca.title:match('Add braces to arrow function') ~= nil or ca.title:match('Remove braces from arrow function') ~= nil
+      --     end,
+      --   })
+      -- end)
 
       local errorDiagnostics = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
       vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)
