@@ -46,3 +46,7 @@ customCommands:
     prompts:
       - type: 'input'
         title: 'New Branch Name:'
+  - key: "M"
+    description: "Copy markdown diff"
+    command: 'printf "\`\`\`diff\n$(git diff --staged)\n\n\`\`\`" | pbcopy'
+    context: "files"
