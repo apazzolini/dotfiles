@@ -70,3 +70,6 @@ key_bindings:
 
   # See: https://github.com/alacritty/alacritty/issues/1359#issuecomment-430265381
   - { key: Q        , mods: Control       , chars: "\x11" }
+
+  # Needed on work laptop only? Not sure why
+  - { key: Space    , mods: Control       , chars: "\x00" }

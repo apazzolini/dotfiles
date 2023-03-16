@@ -1,5 +1,7 @@
 return {
   'rest-nvim/rest.nvim',
+  lazy = true,
+  ft = 'http',
   config = function()
     require('rest-nvim').setup({
       result_split_horizontal = false,

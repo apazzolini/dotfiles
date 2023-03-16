@@ -6,6 +6,14 @@ return {
         ['c'] = {
           add = function()
             return {
+              { '{cn("' },
+              { '")}' },
+            }
+          end,
+        },
+        ['e'] = {
+          add = function()
+            return {
               { 'try {' },
               { '} catch (e) {}' },
             }

@@ -259,9 +259,10 @@ hi! link VimwikiCode Normal
 call s:HL('FloatermBorder', s:wFgTermBg)
 
 " LSP
-call s:HL('LspDiagnosticsDefaultError', s:wRed)
+" call s:HL('LspDiagnosticsDefaultError', s:wRed)
 call s:HL('DiagnosticError', s:wRed)
 call s:HL('DiagnosticWarn', s:wYellow)
+call s:HL('DiagnosticHint', s:wYellow)
 hi! link DiagnosticVirtualTextWarn  DiagnosticWarn
 
 " Telescope
