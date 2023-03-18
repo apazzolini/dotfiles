@@ -290,3 +290,7 @@ endif
 
 " Neo-Tree
 call s:HL('NeoTreeRootName', s:wNoFg, s:wMagenta)
+call s:HL('NeoTreeFloatBorder', s:wWhite)
+
+" Dadbod
+call s:HL('NotificationInfo', s:wBg1, s:wNoFg)

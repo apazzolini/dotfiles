@@ -8,6 +8,7 @@ return {
       },
       user_default_options = {
         mode = 'background',
+        rgb = true,
         rgb_fn = true,
         names = false,
       },

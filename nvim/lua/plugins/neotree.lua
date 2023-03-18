@@ -1,3 +1,5 @@
+local yank_path = function(state) end
+
 return {
   'nvim-neo-tree/neo-tree.nvim',
   branch = 'v2.x',
@@ -31,6 +33,9 @@ return {
         },
       },
       filesystem = {
+        cwd_target = {
+          current = 'none',
+        },
         filtered_items = {
           hide_by_name = {
             'node_modules',
@@ -40,6 +45,27 @@ return {
           },
           never_show = {
             '.DS_Store',
+          },
+        },
+        window = {
+          mappings = {
+            ['YF'] = function(state)
+              local node = state.tree:get_node()
+              vim.fn.setreg('*', node.name)
+            end,
+            ['YP'] = function(state)
+              local node = state.tree:get_node()
+              vim.fn.setreg('*', node.path)
+            end,
+            ['YR'] = function(state)
+              local node = state.tree:get_node()
+              local cwd = vim.fn.getcwd()
+              if node.path:find('^' .. cwd) ~= nil then
+                vim.fn.setreg('*', string.sub(node.path, #cwd + 2))
+              else
+                print('File not a child of cwd')
+              end
+            end,
           },
         },
       },

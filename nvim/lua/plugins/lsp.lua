@@ -82,9 +82,13 @@ return {
       },
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'buffer', keyword_length = 5 },
+        { name = 'buffer',  keyword_length = 5 },
         { name = 'path' },
       },
+      -- window = {
+      --   completion = cmp.config.window.bordered(),
+      --   documentation = cmp.config.window.bordered(),
+      -- },
       -- experimental = {
       -- native_menu = false,
       -- ghost_text = false,
@@ -107,10 +111,14 @@ return {
     local log = require('vim.lsp.log')
     local util = require('vim.lsp.util')
 
-    vim.fn.sign_define('LspDiagnosticsSignError', { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignHint', { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignError',
+    { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignWarning',
+    { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignInformation',
+    { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignHint',
+    { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
 
     local function set_lsp_keymaps(client, bufnr)
       local opts = { noremap = true, silent = true }
@@ -135,11 +143,14 @@ return {
       vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)
       vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. errorDiagnostics .. ')<cr>zz', opts)
 
+      vim.keymap.set('n', 'gH', '<cmd>lua vim.diagnostic.open_float()<cr>')
+
       vim.keymap.set('n', '<leader>M', '<cmd>lua vim.diagnostic.goto_prev()<cr>zz', opts)
       vim.keymap.set('n', '<leader>>', '<cmd>lua vim.diagnostic.goto_next()<cr>zz', opts)
 
       vim.keymap.set('n', '<leader>lq', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
-      vim.keymap.set('n', '<leader>lt', '<cmd>cexpr system("tsc -p frontend -p server --pretty false") <bar> copen<cr>', opts)
+      vim.keymap.set('n', '<leader>lt', '<cmd>cexpr system("tsc -p frontend -p server --pretty false") <bar> copen<cr>',
+      opts)
       vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
 
@@ -161,15 +172,15 @@ return {
       end
     end
 
-    local function handler_publishDiagnostics(level)
+    local function handler_publishDiagnostics(virtual_text_level, signs_error)
       return vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = false,
         virtual_text = {
-          severity_limit = level,
+          severity_limit = virtual_text_level,
         },
         update_in_insert = false,
         signs = {
-          severity_limit = level,
+          severity_limit = signs_error,
         },
       })
     end
@@ -203,8 +214,8 @@ return {
       capabilities = capabilities,
       root_dir = function(fname)
         return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
-          or lspconfig.util.root_pattern('tsconfig.json')(fname)
-          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+            or lspconfig.util.root_pattern('tsconfig.json')(fname)
+            or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
       end,
       single_file_support = false,
       init_options = {
@@ -225,7 +236,7 @@ return {
         debounce_text_changes = 200,
       },
       handlers = {
-        ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error'),
+        ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error', 'Info'),
         ['textDocument/definition'] = first_match,
         ['textDocument/typeDefinition'] = first_match,
       },
@@ -296,6 +307,14 @@ return {
 
     -- TAILWIND ----------------------------------------------------------------
 
+    -- git clone https://github.com/apazzolini/tailwindcss-intellisense.git
+    -- cd tailwindcss-intellisense
+    -- git co andre/show-equivs
+    -- npm i
+    -- npm run bootstrap
+    -- cd packages/tailwindcss-language-server
+    -- npm run build
+    -- npm i -g $(pwd)
     lspconfig.tailwindcss.setup({
       settings = {
         tailwindCSS = {
@@ -351,7 +370,7 @@ return {
         -- cd ~/GitHub/prettier_d_slim
         -- npm i
         -- ./script/build
-        -- npm i -g ~/GitHub/prettier_d_slim
+        -- npm i -g $(pwd)
         null_ls.builtins.formatting.prettier_d_slim,
 
         -- npm i -g eslint_d
