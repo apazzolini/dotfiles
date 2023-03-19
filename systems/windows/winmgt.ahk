@@ -25,9 +25,20 @@ GetDimensions() {
 ; --------------------------------------------------------------------------------------------------
 
 !+m::
+  WinGetActiveStats, title, curW, curH, curX, curY
   padding := GetWinPadding()
   d := GetDimensions()
-  WinMove A, , d[1] + padding[1], d[2] + padding[2], d[3] - 14 + padding[3], d[4] + padding[4]
+  targetWidth := d[3] - 14 + padding[3]
+
+  isPinned := curX == d[1] + padding[1] && curW == targetWidth
+
+  if (isPinned) {
+    offsetWidth :=  d[3] / 8
+    offsetHeight :=  d[4] / 8
+    WinMove A, , d[1] + padding[1] + offsetWidth, d[2] + padding[2] + offsetHeight, d[3] + padding[3] - (offsetWidth * 2), d[4] + padding[4] - (offsetHeight * 2)
+  } else {
+    WinMove A, , d[1] + padding[1], d[2] + padding[2], d[3] - 14 + padding[3], d[4] + padding[4]
+  }
 return
 
 !+h::

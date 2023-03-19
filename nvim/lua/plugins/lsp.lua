@@ -82,7 +82,7 @@ return {
       },
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'buffer',  keyword_length = 5 },
+        { name = 'buffer', keyword_length = 5 },
         { name = 'path' },
       },
       -- window = {
@@ -111,14 +111,10 @@ return {
     local log = require('vim.lsp.log')
     local util = require('vim.lsp.util')
 
-    vim.fn.sign_define('LspDiagnosticsSignError',
-    { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignWarning',
-    { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignInformation',
-    { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignHint',
-    { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignError', { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
+    vim.fn.sign_define('LspDiagnosticsSignHint', { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
 
     local function set_lsp_keymaps(client, bufnr)
       local opts = { noremap = true, silent = true }
@@ -149,8 +145,7 @@ return {
       vim.keymap.set('n', '<leader>>', '<cmd>lua vim.diagnostic.goto_next()<cr>zz', opts)
 
       vim.keymap.set('n', '<leader>lq', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
-      vim.keymap.set('n', '<leader>lt', '<cmd>cexpr system("tsc -p frontend -p server --pretty false") <bar> copen<cr>',
-      opts)
+      vim.keymap.set('n', '<leader>lt', '<cmd>cexpr system("tsc -p frontend -p server --pretty false") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
 
@@ -214,8 +209,8 @@ return {
       capabilities = capabilities,
       root_dir = function(fname)
         return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
-            or lspconfig.util.root_pattern('tsconfig.json')(fname)
-            or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+          or lspconfig.util.root_pattern('tsconfig.json')(fname)
+          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
       end,
       single_file_support = false,
       init_options = {
@@ -280,6 +275,7 @@ return {
         format_on_save(bufnr)
         disable_semantic_tokens(client)
       end,
+      cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
     })
 
     -- LUA_LS ------------------------------------------------------------------

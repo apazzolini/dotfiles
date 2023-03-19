@@ -21,6 +21,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 4
 vim.opt.colorcolumn = ''
+vim.opt.cursorline = true
 
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 0
