@@ -281,32 +281,27 @@ colors:
   # Normal colors
   normal:
     black:   '#1e2027'
-    red:     '#F38BA8'
+    red:     '#f38ba8'
     green:   '#b1cfa9'
-    yellow:  '#F9E2AF'
-    blue:    '#9098CA'
+    yellow:  '#f9e2af'
+    blue:    '#8e96d3'
     magenta: '#be95ff'
-    cyan:    '#7AC5CC'
-    white:   '#C4CAD5'
+    cyan:    '#7abbcc'
+    white:   '#c4cad5'
 
   # Bright colors
   bright:
-    black:   '#5B6078'
-    red:     '#EE99A0'
+    black:   '#5b6078'
+    red:     '#ee99a0'
     green:   '#b1cfa9' # same as non-bright
-    yellow:  '#e8dcb0' # same as non-bright
-    blue:    '#9098CA' # same as non-bright
+    yellow:  '#f9e2af' # same as non-bright
+    blue:    '#8e96d3' # same as non-bright
     magenta: '#ff007c'
-    cyan:    '#7AC5CC' # same as non-bright
-    white:   '#A5ADCB'
+    cyan:    '#7abbcc' # same as non-bright
+    white:   '#a5adcb'
 
   # Indexed Colors
   indexed_colors:
-    # Not sure how these commented out ones are used
-    # - { index: 16,  color: "#FAB387" }
-    # - { index: 17,  color: "#F5E0DC" }
-    # - { index: 237, color: '#343d42' }
-    # - { index: 238, color: '#464e53' }
     - { index: 232, color: '#1E1F2B' }
     - { index: 244, color: '#262833' }
     - { index: 245, color: '#3d4348' }
@@ -314,6 +309,11 @@ colors:
     - { index: 247, color: '#adb3ba' }
     - { index: 248, color: '#c7ccd1' }
     - { index: 249, color: '#dfe2e5' }
+    # Not sure how these commented out ones are used
+    # - { index: 16,  color: "#FAB387" }
+    # - { index: 17,  color: "#F5E0DC" }
+    # - { index: 237, color: '#343d42' }
+    # - { index: 238, color: '#464e53' }
 
   # Normal colors (catpuccin)
   # normal:
@@ -325,16 +325,9 @@ colors:
   #   magenta: '#F5C2E7' # pink
   #   cyan:    '#94E2D5' # teal
   #   white:   '#BAC2DE' # subtext1
-
   # Bright colors (catpuccin)
   # bright:
   #   black:   '#585B70' # surface2
-  #   red:     '#F38BA8' # red
-  #   green:   '#A6E3A1' # green
-  #   yellow:  '#F9E2AF' # yellow
-  #   blue:    '#89B4FA' # blue
-  #   magenta: '#F5C2E7' # pink
-  #   cyan:    '#94E2D5' # teal
   #   white:   '#A6ADC8' # subtext0
 
   # Dim colors

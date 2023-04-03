@@ -56,7 +56,8 @@
     pf = push --force-with-lease
     ri = rebase --interactive
     wt = worktree
-    rod = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git pull && git reset --hard origin/develop"
+    rod = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git reset --hard origin/develop"
+    frod = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git fetch && git reset --hard origin/develop"
     work = "!git fetch && git checkout origin/develop --ignore-other-worktrees --no-track -b \"$@\""
     wip = "!git add --all && git commit -m 'wip'"
     rdp = "!git range-diff origin/develop origin/$(git branch --show-current) HEAD"

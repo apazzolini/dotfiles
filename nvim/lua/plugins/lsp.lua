@@ -81,14 +81,19 @@ return {
         }),
       },
       sources = {
-        { name = 'nvim_lsp' },
+        {
+          name = 'nvim_lsp',
+          entry_filter = function(entry)
+            return entry:get_filter_text():match('^SVG') == nil
+          end,
+        },
         { name = 'buffer', keyword_length = 5 },
         { name = 'path' },
       },
-      -- window = {
-      --   completion = cmp.config.window.bordered(),
-      --   documentation = cmp.config.window.bordered(),
-      -- },
+      window = {
+        -- completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
       -- experimental = {
       -- native_menu = false,
       -- ghost_text = false,
@@ -111,6 +116,22 @@ return {
     local log = require('vim.lsp.log')
     local util = require('vim.lsp.util')
 
+    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+      opts = opts or {}
+      opts.border = opts.border or 'rounded'
+      return orig_util_open_floating_preview(contents, syntax, opts, ...)
+    end
+
+    local function close_floating()
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local config = vim.api.nvim_win_get_config(win)
+        if config.relative ~= '' then
+          vim.api.nvim_win_close(win, false)
+        end
+      end
+    end
+
     vim.fn.sign_define('LspDiagnosticsSignError', { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
     vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
     vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
@@ -124,6 +145,7 @@ return {
       vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
       vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
       vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+      vim.keymap.set('n', 'gk', close_floating, opts)
       vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
       -- vim.keymap.set('n', '<leader>tb', function()

@@ -171,6 +171,8 @@ endif
 
 call s:HL('Pmenu', s:wBg1, s:wFg5)
 call s:HL('PmenuSel', s:wBgGreen, s:wBlack)
+call s:HL('NormalFloat', s:wNoBg)
+call s:HL('FloatBorder', s:wWhite)
 
 " Diff
 call s:HL('diffAdded', s:wGreen)
