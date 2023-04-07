@@ -27,7 +27,7 @@ augroup ActiveCursorLine
 augroup END
 
 if (has('win32'))
-  let wikipath = 'C:/Users/andre/iCloudDrive/Wiki'
+  let wikipath = 'D:/Wiki'
 else
   if (expand('$HOST') =~ 'andrem2')
     let wikipath = '/Users/andre/Work/notes'

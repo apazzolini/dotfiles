@@ -10,7 +10,7 @@ endif
 
 let s:colors_name = 'wave'
 
-let s:home = has('osx') ? '/Users/andre' : '/home/andre'
+let s:home = has('osx') ? '/Users/andre' : has('win32') ? 'L:/home/andre' : '/home/andre'
 
 if &background ==# 'dark'
   if empty($TMUX)

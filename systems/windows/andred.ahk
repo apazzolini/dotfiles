@@ -126,8 +126,8 @@ Activate(name, executable)
 #IfWinNotActive, ahk_group games ; ------------------------------------------
 
 ; $!z::
-$^a::Activate("Alacritty", "C:\Apps\Alacritty\alacritty.exe")
-$#i::Activate("Nvy", "C:\Apps\Nvy\notes.lnk")
+$^a::Activate("Alacritty", "D:\Apps\Alacritty\alacritty.exe")
+$#i::Activate("Nvy", "D:\Apps\Nvy\notes.lnk")
 
 #IfWinNotActive
 

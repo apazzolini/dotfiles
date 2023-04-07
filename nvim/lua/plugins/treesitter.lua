@@ -29,7 +29,7 @@ return {
         'eex',
         'go',
         'graphql',
-        'help',
+        -- 'help',
         'html',
         'http',
         'javascript',
