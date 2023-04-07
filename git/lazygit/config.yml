@@ -2,6 +2,7 @@ gui:
   sidePanelWidth: 0.22
   showFileTree: false
   showBottomLine: false
+  border: 'rounded'
   theme:
     lightTheme: false
     activeBorderColor:

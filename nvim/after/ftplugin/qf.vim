@@ -18,3 +18,4 @@ map <buffer> q :q<cr>
 map <buffer> dd :call RemoveQFItem()<cr>
 map <buffer> <s-j> j<cr><c-w><c-w>
 map <buffer> <s-k> k<cr><c-w><c-w>
+map <buffer> <cr> <cr>

@@ -230,7 +230,7 @@ call s:HL('String', s:wGreen)
 " Tree-sitter code types
 call s:HL('@reactHook', s:wCyan)
 call s:HL('@className', s:wRed)
-call s:HL('@jsxAttribute', s:wGreen)
+call s:HL('@jsxAttribute', s:wBlue)
 call s:HL('@function.call', s:wYellow)
 call s:HL('@method.call', s:wYellow)
 call s:HL('@namespace', s:wBlue)

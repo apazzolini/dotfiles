@@ -124,6 +124,7 @@ return {
     end
 
     local function close_floating()
+      vim.cmd('noh')
       for _, win in ipairs(vim.api.nvim_list_wins()) do
         local config = vim.api.nvim_win_get_config(win)
         if config.relative ~= '' then
@@ -145,7 +146,7 @@ return {
       vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
       vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
       vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-      vim.keymap.set('n', 'gk', close_floating, opts)
+      vim.keymap.set('n', '<cr>', close_floating, opts)
       vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
       -- vim.keymap.set('n', '<leader>tb', function()
@@ -156,6 +157,15 @@ return {
       --     end,
       --   })
       -- end)
+
+      vim.keymap.set('n', '<leader>ci', function()
+        vim.lsp.buf.code_action({
+          apply = true,
+          filter = function(ca)
+            return ca.title:match('^Add import from')
+          end,
+        })
+      end)
 
       local errorDiagnostics = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
       vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)

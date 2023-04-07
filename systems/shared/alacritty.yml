@@ -284,7 +284,7 @@ colors:
     red:     '#f38ba8'
     green:   '#b1cfa9'
     yellow:  '#f9e2af'
-    blue:    '#8e96d3'
+    blue:    '#9694D5'
     magenta: '#be95ff'
     cyan:    '#7abbcc'
     white:   '#c4cad5'
@@ -292,19 +292,19 @@ colors:
   # Bright colors
   bright:
     black:   '#5b6078'
-    red:     '#ee99a0'
-    green:   '#b1cfa9' # same as non-bright
-    yellow:  '#f9e2af' # same as non-bright
-    blue:    '#8e96d3' # same as non-bright
+    red:     '#FF5370'
+    green:   '#C2DD92'
+    yellow:  '#f9e2af'
+    blue:    '#B68EDB'
     magenta: '#ff007c'
-    cyan:    '#7abbcc' # same as non-bright
-    white:   '#a5adcb'
+    cyan:    '#87CFD1'
+    white:   '#A0A5C2'
 
   # Indexed Colors
   indexed_colors:
     - { index: 232, color: '#1E1F2B' }
-    - { index: 244, color: '#262833' }
-    - { index: 245, color: '#3d4348' }
+    - { index: 244, color: '#22242F' }
+    - { index: 245, color: '#31363D' }
     - { index: 246, color: '#747c84' }
     - { index: 247, color: '#adb3ba' }
     - { index: 248, color: '#c7ccd1' }
