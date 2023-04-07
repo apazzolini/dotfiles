@@ -32,9 +32,7 @@ source $ZSH/bin/z.sh
 source $ZSH/bin/borg.zsh
 
 # initialize autosuggetsions and bind accept to ctrl+space
-safesource /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-safesource /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-safesource /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
 safesource "/usr/local/opt/fzf/shell/key-bindings.zsh"
