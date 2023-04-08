@@ -6,6 +6,7 @@ export CLICOLOR=true
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000000
 export SAVEHIST=$HISTSIZE
+export BUN_INSTALL="$HOME/.bun"
 
 path=(
   $HOME/.dotfiles/bin
@@ -19,6 +20,7 @@ path=(
   ./node_modules/.bin
   ../node_modules/.bin
   /usr/local/opt/fzf/bin
+  $BUN_INSTALL/bin
   $path
 )
 
