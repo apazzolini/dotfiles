@@ -56,10 +56,10 @@ return {
         ['<Tab>'] = cmp.mapping(function(fallback)
           if luasnip.expandable() then
             luasnip.expand()
-          elseif cmp.visible() then
-            cmp.select_next_item({ cmp.SelectBehavior.Insert })
+            -- elseif cmp.visible() then
           elseif has_words_before() then
-            cmp.complete()
+            cmp.select_next_item({ cmp.SelectBehavior.Insert })
+            -- cmp.complete()
           else
             fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
           end
@@ -91,13 +91,8 @@ return {
         { name = 'path' },
       },
       window = {
-        -- completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
-      -- experimental = {
-      -- native_menu = false,
-      -- ghost_text = false,
-      -- },
     })
 
     require('nvim-autopairs').setup()
