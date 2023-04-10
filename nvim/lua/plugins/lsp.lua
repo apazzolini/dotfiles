@@ -157,7 +157,7 @@ return {
         vim.lsp.buf.code_action({
           apply = true,
           filter = function(ca)
-            return ca.title:match('^Add import from')
+            return ca.title:match('^Add import from') or ca.title:match('^Update import from')
           end,
         })
       end)
