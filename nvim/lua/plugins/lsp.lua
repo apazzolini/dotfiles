@@ -144,15 +144,6 @@ return {
       vim.keymap.set('n', '<cr>', close_floating, opts)
       vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
-      -- vim.keymap.set('n', '<leader>tb', function()
-      --   vim.lsp.buf.code_action({
-      --     apply = true,
-      --     filter = function(ca)
-      --       return ca.title:match('Add braces to arrow function') ~= nil or ca.title:match('Remove braces from arrow function') ~= nil
-      --     end,
-      --   })
-      -- end)
-
       vim.keymap.set('n', '<leader>ci', function()
         vim.lsp.buf.code_action({
           apply = true,
