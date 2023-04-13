@@ -227,8 +227,8 @@ return {
       capabilities = capabilities,
       root_dir = function(fname)
         return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
-          or lspconfig.util.root_pattern('tsconfig.json')(fname)
-          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+          or lspconfig.util.root_pattern('.git')(fname)
+          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', 'tsconfig.json')(fname)
       end,
       single_file_support = false,
       init_options = {
