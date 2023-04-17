@@ -42,6 +42,8 @@ return {
             'bower_components',
             'dist',
             '.git',
+            'tsconfig.json',
+            'bun.lockb',
           },
           never_show = {
             '.DS_Store',
