@@ -7,12 +7,12 @@ borg-env() {
 
 borg-check() {
   borg-env
-  borg check --prefix "$BACKUP_NAME" "$BORG_REPO"
+  borg check --glob-archives "$BACKUP_NAME"'*' "$BORG_REPO"
 }
 
 borg-list() {
   borg-env
-  borg list --prefix "$BACKUP_NAME" "$BORG_REPO"
+  borg list --glob-archives "$BACKUP_NAME"'*' "$BORG_REPO"
 }
 
 borg-backup() {
@@ -38,7 +38,7 @@ borg-prune() {
     --keep-weekly 52 \
     --keep-monthly -1 \
     --list \
-    --prefix "$BACKUP_NAME" \
+    --glob-archives "$BACKUP_NAME"'*' \
     --stats \
     "$BORG_REPO"
 }
