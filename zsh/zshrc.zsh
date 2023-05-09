@@ -40,9 +40,14 @@ safesource "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 safesource "/usr/share/doc/fzf/examples/key-bindings.zsh"
 
 if [ -z "$TMUX" ]; then
-  # if [[ "$(hostname)" =~ ^andrem2 ]]; then
-  #   return;
-  # fi;
+  if [[ "$(hostname)" =~ ^andrem2 ]]; then
+    sessions=("/Users/andre/.dotfiles" "/Users/andre/Work/server/review" "/Users/andre/Work/server/develop" "/Users/andre/Work/server/small")
+    for session in $sessions
+    do
+      selected_name=$(basename "$session" | tr . _)
+      tmux new-session -ds $selected_name -c $session
+    done
+  fi;
 
   if [[ "$__CFBundleIdentifier" =~ iterm2$ ]]; then
     return;

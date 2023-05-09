@@ -1,6 +1,5 @@
 import:
   - /Users/andre/.dotfiles/systems/shared/alacritty.yml
-alt_send_esc: true
 
 font:
   size: 12.5

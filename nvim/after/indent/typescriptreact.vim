@@ -1,1 +1,1 @@
-runtime! indent/typescript.vim
+" runtime! indent/typescript.vim
