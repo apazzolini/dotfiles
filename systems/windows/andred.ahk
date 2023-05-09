@@ -10,6 +10,7 @@ GroupAdd, games, ahk_exe Raft.exe
 GroupAdd, games, ahk_exe DungeonCrawler.exe
 GroupAdd, games, ahk_exe HITMAN3.exe
 GroupAdd, games, ahk_exe portal2.exe
+GroupAdd, games, ahk_exe csgo.exe
 
 global LDim := [-1442, -610, 1472, 2588]
 global RDim := [0, 0, 2588, 1417]
