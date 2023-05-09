@@ -185,6 +185,13 @@ return {
       end
     end
 
+    local function disable_formatting(client)
+      if client and client.server_capabilities then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      end
+    end
+
     local function handler_publishDiagnostics(virtual_text_level, signs_error)
       return vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = false,
@@ -240,8 +247,7 @@ return {
       },
       on_attach = function(client, bufnr)
         -- use prettier via efm on save instead of tsserver's builtin formatting
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
+        disable_formatting(client)
         disable_semantic_tokens(client)
         set_lsp_keymaps(client, bufnr)
       end,
@@ -267,8 +273,7 @@ return {
       },
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
+        disable_formatting(client)
         disable_semantic_tokens(client)
       end,
     })
@@ -311,6 +316,7 @@ return {
         },
       },
       on_attach = function(client, bufnr)
+        disable_formatting(client)
         disable_semantic_tokens(client)
         set_lsp_keymaps(client, bufnr)
       end,
@@ -364,6 +370,8 @@ return {
         disable_semantic_tokens(client)
       end,
     })
+
+    -- VIM ---------------------------------------------------------------------
 
     lspconfig.vimls.setup({
       capabilities = capabilities,
