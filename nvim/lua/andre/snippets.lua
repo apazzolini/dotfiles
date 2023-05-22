@@ -19,7 +19,7 @@ ls.add_snippets('javascript', {
   ls.parser.parse_snippet('uC', 'useCallback(() => {\n\t${0:}\n}, []);'),
   ls.parser.parse_snippet('uM', 'useMemo(() => {\n\t${0:}\n}, []);'),
   ls.parser.parse_snippet('prom', 'new Promise((resolve, reject) => {\n\t${0:}\n});'),
-  ls.parser.parse_snippet('delay', 'await new Promise((resolve, reject) => {\n\tsetTimeout(resolve, 2000)\n});'),
+  ls.parser.parse_snippet('delay', 'await new Promise((resolve, reject) => setTimeout(resolve, 2000));'),
   ls.parser.parse_snippet('cn', 'className="${0:}"'),
   ls.parser.parse_snippet('cnn', 'className={cn(``, {\n\t${0:}\n})}'),
   ls.parser.parse_snippet('ctx', 'const ctx = useHydrationContext();'),
