@@ -6,8 +6,26 @@ vim.keymap.set('n', 'H', '0')
 vim.keymap.set('n', 'L', '$')
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
-vim.keymap.set('n', '<c-d>', '20<c-d>zz')
-vim.keymap.set('n', '<c-u>', '20<c-u>zz')
+vim.keymap.set('n', ',<c-d>', '<c-d>')
+vim.keymap.set('n', ',<c-u>', '<c-u>')
+-- vim.keymap.set('n', '<c-d>', '20<c-d>zz')
+-- vim.keymap.set('n', '<c-u>', '20<c-u>zz')
+vim.keymap.set('n', '<c-d>', function()
+  vim.cmd([[
+    set lazyredraw
+    execute "normal " .  "20,\<c-d>zz"
+    set nolazyredraw
+    redraw
+  ]])
+end)
+vim.keymap.set('n', '<c-u>', function()
+  vim.cmd([[
+    set lazyredraw
+    execute "normal " .  "20,\<c-u>zz"
+    set nolazyredraw
+    redraw
+  ]])
+end)
 vim.keymap.set('n', '<c-e>', '3<c-e>')
 vim.keymap.set('n', '<c-y>', '3<c-y>')
 vim.keymap.set('n', '0', '0^')
