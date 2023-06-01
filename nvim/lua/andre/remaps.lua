@@ -82,10 +82,10 @@ vim.keymap.set('n', 'c<C-l>', ':rightb vnew<cr>')
 vim.keymap.set('n', '<a-[>', 'gT')
 vim.keymap.set('n', '<a-]>', 'gt')
 -- These get overridden by tmux-navigator when in tmux
-vim.keymap.set('n', '<c-h>', '<c-w>')
-vim.keymap.set('n', '<c-j>', '<c-w>')
-vim.keymap.set('n', '<c-k>', '<c-w>')
-vim.keymap.set('n', '<c-l>', '<c-w>')
+vim.keymap.set('n', '<c-h>', '<c-w><c-h>')
+vim.keymap.set('n', '<c-j>', '<c-w><c-j>')
+vim.keymap.set('n', '<c-k>', '<c-w><c-k>')
+vim.keymap.set('n', '<c-l>', '<c-w><c-l>')
 
 -- Window zooming
 vim.keymap.set('n', '<leader>we', ':set winheight=999<cr>')

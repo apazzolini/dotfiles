@@ -10,6 +10,9 @@ return {
   'nikvdp/ejs-syntax',
   'b0o/schemastore.nvim',
 
+  'rktjmp/lush.nvim',
+  'apazzolini/lua-yaml_neovim',
+
   { 'vladdoster/remember.nvim', config = true, opts = {} },
 
   {

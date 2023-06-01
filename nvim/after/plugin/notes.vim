@@ -8,7 +8,7 @@ set winheight=10
 set winwidth=10
 set winminwidth=0
 set winwidth=84
-set laststatus=0
+" set laststatus=0
 set noruler
 set autoindent
 set smartindent

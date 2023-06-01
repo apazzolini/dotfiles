@@ -1,5 +1,4 @@
 return {
-  cond = vim.g.isNotes == false,
   'nvim-lualine/lualine.nvim',
   config = function()
     local colors = {
@@ -14,6 +13,14 @@ return {
       magenta = '#b088d7',
       bold_red = '#d19b9b',
     }
+
+    if vim.g.isNotes then
+      colors.fg = '#181816'
+      colors.fg2 = '#181816'
+      colors.bg0 = '#bfc0c0'
+      colors.bg1 = '#CBCDCC'
+      colors.blue = colors.bg0
+    end
 
     -- LuaFormatter on
     local b = { bg = colors.bg0, fg = colors.fg2, gui = 'bold' }
@@ -55,6 +62,42 @@ return {
       },
     }
 
+    local sections = {
+      lualine_a = { 'mode' },
+      lualine_b = {
+        {
+          'filename',
+          path = 1,
+        },
+      },
+      lualine_c = {
+        {
+          'diagnostics',
+          -- table of diagnostic sources, available sources:
+          -- nvim_lsp, coc, ale, vim_lsp
+          sources = { 'nvim_diagnostic' },
+          -- displays diagnostics from defined severity
+          sections = { 'error', 'warn', 'info' }, -- 'hint'
+          -- all colors are in format #rrggbb
+          color_error = colors.red, -- changes diagnostic's error foreground color
+          color_warn = nil, -- changes diagnostic's warn foreground color
+          color_info = nil, -- Changes diagnostic's info foreground color
+          color_hint = nil, -- Changes diagnostic's hint foreground color
+          symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' },
+        },
+      },
+      lualine_x = { 'filetype' },
+      lualine_y = { 'branch' },
+      lualine_z = { 'location' },
+    }
+
+    if vim.g.isNotes then
+      sections.lualine_a = {}
+      sections.lualine_c = {}
+      sections.lualine_x = {}
+      sections.lualine_y = {}
+    end
+
     require('lualine').setup({
       options = {
         icons_enabled = false,
@@ -63,34 +106,7 @@ return {
         section_separators = { left = '', right = '' },
         disabled_filetypes = {},
       },
-      sections = {
-        lualine_a = { 'mode' },
-        lualine_b = {
-          {
-            'filename',
-            path = 1,
-          },
-        },
-        lualine_c = {
-          {
-            'diagnostics',
-            -- table of diagnostic sources, available sources:
-            -- nvim_lsp, coc, ale, vim_lsp
-            sources = { 'nvim_diagnostic' },
-            -- displays diagnostics from defined severity
-            sections = { 'error', 'warn', 'info' }, -- 'hint'
-            -- all colors are in format #rrggbb
-            color_error = colors.red, -- changes diagnostic's error foreground color
-            color_warn = nil, -- changes diagnostic's warn foreground color
-            color_info = nil, -- Changes diagnostic's info foreground color
-            color_hint = nil, -- Changes diagnostic's hint foreground color
-            symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' },
-          },
-        },
-        lualine_x = { 'filetype' },
-        lualine_y = { 'branch' },
-        lualine_z = { 'location' },
-      },
+      sections = sections,
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
