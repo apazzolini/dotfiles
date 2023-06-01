@@ -286,7 +286,7 @@ colors:
     yellow:  '#f9e2af'
     blue:    '#9694D5'
     magenta: '#be95ff'
-    cyan:    '#e9b7dc'
+    cyan:    '#F9C3EB'
     white:   '#c4cad5'
 
   # Bright colors
@@ -302,7 +302,6 @@ colors:
 
   # Indexed Colors
   indexed_colors:
-    - { index: 232, color: '#1E1F2B' }
     - { index: 244, color: '#22242F' }
     - { index: 245, color: '#31363D' }
     - { index: 246, color: '#747c84' }
@@ -310,6 +309,7 @@ colors:
     - { index: 248, color: '#c7ccd1' }
     - { index: 249, color: '#dfe2e5' }
     # Not sure how these commented out ones are used
+    # - { index: 232, color: '#1E1F2B' }
     # - { index: 16,  color: "#FAB387" }
     # - { index: 17,  color: "#F5E0DC" }
     # - { index: 237, color: '#343d42' }
