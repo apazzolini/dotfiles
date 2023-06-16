@@ -76,6 +76,14 @@ return {
       autotag = {
         enable = true,
       },
+      -- incremental_selection = {
+      --   enable = true,
+      --   keymaps = {
+      --     init_selection = '<Tab>',
+      --     node_incremental = '<Tab>',
+      --     node_decremental = '<BS>',
+      --   },
+      -- },
     })
 
     require('treesitter-context').setup({
