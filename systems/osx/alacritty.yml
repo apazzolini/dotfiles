@@ -12,17 +12,17 @@ font:
   italic:
     style: Extra Light Italic
 
-colors:
-  primary:
-    # These were mine pre-catpuccin
-    # background: '#1e2027'
-    # foreground: '#C4CAD5'
-    # Tokyo Night
-    background: '#1a1b26'
-    # foreground: "#a9b1d6"
-    # Catpuccin
-    # background: '#1E1F2B' # base
-    foreground: '#CDD6F4' # text
+# colors:
+#   primary:
+#     # These were mine pre-catpuccin
+#     # background: '#1e2027'
+#     # foreground: '#C4CAD5'
+#     # Tokyo Night
+#     background: '#1a1b26'
+#     # foreground: "#a9b1d6"
+#     # Catpuccin
+#     # background: '#1E1F2B' # base
+#     foreground: '#CDD6F4' # text
 
 window:
   padding:

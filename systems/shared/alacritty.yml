@@ -272,10 +272,10 @@ colors:
     # background: '#1e2027'
     # foreground: '#C4CAD5'
     # Tokyo Night
-    background: '#1a1b26'
+    # background: '#1a1b26'
     # foreground: "#a9b1d6"
     # Catpuccin
-    # background: '#1E1F2B' # base
+    background: '#1E1E2E' # base
     foreground: '#CDD6F4' # text
 
   # Normal colors
@@ -283,10 +283,10 @@ colors:
     black:   '#1e2027'
     red:     '#f38ba8'
     green:   '#b1cfa9'
-    yellow:  '#f9e2af'
+    yellow:  '#f2cdcd'
     blue:    '#9694D5'
     magenta: '#be95ff'
-    cyan:    '#F9C3EB'
+    cyan:    '#DCB8E8'
     white:   '#c4cad5'
 
   # Bright colors
@@ -302,33 +302,13 @@ colors:
 
   # Indexed Colors
   indexed_colors:
-    - { index: 244, color: '#22242F' }
-    - { index: 245, color: '#31363D' }
-    - { index: 246, color: '#747c84' }
-    - { index: 247, color: '#adb3ba' }
-    - { index: 248, color: '#c7ccd1' }
-    - { index: 249, color: '#dfe2e5' }
-    # Not sure how these commented out ones are used
-    # - { index: 232, color: '#1E1F2B' }
-    # - { index: 16,  color: "#FAB387" }
-    # - { index: 17,  color: "#F5E0DC" }
-    # - { index: 237, color: '#343d42' }
-    # - { index: 238, color: '#464e53' }
+    - { index: 244, color: '#242534' }
+    - { index: 245, color: '#45475a' }
+    - { index: 246, color: '#6c7086' }
+    - { index: 247, color: '#7f849c' }
+    - { index: 248, color: '#9399b2' }
+    - { index: 249, color: '#a6adc8' }
 
-  # Normal colors (catpuccin)
-  # normal:
-  #   black:   '#45475A' # surface1
-  #   red:     '#F38BA8' # red
-  #   green:   '#A6E3A1' # green
-  #   yellow:  '#F9E2AF' # yellow
-  #   blue:    '#89B4FA' # blue
-  #   magenta: '#F5C2E7' # pink
-  #   cyan:    '#94E2D5' # teal
-  #   white:   '#BAC2DE' # subtext1
-  # Bright colors (catpuccin)
-  # bright:
-  #   black:   '#585B70' # surface2
-  #   white:   '#A6ADC8' # subtext0
 
   # Dim colors
   # If the dim colors are not set, they will be calculated automatically based
