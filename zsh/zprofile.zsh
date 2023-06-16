@@ -3,9 +3,6 @@ export ZSH=$HOME/.dotfiles
 export EDITOR='/usr/local/bin/nvim'
 export MANPAGER='nvim +Man!'
 export CLICOLOR=true
-export HISTFILE=~/.zsh_history
-export HISTSIZE=10000000
-export SAVEHIST=$HISTSIZE
 export BUN_INSTALL="$HOME/.bun"
 
 path=(

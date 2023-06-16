@@ -31,6 +31,18 @@ source $ZSH/zsh/completion.zsh
 source $ZSH/bin/z.sh
 source $ZSH/bin/borg.zsh
 
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000000
+export SAVEHIST=$HISTSIZE
+setopt HIST_VERIFY
+setopt SHARE_HISTORY # share history between sessions
+setopt EXTENDED_HISTORY # add timestamps to history
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+
 # initialize autosuggetsions and bind accept to ctrl+space
 source $ZSH/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
