@@ -30,6 +30,7 @@ source $ZSH/zsh/aliases.zsh
 source $ZSH/zsh/completion.zsh
 source $ZSH/bin/z.sh
 source $ZSH/bin/borg.zsh
+source $ZSH/bin/applypatch.zsh
 
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000000
