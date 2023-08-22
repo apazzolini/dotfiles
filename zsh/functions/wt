@@ -12,7 +12,7 @@ wt () {
     return;
   fi
 
-  cd /Users/andre/Work/server
+  pushd /Users/andre/Work/server
   git fetch
   git worktree add -f $1 origin/develop
   cd $1
@@ -23,5 +23,5 @@ wt () {
   doppler setup -p server -c dev_andre
   cd tokens-server
   doppler setup -p tokens-server -c dev_andre
-  cd ..
+  popd
 }
