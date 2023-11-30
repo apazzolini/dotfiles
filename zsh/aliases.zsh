@@ -74,6 +74,7 @@ alias houston='HOST="https://houston.doppler.team" /Users/andre/Work/houston/scr
 alias houston-staging='HOST="https://houston.staging.doppler.team" /Users/andre/Work/houston/scripts/houston.sh'
 alias dop='doppler'
 alias ds='doppler secrets'
+alias dt='doppler tui'
 
 alias sudoedit='sudo -e'
 

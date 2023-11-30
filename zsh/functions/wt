@@ -24,4 +24,7 @@ wt () {
   cd tokens-server
   doppler setup -p tokens-server -c dev_andre
   popd
+  cd server
+  pnpm run install-bower
+  popd
 }

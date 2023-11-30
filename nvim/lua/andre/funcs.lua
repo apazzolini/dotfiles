@@ -20,7 +20,6 @@ vim.keymap.set('n', '<leader>L', function()
     endif
     noh
   ]])
-  print(vim.opt_local.colorcolumn)
 end)
 
 -- Close all hidden buffers
