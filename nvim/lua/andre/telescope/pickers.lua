@@ -36,6 +36,27 @@ function M.grep_string()
   })
 end
 
+function M.code_spelunker(opts)
+  local pickers = require('telescope.pickers')
+  local finders = require('telescope.finders')
+  local previewers = require('telescope.previewers')
+  local make_entry = require('telescope.make_entry')
+
+  pickers
+    .new({
+      prompt_title = '~ code spelunker ~',
+      finder = finders.new_job(function(prompt)
+        local parts = { 'cs', '--format', 'vimgrep' }
+        for word in prompt:gmatch('%w+') do
+          table.insert(parts, word)
+        end
+        return parts
+      end, make_entry.gen_from_vimgrep(opts)),
+      previewer = previewers.vim_buffer_vimgrep.new({}),
+    }, {})
+    :find()
+end
+
 function M.current_dir_files()
   require('telescope.builtin').find_files({
     prompt_title = string.format('~ files in [%s] ~', vim.fn.expand('%:h')),
@@ -58,18 +79,20 @@ function M.git_changed_on_branch()
   local sorters = require('telescope.sorters')
   local previewers = require('telescope.previewers')
 
-  pickers.new({
-    prompt_title = '~ git changed (current branch) ~',
-    finder = finders.new_oneshot_job({ 'git', 'diff', '--name-only', '--diff-filter=ACMR', '--relative', 'develop' }, {}),
-    sorter = sorters.get_fzy_sorter(),
-    mappings = {
-      i = {
-        ['<cr>'] = select_multiple,
+  pickers
+    .new({
+      prompt_title = '~ git changed (current branch) ~',
+      finder = finders.new_oneshot_job({ 'git', 'diff', '--name-only', '--diff-filter=ACMR', '--relative', 'develop' }, {}),
+      sorter = sorters.get_fzy_sorter(),
+      mappings = {
+        i = {
+          ['<cr>'] = select_multiple,
+        },
       },
-    },
-    previewer = previewers.git_file_diff.new({}),
-    layout_config = { width = 140, height = 0.8 },
-  }, {}):find()
+      previewer = previewers.git_file_diff.new({}),
+      layout_config = { width = 140, height = 0.8 },
+    }, {})
+    :find()
 end
 
 return setmetatable({}, {
