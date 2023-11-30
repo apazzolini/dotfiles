@@ -1,5 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  commit = '6e8ad92031ff3b07db8980ab4a5491d1c40398ea',
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/playground',
