@@ -41,6 +41,7 @@ alias lg='lazygit -ucd ~/.config/lazygit'
 # shortcuts for npm/yarn
 alias yr="yarn run"
 alias nr="npm run"
+alias br="bun run"
 alias pr="pnpm run"
 alias pi='CXXFLAGS="--std=c++17" pnpm install'
 alias rt='~/.dotfiles/bin/review-tags.sh'
