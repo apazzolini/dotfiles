@@ -338,9 +338,10 @@ return {
     -- npm i
     -- npm run bootstrap
     -- cd packages/tailwindcss-language-server
-    -- npm run build
+    -- NODE_OPTIONS=--openssl-legacy-provider npm run build
     -- npm i -g $(pwd)
     lspconfig.tailwindcss.setup({
+      -- cmd = { 'node', '--inspect', '/usr/local/bin/tailwindcss-language-server', '--stdio' },
       settings = {
         tailwindCSS = {
           experimental = {
