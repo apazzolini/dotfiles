@@ -255,7 +255,7 @@ return {
         debounce_text_changes = 200,
       },
       handlers = {
-        ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error', 'Info'),
+        ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error', 'Warning'),
         ['textDocument/definition'] = first_match,
         ['textDocument/typeDefinition'] = first_match,
       },
@@ -276,6 +276,11 @@ return {
         disable_formatting(client)
         disable_semantic_tokens(client)
       end,
+      handlers = {
+        ['textDocument/publishDiagnostics'] = function()
+          return false
+        end,
+      },
     })
 
     -- ASTRO -------------------------------------------------------------------
