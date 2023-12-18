@@ -18,6 +18,7 @@ return {
   config = function()
     local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
     parser_config.typescript.install_info.url = '~/GitHub/tree-sitter-typescript'
+    parser_config.tsx.install_info.url = '~/GitHub/tree-sitter-typescript'
 
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
