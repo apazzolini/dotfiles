@@ -5,7 +5,7 @@ vim.keymap.set('n', '<leader>L', function()
       let tw = 81
     endif
     let tw = tw - 1
-    .s/[:space]*$//
+    .s/[ ]*$//
     let reps = (tw - col("$"))
 
     if col("$") == 1 || getline('.')[col('$')-2] == '-'
