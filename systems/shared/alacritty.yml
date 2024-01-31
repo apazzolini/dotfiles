@@ -235,36 +235,36 @@ colors:
 
   # Cursor colors
   cursor:
-    text: '#1E1E2E' # base
+    text: '#1E1B2A' # base
     cursor: '#F5E0DC' # rosewater
   vi_mode_cursor:
-    text: '#1E1E2E' # base
+    text: '#1E1B2A' # base
     cursor: '#B4BEFE' # lavender
 
   # Search colors
   search:
     matches:
-      foreground: '#1E1E2E' # base
+      foreground: '#1E1B2A' # base
       background: '#A6ADC8' # subtext0
     focused_match:
-      foreground: '#1E1E2E' # base
+      foreground: '#1E1B2A' # base
       background: '#A6E3A1' # green
     footer_bar:
-      foreground: '#1E1E2E' # base
+      foreground: '#1E1B2A' # base
       background: '#A6ADC8' # subtext0
 
   # Keyboard regex hints
   hints:
     start:
-      foreground: '#1E1E2E' # base
+      foreground: '#1E1B2A' # base
       background: '#F9E2AF' # yellow
     end:
-      foreground: '#1E1E2E' # base
+      foreground: '#1E1B2A' # base
       background: '#A6ADC8' # subtext0
 
   # Selection colors
   selection:
-    text: '#1E1E2E' # base
+    text: '#1E1B2A' # base
     background: '#F5E0DC' # rosewater
 
   primary:
@@ -275,7 +275,7 @@ colors:
     # background: '#1a1b26'
     # foreground: "#a9b1d6"
     # Catpuccin
-    background: '#1E1E2E' # base
+    background: '#1E1B2A' # base
     foreground: '#CDD6F4' # text
 
   # Normal colors
@@ -302,7 +302,7 @@ colors:
 
   # Indexed Colors
   indexed_colors:
-    - { index: 244, color: '#242534' }
+    - { index: 244, color: '#242333' }
     - { index: 245, color: '#45475a' }
     - { index: 246, color: '#6c7086' }
     - { index: 247, color: '#7f849c' }
