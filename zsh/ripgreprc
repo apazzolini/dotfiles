@@ -1,5 +1,6 @@
 --smart-case
 --follow
+--hidden
 
 # Git related
 --glob=!.git/*
@@ -15,6 +16,7 @@
 --glob=!yarn.lock
 --glob=!package-lock.json
 --glob=!pnpm-lock.yaml
+--glob=!pnpm-lock.cache.yaml
 --glob=!node_modules
 
 # Personal

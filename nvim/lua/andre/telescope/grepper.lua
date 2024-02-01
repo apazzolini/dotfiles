@@ -55,7 +55,7 @@ return function(opts)
 
       local result = flatten({
         args,
-        { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
+        { '--hidden', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
       })
       return result
     end,

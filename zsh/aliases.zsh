@@ -64,7 +64,6 @@ alias vp='nvim package.json'
 alias d='docker'
 alias da='d ps -a'
 alias j=z
-alias rg='rg -i'
 
 # work
 alias pgbak='~/work/backup-pg.sh'
