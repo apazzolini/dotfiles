@@ -59,17 +59,17 @@ return {
         updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
         persist_queries = false, -- Whether the query persists across vim sessions
       },
-      -- textobjects = {
-      --   select = {
-      --     enable = true,
-      --     keymaps = {
-      --       ['af'] = '@function.outer',
-      --       ['if'] = '@function.inner',
-      --       ['ac'] = '@conditional.outer',
-      --       ['ic'] = '@conditional.inner',
-      --     },
-      --   },
-      -- },
+      textobjects = {
+        select = {
+          enable = true,
+          keymaps = {
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ac'] = '@conditional.outer',
+            ['ic'] = '@conditional.inner',
+          },
+        },
+      },
       autotag = {
         enable = true,
       },
