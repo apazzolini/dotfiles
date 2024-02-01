@@ -1,8 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  -- commit = '6e8ad92031ff3b07db8980ab4a5491d1c40398ea',
-  -- commit = '575f5a4b1fcb60c1ac4f560c46a5171454d674ca',
   dependencies = {
     'nvim-treesitter/playground',
     'nvim-treesitter/nvim-treesitter-context',
@@ -18,10 +16,6 @@ return {
     },
   },
   config = function()
-    local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-    parser_config.typescript.install_info.url = '~/GitHub/tree-sitter-typescript'
-    parser_config.tsx.install_info.url = '~/GitHub/tree-sitter-typescript'
-
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
         'astro',
@@ -65,17 +59,17 @@ return {
         updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
         persist_queries = false, -- Whether the query persists across vim sessions
       },
-      textobjects = {
-        select = {
-          enable = true,
-          keymaps = {
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@conditional.outer',
-            ['ic'] = '@conditional.inner',
-          },
-        },
-      },
+      -- textobjects = {
+      --   select = {
+      --     enable = true,
+      --     keymaps = {
+      --       ['af'] = '@function.outer',
+      --       ['if'] = '@function.inner',
+      --       ['ac'] = '@conditional.outer',
+      --       ['ic'] = '@conditional.inner',
+      --     },
+      --   },
+      -- },
       autotag = {
         enable = true,
       },
