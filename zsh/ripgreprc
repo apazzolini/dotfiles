@@ -29,3 +29,5 @@
 # Work
 --glob=!**/external-src/**
 --glob=!bugsnag.ejs
+--glob=!**/migrations/post_deploy/previous/**
+--glob=!**/migrations/pre_deploy/previous/**

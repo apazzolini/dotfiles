@@ -14,7 +14,7 @@ return {
     },
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     'folke/neodev.nvim',
   },
   config = function()
@@ -392,6 +392,7 @@ return {
     local null_ls = require('null-ls')
     local nls_h = require('null-ls.helpers')
     local nls_u = require('null-ls.utils')
+    local nls_cmd_resolver = require('null-ls.helpers.command_resolver')
     null_ls.setup({
       sources = {
         -- git clone https://github.com/apazzolini/prettier_d_slim.git ~/GitHub/prettier_d_slim
@@ -399,7 +400,26 @@ return {
         -- npm i
         -- ./script/build
         -- npm i -g $(pwd)
-        null_ls.builtins.formatting.prettier_d_slim,
+
+        -- When using actual null_ls, there's a builtin
+        -- null_ls.builtins.formatting.prettier_d_slim,
+
+        null_ls.builtins.formatting.prettierd.with({
+          generator_opts = {
+            command = 'prettier_d_slim',
+            args = nls_h.range_formatting_args_factory(
+              { '--stdin', '--stdin-filepath', '$FILENAME' },
+              '--range-start',
+              '--range-end',
+              { row_offset = -1, col_offset = -1 }
+            ),
+            to_stdin = true,
+            dynamic_command = nls_cmd_resolver.from_node_modules(),
+            cwd = nls_h.cache.by_bufnr(function(params)
+              return nls_u.cosmiconfig('prettier')(params.bufname)
+            end),
+          },
+        }),
 
         -- npm i -g eslint_d
         null_ls.builtins.diagnostics.eslint_d.with({
