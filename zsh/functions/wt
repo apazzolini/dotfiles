@@ -16,8 +16,8 @@ wt () {
   git fetch
   git worktree add -f $1 origin/develop
   cd $1
-  git co -b andre/$1
-  CXXFLAGS="--std=c++17" PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true pnpm install
+  git co andre/$1 || git co -b andre/$1
+  pnpm install
   mkdir -p server/env
   mkdir -p tokens-server/env
   doppler setup -p server -c dev_andre

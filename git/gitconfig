@@ -104,3 +104,5 @@
 	trustExitCode = true
 [branch]
   autosetuprebase = always
+[rerere]
+	enabled = true

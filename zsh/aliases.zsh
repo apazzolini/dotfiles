@@ -43,7 +43,7 @@ alias yr="yarn run"
 alias nr="npm run"
 alias br="bun run"
 alias pr="pnpm run"
-alias pi='CXXFLAGS="--std=c++17" pnpm install'
+alias pi='pnpm install'
 alias rt='~/.dotfiles/bin/review-tags.sh'
 
 # tmux
