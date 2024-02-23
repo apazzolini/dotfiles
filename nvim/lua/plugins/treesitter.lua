@@ -28,7 +28,6 @@ return {
         'eex',
         'go',
         'graphql',
-        'help',
         'html',
         'http',
         'javascript',
@@ -44,6 +43,7 @@ return {
         'tsx',
         'typescript',
         'vim',
+        'vimdoc',
         'yaml',
       },
       indent = {
