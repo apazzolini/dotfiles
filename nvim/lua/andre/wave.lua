@@ -248,6 +248,11 @@ local theme = lush(function(injected_functions)
 
     -- Treesitter Context
     TreesitterContextLineNumber({ fg = c.green }),
+
+    -- Navbuddy
+    NavbuddyClass({ fg = c.green }),
+    NavbuddyModule({ fg = c.green }),
+    NavbuddyMethod({ fg = c.yellow }),
   }
 end)
 

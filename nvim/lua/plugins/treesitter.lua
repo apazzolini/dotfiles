@@ -2,7 +2,6 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   dependencies = {
-    'nvim-treesitter/playground',
     'nvim-treesitter/nvim-treesitter-context',
     'JoosepAlviste/nvim-ts-context-commentstring',
     'windwp/nvim-ts-autotag',
@@ -29,7 +28,7 @@ return {
         'eex',
         'go',
         'graphql',
-        -- 'help',
+        'help',
         'html',
         'http',
         'javascript',
@@ -53,15 +52,10 @@ return {
       highlight = {
         enable = true,
       },
-      playground = {
-        enable = true,
-        disable = {},
-        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-        persist_queries = false, -- Whether the query persists across vim sessions
-      },
       textobjects = {
         select = {
           enable = true,
+          lookahead = true,
           keymaps = {
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
@@ -73,18 +67,18 @@ return {
       autotag = {
         enable = true,
       },
-      -- incremental_selection = {
-      --   enable = true,
-      --   keymaps = {
-      --     init_selection = '<Tab>',
-      --     node_incremental = '<Tab>',
-      --     node_decremental = '<BS>',
-      --   },
-      -- },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<Tab>',
+          node_incremental = '<Tab>',
+          node_decremental = '<BS>',
+        },
+      },
     })
 
     require('treesitter-context').setup({
-      enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
+      enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
       max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
       trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
       patterns = {
@@ -122,10 +116,7 @@ return {
       separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
     })
 
-    vim.keymap.set('n', '<leader>sh', '<cmd>TSHighlightCapturesUnderCursor<CR>')
+    vim.keymap.set('n', '<leader>SH', '<cmd>TSHighlightCapturesUnderCursor<CR>')
     vim.keymap.set('n', '<leader>K', '<cmd>TSContextToggle<CR>')
-
-    -- vim.keymap.set('o', ' ', ":<C-U>lua require('tsht').nodes()<CR>", { silent = true })
-    -- vim.keymap.set('v', ' ', ":lua require('tsht').nodes()<CR>", { silent = true })
   end,
 }

@@ -31,6 +31,7 @@ vim.opt.updatetime = 200
 vim.opt.shortmess:append('c')
 vim.opt.secure = true
 vim.opt.swapfile = false
+vim.opt.undofile = true
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.wrap = true
@@ -47,14 +48,14 @@ vim.opt.pumheight = 20
 
 vim.opt.joinspaces = false
 
-vim.opt.foldmethod = 'manual'
-vim.opt.foldenable = false
-vim.opt.foldlevel = 99
-vim.opt.foldnestmax = 4
+-- vim.opt.foldmethod = 'manual'
+-- vim.opt.foldenable = false
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldnestmax = 4
 
-vim.b.javascript_fold = 0
-vim.g.javascript_plugin_jsdoc = 1
-vim.g.jsx_ext_required = 0
+-- vim.b.javascript_fold = 0
+-- vim.g.javascript_plugin_jsdoc = 1
+-- vim.g.jsx_ext_required = 0
 
 vim.opt.breakindent = true
 vim.opt.breakindentopt = 'shift:2'

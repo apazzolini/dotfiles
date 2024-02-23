@@ -12,10 +12,86 @@ return {
         'saadparwaiz1/cmp_luasnip',
       },
     },
-    'neovim/nvim-lspconfig',
+    {
+      'neovim/nvim-lspconfig',
+      dependencies = {
+        {
+          'SmiteshP/nvim-navbuddy',
+          dependencies = {
+            'SmiteshP/nvim-navic',
+            'MunifTanjim/nui.nvim',
+          },
+          opts = {
+            window = {
+              border = 'rounded',
+            },
+            icons = {
+              File = 'F ',
+              Module = 'M ',
+              Namespace = 'N ',
+              Package = 'P ',
+              Class = 'C ',
+              Method = 'M ',
+              Property = 'P ',
+              Field = 'F ',
+              Constructor = 'C ',
+              Enum = 'E ',
+              Interface = 'I ',
+              Function = 'F ',
+              Variable = 'V ',
+              Constant = 'C ',
+              String = 'S ',
+              Number = 'N ',
+              Boolean = 'B ',
+              Array = 'A ',
+              Object = 'O ',
+              Key = 'K ',
+              Null = 'N ',
+              EnumMember = 'E ',
+              Struct = 'S ',
+              Event = 'E ',
+              Operator = 'O ',
+              TypeParameter = 'T ',
+            },
+            lsp = { auto_attach = true },
+          },
+        },
+      },
+      config = function()
+        vim.keymap.set('n', 'gk', function()
+          require('nvim-navbuddy').open()
+        end)
+      end,
+    },
     'williamboman/mason.nvim',
     'nvimtools/none-ls.nvim',
     'folke/neodev.nvim',
+    {
+      'j-hui/fidget.nvim',
+      opts = {
+        progress = {
+          suppress_on_insert = true,
+          ignore_done_already = true,
+          ignore = { 'null-ls', 'lua_ls' },
+          display = {
+            done_style = 'DiagnosticWarn',
+            icon_style = 'DiagnosticWarn',
+            group_style = 'DiagnosticWarn',
+            progress_style = 'DiagnosticWarn',
+            done_ttl = 0,
+          },
+        },
+        notification = {
+          window = {
+            winblend = 0,
+            normal_hl = 'DiagnosticWarn',
+          },
+          view = {
+            group_separator_hl = 'DiagnosticWarn',
+          },
+        },
+      },
+    },
   },
   config = function()
     require('neodev').setup({
@@ -162,8 +238,7 @@ return {
       vim.keymap.set('n', '<leader>M', '<cmd>lua vim.diagnostic.goto_prev()<cr>zz', opts)
       vim.keymap.set('n', '<leader>>', '<cmd>lua vim.diagnostic.goto_next()<cr>zz', opts)
 
-      vim.keymap.set('n', '<leader>lq', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
-      vim.keymap.set('n', '<leader>lt', '<cmd>cexpr system("tsc -p frontend -p server --pretty false") <bar> copen<cr>', opts)
+      vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
       vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
 

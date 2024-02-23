@@ -12,17 +12,6 @@ function M.custom_grep()
   })
 end
 
-function M.custom_grep_hidden()
-  package.loaded['andre.telescope.grepper'] = nil
-  require('andre.telescope.grepper')({
-    hidden = true,
-    attach_mappings = function(_, map)
-      map('i', '<cr>', select_multiple)
-      return true
-    end,
-  })
-end
-
 function M.grep_string()
   require('telescope.builtin').grep_string({
     prompt_title = '~ grep string ~',
