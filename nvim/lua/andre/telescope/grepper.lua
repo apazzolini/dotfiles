@@ -43,7 +43,9 @@ return function(opts)
         if opts.shortcuts[prompt_split[2]] then
           pattern = opts.shortcuts[prompt_split[2]]
         else
-          if prompt_split[2]:sub(1, 1) == ' ' then
+          if prompt_split[2]:sub(1, 1) == '.' then
+            pattern = '*.' .. prompt_split[2]:sub(2) .. '**'
+          elseif prompt_split[2]:sub(1, 1) == ' ' then
             pattern = prompt_split[2]:sub(2) .. '**'
           else
             pattern = prompt_split[2] .. '**/**'

@@ -31,7 +31,6 @@ vim.opt.updatetime = 200
 vim.opt.shortmess:append('c')
 vim.opt.secure = true
 vim.opt.swapfile = false
-vim.opt.undofile = true
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.wrap = true

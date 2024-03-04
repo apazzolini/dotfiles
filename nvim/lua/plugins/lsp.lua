@@ -54,6 +54,11 @@ return {
               TypeParameter = 'T ',
             },
             lsp = { auto_attach = true },
+            source_buffer = {
+              follow_node = false,
+              highlight = false,
+              reorient = 'top',
+            },
           },
         },
       },

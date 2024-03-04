@@ -28,5 +28,6 @@ ls.add_snippets('javascript', {
 })
 
 ls.filetype_extend('typescript', { 'javascript' })
+ls.filetype_extend('javascriptreact', { 'javascript' })
 ls.filetype_extend('typescriptreact', { 'javascript' })
 ls.filetype_extend('astro', { 'javascript' })
