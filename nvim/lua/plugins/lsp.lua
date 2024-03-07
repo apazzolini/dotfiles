@@ -69,7 +69,10 @@ return {
       end,
     },
     'williamboman/mason.nvim',
-    'nvimtools/none-ls.nvim',
+    {
+      'nvimtools/none-ls.nvim',
+      commit = "bb680d752cec37949faca7a1f509e2fe67ab418a"
+    },
     'folke/neodev.nvim',
     {
       'j-hui/fidget.nvim',
