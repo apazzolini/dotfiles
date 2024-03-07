@@ -20,7 +20,7 @@ end
 map_tele('<leader>e', 'find_files')
 map_tele('<leader>E', 'current_dir_files')
 -- map_tele('<leader>B', 'buffers')
-map_tele('<leader>b', 'git_changed_on_branch')
+map_tele('<leader>b', 'git_status')
 map_tele('<leader>sh', 'help_tags')
 -- map_tele('<leader>se', 'lsp_workspace_diagnostics')
 map_tele('<leader>sb', 'builtin')

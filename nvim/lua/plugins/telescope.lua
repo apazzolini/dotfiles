@@ -5,12 +5,17 @@ return {
   },
   config = function()
     local actions = require('telescope.actions')
+    local previewers = require('telescope.previewers')
     local andre_sorter = require('andre.telescope.sorter')
     local select_multiple = require('andre.telescope.select_multiple')
     require('andre.telescope.mappings')
 
     local telescope_opts = {
       defaults = {
+        set_env = {
+          LESS = '',
+          DELTA_PAGER = 'less',
+        },
         vimgrep_arguments = {
           'rg',
           '--hidden',
@@ -100,13 +105,51 @@ return {
             i = {
               ['<cr>'] = select_multiple,
               ['<Tab>'] = actions.toggle_selection + actions.move_selection_worse,
+              ['<C-d>'] = actions.preview_scrolling_down,
+              ['<C-u>'] = actions.preview_scrolling_up,
             },
           },
-          layout_config = { width = 140, height = 0.8 },
+          layout_strategy = 'horizontal',
+          layout_config = {
+            mirror = false,
+          },
+          previewer = previewers.new_termopen_previewer({
+            get_command = function(entry)
+              if entry.status == '??' or 'A ' then
+                return { 'git', '-c', 'core.pager=delta', '-c', 'delta.paging=always', 'diff', entry.value }
+              end
+
+              return { 'git', '-c', 'core.pager=delta', '-c', 'delta.paging=always', 'diff', entry.value .. '^!' }
+            end,
+          }),
+          -- previewer = false,
+          -- previewer = previewers.new_buffer_previewer({
+          --   define_preview = function(self, entry, status)
+          --     local dir_name = vim.fn.substitute(vim.fn.getcwd(), '^.*/', '', '')
+          --     vim.print(dir_name)
+          --     vim.print(entry.value)
+          --     local t = {}
+          --     if entry.value == dir_name then
+          --       local s = vim.fn.system('git status -s')
+          --       for chunk in string.gmatch(s, '[^\n]+') do
+          --         t[#t + 1] = chunk
+          --       end
+          --     else
+          --       local s = vim.fn.system('git -c core.pager=delta -c delta.side-by-side=false diff ' .. entry.value)
+          --       for chunk in string.gmatch(s, '[^\n]+') do
+          --         t[#t + 1] = chunk
+          --       end
+          --     end
+          --     vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, true, t)
+          --   end,
+          -- }),
+          -- theme = 'dropdown',
+          -- layout_config = { width = 120 },
         },
       },
     }
 
+    require('telescope').load_extension('harpoon')
     require('telescope').setup(telescope_opts)
   end,
 }
