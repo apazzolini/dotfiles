@@ -10,4 +10,3 @@ setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 setopt complete_aliases # don't expand aliases _before_ completion has finished like: git comm-[tab]
 unsetopt correct # disable annoying correct prompt
-. "$HOME/.cargo/env"

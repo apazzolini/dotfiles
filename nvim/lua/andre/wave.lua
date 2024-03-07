@@ -168,6 +168,8 @@ local theme = lush(function(injected_functions)
     DiffChange({ fg = c.gray1, bg = c.red }),
     DiffDelete({ fg = c.gray1, bg = c.gray2 }),
     DiffText({ fg = c.red }),
+    diffAdded({ fg = c.green }),
+    diffRemoved({ fg = c.red }),
 
     Normal({ fg = c.fg }),
     Constant({ fg = c.blue }),

@@ -10,12 +10,6 @@ return {
     local ui = require('harpoon.ui')
     local mark = require('harpoon.mark')
 
-    vim.keymap.set('n', '<leader>w', function()
-      ui.toggle_quick_menu()
-    end)
-    vim.keymap.set('n', '<leader>Wa', function()
-      mark.add_file()
-    end)
     vim.keymap.set('n', '<leader>Hp', function()
       ui.toggle_quick_menu()
     end)
