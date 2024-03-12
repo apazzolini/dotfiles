@@ -149,7 +149,7 @@ return {
       },
     }
 
-    require('telescope').load_extension('harpoon')
+    -- require('telescope').load_extension('harpoon')
     require('telescope').setup(telescope_opts)
   end,
 }
