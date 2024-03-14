@@ -70,10 +70,10 @@ if [ -z "$TMUX" ]; then
 fi
 
 # unix ssh-agent
-# if [ -f "/usr/bin/keychain" ]; then
-#   /usr/bin/keychain --nogui --quiet --noask $HOME/.ssh/id_rsa
-#   source $HOME/.keychain/andred-sh
-# fi
+if [ -f "/usr/bin/keychain" ]; then
+  /usr/bin/keychain --nogui --quiet --noask $HOME/.ssh/id_ed25519
+  source $HOME/.keychain/andred-sh
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/andre/GitHub/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andre/GitHub/google-cloud-sdk/path.zsh.inc'; fi
