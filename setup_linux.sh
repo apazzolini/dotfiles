@@ -6,7 +6,7 @@ set -o nounset
 set -o pipefail
 
 sudo apt update
-sudo apt install zsh ripgrep fzf git git-delta ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl golang htop man tmux wget -y
+sudo apt install zsh keychain ripgrep fzf git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl golang htop man tmux wget -y
 
 cd ~/.dotfiles
 ./link.sh
@@ -45,16 +45,10 @@ mv lazygit /usr/local/bin/
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
 npm install -g n
 npm install -g eslint_d
+npm install -g @fsouza/prettierd
 
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-# Prettier_d
-git clone git@github.com:apazzolini/prettier_d_slim.git ~/GitHub/prettier_d_slim
-cd ~/GitHub/prettier_d_slim
-npm i
-./script/build
-npm i -g /home/andre/GitHub/prettier_d_slim
 
 # Tailwind
 git clone git@github.com:apazzolini/tailwindcss-intellisense.git ~/GitHub/tailwindcss-intellisense
@@ -69,3 +63,4 @@ npm i -g $(pwd)
 # misc
 go install golang.org/x/tools/cmd/goimports@latest
 cargo install stylua
+echo "INSTALL GIT-DELTA"
