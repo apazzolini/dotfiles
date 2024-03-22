@@ -1,5 +1,6 @@
 return {
   'rest-nvim/rest.nvim',
+  commit = '91badd46c60df6bd9800c809056af2d80d33da4c',
   lazy = true,
   ft = 'http',
   config = function()
