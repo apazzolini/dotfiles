@@ -12,62 +12,7 @@ return {
         'saadparwaiz1/cmp_luasnip',
       },
     },
-    {
-      'neovim/nvim-lspconfig',
-      dependencies = {
-        {
-          'SmiteshP/nvim-navbuddy',
-          dependencies = {
-            'SmiteshP/nvim-navic',
-            'MunifTanjim/nui.nvim',
-          },
-          opts = {
-            window = {
-              border = 'rounded',
-            },
-            icons = {
-              File = 'F ',
-              Module = 'M ',
-              Namespace = 'N ',
-              Package = 'P ',
-              Class = 'C ',
-              Method = 'M ',
-              Property = 'P ',
-              Field = 'F ',
-              Constructor = 'C ',
-              Enum = 'E ',
-              Interface = 'I ',
-              Function = 'F ',
-              Variable = 'V ',
-              Constant = 'C ',
-              String = 'S ',
-              Number = 'N ',
-              Boolean = 'B ',
-              Array = 'A ',
-              Object = 'O ',
-              Key = 'K ',
-              Null = 'N ',
-              EnumMember = 'E ',
-              Struct = 'S ',
-              Event = 'E ',
-              Operator = 'O ',
-              TypeParameter = 'T ',
-            },
-            lsp = { auto_attach = true },
-            source_buffer = {
-              follow_node = false,
-              highlight = false,
-              reorient = 'top',
-            },
-          },
-        },
-      },
-      config = function()
-        vim.keymap.set('n', 'gk', function()
-          require('nvim-navbuddy').open()
-        end)
-      end,
-    },
+    'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
     {
       'nvimtools/none-ls.nvim',
