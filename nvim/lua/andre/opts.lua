@@ -48,7 +48,7 @@ vim.opt.pumheight = 20
 vim.opt.joinspaces = false
 
 -- vim.opt.foldmethod = 'manual'
--- vim.opt.foldenable = false
+vim.opt.foldenable = false
 -- vim.opt.foldlevel = 99
 -- vim.opt.foldnestmax = 4
 
