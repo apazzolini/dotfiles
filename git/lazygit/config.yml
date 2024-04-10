@@ -1,6 +1,7 @@
 gui:
   sidePanelWidth: 0.22
   showFileTree: false
+  showPanelJumps: false
   showBottomLine: false
   border: 'rounded'
   theme:
@@ -25,7 +26,9 @@ git:
     pager: delta --paging=never --24-bit-color=never
 
 os:
-  editCommandTemplate: 'floaterm {{filename}} 2>/dev/null || nvim {{filename}}'
+  edit: 'floaterm {{filename}} 2>/dev/null'
+  editAtLine: 'floaterm {{filename}} {{line}} 2>/dev/null'
+  editInTerminal: true
 
 keybinding:
   commits:

@@ -106,3 +106,5 @@
   autosetuprebase = always
 [rerere]
 	enabled = true
+[commit]
+  verbose = true
