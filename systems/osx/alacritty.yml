@@ -6,11 +6,11 @@ font:
   normal:
     # family: "Operator Mono"
     family: "OperatorMono Nerd Font"
-    style: Extra Light
+    style: ExtraLight
   bold:
     style: Light
   italic:
-    style: Extra Light Italic
+    style: ExtraLightItalic
 
 # colors:
 #   primary:
