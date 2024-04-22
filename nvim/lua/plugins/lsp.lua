@@ -1,7 +1,39 @@
+local function get_lsp_completion_context(completion, source)
+  local ok, source_name = pcall(function()
+    return source.source.client.config.name
+  end)
+  if not ok then
+    return nil
+  end
+
+  if source_name == 'tsserver' then
+    return completion.detail
+  elseif source_name == 'pyright' and completion.labelDetails ~= nil then
+    return completion.labelDetails.description
+  elseif source_name == 'texlab' then
+    return completion.detail
+  elseif source_name == 'clangd' then
+    local doc = completion.documentation
+    if doc == nil then
+      return
+    end
+
+    local import_str = doc.value
+
+    local i, j = string.find(import_str, '["<].*[">]')
+    if i == nil then
+      return
+    end
+
+    return string.sub(import_str, i, j)
+  end
+end
+
 return {
   cond = vim.g.isNotes == false,
   'hrsh7th/nvim-cmp',
   dependencies = {
+    'onsails/lspkind.nvim',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
@@ -121,6 +153,119 @@ return {
       },
       window = {
         documentation = cmp.config.window.bordered(),
+      },
+
+      -- From TJ
+      -- sorting = {
+      --   comparators = {
+      --     cmp.config.compare.offset,
+      --     cmp.config.compare.exact,
+      --     cmp.config.compare.score,
+
+      --     -- copied from cmp-under, but I don't think I need the plugin for this.
+      --     -- I might add some more of my own.
+      --     function(entry1, entry2)
+      --       local _, entry1_under = entry1.completion_item.label:find('^_+')
+      --       local _, entry2_under = entry2.completion_item.label:find('^_+')
+      --       entry1_under = entry1_under or 0
+      --       entry2_under = entry2_under or 0
+      --       if entry1_under > entry2_under then
+      --         return false
+      --       elseif entry1_under < entry2_under then
+      --         return true
+      --       end
+      --     end,
+
+      --     cmp.config.compare.kind,
+      --     cmp.config.compare.sort_text,
+      --     cmp.config.compare.length,
+      --     cmp.config.compare.order,
+      --   },
+      -- },
+
+      -- From reddit
+      sorting = {
+        priority_weight = 1.0,
+        comparators = {
+          -- compare.score_offset, -- not good at all
+          cmp.config.compare.locality,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+          cmp.config.compare.offset,
+          cmp.config.compare.order,
+          -- compare.scopes, -- what?
+          -- compare.sort_text,
+          -- compare.exact,
+          -- compare.kind,
+          -- compare.length, -- useless
+        },
+      },
+      formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(entry, vim_item)
+          local ELLIPSIS_CHAR = '…'
+          if not require('cmp.utils.api').is_cmdline_mode() then
+            local abbr_width_max = 25
+            local menu_width_max = 20
+
+            local choice = require('lspkind').cmp_format({
+              ellipsis_char = ELLIPSIS_CHAR,
+              maxwidth = abbr_width_max,
+              mode = 'symbol',
+            })(entry, vim_item)
+
+            choice.abbr = vim.trim(choice.abbr)
+            choice.kind = choice.kind .. ' '
+
+            -- give padding until min/max width is met
+            -- https://github.com/hrsh7th/nvim-cmp/issues/980#issuecomment-1121773499
+            local abbr_width = string.len(choice.abbr)
+            if abbr_width < abbr_width_max then
+              local padding = string.rep(' ', abbr_width_max - abbr_width)
+              vim_item.abbr = choice.abbr .. padding
+            end
+
+            local cmp_ctx = get_lsp_completion_context(entry.completion_item, entry.source)
+            if cmp_ctx ~= nil and cmp_ctx ~= '' then
+              choice.menu = cmp_ctx
+            else
+              choice.menu = ''
+            end
+
+            local menu_width = string.len(choice.menu)
+            if menu_width > menu_width_max then
+              choice.menu = vim.fn.strcharpart(choice.menu, 0, menu_width_max - 1)
+              choice.menu = choice.menu .. ELLIPSIS_CHAR
+            else
+              local padding = string.rep(' ', menu_width_max - menu_width)
+              choice.menu = padding .. choice.menu
+            end
+
+            return choice
+          else
+            local abbr_width_min = 20
+            local abbr_width_max = 50
+
+            local choice = require('lspkind').cmp_format({
+              ellipsis_char = ELLIPSIS_CHAR,
+              maxwidth = abbr_width_max,
+              mode = 'symbol',
+            })(entry, vim_item)
+
+            choice.abbr = vim.trim(choice.abbr)
+            choice.kind = choice.kind .. ' '
+
+            -- give padding until min/max width is met
+            -- https://github.com/hrsh7th/nvim-cmp/issues/980#issuecomment-1121773499
+            local abbr_width = string.len(choice.abbr)
+            if abbr_width < abbr_width_min then
+              local padding = string.rep(' ', abbr_width_min - abbr_width)
+              vim_item.abbr = choice.abbr .. padding
+            end
+
+            return choice
+          end
+        end,
       },
     })
 

@@ -255,6 +255,9 @@ local theme = lush(function(injected_functions)
     NavbuddyClass({ fg = c.green }),
     NavbuddyModule({ fg = c.green }),
     NavbuddyMethod({ fg = c.yellow }),
+
+    -- cmp
+    CmpItemMenu({ fg = c.gray3 }),
   }
 end)
 
