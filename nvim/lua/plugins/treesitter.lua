@@ -115,7 +115,7 @@ return {
       separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
     })
 
-    vim.keymap.set('n', '<leader>SH', '<cmd>TSHighlightCapturesUnderCursor<CR>')
+    vim.keymap.set('n', '<leader>SH', '<cmd>lua vim.print(vim.treesitter.get_captures_at_cursor())<CR>')
     vim.keymap.set('n', '<leader>K', '<cmd>TSContextToggle<CR>')
   end,
 }

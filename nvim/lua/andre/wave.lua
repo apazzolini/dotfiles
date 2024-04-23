@@ -142,7 +142,7 @@ local theme = lush(function(injected_functions)
     qfFileName({ fg = c.green }),
     qfLineNr({ fg = c.cyan }),
     QuickFixLine({ bg = c.gray2, fg = c.gray6 }),
-    Search({ fg = c.white, bg = c.gray2 }),
+    Search({ bg = c.gray2 }),
     SignColumn({ bg = none }),
     SpecialKey({ fg = c.blue }),
     StatusLine({ bg = c.gray1, gui = none }),
@@ -195,9 +195,8 @@ local theme = lush(function(injected_functions)
     sym('@variable')({ Normal }),
     sym('@variable.builtin')({ Normal }),
 
-    sym('@function')({ fg = c.magenta, gui = bold }),
+    sym('@function')({ fg = c.red, gui = bold }),
     sym('@method')({ sym('@function') }),
-    sym('@constructor')({ sym('@function') }),
 
     sym('@conditional')({ fg = c.blue }),
     sym('@namespace')({ fg = c.blue }),
@@ -205,6 +204,7 @@ local theme = lush(function(injected_functions)
     sym('@type')({ fg = c.cyan, gui = bold }),
     -- sym('@type')({ fg = hsl(315, 82, 87), gui = bold }),
     sym('@type.builtin')({ sym('@type') }),
+    sym('@constructor')({ sym('@type') }),
     sym('@tag')({ fg = c.cyan }),
     sym('@tag.delimiter')({ sym('@tag') }),
     sym('@tag.attribute')({ fg = c.cyan }),
@@ -212,6 +212,7 @@ local theme = lush(function(injected_functions)
     sym('@className')({ fg = c.red }),
     sym('@function.call')({ fg = c.yellow }),
     sym('@method.call')({ fg = c.yellow }),
+    sym('@function.method.call')({ fg = c.yellow }),
 
     -- Vimwiki
     VimWikiLink({ guibg = none, gui = none, fg = c.blue }),
