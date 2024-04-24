@@ -47,7 +47,7 @@ return {
         'yaml',
       },
       indent = {
-        enable = true,
+        enable = false,
       },
       highlight = {
         enable = true,
