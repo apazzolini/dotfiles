@@ -13,61 +13,6 @@ local function read_yaml(file)
   return lyaml.eval(table.concat(lines, '\n'))
 end
 
--- local function get_dark_colors2()
---   local home = vim.fn.has('osx') == 1 and '/Users/andre' or vim.fn.has('win32') == 1 and 'L:/home/andre' or '/home/andre'
---   local parsed = read_yaml(home .. '/.dotfiles/systems/shared/alacritty.yml')
---   return {
---     black = '#1e2027',
---     red = '#f38ba8',
---     green = '#b1cfa9',
---     yellow = '#f2cdcd',
---     blue = '#9694D5',
---     magenta = '#be95ff',
---     cyan = '#DCB8E8',
---     white = '#c4cad5',
---     bright = {
---       magenta = '#ff007c',
---     },
---     fg = '#CDD6F4',
---     bg = '#1e1e2e',
---     gray1 = '#242534',
---     gray2 = '#45475a',
---     gray3 = '#6c7086',
---     gray4 = '#7f849c',
---     gray5 = '#9399b2',
---     gray6 = '#a6adc8',
---   }
-
---   -- return {
---   -- rosewater = "#f5e0dc",
---   -- flamingo = "#f2cdcd",
---   -- pink = "#f5c2e7",
---   -- mauve = "#cba6f7",
---   -- red = "#f38ba8",
---   -- maroon = "#eba0ac",
---   -- peach = "#fab387",
---   -- yellow = "#f9e2af",
---   -- green = "#a6e3a1",
---   -- teal = "#94e2d5",
---   -- sky = "#89dceb",
---   -- sapphire = "#74c7ec",
---   -- blue = "#89b4fa",
---   -- lavender = "#b4befe",
---   -- text = "#cdd6f4",
---   -- subtext1 = "#bac2de",
---   -- subtext0 = "#a6adc8",
---   -- overlay2 = "#9399b2",
---   -- overlay1 = "#7f849c",
---   -- overlay0 = "#6c7086",
---   -- surface2 = "#585b70",
---   -- surface1 = "#45475a",
---   -- surface0 = "#313244",
---   -- base = "#1e1e2e",
---   -- mantle = "#181825",
---   -- crust = "#11111b",
---   -- }
--- end
-
 local function get_dark_colors()
   local home = vim.fn.has('osx') == 1 and '/Users/andre' or vim.fn.has('win32') == 1 and 'L:/home/andre' or '/home/andre'
   local parsed = read_yaml(home .. '/.dotfiles/systems/shared/alacritty.yml')
@@ -259,6 +204,7 @@ local theme = lush(function(injected_functions)
 
     -- cmp
     CmpItemMenu({ fg = c.gray3 }),
+    CmpItemKind({ fg = c.gray3 }),
   }
 end)
 
