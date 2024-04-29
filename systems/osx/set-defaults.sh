@@ -26,9 +26,9 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 # External mouse acceleration
 defaults write -g com.apple.mouse.scaling -1
 
-# Faster key repeat rate (InitialKeyRepeat used to be 10)
+# Faster key repeat rate (InitialKeyRepeat used to be 10, then 12)
 defaults write -g KeyRepeat -int 1
-defaults write -g InitialKeyRepeat -int 12
+defaults write -g InitialKeyRepeat -int 13
 
 # Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
