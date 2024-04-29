@@ -9,7 +9,9 @@ return {
       },
       user_default_options = {
         mode = 'background',
-        rgb = true,
+        RGB = true,
+        RRGGBB = true,
+        RRGGBBAA = true,
         rgb_fn = true,
         names = false,
       },

@@ -123,16 +123,18 @@ return {
       window = {
         documentation = cmp.config.window.bordered(),
       },
+
       sorting = {
-        priority_weight = 1.0,
+        priority_weight = 2.0,
         comparators = {
           -- cmp.config.compare.recently_used,
+          cmp.config.compare.exact,
           cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
           cmp.config.compare.offset,
           cmp.config.compare.locality,
-          -- cmp.config.compare.order,
-          -- cmp.config.compare.exact,
-          -- cmp.config.compare.kind,
+          cmp.config.compare.kind,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
         },
       },
     })
@@ -375,14 +377,16 @@ return {
 
     -- git clone https://github.com/apazzolini/tailwindcss-intellisense.git
     -- cd tailwindcss-intellisense
-    -- git co andre/show-equivs
     -- npm i
-    -- npm run bootstrap
     -- cd packages/tailwindcss-language-server
-    -- NODE_OPTIONS=--openssl-legacy-provider npm run build
+    -- npm run build
     -- npm i -g $(pwd)
     lspconfig.tailwindcss.setup({
       -- cmd = { 'node', '--inspect', '/usr/local/bin/tailwindcss-language-server', '--stdio' },
+      root_dir = function(fname)
+        return lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts')(fname)
+      end,
+      single_file_support = false,
       settings = {
         tailwindCSS = {
           experimental = {
