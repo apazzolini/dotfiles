@@ -161,11 +161,13 @@ return {
         javascriptreact = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
+        zig = { 'zigfmt' },
       },
       format_on_save = {
         timeout_ms = 2000,
         lsp_fallback = false,
       },
+      notify_on_error = false,
     })
 
     ----------------------------------------------------------------------------
@@ -429,6 +431,16 @@ return {
     -- VIM ---------------------------------------------------------------------
 
     lspconfig.vimls.setup({
+      capabilities = capabilities,
+      on_attach = function(client, bufnr)
+        set_lsp_keymaps(client, bufnr)
+        disable_semantic_tokens(client)
+      end,
+    })
+
+    -- ZIG ---------------------------------------------------------------------
+
+    lspconfig.zls.setup({
       capabilities = capabilities,
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
