@@ -3,5 +3,7 @@ return {
   dependencies = {
     'tpope/vim-dadbod',
   },
-  config = function() end,
+  config = function()
+    vim.cmd([[ let g:db_ui_save_location = "~/Work/db" ]])
+  end,
 }

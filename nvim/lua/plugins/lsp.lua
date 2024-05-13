@@ -7,6 +7,8 @@ return {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'windwp/nvim-autopairs',
+    'kristijanhusak/vim-dadbod-completion',
+    'stevearc/conform.nvim',
     {
       'L3MON4D3/LuaSnip',
       dependencies = {
@@ -152,6 +154,22 @@ return {
 
     ----------------------------------------------------------------------------
 
+    require('conform').setup({
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        javascript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
+      },
+      format_on_save = {
+        timeout_ms = 2000,
+        lsp_fallback = false,
+      },
+    })
+
+    ----------------------------------------------------------------------------
+
     local log = require('vim.lsp.log')
     local util = require('vim.lsp.util')
 
@@ -185,7 +203,7 @@ return {
       vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
       vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
       vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-      vim.keymap.set('n', '<cr>', close_floating, opts)
+      vim.keymap.set('n', '<cr>', close_floating, { noremap = true, silent = true, buffer = bufnr })
       vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
       vim.keymap.set('n', '<leader>ci', function()
@@ -210,16 +228,9 @@ return {
       vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
       vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
 
-      vim.keymap.set('n', '<leader>F', '<cmd>lua vim.lsp.buf.format({ timeout_ms = 2000 })<cr>', opts)
-    end
-
-    local function format_on_save(bufnr)
-      vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-        callback = function()
-          vim.lsp.buf.format({ timeout_ms = 2000 })
-        end,
-        buffer = bufnr,
-      })
+      vim.keymap.set('n', '<leader>F', function()
+        require('conform').format()
+      end, opts)
     end
 
     local function disable_semantic_tokens(client)
@@ -289,8 +300,6 @@ return {
         },
       },
       on_attach = function(client, bufnr)
-        -- use prettier via efm on save instead of tsserver's builtin formatting
-        disable_formatting(client)
         disable_semantic_tokens(client)
         set_lsp_keymaps(client, bufnr)
       end,
@@ -316,7 +325,6 @@ return {
       },
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
-        disable_formatting(client)
         disable_semantic_tokens(client)
       end,
       handlers = {
@@ -332,7 +340,6 @@ return {
       capabilities = capabilities,
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
-        disable_formatting(client)
         disable_semantic_tokens(client)
       end,
     })
@@ -343,7 +350,6 @@ return {
       capabilities = capabilities,
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
-        format_on_save(bufnr)
         disable_semantic_tokens(client)
       end,
       cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
@@ -364,7 +370,6 @@ return {
         },
       },
       on_attach = function(client, bufnr)
-        disable_formatting(client)
         disable_semantic_tokens(client)
         set_lsp_keymaps(client, bufnr)
       end,
@@ -417,7 +422,6 @@ return {
       capabilities = capabilitiesWithoutSnippets,
       on_attach = function(client, bufnr)
         set_lsp_keymaps(client, bufnr)
-        format_on_save(bufnr)
         disable_semantic_tokens(client)
       end,
     })
@@ -441,11 +445,7 @@ return {
     null_ls.setup({
       sources = {
         -- npm i -g @fsouza/prettierd
-        null_ls.builtins.formatting.prettierd.with({
-          filetypes = vim.list_extend(null_ls.builtins.formatting.prettierd.filetypes, {
-            'astro',
-          }),
-        }),
+        -- Used by conform
 
         -- npm i -g eslint_d
         null_ls.builtins.diagnostics.eslint_d.with({
@@ -465,11 +465,10 @@ return {
         }),
 
         -- Install with Mason
-        null_ls.builtins.formatting.goimports,
-        null_ls.builtins.formatting.stylua,
+        -- null_ls.builtins.formatting.goimports,
+        -- null_ls.builtins.formatting.stylua,
       },
       on_attach = function(client, bufnr)
-        format_on_save(bufnr)
         disable_semantic_tokens(client)
       end,
       handlers = {

@@ -39,6 +39,7 @@ return {
         'markdown',
         'regex',
         'scss',
+        'sql',
         'svelte',
         'tsx',
         'typescript',
