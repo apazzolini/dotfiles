@@ -15,13 +15,25 @@ return {
         'saadparwaiz1/cmp_luasnip',
       },
     },
-    'neovim/nvim-lspconfig',
+    {
+      'neovim/nvim-lspconfig',
+      dependencies = {
+        {
+          'folke/neodev.nvim',
+          opts = {
+            plugins = false,
+            library = {
+              plugins = false,
+            },
+          },
+        },
+      },
+    },
     'williamboman/mason.nvim',
     {
       'nvimtools/none-ls.nvim',
       commit = 'bb680d752cec37949faca7a1f509e2fe67ab418a',
     },
-    'folke/neodev.nvim',
     {
       'j-hui/fidget.nvim',
       opts = {
@@ -50,14 +62,6 @@ return {
     },
   },
   config = function()
-    require('neodev').setup({
-      override = function(_, options)
-        options.enabled = true
-        options.plugins = true
-        options.types = true
-        options.runtime = true
-      end,
-    })
     local cmp = require('cmp')
     local luasnip = require('luasnip')
 
@@ -252,11 +256,15 @@ return {
       return vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = false,
         virtual_text = {
-          severity_limit = virtual_text_level,
+          severity = {
+            min = virtual_text_level,
+          },
         },
         update_in_insert = false,
         signs = {
-          severity_limit = signs_error,
+          severity = {
+            min = signs_error,
+          },
         },
       })
     end
@@ -309,7 +317,7 @@ return {
         debounce_text_changes = 200,
       },
       handlers = {
-        ['textDocument/publishDiagnostics'] = handler_publishDiagnostics('Error', 'Warning'),
+        ['textDocument/publishDiagnostics'] = handler_publishDiagnostics(vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN),
         ['textDocument/definition'] = first_match,
         ['textDocument/typeDefinition'] = first_match,
       },

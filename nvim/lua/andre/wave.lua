@@ -129,6 +129,7 @@ local theme = lush(function(injected_functions)
     Error({ fg = c.red, bg = none }),
     Comment({ fg = c.gray3, gui = italic }),
     Todo({ fg = c.red, guibg = none, gui = italic }),
+    LspSignatureActiveParameter({ fg = c.red }),
 
     sym('@punctuation')({ Normal }),
     sym('@punctuation.delimiter')({ Normal }),

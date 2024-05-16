@@ -89,5 +89,9 @@ vim.keymap.set('n', '<c-k>', '<c-w><c-k>')
 vim.keymap.set('n', '<c-l>', '<c-w><c-l>')
 
 -- Window zooming
--- vim.keymap.set('n', '<leader>we', ':set winheight=999<cr>')
--- vim.keymap.set('n', '<leader>wd', ':set winheight=10<cr><c-w>=<cr>')
+vim.keymap.set('n', '<leader>we', ':set winheight=999<cr>')
+vim.keymap.set('n', '<leader>wd', ':set winheight=10<cr><c-w>=<cr>')
+
+-- Comments
+vim.keymap.set('n', '<leader>ct', 'gcc', { remap = true })
+vim.keymap.set('x', '<leader>ct', 'gc', { remap = true })
