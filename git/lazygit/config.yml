@@ -26,8 +26,8 @@ git:
     pager: delta --paging=never --24-bit-color=never
 
 os:
-  edit: 'floaterm {{filename}} || nvim {{filename}} 2>/dev/null'
-  editAtLine: 'floaterm {{filename}} {{line}} || nvim {{filename}} +{{line}} 2>/dev/null'
+  edit: 'floaterm {{filename}} > /dev/null 2>&1 || nvim {{filename}}'
+  editAtLine: 'floaterm {{filename}} {{line}} > /dev/null 2>&1 || nvim {{filename}} +{{line}}'
   editInTerminal: true
 
 keybinding:
