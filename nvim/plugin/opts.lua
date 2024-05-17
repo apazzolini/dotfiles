@@ -1,6 +1,3 @@
-vim.g.mapleader = ','
-vim.g.isNotes = vim.env.IS_NOTES == '1' or (vim.fn.argc() >= 1 and vim.fn.argv()[1]:match('index.md$') ~= nil)
-
 vim.opt.termguicolors = true
 
 vim.opt.ignorecase = true
@@ -47,14 +44,10 @@ vim.opt.pumheight = 20
 
 vim.opt.joinspaces = false
 
--- vim.opt.foldmethod = 'manual'
 vim.opt.foldenable = false
+-- vim.opt.foldmethod = 'manual'
 -- vim.opt.foldlevel = 99
 -- vim.opt.foldnestmax = 4
-
--- vim.b.javascript_fold = 0
--- vim.g.javascript_plugin_jsdoc = 1
--- vim.g.jsx_ext_required = 0
 
 vim.opt.breakindent = true
 vim.opt.breakindentopt = 'shift:2'

@@ -6,7 +6,7 @@ local map_tele = function(key, f, options, buffer)
   TelescopeMapArgs[map_key] = options or {}
 
   local mode = 'n'
-  local rhs = string.format("<cmd>lua require('andre.telescope.pickers')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
+  local rhs = string.format("<cmd>lua require('plugins.telescope.pickers')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
 
   local map_options = {
     noremap = true,

@@ -6,9 +6,9 @@ return {
   config = function()
     local actions = require('telescope.actions')
     local previewers = require('telescope.previewers')
-    local andre_sorter = require('andre.telescope.sorter')
-    local select_multiple = require('andre.telescope.select_multiple')
-    require('andre.telescope.mappings')
+    local andre_sorter = require('plugins.telescope.sorter')
+    local select_multiple = require('plugins.telescope.select_multiple')
+    require('plugins.telescope.mappings')
 
     local telescope_opts = {
       defaults = {

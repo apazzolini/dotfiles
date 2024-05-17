@@ -1,3 +1,5 @@
+require('luasnip.session.snippet_collection').clear_snippets('javascript')
+
 local ls = require('luasnip')
 
 ls.add_snippets('javascript', {

@@ -1,10 +1,10 @@
-local select_multiple = require('andre.telescope.select_multiple')
+local select_multiple = require('plugins.telescope.select_multiple')
 
 local M = {}
 
 function M.custom_grep()
-  package.loaded['andre.telescope.grepper'] = nil
-  require('andre.telescope.grepper')({
+  package.loaded['plugins.telescope.grepper'] = nil
+  require('plugins.telescope.grepper')({
     attach_mappings = function(_, map)
       map('i', '<cr>', select_multiple)
       return true

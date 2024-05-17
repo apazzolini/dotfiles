@@ -19,6 +19,6 @@ vim.g.colors_name = 'wave'
 package.loaded['wave'] = nil
 
 -- include our theme file and pass it to lush to apply
-require('lush')(require('andre.wave'))
+require('lush')(loadfile(vim.api.nvim_get_runtime_file('colors/wave.lua', false)[1])())
 
 vim.cmd.colorscheme('none')
