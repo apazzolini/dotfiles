@@ -7,3 +7,5 @@ return {
     vim.cmd([[ let g:db_ui_save_location = "~/Work/db" ]])
   end,
 }
+
+-- Maybe replace this with dbee?

@@ -6,6 +6,8 @@ vim.keymap.set('n', 'H', '0')
 vim.keymap.set('n', 'L', '$')
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', ',<c-d>', '<c-d>')
+vim.keymap.set('n', ',<c-u>', '<c-u>')
 vim.keymap.set('n', '<c-d>', function()
   vim.cmd([[
     set lazyredraw
@@ -67,7 +69,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Increment / decrement numbers
 vim.keymap.set('n', '+', '<C-a>')
-vim.keymap.set('n', '-', '<C-x>')
+-- vim.keymap.set('n', '-', '<C-x>')
 vim.keymap.set('x', '+', 'g<C-a>')
 vim.keymap.set('x', '-', 'g<C-x>')
 

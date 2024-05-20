@@ -7,5 +7,6 @@ vim.filetype.add({
   pattern = {
     ['.*/zsh/functions/.*'] = 'zsh',
     ['gitconfig.*'] = 'gitconfig',
+    ['${HOME}/.local/share/nvim/lazy/.*/doc/.*/*.txt'] = 'help',
   },
 })

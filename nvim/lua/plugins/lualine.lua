@@ -22,7 +22,6 @@ return {
       colors.blue = colors.bg0
     end
 
-    -- LuaFormatter on
     local b = { bg = colors.bg0, fg = colors.fg2, gui = 'bold' }
     local c = { bg = colors.bg1, fg = colors.fg2 }
 
@@ -73,16 +72,12 @@ return {
       lualine_c = {
         {
           'diagnostics',
-          -- table of diagnostic sources, available sources:
-          -- nvim_lsp, coc, ale, vim_lsp
           sources = { 'nvim_diagnostic' },
-          -- displays diagnostics from defined severity
           sections = { 'error', 'warn', 'info' }, -- 'hint'
-          -- all colors are in format #rrggbb
-          color_error = colors.red, -- changes diagnostic's error foreground color
-          color_warn = nil, -- changes diagnostic's warn foreground color
-          color_info = nil, -- Changes diagnostic's info foreground color
-          color_hint = nil, -- Changes diagnostic's hint foreground color
+          color_error = colors.red,
+          color_warn = nil,
+          color_info = nil,
+          color_hint = nil,
           symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' },
         },
       },

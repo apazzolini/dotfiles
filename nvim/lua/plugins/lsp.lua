@@ -2,6 +2,7 @@ return {
   cond = vim.g.isNotes == false,
   'hrsh7th/nvim-cmp',
   dependencies = {
+    'b0o/schemastore.nvim',
     'onsails/lspkind.nvim',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',

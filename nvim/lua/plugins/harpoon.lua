@@ -1,15 +1,3 @@
--- return {
---   'otavioschwanck/arrow.nvim',
---   config = function()
---     require('arrow').setup({
---       show_icons = false,
---       leader_key = '<leader>Hp', -- Recommended to be a single key
---     })
---     vim.keymap.set('n', '<leader>Hi', require('arrow.persist').previous)
---     vim.keymap.set('n', '<leader>Ho', require('arrow.persist').next)
---   end,
--- }
-
 return {
   'ThePrimeagen/harpoon',
   config = function()
