@@ -1,8 +1,5 @@
 local log = require('vim.lsp.log')
 local util = require('vim.lsp.util')
--- local null_ls = require('null-ls')
--- local nls_h = require('null-ls.helpers')
--- local nls_u = require('null-ls.utils')
 
 return {
   cond = vim.g.isNotes == false,
@@ -22,16 +19,11 @@ return {
     },
     'williamboman/mason.nvim',
     {
-      'nvimtools/none-ls.nvim',
-      commit = 'bb680d752cec37949faca7a1f509e2fe67ab418a',
-    },
-    {
       'j-hui/fidget.nvim',
       opts = {
         progress = {
           suppress_on_insert = true,
           ignore_done_already = true,
-          ignore = { 'null-ls', 'lua_ls' },
           display = {
             done_style = 'DiagnosticWarn',
             icon_style = 'DiagnosticWarn',
@@ -54,23 +46,6 @@ return {
   },
   config = function()
     local lspconfig = require('lspconfig')
-
-    local function handler_publishDiagnostics(virtual_text_level, signs_error)
-      return vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = false,
-        virtual_text = {
-          severity = {
-            min = virtual_text_level,
-          },
-        },
-        update_in_insert = false,
-        signs = {
-          severity = {
-            min = signs_error,
-          },
-        },
-      })
-    end
 
     local servers = {
       astro = true,
@@ -96,9 +71,6 @@ return {
         flags = {
           debounce_text_changes = 200,
         },
-        handlers = {
-          ['textDocument/publishDiagnostics'] = handler_publishDiagnostics(vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN),
-        },
       },
 
       jsonls = {
@@ -107,9 +79,6 @@ return {
             schemas = require('schemastore').json.schemas(),
             validate = { enable = true },
           },
-        },
-        server_capabilities = {
-          diagnostics = false,
         },
       },
 
@@ -164,71 +133,7 @@ return {
           end,
         },
       },
-
-      -- null_ls = {
-      --   sources = {
-      --     -- npm i -g eslint_d
-      --     null_ls.builtins.diagnostics.eslint_d.with({
-      --       diagnostics_format = '#{c}: #{m}',
-      --       root_dir = nls_u.root_pattern('.git'),
-      --       cwd = nls_h.cache.by_bufnr(function(params)
-      --         return nls_u.root_pattern('.git')(params.bufname)
-      --       end),
-      --       filetypes = {
-      --         'javascript',
-      --         'javascriptreact',
-      --         'typescript',
-      --         'typescriptreact',
-      --         'vue',
-      --         'astro',
-      --       },
-      --     }),
-      --
-      --   },
-      --   handlers = {
-      --     ['textDocument/publishDiagnostics'] = vim.diagnostic.config({
-      --       underline = false,
-      --       update_in_insert = false,
-      --     }),
-      --   },
-      -- }
     }
-
-    -- local function handler_publishDiagnostics(virtual_text_level, signs_error)
-    --   virtual_text_level = virtual_text_level or vim.diagnostic.severity.ERROR
-    --   signs_error = signs_error or vim.diagnostic.severity.WARN
-    --
-    --   return vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    --     underline = false,
-    --     virtual_text = {
-    --       severity = {
-    --         min = virtual_text_level,
-    --       },
-    --     },
-    --     update_in_insert = false,
-    --     signs = {
-    --       severity = {
-    --         min = signs_error,
-    --       },
-    --     },
-    --   })
-    -- end
-
-    local function first_match(_, result, context)
-      local method = context.method
-      if result == nil or vim.tbl_isempty(result) then
-        local _ = log.info() and log.info(method, 'No location found')
-        return nil
-      end
-
-      local location = result
-      if vim.tbl_islist(result) then
-        location = result[1]
-      end
-      util.jump_to_location(location, vim.lsp.get_client_by_id(context.client_id).offset_encoding, false)
-
-      vim.cmd('normal zz')
-    end
 
     ----------------------------------------------------------------------------
 
@@ -249,6 +154,37 @@ return {
       return orig_util_open_floating_preview(contents, syntax, opts, ...)
     end
 
+    vim.diagnostic.config({
+      underline = false,
+      update_in_insert = false,
+      virtual_text = {
+        severity = {
+          min = vim.diagnostic.severity.ERROR,
+        },
+      },
+      signs = {
+        severity = {
+          min = vim.diagnostic.severity.WARN,
+        },
+      },
+    })
+
+    local function first_match(_, result, context)
+      local method = context.method
+      if result == nil or vim.tbl_isempty(result) then
+        local _ = log.info() and log.info(method, 'No location found')
+        return nil
+      end
+
+      local location = result
+      if vim.tbl_islist(result) then
+        location = result[1]
+      end
+      util.jump_to_location(location, vim.lsp.get_client_by_id(context.client_id).offset_encoding, false)
+
+      vim.cmd('normal zz')
+    end
+
     for name, config in pairs(servers) do
       if config == true then
         config = {}
@@ -256,17 +192,10 @@ return {
 
       config = vim.tbl_deep_extend('force', {}, {
         capabilities = capabilities,
-        -- handlers = {
-        -- ['textDocument/publishDiagnostics'] = handler_publishDiagnostics(),
-        -- ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
-        -- vim.print(result)
-        -- local bufnr, winnr = vim.lsp.handlers.hover(_, result, ctx, config)
-        -- if bufnr ~= nil then
-        --   require('colorizer').attach_to_buffer(bufnr, { mode = 'background', css = true })
-        -- end
-        -- return bufnr, winnr
-        -- end,
-        -- },
+        handlers = {
+          ['textDocument/definition'] = first_match,
+          ['textDocument/typeDefinition'] = first_match,
+        },
       }, config)
 
       lspconfig[name].setup(config)
