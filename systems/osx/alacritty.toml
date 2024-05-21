@@ -1,0 +1,59 @@
+import = [
+  "/Users/andre/.dotfiles/systems/shared/alacritty.toml",
+]
+
+[window]
+decorations = "buttonless"
+padding = { x = 3, y = 2}
+
+[font]
+size = 12.5
+
+[keyboard]
+# \u0010 sends Ctrl-P
+# \u001BX sends the escape code followed by X, which gets treated as <m-X> in Neovim
+bindings = [
+  { key = ")"        , mods = "Command|Shift" , action = "ResetFontSize" },
+  { key = "Key0"     , mods = "Command"       , chars = "\u00100" },
+  { key = "Key1"     , mods = "Command"       , chars = "\u00101" },
+  { key = "Key2"     , mods = "Command"       , chars = "\u00102" },
+  { key = "Key3"     , mods = "Command"       , chars = "\u00103" },
+  { key = "Key4"     , mods = "Command"       , chars = "\u00104" },
+  { key = "Key5"     , mods = "Command"       , chars = "\u00105" },
+  { key = "Key6"     , mods = "Command"       , chars = "\u00106" },
+  { key = "Key7"     , mods = "Command"       , chars = "\u00107" },
+  { key = "Key8"     , mods = "Command"       , chars = "\u00108" },
+  { key = "Key9"     , mods = "Command"       , chars = "\u00109" },
+  { key = "{"        , mods = "Command|Shift" , chars = "\u001B[" },
+  { key = "}"        , mods = "Command|Shift" , chars = "\u001B]" },
+  { key = "["        , mods = "Command"       , chars = "\u0010P" },
+  { key = "]"        , mods = "Command"       , chars = "\u0010N" },
+  { key = "Slash"    , mods = "Command"       , chars = ",ct" },
+  { key = "J"        , mods = "Command"       , chars = "\u0010[" },
+  { key = "W"        , mods = "Command"       , chars = "\u0010x" },
+  { key = "K"        , mods = "Command"       , chars = "\u0010\f" },
+  { key = "Return"   , mods = "Control"       , chars = "\u001B[13;5u" },
+  { key = "Return"   , mods = "Shift"         , chars = "\u001B[13;2u" },
+  { key = "Tab"      , mods = "Control"       , chars = "\u001B[9;5u" },
+  { key = "Tab"      , mods = "Control|Shift" , chars = "\u001B[9;6u" },
+
+  { key = "Y"        , mods = "Command"       , chars = ",Hy" },
+  { key = "U"        , mods = "Command"       , chars = ",Hu" },
+  { key = "I"        , mods = "Command"       , chars = ",Hi" },
+  { key = "O"        , mods = "Command"       , chars = ",Ho" },
+  { key = "P"        , mods = "Command"       , chars = ",Hp" },
+  { key = "L"        , mods = "Command"       , chars = "\u0010z" },
+  { key = "Y"        , mods = "Command|Shift" , chars = ",HY" },
+  { key = "U"        , mods = "Command|Shift" , chars = ",HU" },
+  { key = "I"        , mods = "Command|Shift" , chars = ",HI" },
+  { key = "O"        , mods = "Command|Shift" , chars = ",HO" },
+  { key = "P"        , mods = "Command|Shift" , chars = ",HP" },
+  { key = "F"        , mods = "Command"       , chars = "]qzz" },
+  { key = "D"        , mods = "Command"       , chars = "[qzz" },
+
+  # See: https://github.com/alacritty/alacritty/issues/1359#issuecomment-430265381
+  { key = "Q"        , mods = "Control"       , chars = "\u0011" },
+
+  # Needed on work laptop only? Not sure why
+  { key = "Space"    , mods = "Control"       , chars = "\u0000" },
+]

@@ -1,21 +1,22 @@
 ---@diagnostic disable: undefined-global, unused-local
 local lush = require('lush')
-local lyaml = require('lua-yaml/yaml')
+local ltoml = require('lua-toml/toml')
 local hsl = lush.hsl
 
-local function read_yaml(file)
+local function read_toml(file)
   local lines = {}
   for line in io.lines(file) do
     if #line > 0 and not line:match('^%s*#') then
       lines[#lines + 1] = line
     end
   end
-  return lyaml.eval(table.concat(lines, '\n'))
+  return ltoml.parse(table.concat(lines, '\n'))
 end
 
 local function get_dark_colors()
   local home = vim.fn.has('osx') == 1 and '/Users/andre' or vim.fn.has('win32') == 1 and 'L:/home/andre' or '/home/andre'
-  local parsed = read_yaml(home .. '/.dotfiles/systems/shared/alacritty.yml')
+  local parsed = read_toml(home .. '/.dotfiles/systems/shared/alacritty.toml')
+
   return {
     black = parsed.colors.normal.black,
     red = parsed.colors.normal.red,

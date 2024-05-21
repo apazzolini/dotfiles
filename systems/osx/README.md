@@ -1,7 +1,7 @@
 # alacritty
 
 `mkdir -p ~/.config/alacritty`
-`ln -s ~/.dotfiles/systems/osx/alacritty.yml ~/.config/alacritty`
+`ln -s ~/.dotfiles/systems/osx/alacritty.toml ~/.config/alacritty`
 
 # brew.sh
 

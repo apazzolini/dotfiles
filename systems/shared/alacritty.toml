@@ -1,0 +1,84 @@
+[window]
+dynamic_title = false
+title = "Alacritty"
+
+[font.normal]
+family = "OperatorMono Nerd Font"
+style = "ExtraLight"
+
+[font.bold]
+style = "Light"
+
+[font.italic]
+style = "ExtraLightItalic"
+
+[font.bold_italic]
+style = "Book Italic"
+
+[colors]
+draw_bold_text_with_bright_colors = false
+indexed_colors = [
+  { index = 244, color = '#242333' },
+  { index = 245, color = '#45475a' },
+  { index = 246, color = '#6c7086' },
+  { index = 247, color = '#7f849c' },
+  { index = 248, color = '#9399b2' },
+  { index = 249, color = '#a6adc8' },
+]
+
+[colors.bright]
+black = "#5b6078"
+blue = "#B68EDB"
+cyan = "#87CFD1"
+green = "#C2DD92"
+magenta = "#ff007c"
+red = "#FF5370"
+white = "#A0A5C2"
+yellow = "#f9e2af"
+
+[colors.cursor]
+cursor = "#F5E0DC"
+text = "#1E1B2A"
+
+[colors.hints.end]
+background = "#A6ADC8"
+foreground = "#1E1B2A"
+
+[colors.hints.start]
+background = "#F9E2AF"
+foreground = "#1E1B2A"
+
+[colors.normal]
+black = "#1e2027"
+blue = "#B29EED"
+cyan = "#DCB8E8"
+green = "#A8D7AF"
+magenta = "#B98AFF"
+red = "#FF87A5"
+white = "#c4cad5"
+yellow = "#f2cdcd"
+
+[colors.primary]
+background = "#1E1B2A"
+foreground = "#CDD6F4"
+
+[colors.search.focused_match]
+background = "#A6E3A1"
+foreground = "#1E1B2A"
+
+[colors.search.matches]
+background = "#A6ADC8"
+foreground = "#1E1B2A"
+
+[colors.selection]
+background = "#F5E0DC"
+text = "#1E1B2A"
+
+[colors.vi_mode_cursor]
+cursor = "#B4BEFE"
+text = "#1E1B2A"
+
+[mouse]
+bindings = [
+  { mouse = "Middle", action = "None" },
+]

@@ -1,32 +1,22 @@
+local log = require('vim.lsp.log')
+local util = require('vim.lsp.util')
+-- local null_ls = require('null-ls')
+-- local nls_h = require('null-ls.helpers')
+-- local nls_u = require('null-ls.utils')
+
 return {
   cond = vim.g.isNotes == false,
-  'hrsh7th/nvim-cmp',
+  'neovim/nvim-lspconfig',
   dependencies = {
     'b0o/schemastore.nvim',
-    'onsails/lspkind.nvim',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
     'windwp/nvim-autopairs',
-    'kristijanhusak/vim-dadbod-completion',
     'stevearc/conform.nvim',
     {
-      'L3MON4D3/LuaSnip',
-      dependencies = {
-        'saadparwaiz1/cmp_luasnip',
-      },
-    },
-    {
-      'neovim/nvim-lspconfig',
-      dependencies = {
-        {
-          'folke/neodev.nvim',
-          opts = {
-            plugins = false,
-            library = {
-              plugins = false,
-            },
-          },
+      'folke/neodev.nvim',
+      opts = {
+        plugins = false,
+        library = {
+          plugins = false,
         },
       },
     },
@@ -63,197 +53,7 @@ return {
     },
   },
   config = function()
-    local cmp = require('cmp')
-    local luasnip = require('luasnip')
-
-    local has_words_before = function()
-      if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
-        return false
-      end
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-    end
-
-    cmp.setup({
-      preselect = cmp.PreselectMode.None,
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-      mapping = {
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete({}),
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ['<C-j>'] = cmp.mapping.select_next_item({ 'i', 'c' }),
-        ['<C-k>'] = cmp.mapping.select_prev_item({ 'i', 'c' }),
-        ['<Down>'] = cmp.mapping.select_next_item({ 'i', 'c' }),
-        ['<Up>'] = cmp.mapping.select_prev_item({ 'i', 'c' }),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.expandable() then
-            luasnip.expand()
-            -- elseif cmp.visible() then
-          elseif has_words_before() then
-            cmp.select_next_item({ cmp.SelectBehavior.Insert })
-            -- cmp.complete()
-          else
-            fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-          end
-        end, {
-          'i',
-          's',
-        }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          elseif cmp.visible() then
-            cmp.select_prev_item({ cmp.SelectBehavior.Insert })
-          else
-            fallback()
-          end
-        end, {
-          'i',
-          's',
-        }),
-      },
-      sources = {
-        {
-          name = 'nvim_lsp',
-          entry_filter = function(entry)
-            return entry:get_filter_text():match('^SVG') == nil
-          end,
-        },
-        { name = 'buffer', keyword_length = 5 },
-        { name = 'path' },
-      },
-      window = {
-        documentation = cmp.config.window.bordered(),
-      },
-
-      sorting = {
-        priority_weight = 2.0,
-        comparators = {
-          -- cmp.config.compare.recently_used,
-          cmp.config.compare.exact,
-          cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-          cmp.config.compare.offset,
-          cmp.config.compare.locality,
-          cmp.config.compare.kind,
-          cmp.config.compare.length,
-          cmp.config.compare.order,
-        },
-      },
-    })
-
-    require('nvim-autopairs').setup()
-
-    -- If you want insert `(` after select function or method item
-    -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-    -- local cmp = require('cmp')
-    -- cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
-
-    ----------------------------------------------------------------------------
-
-    for _, ft_path in ipairs(vim.api.nvim_get_runtime_file('lua/snippets/*.lua', true)) do
-      loadfile(ft_path)()
-    end
-
-    ----------------------------------------------------------------------------
-
-    require('conform').setup({
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        javascript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
-        zig = { 'zigfmt' },
-      },
-      format_on_save = {
-        timeout_ms = 2000,
-        lsp_fallback = false,
-      },
-      notify_on_error = false,
-    })
-
-    ----------------------------------------------------------------------------
-
-    local log = require('vim.lsp.log')
-    local util = require('vim.lsp.util')
-
-    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.border = opts.border or 'rounded'
-      return orig_util_open_floating_preview(contents, syntax, opts, ...)
-    end
-
-    local function close_floating()
-      vim.cmd('noh')
-      for _, win in ipairs(vim.api.nvim_list_wins()) do
-        local config = vim.api.nvim_win_get_config(win)
-        if config.relative ~= '' then
-          vim.api.nvim_win_close(win, false)
-        end
-      end
-    end
-
-    vim.fn.sign_define('LspDiagnosticsSignError', { text = '>', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '>', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '>', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
-    vim.fn.sign_define('LspDiagnosticsSignHint', { text = '>', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
-
-    local function set_lsp_keymaps(client, bufnr)
-      local opts = { noremap = true, silent = true }
-
-      vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-      vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<cr>zz', opts)
-      vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
-      vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-      vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-      vim.keymap.set('n', '<cr>', close_floating, { noremap = true, silent = true, buffer = bufnr })
-      vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-
-      vim.keymap.set('n', '<leader>ci', function()
-        vim.lsp.buf.code_action({
-          apply = true,
-          filter = function(ca)
-            return ca.title:match('^Add import from') or ca.title:match('^Update import from')
-          end,
-        })
-      end)
-
-      local errorDiagnostics = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
-      vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)
-      vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. errorDiagnostics .. ')<cr>zz', opts)
-
-      vim.keymap.set('n', 'gH', '<cmd>lua vim.diagnostic.open_float()<cr>')
-
-      vim.keymap.set('n', '<leader>M', '<cmd>lua vim.diagnostic.goto_prev()<cr>zz', opts)
-      vim.keymap.set('n', '<leader>>', '<cmd>lua vim.diagnostic.goto_next()<cr>zz', opts)
-
-      vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
-      vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
-      vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
-
-      vim.keymap.set('n', '<leader>F', function()
-        require('conform').format()
-      end, opts)
-    end
-
-    local function disable_semantic_tokens(client)
-      if client and client.server_capabilities then
-        client.server_capabilities.semanticTokensProvider = nil
-      end
-    end
-
-    local function disable_formatting(client)
-      if client and client.server_capabilities then
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-      end
-    end
+    local lspconfig = require('lspconfig')
 
     local function handler_publishDiagnostics(virtual_text_level, signs_error)
       return vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -271,6 +71,148 @@ return {
         },
       })
     end
+
+    local servers = {
+      astro = true,
+      gopls = true,
+      vimls = true,
+      zls = true,
+      eslint = true,
+
+      tsserver = {
+        root_dir = function(fname)
+          return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
+            or lspconfig.util.root_pattern('.git')(fname)
+            or lspconfig.util.root_pattern('package.json', 'jsconfig.json', 'tsconfig.json')(fname)
+        end,
+        single_file_support = false,
+        init_options = {
+          maxTsServerMemory = 6144,
+          preferences = {
+            importModuleSpecifierPreference = 'non-relative',
+            includePackageJsonAutoImports = 'off',
+          },
+        },
+        flags = {
+          debounce_text_changes = 200,
+        },
+        handlers = {
+          ['textDocument/publishDiagnostics'] = handler_publishDiagnostics(vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN),
+        },
+      },
+
+      jsonls = {
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+        server_capabilities = {
+          diagnostics = false,
+        },
+      },
+
+      rust_analyzer = {
+        cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
+      },
+
+      lua_ls = {
+        settings = {
+          Lua = {
+            workspace = {
+              library = { '/Users/andre/GitHub/_forks/hammerspoon/build/stubs' },
+              checkThirdParty = false,
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+      },
+
+      tailwindcss = {
+        -- git clone https://github.com/apazzolini/tailwindcss-intellisense.git
+        -- cd tailwindcss-intellisense
+        -- npm i
+        -- cd packages/tailwindcss-language-server
+        -- npm run build
+        -- npm i -g $(pwd)
+        root_dir = function(fname)
+          return lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts')(
+            fname
+          )
+        end,
+        single_file_support = false,
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                'tw`([^`]*)',
+                { 'classnames\\(([^)]*)\\)', "'([^']*)'" },
+              },
+            },
+          },
+        },
+        handlers = {
+          ['textDocument/hover'] = function(_, result, ctx, config)
+            local bufnr, winnr = vim.lsp.handlers.hover(_, result, ctx, config)
+            if bufnr ~= nil then
+              require('colorizer').attach_to_buffer(bufnr, { mode = 'background', css = true })
+            end
+            return bufnr, winnr
+          end,
+        },
+      },
+
+      -- null_ls = {
+      --   sources = {
+      --     -- npm i -g eslint_d
+      --     null_ls.builtins.diagnostics.eslint_d.with({
+      --       diagnostics_format = '#{c}: #{m}',
+      --       root_dir = nls_u.root_pattern('.git'),
+      --       cwd = nls_h.cache.by_bufnr(function(params)
+      --         return nls_u.root_pattern('.git')(params.bufname)
+      --       end),
+      --       filetypes = {
+      --         'javascript',
+      --         'javascriptreact',
+      --         'typescript',
+      --         'typescriptreact',
+      --         'vue',
+      --         'astro',
+      --       },
+      --     }),
+      --
+      --   },
+      --   handlers = {
+      --     ['textDocument/publishDiagnostics'] = vim.diagnostic.config({
+      --       underline = false,
+      --       update_in_insert = false,
+      --     }),
+      --   },
+      -- }
+    }
+
+    -- local function handler_publishDiagnostics(virtual_text_level, signs_error)
+    --   virtual_text_level = virtual_text_level or vim.diagnostic.severity.ERROR
+    --   signs_error = signs_error or vim.diagnostic.severity.WARN
+    --
+    --   return vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    --     underline = false,
+    --     virtual_text = {
+    --       severity = {
+    --         min = virtual_text_level,
+    --       },
+    --     },
+    --     update_in_insert = false,
+    --     signs = {
+    --       severity = {
+    --         min = signs_error,
+    --       },
+    --     },
+    --   })
+    -- end
 
     local function first_match(_, result, context)
       local method = context.method
@@ -290,229 +232,116 @@ return {
 
     ----------------------------------------------------------------------------
 
+    vim.fn.sign_define('LspDiagnosticsSignError', { text = '>' })
+    vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '>' })
+    vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '>' })
+    vim.fn.sign_define('LspDiagnosticsSignHint', { text = '>' })
+
+    ----------------------------------------------------------------------------
+
     require('mason').setup({})
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    local capabilitiesWithoutSnippets = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = false })
-    local lspconfig = require('lspconfig')
+    local capabilities = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = false })
 
-    -- TSSERVER ----------------------------------------------------------------
+    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+      opts = opts or {}
+      opts.border = opts.border or 'rounded'
+      return orig_util_open_floating_preview(contents, syntax, opts, ...)
+    end
 
-    lspconfig.tsserver.setup({
-      capabilities = capabilities,
-      root_dir = function(fname)
-        return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
-          or lspconfig.util.root_pattern('.git')(fname)
-          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', 'tsconfig.json')(fname)
-      end,
-      single_file_support = false,
-      init_options = {
-        maxTsServerMemory = 6144,
-        preferences = {
-          importModuleSpecifierPreference = 'non-relative',
-          includePackageJsonAutoImports = 'off',
-        },
-      },
-      on_attach = function(client, bufnr)
-        disable_semantic_tokens(client)
-        set_lsp_keymaps(client, bufnr)
-      end,
-      flags = {
-        debounce_text_changes = 200,
-      },
-      handlers = {
-        ['textDocument/publishDiagnostics'] = handler_publishDiagnostics(vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN),
-        ['textDocument/definition'] = first_match,
-        ['textDocument/typeDefinition'] = first_match,
-      },
-    })
+    for name, config in pairs(servers) do
+      if config == true then
+        config = {}
+      end
 
-    -- JSONLS ------------------------------------------------------------------
+      config = vim.tbl_deep_extend('force', {}, {
+        capabilities = capabilities,
+        -- handlers = {
+        -- ['textDocument/publishDiagnostics'] = handler_publishDiagnostics(),
+        -- ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+        -- vim.print(result)
+        -- local bufnr, winnr = vim.lsp.handlers.hover(_, result, ctx, config)
+        -- if bufnr ~= nil then
+        --   require('colorizer').attach_to_buffer(bufnr, { mode = 'background', css = true })
+        -- end
+        -- return bufnr, winnr
+        -- end,
+        -- },
+      }, config)
 
-    lspconfig.jsonls.setup({
-      capabilities = capabilities,
-      settings = {
-        json = {
-          schemas = require('schemastore').json.schemas(),
-          validate = { enable = true },
-        },
-      },
-      on_attach = function(client, bufnr)
-        set_lsp_keymaps(client, bufnr)
-        disable_semantic_tokens(client)
-      end,
-      handlers = {
-        ['textDocument/publishDiagnostics'] = function()
-          return false
-        end,
-      },
-    })
+      lspconfig[name].setup(config)
+    end
 
-    -- ASTRO -------------------------------------------------------------------
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id), 'must have valid client')
+        local opts = { noremap = true, silent = true, buffer = 0 }
 
-    lspconfig.astro.setup({
-      capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        set_lsp_keymaps(client, bufnr)
-        disable_semantic_tokens(client)
-      end,
-    })
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<cr>zz', opts)
+        vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
-    -- RUST --------------------------------------------------------------------
-
-    lspconfig.rust_analyzer.setup({
-      capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        set_lsp_keymaps(client, bufnr)
-        disable_semantic_tokens(client)
-      end,
-      cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
-    })
-
-    -- LUA_LS ------------------------------------------------------------------
-
-    lspconfig.lua_ls.setup({
-      settings = {
-        Lua = {
-          workspace = {
-            library = { '/Users/andre/GitHub/_forks/hammerspoon/build/stubs' },
-            checkThirdParty = false,
-          },
-          telemetry = {
-            enable = false,
-          },
-        },
-      },
-      on_attach = function(client, bufnr)
-        disable_semantic_tokens(client)
-        set_lsp_keymaps(client, bufnr)
-      end,
-      handlers = {
-        ['textDocument/definition'] = first_match,
-      },
-    })
-
-    -- TAILWIND ----------------------------------------------------------------
-
-    -- git clone https://github.com/apazzolini/tailwindcss-intellisense.git
-    -- cd tailwindcss-intellisense
-    -- npm i
-    -- cd packages/tailwindcss-language-server
-    -- npm run build
-    -- npm i -g $(pwd)
-    lspconfig.tailwindcss.setup({
-      -- cmd = { 'node', '--inspect', '/usr/local/bin/tailwindcss-language-server', '--stdio' },
-      root_dir = function(fname)
-        return lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts')(fname)
-      end,
-      single_file_support = false,
-      settings = {
-        tailwindCSS = {
-          experimental = {
-            classRegex = {
-              'tw`([^`]*)',
-              { 'classnames\\(([^)]*)\\)', "'([^']*)'" },
-            },
-          },
-        },
-      },
-      handlers = {
-        ['textDocument/hover'] = function(_, result, ctx, config)
-          local bufnr, winnr = vim.lsp.handlers.hover(_, result, ctx, config)
-          if bufnr ~= nil then
-            require('colorizer').attach_to_buffer(bufnr, { mode = 'background', css = true })
+        vim.keymap.set('n', '<cr>', function()
+          vim.cmd('noh')
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local config = vim.api.nvim_win_get_config(win)
+            if config.relative ~= '' then
+              vim.api.nvim_win_close(win, false)
+            end
           end
-          return bufnr, winnr
-        end,
+        end, opts)
+
+        vim.keymap.set('n', '<leader>ci', function()
+          vim.lsp.buf.code_action({
+            apply = true,
+            filter = function(ca)
+              return ca.title:match('^Add import from') or ca.title:match('^Update import from')
+            end,
+          })
+        end, opts)
+
+        local errorDiagnostics = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
+        vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)
+        vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. errorDiagnostics .. ')<cr>zz', opts)
+        vim.keymap.set('n', 'gH', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+        vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
+        vim.keymap.set('n', '<leader>lE', '<cmd>lua vim.diagnostic.setqflist()<cr>zz', opts)
+        vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
+        vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
+
+        vim.keymap.set('n', '<leader>F', function()
+          require('conform').format()
+        end, opts)
+
+        client.server_capabilities.semanticTokensProvider = nil
+      end,
+    })
+
+    ----------------------------------------------------------------------------
+
+    -- npm i -g @fsouza/prettierd
+    -- Install with Mason: goimports, stylua
+    require('conform').setup({
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        javascript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
+        zig = { 'zigfmt' },
       },
-      on_attach = function(client, bufnr)
-        set_lsp_keymaps(client, bufnr)
-      end,
-    })
-
-    -- GO ----------------------------------------------------------------------
-
-    lspconfig.gopls.setup({
-      capabilities = capabilitiesWithoutSnippets,
-      on_attach = function(client, bufnr)
-        set_lsp_keymaps(client, bufnr)
-        disable_semantic_tokens(client)
-      end,
-    })
-
-    -- VIM ---------------------------------------------------------------------
-
-    lspconfig.vimls.setup({
-      capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        set_lsp_keymaps(client, bufnr)
-        disable_semantic_tokens(client)
-      end,
-    })
-
-    -- ZIG ---------------------------------------------------------------------
-
-    lspconfig.zls.setup({
-      capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        set_lsp_keymaps(client, bufnr)
-        disable_semantic_tokens(client)
-      end,
-    })
-
-    -- NULL --------------------------------------------------------------------
-
-    local null_ls = require('null-ls')
-    local nls_h = require('null-ls.helpers')
-    local nls_u = require('null-ls.utils')
-
-    null_ls.setup({
-      sources = {
-        -- npm i -g @fsouza/prettierd
-        -- Used by conform
-
-        -- npm i -g eslint_d
-        null_ls.builtins.diagnostics.eslint_d.with({
-          diagnostics_format = '#{c}: #{m}',
-          root_dir = nls_u.root_pattern('.git'),
-          cwd = nls_h.cache.by_bufnr(function(params)
-            return nls_u.root_pattern('.git')(params.bufname)
-          end),
-          filetypes = {
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-            'vue',
-            'astro',
-          },
-        }),
-
-        -- Install with Mason
-        -- null_ls.builtins.formatting.goimports,
-        -- null_ls.builtins.formatting.stylua,
+      format_on_save = {
+        timeout_ms = 2000,
+        lsp_fallback = false,
       },
-      on_attach = function(client, bufnr)
-        disable_semantic_tokens(client)
-      end,
-      handlers = {
-        ['textDocument/publishDiagnostics'] = vim.diagnostic.config({
-          underline = false,
-          update_in_insert = false,
-        }),
-      },
+      notify_on_error = false,
     })
 
-    -- DENO --------------------------------------------------------------------
+    ----------------------------------------------------------------------------
 
-    -- lspconfig.denols.setup({
-    --   capabilities = capabilities,
-    --   single_file_support = false,
-    --   root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
-
-    --   on_attach = function(client, bufnr)
-    --     set_lsp_keymaps(client, bufnr)
-    --     format_on_save(bufnr)
-    --   end,
-    -- })
+    require('nvim-autopairs').setup()
   end,
 }

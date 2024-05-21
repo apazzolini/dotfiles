@@ -79,8 +79,8 @@ vim.keymap.set('n', 'c<C-j>', ':bel new<cr>')
 vim.keymap.set('n', 'c<C-k>', ':abo new<cr>')
 vim.keymap.set('n', 'c<C-h>', ':lefta vnew<cr>')
 vim.keymap.set('n', 'c<C-l>', ':rightb vnew<cr>')
-vim.keymap.set('n', '<a-[>', 'gT')
-vim.keymap.set('n', '<a-]>', 'gt')
+vim.keymap.set('n', '<m-[>', 'gT')
+vim.keymap.set('n', '<m-]>', 'gt')
 
 -- Window zooming
 vim.keymap.set('n', '<leader>we', ':set winheight=999<cr>')
