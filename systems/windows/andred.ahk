@@ -12,6 +12,8 @@ GroupAdd, games, ahk_exe HITMAN3.exe
 GroupAdd, games, ahk_exe portal2.exe
 GroupAdd, games, ahk_exe cs2.exe
 GroupAdd, games, ahk_exe FactoryGame-Win64-Shipping.exe
+GroupAdd, games, ahk_exe valheim.exe
+GroupAdd, games, ahk_exe NWXClient-Win64-Shipping
 
 global LDim := [-1442, -610, 1472, 2588]
 global RDim := [0, 0, 2588, 1417]
@@ -58,13 +60,11 @@ $!a::Send !a
 $!f::Send !f
 $!y::Send !y
 $!p::Send !p
-
-!c::Send, ^+c
 !v::
     ClipboardBackup := Clipboard                        ; To restore clipboard contents after paste
     FixString := StrReplace(Clipboard, "`r`n", "`n")    ; Change endings
     Clipboard := FixString                              ; Set to clipboard
-    Send ^!v                                            ; Paste text
+    Send !v                                             ; Paste text
     Clipboard := ClipboardBackup                        ; Restore clipboard that has windows endings
     return
 
