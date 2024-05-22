@@ -11,7 +11,6 @@ return {
     {
       'folke/neodev.nvim',
       opts = {
-        plugins = false,
         library = {
           plugins = false,
         },
@@ -46,6 +45,7 @@ return {
   },
   config = function()
     local lspconfig = require('lspconfig')
+    require('mason').setup({})
 
     local servers = {
       astro = true,
@@ -101,12 +101,7 @@ return {
       },
 
       tailwindcss = {
-        -- git clone https://github.com/apazzolini/tailwindcss-intellisense.git
-        -- cd tailwindcss-intellisense
-        -- npm i
-        -- cd packages/tailwindcss-language-server
-        -- npm run build
-        -- npm i -g $(pwd)
+        -- See README in https://github.com/apazzolini/tailwindcss-intellisense.git
         root_dir = function(fname)
           return lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts')(
             fname
@@ -144,15 +139,14 @@ return {
 
     ----------------------------------------------------------------------------
 
-    require('mason').setup({})
-    local capabilities = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = false })
-
     local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
       opts = opts or {}
       opts.border = opts.border or 'rounded'
       return orig_util_open_floating_preview(contents, syntax, opts, ...)
     end
+
+    ----------------------------------------------------------------------------
 
     vim.diagnostic.config({
       underline = false,
@@ -161,6 +155,17 @@ return {
         severity = {
           min = vim.diagnostic.severity.ERROR,
         },
+        format = function(diagnostic)
+          if diagnostic.source == 'eslint' then
+            return string.format(
+              '%s [%s]',
+              diagnostic.message,
+              -- shows the name of the rule
+              diagnostic.user_data.lsp.code
+            )
+          end
+          return string.format('%s [%s]', diagnostic.message, diagnostic.source)
+        end,
       },
       signs = {
         severity = {
@@ -168,6 +173,8 @@ return {
         },
       },
     })
+
+    ----------------------------------------------------------------------------
 
     local function first_match(_, result, context)
       local method = context.method
@@ -185,6 +192,10 @@ return {
       vim.cmd('normal zz')
     end
 
+    ----------------------------------------------------------------------------
+
+    local capabilities = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = false })
+
     for name, config in pairs(servers) do
       if config == true then
         config = {}
@@ -200,6 +211,8 @@ return {
 
       lspconfig[name].setup(config)
     end
+
+    ----------------------------------------------------------------------------
 
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
@@ -251,8 +264,7 @@ return {
 
     ----------------------------------------------------------------------------
 
-    -- npm i -g @fsouza/prettierd
-    -- Install with Mason: goimports, stylua
+    -- npm i -g @fsouza/prettierd, others with Mason
     require('conform').setup({
       formatters_by_ft = {
         lua = { 'stylua' },

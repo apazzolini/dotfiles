@@ -24,13 +24,14 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
       end
 
+      -- Temporary workaround for holding <cr> in a lua file
+      -- https://github.com/hrsh7th/nvim-cmp/issues/1797
       local function fast_cmp_visible()
         if not (cmp.core.view and cmp.core.view.custom_entries_view) then
           return false
         end
         return cmp.core.view.custom_entries_view:visible()
       end
-
       local function try_accept_completion(key)
         return cmp.mapping(function(fallback)
           if fast_cmp_visible() and cmp.get_active_entry() then
@@ -53,12 +54,15 @@ return {
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete({}),
+
+          -- See above
           -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
+          ['<CR>'] = try_accept_completion('<cr>'),
+
           ['<C-j>'] = cmp.mapping.select_next_item({ 'i', 'c' }),
           ['<C-k>'] = cmp.mapping.select_prev_item({ 'i', 'c' }),
           ['<Down>'] = cmp.mapping.select_next_item({ 'i', 'c' }),
           ['<Up>'] = cmp.mapping.select_prev_item({ 'i', 'c' }),
-          ['<CR>'] = try_accept_completion('<cr>'),
           ['<Tab>'] = cmp.mapping(function(fallback)
             if luasnip.expandable() then
               luasnip.expand()

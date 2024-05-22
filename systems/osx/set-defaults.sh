@@ -21,7 +21,11 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 # External monitor font smoothing setting
 # defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO # Catalina
 # defaults -currentHost write -g AppleFontSmoothing -int 0 # Big Sur
-# defaults write io.alacritty CGFontRenderingFontSmoothingDisabled 0
+
+# To fix Alacritty rendering on Macbook Air:
+# defaults write org.alacritty CGFontRenderingFontSmoothingDisabled 0
+# defaults write org.alacritty AppleFontSmoothing 0
+
 
 # External mouse acceleration
 defaults write -g com.apple.mouse.scaling -1
