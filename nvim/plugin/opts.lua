@@ -54,3 +54,5 @@ vim.opt.breakindentopt = 'shift:2'
 vim.opt.showbreak = '\\\\'
 
 vim.opt.nrformats = ''
+
+vim.opt.jumpoptions = 'stack,view'

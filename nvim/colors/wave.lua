@@ -98,6 +98,7 @@ local theme = lush(function(injected_functions)
     Title({ fg = c.blue }),
     VertSplit({ fg = c.gray3 }),
     Visual({ bg = c.gray2 }),
+    CurSearch({ Search }),
     IncSearch({ Search }),
 
     NormalFloat({ guibg = none }),

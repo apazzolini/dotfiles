@@ -1,28 +1,34 @@
 return {
   'mfussenegger/nvim-dap',
-  lazy = true, -- :lua require('dap') to load DAP
+  lazy = false, -- :lua require('dap') to load DAP
   dependencies = {
     'rcarriga/nvim-dap-ui',
+    'nvim-neotest/nvim-nio',
     'mxsdev/nvim-dap-vscode-js', -- Install instructions: https://github.com/mxsdev/nvim-dap-vscode-js
   },
   config = function()
+    local dap = require('dap')
+    local ui = require('dapui')
+
     require('dap-vscode-js').setup({
       debugger_path = os.getenv('HOME') .. '/GitHub/vscode-js-debug/', -- Path to vscode-js-debug installation.
       adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
     })
 
     for _, language in ipairs({ 'typescript', 'javascript' }) do
-      require('dap').configurations[language] = {
+      dap.configurations[language] = {
         {
           type = 'pwa-node',
           request = 'attach',
           name = 'Attach',
           cwd = '${workspaceFolder}',
+          address = '127.0.0.1',
+          port = 9231,
         },
       }
     end
 
-    require('dapui').setup({
+    ui.setup({
       icons = { expanded = '▾', collapsed = '▸' },
       mappings = {
         expand = { '<CR>', '<2-LeftMouse>' },
@@ -63,13 +69,33 @@ return {
       windows = { indent = 1 },
     })
 
-    vim.keymap.set('n', '<leader>dc', "<cmd>silent lua require('dap').continue()<cr>", {})
-    vim.keymap.set('n', '<leader>dC', "<cmd>lua require('dap').disconnect()<cr>", {})
-    vim.keymap.set('n', '<leader>dt', "<cmd>lua require('dap').toggle_breakpoint()<cr>", {})
-    vim.keymap.set('n', '<leader>du', "<cmd>lua require('dapui').open()<cr>", {})
-    vim.keymap.set('n', '<leader>dU', "<cmd>lua require('dapui').close()<cr>", {})
-    vim.keymap.set('n', '<leader>dj', "<cmd>lua require('dap').step_over()<cr>", {})
-    vim.keymap.set('n', '<leader>dl', "<cmd>lua require('dap').step_into()<cr>", {})
-    vim.keymap.set('n', '<leader>dh', "<cmd>lua require('dap').step_out()<cr>", {})
+    vim.keymap.set('n', '<leader>dc', dap.continue)
+    vim.keymap.set('n', '<leader>dC', dap.disconnect)
+    vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint)
+    vim.keymap.set('n', 'rleader>du', ui.open)
+    vim.keymap.set('n', '<leader>dU', ui.close)
+    vim.keymap.set('n', '<leader>dj', dap.step_over)
+    vim.keymap.set('n', '<leader>dl', dap.step_into)
+    vim.keymap.set('n', '<leader>dh', dap.step_out)
+
+    vim.keymap.set('n', '<F1>', dap.continue)
+    vim.keymap.set('n', '<F2>', dap.step_into)
+    vim.keymap.set('n', '<F3>', dap.step_over)
+    vim.keymap.set('n', '<F4>', dap.step_out)
+    vim.keymap.set('n', '<F5>', dap.step_back)
+    vim.keymap.set('n', '<F13>', dap.restart)
+
+    dap.listeners.before.attach.dapui_config = function()
+      ui.open()
+    end
+    dap.listeners.before.launch.dapui_config = function()
+      ui.open()
+    end
+    dap.listeners.before.event_terminated.dapui_config = function()
+      ui.close()
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
+      ui.close()
+    end
   end,
 }
