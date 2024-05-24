@@ -58,7 +58,7 @@ return {
       yati = {
         enable = true,
         -- Disable by languages, see `Supported languages`
-        disable = { 'python', 'lua', 'html', 'json' },
+        disable = { 'python', 'lua', 'html', 'json', 'css' },
 
         -- Whether to enable lazy mode (recommend to enable this if bad indent happens frequently)
         default_lazy = true,

@@ -268,6 +268,8 @@ return {
     require('conform').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
+        astro = { 'prettierd' },
+        css = { 'prettierd' },
         javascript = { 'prettierd' },
         javascriptreact = { 'prettierd' },
         typescript = { 'prettierd' },

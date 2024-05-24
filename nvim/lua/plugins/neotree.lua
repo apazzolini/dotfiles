@@ -76,15 +76,15 @@ return {
           },
         },
       },
-      event_handlers = {
-        {
-          event = 'file_opened',
-          handler = function(_)
-            require('neo-tree.command').execute({ action = 'close' })
-          end,
-          id = 'optional unique id, only meaningful if you want to unsubscribe later',
-        },
-      },
+      -- event_handlers = {
+      --   {
+      --     event = 'file_opened',
+      --     handler = function(_)
+      --       require('neo-tree.command').execute({ action = 'close' })
+      --     end,
+      --     id = 'optional unique id, only meaningful if you want to unsubscribe later',
+      --   },
+      -- },
     })
 
     vim.keymap.set('n', '<leader>gg', '<cmd>Neotree reveal<cr>')

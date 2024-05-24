@@ -63,6 +63,9 @@
     wip = "!git add --all && git commit -m 'wip'"
     rdp = "!git range-diff origin/develop origin/$(git branch --show-current) HEAD"
 
+    find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
+
+
     # Fancy logging.
     #   h = head
     #   hp = head with patch
@@ -109,3 +112,5 @@
 	enabled = true
 [commit]
   verbose = true
+[init]
+	defaultBranch = master
