@@ -43,7 +43,7 @@ alias yr="yarn run"
 alias nr="npm run"
 alias br="bun run"
 alias pr="pnpm run"
-alias pi='pnpm install'
+alias pi='pnpm install --frozen-lockfile'
 alias rt='~/.dotfiles/bin/review-tags.sh'
 
 # tmux

@@ -37,6 +37,16 @@ vim.api.nvim_create_user_command('BC', function()
   ]])
 end, {})
 
+vim.keymap.set('n', '<leader>A', function()
+  -- Lualine doesn't like the quotes in the caddexpr, so we'll clear
+  -- the title when using this function to prevent it breaking.
+  vim.cmd([[
+    call setqflist([], 'a', {'title': ''})
+    cadde expand("%") . ":" . line(".") .  ":" . getline(".")
+    wincmd p
+  ]])
+end)
+
 -- Smart indent when entering insert mode with i on empty lines
 vim.cmd([[
   function! IndentWith(default)

@@ -254,6 +254,8 @@ return {
         vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
         vim.keymap.set('n', '<leader>lf', '<cmd>EslintFixAll<cr>', opts)
 
+        vim.keymap.set('i', '<c-h>', vim.lsp.buf.signature_help, opts)
+
         vim.keymap.set('n', '<leader>F', function()
           require('conform').format()
         end, opts)

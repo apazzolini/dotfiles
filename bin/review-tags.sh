@@ -71,10 +71,10 @@ fetch_diff_params() {
     second_tag="review/$branch_name/$3"
   elif [ "$#" -eq 2 ]; then
     first_tag="review/$branch_name/$2"
-    second_tag="$(echo "$tags" | tail -1)" 
+    second_tag="$(echo "$tags" | tail -1)"
   else
-    first_tag="$(echo "$tags" | tail -2 | head -1)" 
-    second_tag="$(echo "$tags" | tail -1)" 
+    first_tag="$(echo "$tags" | tail -2 | head -1)"
+    second_tag="$(echo "$tags" | tail -1)"
   fi
   diff_params=("$first_tag" "$second_tag")
   echo "${diff_params[0]} -> ${diff_params[1]}"
@@ -124,6 +124,7 @@ case $command in
   d|diff)
     fetch_branch_name
     fetch_diff_params "$@"
+    echo git diff "${diff_params[0]}" "${diff_params[1]}"
     git diff "${diff_params[0]}" "${diff_params[1]}"
     ;;
 
