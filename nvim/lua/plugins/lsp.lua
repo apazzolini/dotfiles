@@ -8,14 +8,6 @@ return {
     'b0o/schemastore.nvim',
     'windwp/nvim-autopairs',
     'stevearc/conform.nvim',
-    {
-      'folke/neodev.nvim',
-      opts = {
-        library = {
-          plugins = false,
-        },
-      },
-    },
     'williamboman/mason.nvim',
     {
       'j-hui/fidget.nvim',
