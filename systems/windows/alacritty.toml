@@ -11,16 +11,16 @@ size = 9.0
 
 [font.normal]
 family = "OperatorMono Nerd Font"
-style = "Light"
-
-[font.bold]
 style = "Regular"
 
+[font.bold]
+style = "Medium"
+
 [font.italic]
-style = "Light Italic"
+style = "Italic"
 
 [font.bold_italic]
-style = "Italic"
+style = "Medium Italic"
 
 [shell]
 program = "C:\\Users\\andre\\AppData\\Local\\Microsoft\\WindowsApps\\ubuntu.exe"
