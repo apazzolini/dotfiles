@@ -77,7 +77,7 @@ local theme = lush(function(injected_functions)
     Cursor({ gui = none, bg = c.red, fg = c.black }),
     CursorLine({ bg = c.gray1 }),
     CursorLineNr({ fg = c.gray4, gui = none }),
-    Directory({ fg = c.green }),
+    Directory({ fg = c.gray3 }),
     ErrorMsg({ fg = c.red, bg = none }),
     Folded({ guibg = none }),
     LineNr({ fg = dark and c.gray2 or c.gray5 }),
@@ -193,6 +193,7 @@ local theme = lush(function(injected_functions)
     -- Neotree
     NeoTreeRootName({ gui = none, fg = c.magenta }),
     NeoTreeFloatBorder({ fg = c.white }),
+    NeoTreeDirectoryName({ fg = c.green }),
 
     -- Dadbod
     NotificationInfo({ bg = c.gray1, gui = none }),

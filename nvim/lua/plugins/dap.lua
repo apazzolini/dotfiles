@@ -1,5 +1,6 @@
 return {
   'mfussenegger/nvim-dap',
+  enabled = false,
   lazy = false, -- :lua require('dap') to load DAP
   dependencies = {
     'rcarriga/nvim-dap-ui',

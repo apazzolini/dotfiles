@@ -186,7 +186,10 @@ return {
 
     ----------------------------------------------------------------------------
 
-    local capabilities = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = false })
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+    -- Potentially should use this with golang, but using it with tsserver hides some completions
+    -- local capabilitiesWithoutSnippets = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = false })
 
     for name, config in pairs(servers) do
       if config == true then

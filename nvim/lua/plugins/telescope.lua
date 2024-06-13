@@ -23,9 +23,11 @@ return {
 
     local telescope_opts = {
       defaults = {
-        path_display = {
-          'filename_first',
-        },
+        -- path_display = {
+        --   filename_first = {
+        --     reverse_directories = true,
+        --   },
+        -- },
         set_env = {
           LESS = '',
           DELTA_PAGER = 'less',

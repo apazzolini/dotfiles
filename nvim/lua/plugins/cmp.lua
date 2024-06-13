@@ -93,30 +93,30 @@ return {
         sources = {
           {
             name = 'nvim_lsp',
-            entry_filter = function(entry)
-              return entry:get_filter_text():match('^SVG') == nil
-            end,
+            -- entry_filter = function(entry)
+            --   return entry:get_filter_text():match('^SVG') == nil
+            -- end,
           },
-          { name = 'buffer', keyword_length = 5 },
-          { name = 'path' },
+          -- { name = 'buffer', keyword_length = 5 },
+          -- { name = 'path' },
         },
         window = {
           documentation = cmp.config.window.bordered(),
         },
 
-        sorting = {
-          priority_weight = 2.0,
-          comparators = {
-            -- cmp.config.compare.recently_used,
-            cmp.config.compare.exact,
-            cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-            cmp.config.compare.offset,
-            cmp.config.compare.locality,
-            cmp.config.compare.kind,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-          },
-        },
+        -- sorting = {
+        --   priority_weight = 2.0,
+        --   comparators = {
+        --     -- cmp.config.compare.recently_used,
+        --     cmp.config.compare.exact,
+        --     cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+        --     cmp.config.compare.offset,
+        --     cmp.config.compare.locality,
+        --     cmp.config.compare.kind,
+        --     cmp.config.compare.length,
+        --     cmp.config.compare.order,
+        --   },
+        -- },
       })
 
       for _, ft_path in ipairs(vim.api.nvim_get_runtime_file('lua/snippets/*.lua', true)) do

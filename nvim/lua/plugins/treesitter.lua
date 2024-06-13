@@ -13,9 +13,9 @@ return {
         'kana/vim-textobj-entire',
       },
     },
-    {
-      'yioneko/nvim-yati',
-    },
+    -- {
+    --   'yioneko/nvim-yati',
+    -- },
   },
   config = function()
     require('nvim-treesitter.configs').setup({
@@ -53,10 +53,10 @@ return {
       },
       indent = {
         enable = true,
-        disable = { 'javascript', 'typescript', 'jsx', 'tsx' },
+        -- disable = { 'javascript', 'typescript', 'jsx', 'tsx' },
       },
       yati = {
-        enable = true,
+        enable = false,
         -- Disable by languages, see `Supported languages`
         disable = { 'python', 'lua', 'html', 'json', 'css' },
 

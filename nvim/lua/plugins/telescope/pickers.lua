@@ -15,6 +15,7 @@ end
 function M.smart_open()
   require('telescope').extensions.smart_open.smart_open({
     cwd_only = true,
+    filename_first = false,
     prompt_title = '~ smart open ~',
     match_algorithm = 'fzy',
     previewer = false,
