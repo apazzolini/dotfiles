@@ -17,8 +17,7 @@ local map_tele = function(key, f, options, buffer)
   vim.keymap.set(mode, key, rhs, map_options)
 end
 
--- map_tele('<leader>e', 'smart_open')
-map_tele('<leader>e', 'find_files')
+map_tele('<leader>e', 'smart_open')
 map_tele('<leader>E', 'current_dir_files')
 -- map_tele('<leader>B', 'buffers')
 map_tele('<leader>b', 'git_status')
