@@ -10,6 +10,12 @@ return {
     'stevearc/conform.nvim',
     'williamboman/mason.nvim',
     {
+      'nvimtools/none-ls.nvim',
+      dependencies = {
+        'nvimtools/none-ls-extras.nvim',
+      },
+    },
+    {
       'j-hui/fidget.nvim',
       opts = {
         progress = {
@@ -44,7 +50,6 @@ return {
       gopls = true,
       vimls = true,
       zls = true,
-      eslint = true,
 
       tsserver = {
         root_dir = function(fname)
@@ -148,13 +153,8 @@ return {
           min = vim.diagnostic.severity.ERROR,
         },
         format = function(diagnostic)
-          if diagnostic.source == 'eslint' then
-            return string.format(
-              '%s [%s]',
-              diagnostic.message,
-              -- shows the name of the rule
-              diagnostic.user_data.lsp.code
-            )
+          if diagnostic.source == 'eslint_d' then
+            return string.format('%s', diagnostic.message)
           end
           return string.format('%s [%s]', diagnostic.message, diagnostic.source)
         end,
@@ -209,6 +209,32 @@ return {
 
     ----------------------------------------------------------------------------
 
+    local null_ls = require('null-ls')
+    local nls_h = require('null-ls.helpers')
+    local nls_u = require('null-ls.utils')
+
+    null_ls.setup({
+      sources = {
+        -- npm i -g eslint_d
+        require('none-ls.diagnostics.eslint_d').with({
+          diagnostics_format = '#{m} [#{c}]',
+          root_dir = nls_u.root_pattern('.git'),
+          cwd = nls_h.cache.by_bufnr(function(params)
+            return nls_u.root_pattern('.git')(params.bufname)
+          end),
+          filetypes = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+            'astro',
+          },
+        }),
+      },
+    })
+
+    ----------------------------------------------------------------------------
+
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id), 'must have valid client')
@@ -247,7 +273,7 @@ return {
         vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
         vim.keymap.set('n', '<leader>lE', '<cmd>lua vim.diagnostic.setqflist()<cr>zz', opts)
         vim.keymap.set('n', '<leader>la', '<cmd>cexpr system("npm run lint -- --format unix") <bar> copen<cr>', opts)
-        vim.keymap.set('n', '<leader>lf', '<cmd>EslintFixAll<cr>', opts)
+        vim.keymap.set('n', '<leader>lf', '<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<cr>', opts)
 
         vim.keymap.set('i', '<c-h>', vim.lsp.buf.signature_help, opts)
 
