@@ -47,6 +47,7 @@ return {
 
     local servers = {
       astro = true,
+      pylsp = true,
       gopls = true,
       vimls = true,
       zls = true,
