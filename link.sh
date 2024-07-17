@@ -20,7 +20,6 @@ function env_setup {
   mkdir -p ~/.config
   mkdir -p ~/.local/share/nvim
   link nvim ~/.config/
-  link nvim/plugged ~/.local/share/nvim/
 
   # tmux
   link tmux/tmux.conf ~/.tmux.conf

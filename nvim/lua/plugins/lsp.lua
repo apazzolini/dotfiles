@@ -62,7 +62,7 @@ return {
         init_options = {
           maxTsServerMemory = 6144,
           preferences = {
-            importModuleSpecifierPreference = 'non-relative',
+            importModuleSpecifierPreference = 'shortest',
             includePackageJsonAutoImports = 'off',
           },
         },
@@ -279,6 +279,7 @@ return {
         vim.keymap.set('i', '<c-h>', vim.lsp.buf.signature_help, opts)
 
         vim.keymap.set('n', '<leader>F', function()
+          vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.addMissingImports.ts' } } })
           require('conform').format()
         end, opts)
 

@@ -71,7 +71,7 @@ fi
 
 # unix ssh-agent
 if [ -f "/usr/bin/keychain" ]; then
-  /usr/bin/keychain --nogui --quiet --noask $HOME/.ssh/id_ed25519
+  /usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
   source $HOME/.keychain/andred-sh
 fi
 
