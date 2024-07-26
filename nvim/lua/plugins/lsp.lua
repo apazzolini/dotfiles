@@ -52,24 +52,58 @@ return {
       vimls = true,
       zls = true,
 
-      tsserver = {
+      vtsls = {
         root_dir = function(fname)
           return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
             or lspconfig.util.root_pattern('.git')(fname)
             or lspconfig.util.root_pattern('package.json', 'jsconfig.json', 'tsconfig.json')(fname)
         end,
         single_file_support = false,
-        init_options = {
-          maxTsServerMemory = 6144,
-          preferences = {
-            importModuleSpecifierPreference = 'shortest',
-            includePackageJsonAutoImports = 'off',
+        settings = {
+          typescript = {
+            tsserver = {
+              maxTsServerMemory = 10240,
+            },
+            preferences = {
+              importModuleSpecifierPreference = 'shortest',
+              includePackageJsonAutoImports = 'off',
+            },
+          },
+          vtsls = {
+            autoUseWorkspaceTsdk = true,
+            typescript = {
+              globalTsdk = false,
+            },
+            experimental = {
+              completion = {
+                enableServerSideFuzzyMatch = true,
+              },
+            },
           },
         },
         flags = {
           debounce_text_changes = 200,
         },
       },
+
+      -- tsserver = {
+      --   root_dir = function(fname)
+      --     return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
+      --       or lspconfig.util.root_pattern('.git')(fname)
+      --       or lspconfig.util.root_pattern('package.json', 'jsconfig.json', 'tsconfig.json')(fname)
+      --   end,
+      --   single_file_support = false,
+      --   init_options = {
+      --     maxTsServerMemory = 6144,
+      --     preferences = {
+      --       importModuleSpecifierPreference = 'shortest',
+      --       includePackageJsonAutoImports = 'off',
+      --     },
+      --   },
+      --   flags = {
+      --     debounce_text_changes = 200,
+      --   },
+      -- },
 
       jsonls = {
         settings = {
