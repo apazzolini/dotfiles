@@ -224,7 +224,7 @@ return {
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     -- Potentially should use this with golang, but using it with tsserver hides some completions
-    local capabilitiesWithoutSnippets = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = false })
+    local capabilitiesWithoutSnippets = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = true })
 
     for name, config in pairs(servers) do
       if config == true then
@@ -313,8 +313,12 @@ return {
         vim.keymap.set('i', '<c-h>', vim.lsp.buf.signature_help, opts)
 
         vim.keymap.set('n', '<leader>F', function()
-          vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.addMissingImports.ts' } } })
+          -- vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.addMissingImports.ts' } } })
           require('conform').format()
+        end, opts)
+
+        vim.keymap.set('n', '<leader>I', function()
+          vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.addMissingImports.ts' } } })
         end, opts)
 
         client.server_capabilities.semanticTokensProvider = nil

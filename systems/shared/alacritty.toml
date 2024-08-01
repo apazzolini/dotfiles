@@ -2,19 +2,6 @@
 dynamic_title = false
 title = "Alacritty"
 
-[font.normal]
-family = "OperatorMono Nerd Font"
-style = "ExtraLight"
-
-[font.bold]
-style = "Light"
-
-[font.italic]
-style = "ExtraLightItalic"
-
-[font.bold_italic]
-style = "Book Italic"
-
 [colors]
 draw_bold_text_with_bright_colors = false
 indexed_colors = [
@@ -50,8 +37,8 @@ foreground = "#1E1B2A"
 
 [colors.normal]
 black = "#1e2027"
-blue = "#B29EED"
-cyan = "#DCB8E8"
+blue = "#BFA4F0"
+cyan = "#E4BBE4"
 green = "#A8D7AF"
 magenta = "#B98AFF"
 red = "#FF87A5"

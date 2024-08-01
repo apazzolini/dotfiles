@@ -9,6 +9,20 @@ padding = { x = 3, y = 2}
 [font]
 size = 12.5
 
+[font.normal]
+family = "OperatorMono Nerd Font"
+style = "ExtraLight"
+
+[font.bold]
+style = "Light"
+
+[font.italic]
+style = "ExtraLight Italic"
+
+[font.bold_italic]
+style = "Light Italic"
+
+
 [keyboard]
 # \u0010 sends Ctrl-P
 # \u001BX sends the escape code followed by X, which gets treated as <m-X> in Neovim

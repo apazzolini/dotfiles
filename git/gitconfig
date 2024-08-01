@@ -109,7 +109,7 @@
 [branch]
   autosetuprebase = always
 [rerere]
-	enabled = true
+	enabled = false
 [commit]
   verbose = true
 [init]
