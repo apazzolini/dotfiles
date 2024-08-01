@@ -333,6 +333,7 @@ return {
         lua = { 'stylua' },
         astro = { 'prettierd' },
         css = { 'prettierd' },
+        json = { 'prettierd' },
         javascript = { 'prettierd' },
         javascriptreact = { 'prettierd' },
         typescript = { 'prettierd' },
