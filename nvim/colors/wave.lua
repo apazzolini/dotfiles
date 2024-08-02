@@ -48,6 +48,7 @@ local function get_dark_colors()
     white = parsed.colors.normal.white,
     bright = {
       magenta = parsed.colors.bright.magenta,
+      green = parsed.colors.bright.green,
     },
     fg = parsed.colors.primary.foreground,
     bg = parsed.colors.primary.background,
@@ -150,7 +151,9 @@ local theme = lush(function(injected_functions)
     Special({ fg = c.blue }),
     Error({ fg = c.red, bg = none }),
     Comment({ fg = c.gray3, gui = italic }),
-    Todo({ fg = c.red, guibg = none, gui = italic }),
+    Todo({ fg = c.bright.magenta, guibg = none, gui = italic }),
+    TodoFgTODO({ fg = c.bright.green, guibg = none, gui = italic }),
+    TodoBgTODO({ fg = c.bright.green, guibg = none, gui = italic }),
     LspSignatureActiveParameter({ fg = c.red }),
 
     sym('@punctuation')({ Normal }),
