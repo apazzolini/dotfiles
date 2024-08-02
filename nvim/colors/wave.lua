@@ -18,6 +18,26 @@ local function get_dark_colors()
   local parsed = read_toml(home .. '/.dotfiles/systems/shared/alacritty.toml')
 
   return {
+    -- black = '#1e2027',
+    -- blue = '#BFA4F0',
+    -- cyan = '#E4BBE4',
+    -- green = '#A8D7AF',
+    -- magenta = '#B98AFF',
+    -- red = '#FF87A5',
+    -- white = '#c4cad5',
+    -- yellow = '#f2cdcd',
+    -- bg = '#1E1B2A',
+    -- fg = '#D3D8ED',
+    -- gray1 = '#242333',
+    -- gray2 = '#45475a',
+    -- gray3 = '#6c7086',
+    -- gray4 = '#7f849c',
+    -- gray5 = '#9399b2',
+    -- gray6 = '#a6adc8',
+    -- bright = {
+    --   magenta = '#ff007c',
+    -- },
+
     black = parsed.colors.normal.black,
     red = parsed.colors.normal.red,
     green = parsed.colors.normal.green,

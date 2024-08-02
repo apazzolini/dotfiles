@@ -5,13 +5,27 @@ title = "Alacritty"
 [colors]
 draw_bold_text_with_bright_colors = false
 indexed_colors = [
-  { index = 244, color = '#242333' },
+  { index = 244, color = '#1F1E2B' },
   { index = 245, color = '#45475a' },
   { index = 246, color = '#6c7086' },
   { index = 247, color = '#7f849c' },
   { index = 248, color = '#9399b2' },
   { index = 249, color = '#a6adc8' },
 ]
+
+[colors.primary]
+background = "#191923"
+foreground = "#CDD6F4"
+
+[colors.normal]
+black = "#1e2027"
+blue = "#BFA4F0"
+cyan = "#E4BBE4"
+green = "#A8D7AF"
+magenta = "#B98AFF"
+red = "#FF87A5"
+white = "#c4cad5"
+yellow = "#f2cdcd"
 
 [colors.bright]
 black = "#5b6078"
@@ -26,28 +40,6 @@ yellow = "#f9e2af"
 [colors.cursor]
 cursor = "#F5E0DC"
 text = "#1E1B2A"
-
-[colors.hints.end]
-background = "#A6ADC8"
-foreground = "#1E1B2A"
-
-[colors.hints.start]
-background = "#F9E2AF"
-foreground = "#1E1B2A"
-
-[colors.normal]
-black = "#1e2027"
-blue = "#BFA4F0"
-cyan = "#E4BBE4"
-green = "#A8D7AF"
-magenta = "#B98AFF"
-red = "#FF87A5"
-white = "#c4cad5"
-yellow = "#f2cdcd"
-
-[colors.primary]
-background = "#1E1B2A"
-foreground = "#CDD6F4"
 
 [colors.search.focused_match]
 background = "#A6E3A1"
@@ -64,6 +56,14 @@ text = "#1E1B2A"
 [colors.vi_mode_cursor]
 cursor = "#B4BEFE"
 text = "#1E1B2A"
+
+[colors.hints.end]
+background = "#A6ADC8"
+foreground = "#1E1B2A"
+
+[colors.hints.start]
+background = "#F9E2AF"
+foreground = "#1E1B2A"
 
 [mouse]
 bindings = [
