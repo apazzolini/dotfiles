@@ -126,7 +126,7 @@ local theme = lush(function(injected_functions)
     FloatBorder({ fg = c.white }),
     Pmenu({ fg = c.white, bg = c.gray1 }),
     PmenuSel({ fg = c.black, bg = c.green }),
-    MatchParen({ fg = c.magenta, guibg = none }),
+    MatchParen({ fg = c.bright.magenta, guibg = none }),
     DiagnosticError({ fg = c.red }),
     DiagnosticWarn({ fg = c.yellow }),
     DiagnosticHint({ fg = c.yellow }),

@@ -56,10 +56,10 @@ return {
       },
       indent = {
         enable = true,
-        -- disable = { 'javascript', 'typescript', 'jsx', 'tsx' },
+        disable = { 'javascript', 'typescript', 'jsx', 'tsx' },
       },
       yati = {
-        enable = false,
+        enable = { 'javascript', 'typescript', 'jsx', 'tsx' },
         -- Disable by languages, see `Supported languages`
         disable = { 'python', 'lua', 'html', 'json', 'css' },
 
