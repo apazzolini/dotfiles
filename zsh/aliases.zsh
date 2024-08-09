@@ -12,10 +12,10 @@ fi
 
 if [[ `hostname` = andrem2* ]]
 then
-  alias dl='docker-compose -f /Users/andre/Work/docker/docker-compose.yml'
+  alias dl='docker compose -f /Users/andre/Work/docker/docker-compose.yml'
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md"'
 else
-  alias dl='docker-compose -f /apps/docker-compose.yml'
+  alias dl='docker compose -f /apps/docker-compose.yml'
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/index.md"'
 fi
 
