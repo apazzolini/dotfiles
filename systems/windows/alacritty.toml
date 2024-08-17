@@ -27,7 +27,7 @@ program = "C:\\Users\\andre\\AppData\\Local\\Microsoft\\WindowsApps\\ubuntu.exe"
 
 [keyboard]
 bindings = [
-  { key = "V"        , mods = "Alt"           , action = "Paste" },
+  { key = "v"        , mods = "Alt"           , action = "Paste" },
   { key = "W"        , mods = "Alt"           , chars = "\u0010\u0078" },
   { key = "J"        , mods = "Alt"           , chars = "\u0010\u005B" },
   { key = "K"        , mods = "Alt"           , chars = "\u0010\u000C" },

@@ -60,13 +60,14 @@ $!a::Send !a
 $!f::Send !f
 $!y::Send !y
 $!p::Send !p
-!v::
-    ClipboardBackup := Clipboard                        ; To restore clipboard contents after paste
-    FixString := StrReplace(Clipboard, "`r`n", "`n")    ; Change endings
-    Clipboard := FixString                              ; Set to clipboard
-    Send !v                                             ; Paste text
-    Clipboard := ClipboardBackup                        ; Restore clipboard that has windows endings
-    return
+$!v::SEND !v
+; !v::
+;     ClipboardBackup := Clipboard                        ; To restore clipboard contents after paste
+;     FixString := StrReplace(Clipboard, "`r`n", "`n")    ; Change endings
+;     Clipboard := FixString                              ; Set to clipboard
+;     Send !v                                             ; Paste text
+;     Clipboard := ClipboardBackup                        ; Restore clipboard that has windows endings
+;     return
 
 #IfWinActive, ahk_exe Nvy.exe ; ------------------------------------------------
 
