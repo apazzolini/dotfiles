@@ -93,9 +93,9 @@ return {
         sources = {
           {
             name = 'nvim_lsp',
-            -- entry_filter = function(entry)
-            --   return entry:get_filter_text():match('^SVG') == nil
-            -- end,
+            entry_filter = function(entry)
+              return entry:get_filter_text():match('^SVG') == nil
+            end,
           },
           -- { name = 'buffer', keyword_length = 5 },
           -- { name = 'path' },

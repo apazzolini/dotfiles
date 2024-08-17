@@ -91,7 +91,7 @@ return {
     vim.keymap.set('n', '<leader>gs', '<cmd>Neotree git_status<cr>')
     vim.keymap.set('n', '<leader>ge', '<cmd>Neotree buffers<cr>')
     -- vim.keymap.set('n', '<leader>G', '<cmd>Neotree reveal current<cr>')
-    vim.keymap.set('n', '-', '<cmd>Neotree reveal current<cr>')
+    -- vim.keymap.set('n', '-', '<cmd>Neotree reveal current<cr>')
     -- vim.keymap.set('n', '_', '<cmd>Neotree git_status current<cr>')
   end,
 }

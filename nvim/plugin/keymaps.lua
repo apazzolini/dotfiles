@@ -69,7 +69,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Increment / decrement numbers
 vim.keymap.set('n', '+', '<C-a>')
--- vim.keymap.set('n', '-', '<C-x>')
+vim.keymap.set('n', '-', '<C-x>')
 vim.keymap.set('x', '+', 'g<C-a>')
 vim.keymap.set('x', '-', 'g<C-x>')
 
