@@ -16,9 +16,22 @@ vim.g.colors_name = 'wave'
 --
 -- The performance impact of this call can be measured in the hundreds of
 -- *nanoseconds* and such could be considered "production safe".
-package.loaded['wave'] = nil
+package.loaded['plugins.colors.wave'] = nil
 
 -- include our theme file and pass it to lush to apply
-require('lush')(loadfile(vim.api.nvim_get_runtime_file('colors/wave.lua', false)[1])())
+require('lush')(require('plugins.colors.wave'))
 
 vim.cmd.colorscheme('none')
+
+vim.api.nvim_create_user_command('Lushify', function()
+  require('lush').ify()
+  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    group = vim.api.nvim_create_augroup('lushify-shipwright', {}),
+    buffer = 0,
+    command = 'Shipwright ~/.dotfiles/nvim/colors/shipwright_build.lua',
+  })
+end, {})
+
+vim.cmd([[
+  command! Wave vsp ~/.dotfiles/nvim/lua/plugins/colors/wave.lua | Lushify
+]])

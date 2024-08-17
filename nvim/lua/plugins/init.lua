@@ -10,7 +10,7 @@ return {
   'nikvdp/ejs-syntax',
 
   'rktjmp/lush.nvim',
-  'apazzolini/lua-toml_neovim',
+  'rktjmp/shipwright.nvim',
 
   { 'vladdoster/remember.nvim', config = true, opts = {} },
 

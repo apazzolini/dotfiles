@@ -4,38 +4,40 @@ title = "Alacritty"
 
 [colors]
 draw_bold_text_with_bright_colors = false
+# PATCH_OPEN
 indexed_colors = [
-  { index = 244, color = '#1F1E2B' },
-  { index = 245, color = '#45475a' },
-  { index = 246, color = '#6c7086' },
-  { index = 247, color = '#7f849c' },
-  { index = 248, color = '#9399b2' },
-  { index = 249, color = '#a6adc8' },
+  { index = 244, color = "#25273C"},
+  { index = 245, color = "#3E415B"},
+  { index = 246, color = "#6D7188"},
+  { index = 247, color = "#80859D"},
+  { index = 248, color = "#9499B3"},
+  { index = 249, color = "#A6ADC9"},
 ]
 
 [colors.primary]
-background = "#191923"
-foreground = "#CDD6F4"
+foreground = '#D4D8ED'
+background = '#1C1E2C'
 
 [colors.normal]
-black = "#1e2027"
-blue = "#BFA4F0"
-cyan = "#E4BBE4"
-green = "#A8D7AF"
-magenta = "#B98AFF"
-red = "#FF87A5"
-white = "#c4cad5"
-yellow = "#f2cdcd"
+black = "#1F2129"
+red = "#FF8AA7"
+green = "#B2DCCD"
+yellow = "#EAD1D1"
+blue = "#CCD7BC"
+magenta = "#C098FB"
+cyan = "#F0A3BE"
+white = "#C6CCD7"
 
 [colors.bright]
-black = "#5b6078"
-blue = "#B68EDB"
-cyan = "#87CFD1"
-green = "#1bfd9c"
-magenta = "#ff007c"
-red = "#FF5370"
-white = "#A0A5C2"
-yellow = "#f9e2af"
+black = "#5C617A"
+red = "#FF5773"
+green = "#1BFE9F"
+yellow = "#FAE4B3"
+blue = "#B88FDC"
+magenta = "#FF007B"
+cyan = "#89D0D2"
+white = "#A2A6C3"
+# PATCH_CLOSE
 
 [colors.cursor]
 cursor = "#F5E0DC"
