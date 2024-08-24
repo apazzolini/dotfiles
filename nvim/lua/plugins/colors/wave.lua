@@ -111,8 +111,11 @@ local theme = lush(function(injected_functions)
     DiffChange({ fg = c.gray1, bg = c.red }),
     DiffDelete({ fg = c.gray1, bg = c.gray2 }),
     DiffText({ fg = c.red }),
-    diffAdded({ fg = c.yellow }),
+    DiffFile({ fg = c.magenta }),
+    diffAdded({ fg = c.green }),
     diffRemoved({ fg = c.red }),
+    diffOldFile({ fg = c.red }),
+    diffNewFile({ fg = c.green }),
 
     Normal({ fg = c.fg }),
     Constant({ fg = c.cyan }),
@@ -161,6 +164,8 @@ local theme = lush(function(injected_functions)
     sym('@function.call')({ fg = c.blue }),
     sym('@method.call')({ sym('@function.call') }),
     sym('@function.method.call')({ sym('@function.call') }),
+
+    sym('@markup.link.label.tsx')({ gui = none }),
 
     -- Vimwiki
     VimWikiLink({ guibg = none, gui = none, fg = c.cyan }),

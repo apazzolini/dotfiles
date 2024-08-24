@@ -334,6 +334,7 @@ return {
         astro = { 'prettierd' },
         css = { 'prettierd' },
         json = { 'prettierd' },
+        jsonc = { 'prettierd' },
         javascript = { 'prettierd' },
         javascriptreact = { 'prettierd' },
         typescript = { 'prettierd' },
