@@ -10,7 +10,7 @@ local function get_dark_colors()
     yellow = hsl(0, 38, 87),
     blue = hsl(444, 25, 79),
     magenta = hsl(264, 92, 79),
-    cyan = hsl(339, 72, 79),
+    cyan = hsl(335, 72, 79),
     white = hsl(219, 17, 81),
 
     bg = hsl(233, 22, 14),
