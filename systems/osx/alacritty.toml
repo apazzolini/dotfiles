@@ -4,24 +4,24 @@ import = [
 
 [window]
 decorations = "buttonless"
-padding = { x = 3, y = 2}
+padding = { x = 3, y = 2 }
 
 [font]
-size = 12.5
+size = 11.0
+offset = { x = 0, y = 1 }
 
 [font.normal]
-family = "OperatorMono Nerd Font"
-style = "ExtraLight"
-
-[font.bold]
+family = "OperatorMonoSSM Nerd Font"
 style = "Light"
 
-[font.italic]
-style = "ExtraLight Italic"
+[font.bold]
+style = "Regular"
 
-[font.bold_italic]
+[font.italic]
 style = "Light Italic"
 
+[font.bold_italic]
+style = "Regular Italic"
 
 [keyboard]
 # \u0010 sends Ctrl-P
