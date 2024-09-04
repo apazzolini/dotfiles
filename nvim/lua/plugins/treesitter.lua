@@ -3,6 +3,7 @@
 -- :EditQuery to open the Live Query Editor (Nvim 0.10+)
 return {
   'nvim-treesitter/nvim-treesitter',
+  commit = 'acc1708b962e12cc1d671cd530782727801804c3',
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
