@@ -1,6 +1,8 @@
 return {
   {
-    'hrsh7th/nvim-cmp',
+    -- 'hrsh7th/nvim-cmp',
+    'yioneko/nvim-cmp',
+    branch = 'perf-up',
     cond = vim.g.isNotes == false,
     lazy = false,
     priority = 100,
