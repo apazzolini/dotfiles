@@ -41,6 +41,7 @@ vim.opt.mouse = 'a'
 vim.opt.inccommand = 'split'
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.pumheight = 20
+vim.opt.spell = true
 
 vim.opt.joinspaces = false
 
