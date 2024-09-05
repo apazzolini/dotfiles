@@ -9,6 +9,7 @@ ls.add_snippets('javascript', {
   ls.parser.parse_snippet('ild', "import { ${0:} } from 'lodash';"),
   ls.parser.parse_snippet('iui', "import { ${0:} } from 'ui';"),
   ls.parser.parse_snippet('ii', "import ${1:} from '${0:}';"),
+  ls.parser.parse_snippet('it', "import { describe, expect, test } from 'bun:test';"),
   ls.parser.parse_snippet('cl', 'console.log(${0:});'),
   ls.parser.parse_snippet('js', 'JSON.stringify(${0:}, null, 2)'),
   ls.parser.parse_snippet('rsa', 'Record<string, any>'),
