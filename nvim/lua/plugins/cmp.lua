@@ -96,7 +96,22 @@ return {
           {
             name = 'nvim_lsp',
             entry_filter = function(entry)
-              return entry:get_filter_text():match('^SVG') == nil
+              local labelDetails = entry:get_completion_item().labelDetails
+              if labelDetails ~= nil and labelDetails.description ~= nil then
+                local description = labelDetails.description
+                if description:find('^date%-fns/') ~= nil then
+                  return false
+                end
+                if description:find('^@aws') ~= nil then
+                  return false
+                end
+              end
+
+              if entry:get_filter_text():find('^SVG') ~= nil then
+                return false
+              end
+
+              return true
             end,
           },
           -- { name = 'buffer', keyword_length = 5 },
