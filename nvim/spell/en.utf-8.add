@@ -5,3 +5,4 @@ getKeyForEnvironmentSecrets
 configs
 envSecrets
 env
+eslint
