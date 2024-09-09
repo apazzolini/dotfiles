@@ -336,6 +336,7 @@ return {
         astro = { 'prettierd' },
         css = { 'prettierd' },
         go = { 'gofmt' },
+        html = { 'prettierd' },
         json = { 'prettierd' },
         jsonc = { 'prettierd' },
         javascript = { 'prettierd' },
