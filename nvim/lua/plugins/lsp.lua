@@ -335,6 +335,7 @@ return {
         lua = { 'stylua' },
         astro = { 'prettierd' },
         css = { 'prettierd' },
+        go = { 'gofmt' },
         json = { 'prettierd' },
         jsonc = { 'prettierd' },
         javascript = { 'prettierd' },

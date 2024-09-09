@@ -6,3 +6,7 @@ configs
 envSecrets
 env
 eslint
+doppler
+aws
+src
+ejs
