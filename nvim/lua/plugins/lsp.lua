@@ -341,6 +341,7 @@ return {
         jsonc = { 'prettierd' },
         javascript = { 'prettierd' },
         javascriptreact = { 'prettierd' },
+        markdown = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
         zig = { 'zigfmt' },
