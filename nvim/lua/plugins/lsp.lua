@@ -63,6 +63,12 @@ return {
           typescript = {
             tsserver = {
               maxTsServerMemory = 10240,
+              watchOptions = {
+                watchDirectory = 'useFsEvents',
+                fallbackPolling = 'dynamicPriorityPolling',
+                watchFile = 'useFsEventsOnParentDirectory',
+                synchronousWatchDirectory = true,
+              },
             },
             preferences = {
               importModuleSpecifierPreference = 'shortest',
