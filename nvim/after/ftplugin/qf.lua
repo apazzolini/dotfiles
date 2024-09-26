@@ -1,5 +1,6 @@
 vim.opt_local.colorcolumn = ''
 vim.opt_local.winheight = 10
+vim.opt_local.spell = false
 
 vim.keymap.set('n', 'q', '<c-w>q', { silent = true, buffer = 0 })
 vim.keymap.set('n', 'dd', ':.Reject<cr>', { silent = true, buffer = 0 })

@@ -16,7 +16,7 @@ indexed_colors = [
 
 [colors.primary]
 foreground = '#D4D8ED'
-background = '#1C1E2C'
+background = '#1A1C28'
 
 [colors.normal]
 black = "#1F2129"
