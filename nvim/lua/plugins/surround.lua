@@ -27,6 +27,9 @@ return {
             }
           end,
         },
+        ['!'] = {
+          add = { 'assertedNotNullish(', ')' },
+        },
       },
     })
   end,
