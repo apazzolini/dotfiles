@@ -28,6 +28,9 @@ return {
             progress_style = 'DiagnosticWarn',
             done_ttl = 0,
           },
+          ignore = {
+            'null-ls',
+          },
         },
         notification = {
           window = {
@@ -335,8 +338,24 @@ return {
 
     ----------------------------------------------------------------------------
 
-    -- npm i -g @fsouza/prettierd, others with Mason
+    -- custom prettier_d_slim installation, others install with Mason
     require('conform').setup({
+      formatters = {
+        -- git clone https://github.com/apazzolini/prettier_d_slim.git ~/GitHub/prettier_d_slim
+        -- cd ~/GitHub/prettier_d_slim
+        -- npm i
+        -- ./script/build
+        -- npm i -g $(pwd)
+        prettierd = {
+          command = 'prettier_d_slim',
+          inherit = false,
+          args = { '--stdin', '--stdin-filepath', '$FILENAME' },
+          range_args = function(self, ctx)
+            local start_offset, end_offset = util.get_offsets_from_range(ctx.buf, ctx.range)
+            return { '--stdin', '--stdin-filepath', '$FILENAME', '--range-start=' .. start_offset, '--range-end=' .. end_offset }
+          end,
+        },
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         astro = { 'prettierd' },
