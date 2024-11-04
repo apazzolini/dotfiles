@@ -19,6 +19,7 @@ path=(
   ../node_modules/.bin
   /usr/local/opt/fzf/bin
   $BUN_INSTALL/bin
+  /Applications/Ghostty.app/Contents/MacOS
   $path
 )
 
