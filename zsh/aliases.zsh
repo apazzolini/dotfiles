@@ -75,6 +75,7 @@ alias houston-staging='HOST="https://houston.staging.doppler.team" /Users/andre/
 alias dop='doppler'
 alias ds='doppler secrets'
 alias dt='doppler tui'
+alias tf='terraform'
 
 alias sudoedit='sudo -e'
 
