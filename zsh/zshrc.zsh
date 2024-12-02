@@ -51,6 +51,7 @@ bindkey '^ ' autosuggest-accept
 safesource "/usr/local/opt/fzf/shell/key-bindings.zsh"
 safesource "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 safesource "/usr/share/doc/fzf/examples/key-bindings.zsh"
+safesource "/usr/share/fzf/key-bindings.zsh"
 
 if [ -z "$TMUX" ]; then
   if [[ "$(hostname)" =~ ^andrem2 ]]; then
@@ -70,13 +71,22 @@ if [ -z "$TMUX" ]; then
 fi
 
 # unix ssh-agent
-if [ -f "/usr/bin/keychain" ]; then
-  /usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
-  source $HOME/.keychain/andred-sh
+# if [ -f "/usr/bin/keychain" ]; then
+  # /usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
+  # source $HOME/.keychain/andred-sh
+# fi
+
+if [ -f "/etc/wsl.conf" ]; then
+  ${HOME}/.dotfiles/bin/wsl-ssh-agent-relay start
+  export SSH_AUTH_SOCK=${HOME}/.ssh/wsl-ssh-agent.sock
 fi
+
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/andre/GitHub/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andre/GitHub/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/andre/GitHub/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andre/GitHub/google-cloud-sdk/completion.zsh.inc'; fi
+
+# bun completions
+[ -s "/home/andre/.bun/_bun" ] && source "/home/andre/.bun/_bun"

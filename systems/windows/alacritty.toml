@@ -25,7 +25,7 @@ style = "Medium"
 style = "Medium Italic"
 
 [shell]
-program = "C:\\Users\\andre\\AppData\\Local\\Microsoft\\WindowsApps\\ubuntu.exe"
+program = "C:\\ArchWSL2\\Arch.exe"
 
 [keyboard]
 bindings = [
