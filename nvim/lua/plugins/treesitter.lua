@@ -3,7 +3,7 @@
 -- :EditQuery to open the Live Query Editor (Nvim 0.10+)
 return {
   'nvim-treesitter/nvim-treesitter',
-  commit = 'acc1708b962e12cc1d671cd530782727801804c3',
+  -- commit = 'acc1708b962e12cc1d671cd530782727801804c3',
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
@@ -57,23 +57,23 @@ return {
       },
       indent = {
         enable = true,
-        disable = { 'javascript', 'typescript', 'jsx', 'tsx' },
+        -- disable = { 'javascript', 'typescript', 'jsx', 'tsx' },
       },
-      yati = {
-        enable = { 'javascript', 'typescript', 'jsx', 'tsx' },
-        -- Disable by languages, see `Supported languages`
-        disable = { 'python', 'lua', 'html', 'json', 'css' },
-
-        -- Whether to enable lazy mode (recommend to enable this if bad indent happens frequently)
-        default_lazy = true,
-
-        -- Determine the fallback method used when we cannot calculate indent by tree-sitter
-        --   "auto": fallback to vim auto indent
-        --   "asis": use current indent as-is
-        --   "cindent": see `:h cindent()`
-        -- Or a custom function return the final indent result.
-        default_fallback = 'auto',
-      },
+      -- yati = {
+      --   enable = { 'javascript', 'typescript', 'jsx', 'tsx' },
+      --   -- Disable by languages, see `Supported languages`
+      --   disable = { 'python', 'lua', 'html', 'json', 'css' },
+      --
+      --   -- Whether to enable lazy mode (recommend to enable this if bad indent happens frequently)
+      --   default_lazy = true,
+      --
+      --   -- Determine the fallback method used when we cannot calculate indent by tree-sitter
+      --   --   "auto": fallback to vim auto indent
+      --   --   "asis": use current indent as-is
+      --   --   "cindent": see `:h cindent()`
+      --   -- Or a custom function return the final indent result.
+      --   default_fallback = 'auto',
+      -- },
       highlight = {
         enable = true,
       },

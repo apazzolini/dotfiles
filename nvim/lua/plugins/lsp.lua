@@ -54,6 +54,7 @@ return {
       gopls = true,
       vimls = true,
       zls = true,
+      eslint = true,
 
       vtsls = {
         root_dir = function(fname)
@@ -199,8 +200,8 @@ return {
           min = vim.diagnostic.severity.ERROR,
         },
         format = function(diagnostic)
-          if diagnostic.source == 'eslint_d' then
-            return string.format('%s', diagnostic.message)
+          if diagnostic.source == 'eslint' then
+            return string.format('%s [%s]', diagnostic.message, diagnostic.user_data.lsp.code)
           end
           return string.format('%s [%s]', diagnostic.message, diagnostic.source)
         end,
@@ -255,29 +256,29 @@ return {
 
     ----------------------------------------------------------------------------
 
-    local null_ls = require('null-ls')
-    local nls_h = require('null-ls.helpers')
-    local nls_u = require('null-ls.utils')
-
-    null_ls.setup({
-      sources = {
-        -- npm i -g eslint_d
-        require('none-ls.diagnostics.eslint_d').with({
-          diagnostics_format = '#{m} [#{c}]',
-          root_dir = nls_u.root_pattern('.git'),
-          cwd = nls_h.cache.by_bufnr(function(params)
-            return nls_u.root_pattern('.git')(params.bufname)
-          end),
-          filetypes = {
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-            'astro',
-          },
-        }),
-      },
-    })
+    -- local null_ls = require('null-ls')
+    -- local nls_h = require('null-ls.helpers')
+    -- local nls_u = require('null-ls.utils')
+    --
+    -- null_ls.setup({
+    --   sources = {
+    --     -- npm i -g eslint_d
+    --     require('none-ls.diagnostics.eslint_d').with({
+    --       diagnostics_format = '#{m} [#{c}]',
+    --       root_dir = nls_u.root_pattern('.git'),
+    --       cwd = nls_h.cache.by_bufnr(function(params)
+    --         return nls_u.root_pattern('.git')(params.bufname)
+    --       end),
+    --       filetypes = {
+    --         'javascript',
+    --         'javascriptreact',
+    --         'typescript',
+    --         'typescriptreact',
+    --         'astro',
+    --       },
+    --     }),
+    --   },
+    -- })
 
     ----------------------------------------------------------------------------
 
@@ -346,15 +347,15 @@ return {
         -- npm i
         -- ./script/build
         -- npm i -g $(pwd)
-        prettierd = {
-          command = 'prettier_d_slim',
-          inherit = false,
-          args = { '--stdin', '--stdin-filepath', '$FILENAME' },
-          range_args = function(self, ctx)
-            local start_offset, end_offset = util.get_offsets_from_range(ctx.buf, ctx.range)
-            return { '--stdin', '--stdin-filepath', '$FILENAME', '--range-start=' .. start_offset, '--range-end=' .. end_offset }
-          end,
-        },
+        -- prettierd = {
+        --   -- command = 'prettier_d_slim',
+        --   inherit = false,
+        --   -- args = { '--stdin', '--stdin-filepath', '$FILENAME' },
+        --   -- range_args = function(self, ctx)
+        --   --   local start_offset, end_offset = util.get_offsets_from_range(ctx.buf, ctx.range)
+        --   --   return { '--stdin', '--stdin-filepath', '$FILENAME', '--range-start=' .. start_offset, '--range-end=' .. end_offset }
+        --   -- end,
+        -- },
       },
       formatters_by_ft = {
         lua = { 'stylua' },
