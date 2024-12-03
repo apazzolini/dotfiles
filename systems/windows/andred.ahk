@@ -66,6 +66,7 @@ $#}::Send, !+{Down}
 !t::Send, ^t
 !+n::Send, ^+p
 !+t::Send, ^+t
+!#i::Send, ^+i
 
 #IfWinActive, ahk_exe chrome.exe ; --------------------------------------------
 
