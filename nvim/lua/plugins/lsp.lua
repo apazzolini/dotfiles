@@ -261,7 +261,7 @@ return {
 
     null_ls.setup({
       sources = {
-        -- npm i -g eslint_d
+        -- npm i -g eslint_d@10
         require('none-ls.diagnostics.eslint_d').with({
           diagnostics_format = '#{m} [#{c}]',
           root_dir = nls_u.root_pattern('.git'),
@@ -346,15 +346,15 @@ return {
         -- npm i
         -- ./script/build
         -- npm i -g $(pwd)
-        prettierd = {
-          command = 'prettier_d_slim',
-          inherit = false,
-          args = { '--stdin', '--stdin-filepath', '$FILENAME' },
-          range_args = function(self, ctx)
-            local start_offset, end_offset = util.get_offsets_from_range(ctx.buf, ctx.range)
-            return { '--stdin', '--stdin-filepath', '$FILENAME', '--range-start=' .. start_offset, '--range-end=' .. end_offset }
-          end,
-        },
+        -- prettierd = {
+        --   -- command = 'prettier_d_slim',
+        --   inherit = false,
+        --   -- args = { '--stdin', '--stdin-filepath', '$FILENAME' },
+        --   -- range_args = function(self, ctx)
+        --   --   local start_offset, end_offset = util.get_offsets_from_range(ctx.buf, ctx.range)
+        --   --   return { '--stdin', '--stdin-filepath', '$FILENAME', '--range-start=' .. start_offset, '--range-end=' .. end_offset }
+        --   -- end,
+        -- },
       },
       formatters_by_ft = {
         lua = { 'stylua' },
