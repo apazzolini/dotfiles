@@ -74,6 +74,24 @@ $#}::Send, !+{Down}
 !t::Send, ^t
 !+n::Send, ^+n
 
+#IfWinActive, ahk_exe DSPGAME.exe ; --------------------------------------------
+
+!q::
+$^a::
+$#i::
+$+1::Send {f1}
+$+2::Send {f2}
+$+3::Send {f3}
+$+4::Send {f4}
+$+5::Send {f5}
+$+6::Send {f6}
+$+7::Send {f7}
+$+8::Send {f8}
+$+9::Send {f9}
+$+0::Send {f0}
+XButton1::Send, {,}
+XButton2::Send, {.}
+
 #IfWinActive
 
 ; Program Activation -----------------------------------------------------------
