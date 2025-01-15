@@ -2,7 +2,7 @@ vim.keymap.set('n', '<leader>L', function()
   vim.cmd([[
     let tw = &colorcolumn
     if (!tw)
-      let tw = 81
+      let tw = 48
     endif
     let tw = tw - 1
     .s/[ ]*$//
