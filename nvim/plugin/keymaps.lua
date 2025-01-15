@@ -38,6 +38,8 @@ vim.keymap.set('x', 'L', 'g_')
 vim.keymap.set('x', '<leader>p', '"_dP')
 
 vim.keymap.set('i', '<c-l>', '<space>=><space>')
+vim.keymap.set('i', "<c-'>", '’')
+vim.keymap.set('i', '<c-">', '“”')
 
 vim.keymap.set('c', '<c-k>', '<c-p>')
 vim.keymap.set('c', '<c-j>', '<c-n>')
