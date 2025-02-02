@@ -12,6 +12,12 @@ return {
       require('gitlinker').setup({})
     end,
   },
+  {
+    'sindrets/diffview.nvim',
+    config = function()
+      require('diffview').setup({})
+    end,
+  },
 }
 
 -- See also: gitsigns
