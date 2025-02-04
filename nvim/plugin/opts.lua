@@ -53,7 +53,10 @@ vim.opt.foldenable = false
 vim.opt.breakindent = true
 vim.opt.breakindentopt = 'shift:2'
 vim.opt.showbreak = '\\\\'
+vim.o.linebreak = true
 
 vim.opt.nrformats = ''
 
 vim.opt.jumpoptions = 'stack,view'
+
+vim.o.diffopt = 'internal,filler,closeoff,linematch:60'
