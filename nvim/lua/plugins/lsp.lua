@@ -328,8 +328,10 @@ return {
           require('conform').format()
         end, opts)
 
-        vim.keymap.set('n', '<leader>I', function()
+        vim.keymap.set('n', '<leader>i', function()
           vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.addMissingImports.ts' } } })
+          vim.cmd('sleep 100m')
+          vim.cmd('%!eslint_d --stdin --fix-to-stdout --stdin-filename %')
         end, opts)
 
         client.server_capabilities.semanticTokensProvider = nil
