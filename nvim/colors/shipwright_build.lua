@@ -1,77 +1,6 @@
 ---@diagnostic disable: undefined-global, unused-local
 
-local function wezterm(colors)
-  return {
-    "    foreground = '" .. colors.ColorFg.fg .. "',",
-    "    background = '" .. colors.ColorBg.fg .. "',",
-    '',
-    '    ansi = {',
-    "      '" .. colors.ColorBlack.fg .. "',",
-    "      '" .. colors.ColorRed.fg .. "',",
-    "      '" .. colors.ColorGreen.fg .. "',",
-    "      '" .. colors.ColorYellow.fg .. "',",
-    "      '" .. colors.ColorBlue.fg .. "',",
-    "      '" .. colors.ColorMagenta.fg .. "',",
-    "      '" .. colors.ColorCyan.fg .. "',",
-    "      '" .. colors.ColorWhite.fg .. "',",
-    '    },',
-    '    brights = {',
-    "      '" .. colors.ColorBrightBlack.fg .. "',",
-    "      '" .. colors.ColorBrightRed.fg .. "',",
-    "      '" .. colors.ColorBrightGreen.fg .. "',",
-    "      '" .. colors.ColorBrightYellow.fg .. "',",
-    "      '" .. colors.ColorBrightBlue.fg .. "',",
-    "      '" .. colors.ColorBrightMagenta.fg .. "',",
-    "      '" .. colors.ColorBrightCyan.fg .. "',",
-    "      '" .. colors.ColorBrightWhite.fg .. "',",
-    '    },',
-    '    indexed = {',
-    "      [244] = '" .. colors.ColorGray1.fg .. "',",
-    "      [245] = '" .. colors.ColorGray2.fg .. "',",
-    "      [246] = '" .. colors.ColorGray3.fg .. "',",
-    "      [247] = '" .. colors.ColorGray4.fg .. "',",
-    "      [248] = '" .. colors.ColorGray5.fg .. "',",
-    "      [249] = '" .. colors.ColorGray6.fg .. "',",
-    '    },',
-  }
-end
-
 local function alacritty(colors)
-  -- return {
-  -- indexed_colors = [
-  --   { index = 244, color = '#232539' },
-  --   { index = 245, color = '#3e415b' },
-  --   { index = 246, color = '#6c7086' },
-  --   { index = 247, color = '#7f849c' },
-  --   { index = 248, color = '#9399b2' },
-  --   { index = 249, color = '#a6adc8' },
-  -- ]
-  --
-  -- [colors.primary]
-  -- background = "#1c1e2b"
-  -- foreground = "#CDD6F4"
-  --
-  -- [colors.normal]
-  -- black = "#1e2027"
-  -- red = "#FF87A5"
-  -- green = "#b3d1b7"
-  -- yellow = "#f2cdcd"
-  -- blue = "#BFA4F0"
-  -- magenta = "#B98AFF"
-  -- cyan = "#E4BBE4"
-  -- white = "#c4cad5"
-  --
-  -- [colors.bright]
-  -- black = "#5b6078"
-  -- red = "#FF5370"
-  -- green = "#1bfd9c"
-  -- yellow = "#f9e2af"
-  -- blue = "#B68EDB"
-  -- magenta = "#ff007c"
-  -- cyan = "#87CFD1"
-  -- white = "#A0A5C2"
-  -- }
-
   return {
     'indexed_colors = [',
     '  { index = 244, color = "' .. colors.ColorGray1.fg .. '"},',
@@ -108,15 +37,47 @@ local function alacritty(colors)
   }
 end
 
+local function ghostty(colors)
+  return {
+    'background = ' .. colors.ColorBg.fg,
+    'foreground = ' .. colors.ColorFg.fg,
+    '',
+    'palette = 0=' .. colors.ColorBlack.fg,
+    'palette = 1=' .. colors.ColorRed.fg,
+    'palette = 2=' .. colors.ColorGreen.fg,
+    'palette = 3=' .. colors.ColorYellow.fg,
+    'palette = 4=' .. colors.ColorBlue.fg,
+    'palette = 5=' .. colors.ColorMagenta.fg,
+    'palette = 6=' .. colors.ColorCyan.fg,
+    'palette = 7=' .. colors.ColorWhite.fg,
+    '',
+    'palette = 8=' .. colors.ColorBrightBlack.fg,
+    'palette = 9=' .. colors.ColorBrightRed.fg,
+    'palette = 10=' .. colors.ColorBrightGreen.fg,
+    'palette = 11=' .. colors.ColorBrightYellow.fg,
+    'palette = 12=' .. colors.ColorBrightBlue.fg,
+    'palette = 13=' .. colors.ColorBrightMagenta.fg,
+    'palette = 14=' .. colors.ColorBrightCyan.fg,
+    'palette = 15=' .. colors.ColorBrightWhite.fg,
+    '',
+    'palette = 244=' .. colors.ColorGray1.fg,
+    'palette = 245=' .. colors.ColorGray2.fg,
+    'palette = 246=' .. colors.ColorGray3.fg,
+    'palette = 247=' .. colors.ColorGray4.fg,
+    'palette = 248=' .. colors.ColorGray5.fg,
+    'palette = 249=' .. colors.ColorGray6.fg,
+  }
+end
+
 package.loaded['plugins.colors.wave'] = nil
 run(
   require('plugins.colors.wave'),
   -- generate lua code
   -- wezterm,
-  alacritty,
+  ghostty,
   -- write the lua code into our destination.
   -- you must specify open and close markers yourself to account
   -- for differing comment styles, patchwrite isn't limited to lua files.
   -- { patchwrite, vim.fn.expand('~') .. '/.dotfiles/wezterm/colors.lua', '-- PATCH_OPEN', '-- PATCH_CLOSE' }
-  { patchwrite, vim.fn.expand('~') .. '/.dotfiles/systems/shared/alacritty.toml', '# PATCH_OPEN', '# PATCH_CLOSE' }
+  { patchwrite, vim.fn.expand('~') .. '/.dotfiles/systems/osx/ghostty/config', '# PATCH_OPEN', '# PATCH_CLOSE' }
 )

@@ -267,11 +267,6 @@ grapheme-width-method = unicode
 # will override the colors specified in the theme.
 theme =
 
-# Background color for the window.
-background = #1A1C28
-
-# Foreground color for the window.
-foreground = #D4D8ED
 
 # The foreground and background color for selection. If this is not set, then
 # the selection color is just the inverted window background and foreground
@@ -308,6 +303,11 @@ minimum-contrast = 1
 # For definitions on all the codes [see this cheat
 # sheet](https://www.ditig.com/256-colors-cheat-sheet).
 
+# ---------------------------------------------
+# PATCH_OPEN
+background = #1A1C28
+foreground = #D4D8ED
+
 palette = 0=#1F2129
 palette = 1=#FF8AA7
 palette = 2=#B2DCCD
@@ -316,6 +316,7 @@ palette = 4=#CCD7BC
 palette = 5=#C098FB
 palette = 6=#F0A3C3
 palette = 7=#C6CCD7
+
 palette = 8=#5C617A
 palette = 9=#FF5773
 palette = 10=#1BFE9F
@@ -324,6 +325,16 @@ palette = 12=#B88FDC
 palette = 13=#FF007B
 palette = 14=#89D0D2
 palette = 15=#A2A6C3
+
+palette = 244=#25273C
+palette = 245=#3E415B
+palette = 246=#6D7188
+palette = 247=#80859D
+palette = 248=#9499B3
+palette = 249=#A6ADC9
+# PATCH_CLOSE
+# ---------------------------------------------
+
 palette = 16=#000000
 palette = 17=#00005f
 palette = 18=#000087
@@ -552,12 +563,6 @@ palette = 240=#585858
 palette = 241=#626262
 palette = 242=#6c6c6c
 palette = 243=#767676
-palette = 244=#25273C
-palette = 245=#3E415B
-palette = 246=#6D7188
-palette = 247=#80859D
-palette = 248=#9499B3
-palette = 249=#A6ADC9
 palette = 250=#bcbcbc
 palette = 251=#c6c6c6
 palette = 252=#d0d0d0
@@ -1766,6 +1771,7 @@ macos-titlebar-style = hidden
 # usually `cd` to a different directory, open a different file in an
 # editor, etc.
 macos-titlebar-proxy-icon = visible
+macos-icon = retro
 
 # If `true`, the *Option* key will be treated as *Alt*. This makes terminal
 # sequences expecting *Alt* to work properly, but will break Unicode input
