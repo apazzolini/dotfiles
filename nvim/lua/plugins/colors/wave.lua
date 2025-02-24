@@ -41,22 +41,32 @@ local function get_light_colors()
     black = hsl(210, 33, 98),
     red = hsl('#bf5656'),
     green = hsl('#5f8539'),
-    yellow = hsl('#bfbf56'),
-    cyan = hsl(201, 50, 43),
-    magenta = hsl(329, 36, 43),
+    yellow = hsl(42, 87, 34),
     blue = hsl('#56bf8b'),
+    magenta = hsl(329, 36, 43),
+    cyan = hsl(201, 50, 43),
     white = hsl('#0b1c2c'),
-    bright = {
-      magenta = hsl('#bf568b'),
-    },
-    fg = hsl(60, 5, 9),
+
     bg = hsl(210, 2, 84),
+    fg = hsl(60, 5, 9),
+
     gray1 = hsl(153, 1, 85),
     gray2 = hsl(153, 1, 80),
     gray3 = hsl(153, 1, 51),
     gray4 = hsl(153, 1, 42),
     gray5 = hsl(153, 1, 30),
     gray6 = hsl(153, 1, 19),
+
+    bright = {
+      black = hsl(210, 33, 98),
+      red = hsl('#bf5656'),
+      green = hsl('#5f8539'),
+      yellow = hsl(42, 87, 34),
+      blue = hsl('#56bf8b'),
+      magenta = hsl('#bf568b'),
+      cyan = hsl(201, 50, 43),
+      white = hsl('#0b1c2c'),
+    },
   }
 end
 
