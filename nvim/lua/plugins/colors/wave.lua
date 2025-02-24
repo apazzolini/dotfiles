@@ -107,10 +107,10 @@ local theme = lush(function(injected_functions)
     DiagnosticHint({ fg = c.green }),
     DiagnosticVirtualTextWarn({ DiagnosticWarn }),
 
-    DiffAdd({ fg = c.gray1, bg = c.green }),
+    DiffAdd({ bg = hsl(185, 70, 13) }),
     DiffChange({ bg = c.gray2 }),
-    DiffDelete({ fg = c.gray1, bg = c.red }),
-    DiffText({ fg = c.gray1, bg = c.yellow }),
+    DiffDelete({ bg = hsl(345, 100, 14) }),
+    DiffText({ bg = hsl(0, 4, 36) }),
     DiffFile({ fg = c.magenta }),
     diffAdded({ fg = c.green }),
     diffRemoved({ fg = c.red }),
