@@ -12,6 +12,7 @@ GroupAdd, games, ahk_exe HITMAN3.exe
 GroupAdd, games, ahk_exe portal2.exe
 GroupAdd, games, ahk_exe cs2.exe
 GroupAdd, games, ahk_exe FactoryGame-Win64-Shipping.exe
+GroupAdd, games, ahk_exe FactoryGameSteam-Win64-Shipping.exe
 GroupAdd, games, ahk_exe valheim.exe
 GroupAdd, games, ahk_exe NWXClient-Win64-Shipping
 GroupAdd, games, ahk_exe Factorio.exe
@@ -64,7 +65,7 @@ $#}::Send, !+{Down}
 
 !l::Send, !d
 !t::Send, ^t
-!+n::Send, ^+p
+!+p::Send, ^+p
 !+t::Send, ^+t
 !#i::Send, ^+i
 
