@@ -21,10 +21,12 @@ git clone git@github.com:neovim/neovim.git ~/GitHub/neovim
 cd ~/GitHub/neovim
 git co v0.10.2
 cat <<EOF > go.sh
+#!/bin/bash
+git fetch --tags --force && git checkout stable
 make clean
-make distclean
+sudo make distclean
 make CMAKE_BUILD_TYPE=Release -j4
-make install
+sudo make install
 EOF
 chmod +x go.sh
 ./go.sh
