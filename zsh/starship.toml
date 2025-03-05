@@ -6,6 +6,10 @@ format = """$custom$directory$git_branch$git_status$git_state[»](purple) """
 command = 'echo "[dre-ash-1]"'
 when = 'test `hostname` = "dre-ash-1"'
 
+[custom.hertzner2]
+command = 'echo "[drevps]"'
+when = 'test `hostname` = "drevps"'
+
 # [custom.andrem2]
 # command = 'echo "[andrem2]"'
 # when = 'test `hostname` = "andrem2.local" || test `hostname` = "andrembw"'
