@@ -10,7 +10,6 @@ sudo apt install zsh keychain ripgrep fzf git ninja-build gettext libtool libtoo
 
 cd ~/.dotfiles
 ./link.sh
-# ln -s ~/.dotfiles/git/.gitconfig.local.windows ~/.gitconfig.local
 sudo chown -R andre:andre /usr/local/
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 sudo chsh andre -s /usr/bin/zsh
@@ -44,23 +43,19 @@ mv lazygit /usr/local/bin/
 # Node
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
 npm install -g n
-npm install -g eslint_d
-npm install -g @fsouza/prettierd
 
 # Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Tailwind
-git clone git@github.com:apazzolini/tailwindcss-intellisense.git ~/GitHub/tailwindcss-intellisense
-cd ~/GitHub/tailwindcss-intellisense
-git co andre/show-equivs
+cd ~/GitHub
+git clone https://github.com/apazzolini/tailwindcss-intellisense.git
+cd tailwindcss-intellisense
 npm i
-npm run bootstrap
 cd packages/tailwindcss-language-server
-NODE_OPTIONS=--openssl-legacy-provider npm run build
+npm run build
 npm i -g $(pwd)
 
 # misc
 go install golang.org/x/tools/cmd/goimports@latest
-cargo install stylua
 echo "INSTALL GIT-DELTA"

@@ -3,12 +3,10 @@
 -- :EditQuery to open the Live Query Editor (Nvim 0.10+)
 return {
   'nvim-treesitter/nvim-treesitter',
-  -- commit = 'acc1708b962e12cc1d671cd530782727801804c3',
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
     'JoosepAlviste/nvim-ts-context-commentstring',
-    'windwp/nvim-ts-autotag',
     {
       'nvim-treesitter/nvim-treesitter-textobjects',
       dependencies = {
@@ -77,9 +75,6 @@ return {
             ['ic'] = '@conditional.inner',
           },
         },
-      },
-      autotag = {
-        enable = true,
       },
       incremental_selection = {
         enable = true,

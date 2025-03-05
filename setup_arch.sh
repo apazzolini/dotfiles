@@ -24,12 +24,6 @@ mv lazygit /usr/local/bin/
 # Node
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
 npm install -g n
-npm install -g eslint_d
-git clone https://github.com/apazzolini/prettier_d_slim.git ~/GitHub/prettier_d_slim
-cd ~/GitHub/prettier_d_slim
-npm i
-./script/build
-npm i -g $(pwd)
 
 # Rust
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -45,7 +39,6 @@ npm i -g $(pwd)
 
 # misc
 go install golang.org/x/tools/cmd/goimports@latest
-cargo install stylua
 
 # docker
 sudo pacman -S docker
