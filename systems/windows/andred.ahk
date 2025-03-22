@@ -18,7 +18,7 @@ GroupAdd, games, ahk_exe NWXClient-Win64-Shipping
 GroupAdd, games, ahk_exe Factorio.exe
 
 global LDim := [-1442, -610, 1472, 2588]
-global RDim := [0, 0, 2588, 1417]
+global RDim := [0, 0, 3840, 2127]
 
 return
 

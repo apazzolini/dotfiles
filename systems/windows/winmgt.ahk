@@ -1,25 +1,26 @@
+
 ; [x, y, w, h]
 GetWinPadding() {
   if WinActive("ahk_exe firefox.exe") {
-    return [-9, -3, 3, 2]
+    return [-10, -1, 19, 1]
   } else if WinActive("ahk_exe alacritty.exe") {
-    return [0, 0, -14, -12]
-  } else if WinActive("ahk_exe chrome.exe") {
-    return [-7, 29, 0, -29]
-  } else if WinActive("ahk_exe discord.exe") or WinActive("ahk_exe Spotify.exe") {
-    return [0, 0, -14, -7]
+    return [0, 0, 0, -12]
+  ;} else if WinActive("ahk_exe chrome.exe") {
+  ;  return [-7, 29, 0, -29]
+  ;} else if WinActive("ahk_exe discord.exe") or WinActive("ahk_exe Spotify.exe") {
+  ;  return [0, 0, -14, -7]
   }
-  return [-7, -1, 0, 1]
+  return [-10, -1, 10, 1]
 }
 
 GetDimensions() {
   WinGetActiveStats, title, w, h, x, y
-  if x < -10
-  {
-    return LDim
-  } else {
+  ;if x < -10
+  ;{
+    ;return LDim
+  ;} else {
     return RDim
-  }
+  ;}
 }
 
 ; --------------------------------------------------------------------------------------------------
@@ -61,17 +62,17 @@ return
 !+l::
   WinGetActiveStats, title, curW, curH, curX, curY
   padding := GetWinPadding()
-  targetWidth := 2560 - padding[1]
+  targetWidth := 3840 - padding[1]
 
-  if (curX == 1280 + padding[1]) {
-    x := 1280 + padding[1] - Ceil(d[3] / 6)
-  } else if (curX == 1280 + padding[1] - Ceil(d[3] / 6)) {
-    x := 1280 + padding[1] + Floor(d[3] / 6)
+  if (curX == 1920 + padding[1]) {
+    x := 1920 + padding[1] - Ceil(d[3] / 6)
+  } else if (curX == 1920 + padding[1] - Ceil(d[3] / 6)) {
+    x := 1920 + padding[1] + Floor(d[3] / 6)
   } else {
-    x := 1280 + padding[1]
+    x := 1920 + padding[1]
   }
 
-  WinMove A, , x, padding[2], targetWidth - x, d[4] + padding[4]
+  WinMove A, , x, padding[2], targetWidth - x + padding[3], d[4] + padding[4]
 return
 
 !+k::
