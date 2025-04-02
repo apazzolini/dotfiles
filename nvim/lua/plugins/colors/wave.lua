@@ -224,6 +224,8 @@ local theme = lush(function(injected_functions)
     -- cmp
     CmpItemMenu({ fg = c.gray3 }),
     CmpItemKind({ fg = c.gray3 }),
+    BlinkCmpMenu({ fg = c.gray3, bg = c.gray1 }),
+    BlinkCmpLabel({ fg = c.fg }),
 
     -- For export usage
     ColorBlack({ fg = c.black }),
