@@ -3,6 +3,7 @@ local util = require('vim.lsp.util')
 
 --[[
 MasonInstall astro-language-server eslint_d gopls json-lsp lua-language-server prettierd python-lsp-server stylua vim-language-server vtsls
+tailwind language server needs to be manually installed, see below
 ]]
 
 return {
@@ -45,11 +46,11 @@ return {
     require('mason').setup({})
 
     local servers = {
-      astro = true,
-      pylsp = true,
-      gopls = true,
-      vimls = true,
-      zls = true,
+      astro = {},
+      pylsp = {},
+      gopls = {},
+      vimls = {},
+      zls = {},
 
       vtsls = {
         root_dir = function(fname)
@@ -168,58 +169,33 @@ return {
 
     ----------------------------------------------------------------------------
 
-    local function first_match(_, result, context)
-      local method = context.method
-      if result == nil or vim.tbl_isempty(result) then
-        local _ = log.info() and log.info(method, 'No location found')
-        return nil
-      end
-
-      local location = result
-      if vim.tbl_islist(result) then
-        location = result[1]
-      end
-      util.jump_to_location(location, vim.lsp.get_client_by_id(context.client_id).offset_encoding, false)
-
-      vim.cmd('normal zz')
-    end
-
-    ----------------------------------------------------------------------------
-
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-    -- Potentially should use this with golang, but using it with tsserver hides some completions
-    local capabilitiesWithoutSnippets = require('cmp_nvim_lsp').default_capabilities({ snippetSupport = true })
-
     for name, config in pairs(servers) do
-      if config == true then
-        config = {}
-      end
-
-      config = vim.tbl_deep_extend('force', {}, {
-        capabilities = capabilitiesWithoutSnippets,
-        handlers = {
-          ['textDocument/definition'] = first_match,
-          ['textDocument/typeDefinition'] = first_match,
-        },
-      }, config)
-
       lspconfig[name].setup(config)
     end
 
     ----------------------------------------------------------------------------
+
+    local function first_match(list)
+      vim.lsp.util.show_document(list.items[1].user_data, 'utf-8', false)
+      vim.cmd('normal zz')
+    end
 
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id), 'must have valid client')
         local opts = { noremap = true, silent = true, buffer = 0 }
 
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<cr>zz', opts)
-        vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>zz', opts)
-        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-        vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-        vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        vim.keymap.set('n', 'gd', function()
+          vim.lsp.buf.definition({ on_list = first_match })
+        end, opts)
+
+        vim.keymap.set('n', 'gD', function()
+          vim.lsp.buf.type_definition({ on_list = first_match })
+        end, opts)
+
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 
         vim.keymap.set('n', '<cr>', function()
           vim.cmd('noh')

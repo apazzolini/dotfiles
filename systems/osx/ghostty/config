@@ -1771,7 +1771,7 @@ macos-titlebar-style = hidden
 # usually `cd` to a different directory, open a different file in an
 # editor, etc.
 macos-titlebar-proxy-icon = visible
-macos-icon = retro
+# macos-icon = retro
 
 # If `true`, the *Option* key will be treated as *Alt*. This makes terminal
 # sequences expecting *Alt* to work properly, but will break Unicode input

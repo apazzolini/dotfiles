@@ -20,6 +20,7 @@ return {
     vim.diagnostic.config({
       underline = false,
       update_in_insert = false,
+      virtual_lines = false,
       virtual_text = {
         severity = {
           min = vim.diagnostic.severity.ERROR,
@@ -53,5 +54,10 @@ return {
     vim.keymap.set('n', 'gH', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
     vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
     vim.keymap.set('n', '<leader>lE', '<cmd>lua vim.diagnostic.setqflist()<cr>zz', opts)
+
+    vim.keymap.set('n', '<leader>d', function()
+      local current = vim.diagnostic.config()
+      vim.diagnostic.config({ virtual_lines = not current.virtual_lines })
+    end, opts)
   end,
 }

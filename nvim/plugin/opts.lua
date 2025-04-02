@@ -45,10 +45,20 @@ vim.opt.spell = true
 
 vim.opt.joinspaces = false
 
-vim.opt.foldenable = false
+-- vim.opt.foldenable = false
 -- vim.opt.foldmethod = 'manual'
 -- vim.opt.foldlevel = 99
 -- vim.opt.foldnestmax = 4
+
+-- https://old.reddit.com/r/neovim/comments/1jmqd7t/sorry_ufo_these_7_lines_replaced_you/
+-- Nice and simple folding:
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldtext = ''
+vim.opt.foldcolumn = '0'
+vim.opt.fillchars:append({ fold = ' ' })
 
 vim.opt.breakindent = true
 vim.opt.breakindentopt = 'shift:2'
