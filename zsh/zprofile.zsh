@@ -5,6 +5,7 @@ export MANPAGER='nvim +Man!'
 export CLICOLOR=true
 export BUN_INSTALL="$HOME/.bun"
 export PRETTIERD_LOCAL_PRETTIER_ONLY=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 path=(
   $HOME/.dotfiles/bin
