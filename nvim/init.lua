@@ -22,4 +22,7 @@ require('lazy').setup('plugins', {
   ui = {
     border = 'rounded',
   },
+  rocks = {
+    hererocks = true,
+  },
 })
