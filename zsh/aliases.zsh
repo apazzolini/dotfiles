@@ -16,7 +16,7 @@ then
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md"'
 else
   alias dl='docker compose -f /apps/docker-compose.yml'
-  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/index.md"'
+  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/scratch.md"'
 fi
 
 # ls aliases

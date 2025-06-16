@@ -1,4 +1,5 @@
-vim.opt.background = vim.g.isNotes and 'light' or 'dark'
+-- vim.opt.background = vim.g.isNotes and 'light' or 'dark'
+vim.opt.background = 'dark'
 vim.opt.guifont = '"Operator Mono Book":h8'
 
 -- You probably always want to set this in your vim file

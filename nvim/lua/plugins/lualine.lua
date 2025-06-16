@@ -14,13 +14,13 @@ return {
       bold_red = '#d19b9b',
     }
 
-    if vim.g.isNotes then
-      colors.fg = '#181816'
-      colors.fg2 = '#181816'
-      colors.bg0 = '#bfc0c0'
-      colors.bg1 = '#CBCDCC'
-      colors.blue = colors.bg0
-    end
+    -- if vim.g.isNotes then
+    --   colors.fg = '#181816'
+    --   colors.fg2 = '#181816'
+    --   colors.bg0 = '#bfc0c0'
+    --   colors.bg1 = '#CBCDCC'
+    --   colors.blue = colors.bg0
+    -- end
 
     local b = { bg = colors.bg0, fg = colors.fg2, gui = 'bold' }
     local c = { bg = colors.bg1, fg = colors.fg2 }
