@@ -123,7 +123,7 @@ Activate(name, executable)
 
 ; $!z::
 $^a::Activate("Alacritty", "D:\Apps\Alacritty\alacritty.exe")
-$#i::Activate("Nvy", "D:\Apps\Nvy\notes.lnk")
+$#i::Activate("Neovide", "D:\Apps\neovide\notes.lnk")
 
 ; MacOS similarity bindings ---------------------------------------------------
 
