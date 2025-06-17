@@ -50,6 +50,7 @@ return {
         },
         window = {
           mappings = {
+            ['/'] = 'noop', -- disable fuzzy finder
             ['YF'] = function(state)
               local node = state.tree:get_node()
               vim.fn.setreg('*', node.name)

@@ -6,7 +6,7 @@ return {
         vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
         vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
-      backends = { 'treesitter', 'markdown', 'asciidoc', 'man' },
+      -- backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
       highlight_on_jump = false,
       nav = {
         autojump = true,

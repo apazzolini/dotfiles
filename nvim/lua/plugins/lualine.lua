@@ -2,8 +2,8 @@ return {
   'nvim-lualine/lualine.nvim',
   config = function()
     local colors = {
-      bg0 = '#464e53',
-      bg1 = '#343d42',
+      bg0 = '#2f3437',
+      bg1 = '#28293e',
       fg = '#1e2027',
       fg2 = '#c8cedc',
       red = '#FF8AA7',
