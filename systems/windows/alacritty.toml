@@ -4,24 +4,34 @@ import = [
 
 [window]
 decorations = "none"
-padding = { x = 2, y = 7}
+padding = { x = 2, y = 4}
 
 [font]
-size = 8.0
+size = 8.5
 offset.x = 0  # For letter spacing (default: 0)
-offset.y = 1  # For line spacing (default: 0)
+offset.y = 3  # For line spacing (default: 0)
+
+# [font.normal]
+# family = "Berkeley Mono"
+# style = "Regular"
+# [font.italic]
+# style = "Italic"
+# [font.bold]
+# style = "Bold"
+# [font.bold_italic]
+# style = "Bold Italic"
 
 [font.normal]
-family = "OperatorMonoSSm Nerd Font"
-style = "Regular"
-
+family = "Berkeley Mono"
+# style = "Regular"
 [font.italic]
+family = "OperatorMonoSSm Nerd Font"
 style = "Italic"
-
 [font.bold]
-style = "Medium"
-
+family = "Berkeley Mono"
+# style = "Medium"
 [font.bold_italic]
+family = "OperatorMonoSSm Nerd Font"
 style = "Medium Italic"
 
 [shell]

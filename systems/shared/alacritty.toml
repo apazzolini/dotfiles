@@ -6,7 +6,7 @@ title = "Alacritty"
 draw_bold_text_with_bright_colors = false
 # PATCH_OPEN
 indexed_colors = [
-  { index = 244, color = "#25273C"},
+  { index = 244, color = "#23242F"},
   { index = 245, color = "#3E415B"},
   { index = 246, color = "#6D7188"},
   { index = 247, color = "#80859D"},
@@ -16,7 +16,7 @@ indexed_colors = [
 
 [colors.primary]
 foreground = '#D4D8ED'
-background = '#1A1C28'
+background = '#1A1B23'
 
 [colors.normal]
 black = "#1F2129"

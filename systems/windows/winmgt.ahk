@@ -4,7 +4,7 @@ GetWinPadding() {
   if WinActive("ahk_exe firefox.exe") {
     return [-10, -1, 19, 1]
   } else if WinActive("ahk_exe alacritty.exe") {
-    return [0, 0, 0, -12]
+    return [0, 0, 0, 0]
   ;} else if WinActive("ahk_exe chrome.exe") {
   ;  return [-7, 29, 0, -29]
   ;} else if WinActive("ahk_exe discord.exe") or WinActive("ahk_exe Spotify.exe") {
