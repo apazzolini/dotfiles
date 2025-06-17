@@ -1,7 +1,7 @@
 return {
   {
     'hrsh7th/nvim-cmp',
-    enabled = true,
+    enabled = false,
     cond = vim.g.isNotes == false,
     lazy = false,
     priority = 100,
@@ -12,14 +12,15 @@ return {
       'hrsh7th/cmp-path',
       { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' },
       'saadparwaiz1/cmp_luasnip',
-      'windwp/nvim-autopairs',
+      -- 'windwp/nvim-autopairs',
     },
     config = function()
       local cmp = require('cmp')
       local luasnip = require('luasnip')
 
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+      -- auto-add parenthesis when accepting completion suggestion
+      -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      -- cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
       local has_words_before = function()
         if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
