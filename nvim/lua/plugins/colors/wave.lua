@@ -13,10 +13,10 @@ local function get_dark_colors()
     cyan = hsl(335, 72, 79),
     white = hsl(219, 17, 81),
 
-    bg = hsl(233, 22, 13),
+    bg = hsl(233, 15, 12),
     fg = hsl(229, 42, 88),
 
-    gray1 = hsl(235, 24, 19),
+    gray1 = hsl(235, 15, 16),
     gray2 = hsl(234, 19, 30),
     gray3 = hsl(231, 11, 48),
     gray4 = hsl(230, 13, 56),

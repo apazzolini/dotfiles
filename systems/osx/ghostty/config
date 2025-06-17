@@ -49,7 +49,7 @@
 #
 # Changing this configuration at runtime will only affect new terminals, i.e.
 # new windows, tabs, etc.
-font-family = OperatorMonoSSM Nerd Font
+
 
 font-family-bold =
 font-family-italic =
@@ -66,11 +66,16 @@ font-family-bold-italic =
 # These are only valid if its corresponding font-family is also specified. If
 # no font-family is specified, then the font-style is ignored unless you're
 # disabling the font style.
-font-style = Light
-
-font-style-bold = Regular
-font-style-italic = Light Italic
-font-style-bold-italic = Regular Italic
+font-family = OperatorMonoSSM Nerd Font
+font-style = Regular
+font-style-bold = Medium
+font-style-italic = Italic
+font-style-bold-italic = Medium Italic
+# font-family = Berkeley Mono
+# font-style = Regular
+# font-style-bold = Bold
+# font-style-italic = Italic
+# font-style-bold-italic = Bold Italic
 # Control whether Ghostty should synthesize a style if the requested style is
 # not available in the specified font-family.
 #
@@ -178,7 +183,7 @@ font-codepoint-map =
 
 # Draw fonts with a thicker stroke, if supported. This is only supported
 # currently on macOS.
-font-thicken = true
+font-thicken = false
 
 # All of the configurations behavior adjust various metrics determined by the
 # font. The values can be integers (1, -1, etc.) or a percentage (20%, -15%,
@@ -207,7 +212,7 @@ font-thicken = true
 #     that things like status lines continue to look aligned.
 adjust-cell-width = -1
 
-adjust-cell-height = 1
+adjust-cell-height = 4
 adjust-font-baseline =
 adjust-underline-position =
 adjust-underline-thickness =
@@ -305,7 +310,7 @@ minimum-contrast = 1
 
 # ---------------------------------------------
 # PATCH_OPEN
-background = #1A1C28
+background = #1A1B23
 foreground = #D4D8ED
 
 palette = 0=#1F2129
@@ -326,7 +331,7 @@ palette = 13=#FF007B
 palette = 14=#89D0D2
 palette = 15=#A2A6C3
 
-palette = 244=#25273C
+palette = 244=#23242F
 palette = 245=#3E415B
 palette = 246=#6D7188
 palette = 247=#80859D
@@ -1255,7 +1260,7 @@ window-theme = auto
 # Changing this value at runtime will only affect new windows.
 #
 # This setting is only supported on macOS.
-window-colorspace = srgb
+window-colorspace = display-p3
 
 # The initial window size. This size is in terminal grid cells by default.
 # Both values must be set to take effect. If only one value is set, it is
