@@ -15,20 +15,32 @@ return {
       {
         keymap = {
           preset = 'enter',
+          ['<c-j>'] = { 'select_next', 'fallback' },
+          ['<c-k>'] = { 'select_prev', 'fallback' },
+          ['<C-u>'] = {
+            function(cmp)
+              cmp.scroll_documentation_up(4)
+            end,
+          },
+          ['<C-d>'] = {
+            function(cmp)
+              cmp.scroll_documentation_down(4)
+            end,
+          },
 
           ['<Tab>'] = {
             function(cmp)
               if cmp.snippet_active() then
                 return cmp.accept()
               else
-                return cmp.select_next()
+                return cmp.select_and_accept()
               end
             end,
             'snippet_forward',
             'fallback',
           },
 
-          ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
+          ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
         },
         cmdline = {
           enabled = false,
