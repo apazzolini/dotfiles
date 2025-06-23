@@ -5,7 +5,7 @@ brew analytics off
 brew install lazygit
 brew install starship
 brew install coreutils
-brew install diff-so-fancy
+# brew install diff-so-fancy
 # brew install dnsmasq
 brew install fzf
 brew install git
@@ -20,10 +20,15 @@ brew install wget
 # brew install go
 # brew install efm-langserver
 # brew install gawk
+brew install --cask --no-quarantine middleclick
+brew install go
+brew install sqlite
+brew install ffmpeg
 
 # Neovim Deps instead of brew install --HEAD neovim
-brew install --HEAD luajit
-brew install ninja libtool automake cmake pkg-config gettext curl
+# brew install --HEAD luajit
+# brew install ninja libtool automake cmake pkg-config gettext curl
+brew install make cmake gettext curl
 # Commands to build neovim directly from source
 # git pull
 # make clean
