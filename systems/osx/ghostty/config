@@ -51,9 +51,10 @@
 # new windows, tabs, etc.
 
 
-font-family-bold =
-font-family-italic =
-font-family-bold-italic =
+font-family = Berkeley Mono
+font-family-bold = Berkeley Mono
+# font-family-italic =
+# font-family-bold-italic =
 # The named font style to use for each of the requested terminal font styles.
 # This looks up the style based on the font style string advertised by the
 # font itself. For example, "Iosevka Heavy" has a style of "Heavy".
@@ -66,16 +67,24 @@ font-family-bold-italic =
 # These are only valid if its corresponding font-family is also specified. If
 # no font-family is specified, then the font-style is ignored unless you're
 # disabling the font style.
-font-family = OperatorMonoSSM Nerd Font
-font-style = Regular
-font-style-bold = Medium
-font-style-italic = Italic
-font-style-bold-italic = Medium Italic
+
+font-family-italic = Operator Mono SSM
+font-family-bold-italic = Operator Mono SSM
+font-style-italic = Light Italic
+font-style-bold-italic = Italic
+
+# font-family = Operator Mono SSM
+# font-style = Regular
+# font-style-bold = Medium
+# font-style-italic = Italic
+# font-style-bold-italic = Medium Italic
+
 # font-family = Berkeley Mono
 # font-style = Regular
 # font-style-bold = Bold
 # font-style-italic = Italic
 # font-style-bold-italic = Bold Italic
+
 # Control whether Ghostty should synthesize a style if the requested style is
 # not available in the specified font-family.
 #
@@ -125,7 +134,7 @@ font-synthetic-style = false
 #
 # To generally disable most ligatures, use `-calt`, `-liga`, and `-dlig` (as
 # separate repetitive entries in your config).
-font-feature =
+font-feature = -calt, -liga, -dlig
 
 # Font size in points. This value can be a non-integer and the nearest integer
 # pixel size will be selected. If you have a high dpi display where 1pt = 2px
@@ -1776,7 +1785,9 @@ macos-titlebar-style = hidden
 # usually `cd` to a different directory, open a different file in an
 # editor, etc.
 macos-titlebar-proxy-icon = visible
-# macos-icon = retro
+macos-icon = custom-style
+macos-icon-ghost-color = #7C7087
+macos-icon-screen-color = #c7c2cc
 
 # If `true`, the *Option* key will be treated as *Alt*. This makes terminal
 # sequences expecting *Alt* to work properly, but will break Unicode input
