@@ -2,8 +2,7 @@ local log = require('vim.lsp.log')
 local util = require('vim.lsp.util')
 
 --[[
-MasonInstall astro-language-server eslint_d gopls json-lsp lua-language-server prettierd python-lsp-server stylua vim-language-server vtsls
-tailwind language server needs to be manually installed, see below
+MasonInstall astro-language-server eslint_d gopls json-lsp lua-language-server prettierd python-lsp-server stylua vim-language-server vtsls tailwindcss-language-server
 ]]
 
 return {
@@ -120,12 +119,6 @@ return {
       },
 
       tailwindcss = {
-        -- See README in https://github.com/apazzolini/tailwindcss-intellisense.git
-        root_dir = function(fname)
-          return lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts')(
-            fname
-          )
-        end,
         single_file_support = false,
         settings = {
           tailwindCSS = {
@@ -135,18 +128,10 @@ return {
                 { 'classnames\\(([^)]*)\\)', "'([^']*)'" },
                 { 'cva\\(([^)]*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
                 { 'cx\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                { 'cn\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
               },
             },
           },
-        },
-        handlers = {
-          ['textDocument/hover'] = function(_, result, ctx, config)
-            local bufnr, winnr = vim.lsp.handlers.hover(_, result, ctx, config)
-            if bufnr ~= nil then
-              require('colorizer').attach_to_buffer(bufnr, { mode = 'background', css = true })
-            end
-            return bufnr, winnr
-          end,
         },
       },
     }
