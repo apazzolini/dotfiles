@@ -74,6 +74,7 @@ local dark = vim.o.background == 'dark'
 local c = dark and get_dark_colors() or get_light_colors()
 local none = 'none'
 local italic = 'italic'
+local underline = 'underline'
 local bold = 'bold'
 
 local theme = lush(function(injected_functions)
@@ -155,6 +156,7 @@ local theme = lush(function(injected_functions)
     sym('@property')({ Normal }),
     sym('@variable')({ Normal }),
     sym('@variable.builtin')({ Normal }),
+    sym('@string.special.url')({ gui = italic }),
 
     sym('@function')({ Function }),
     sym('@method')({ sym('@function') }),

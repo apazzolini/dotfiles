@@ -51,8 +51,10 @@
 # new windows, tabs, etc.
 
 
-font-family = Berkeley Mono
-font-family-bold = Berkeley Mono
+# font-family = Berkeley Mono
+# font-family-bold = Berkeley Mono
+# font-family =
+# font-family-bold =
 # font-family-italic =
 # font-family-bold-italic =
 # The named font style to use for each of the requested terminal font styles.
@@ -68,22 +70,29 @@ font-family-bold = Berkeley Mono
 # no font-family is specified, then the font-style is ignored unless you're
 # disabling the font style.
 
+# font-family = Operator Mono SSM
+# font-family-bold = Operator Mono SSM
+# font-style = Book
+# font-style-bold = Medium
+# adjust-cell-height = 3
+
+# font-family = JetBrains Mono
+# font-family-bold = JetBrains Mono
+# font-style = Regular
+# font-style-bold = Regular
+# adjust-cell-height = 3
+
+font-family = Berkeley Mono
+font-family-bold = Berkeley Mono
+font-style =
+font-style-bold =
+adjust-cell-height = 5
+
+# Always use operator mono for italics
 font-family-italic = Operator Mono SSM
 font-family-bold-italic = Operator Mono SSM
-font-style-italic = Light Italic
-font-style-bold-italic = Italic
-
-# font-family = Operator Mono SSM
-# font-style = Regular
-# font-style-bold = Medium
-# font-style-italic = Italic
-# font-style-bold-italic = Medium Italic
-
-# font-family = Berkeley Mono
-# font-style = Regular
-# font-style-bold = Bold
-# font-style-italic = Italic
-# font-style-bold-italic = Bold Italic
+font-style-italic = Book Italic
+font-style-bold-italic = Medium Italic
 
 # Control whether Ghostty should synthesize a style if the requested style is
 # not available in the specified font-family.
@@ -221,7 +230,7 @@ font-thicken = false
 #     that things like status lines continue to look aligned.
 adjust-cell-width = -1
 
-adjust-cell-height = 4
+# adjust-cell-height =
 adjust-font-baseline =
 adjust-underline-position =
 adjust-underline-thickness =
