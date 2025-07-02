@@ -74,13 +74,13 @@
 # font-family-bold = Operator Mono SSM
 # font-style = Book
 # font-style-bold = Medium
-# adjust-cell-height = 3
+# adjust-cell-height = 5
 
 font-family = JetBrains Mono
 font-family-bold = JetBrains Mono
 font-style = Regular
 font-style-bold = Regular
-adjust-cell-height = 1
+adjust-cell-height = 2
 
 # font-family = Berkeley Mono
 # font-family-bold = Berkeley Mono
