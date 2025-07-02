@@ -27,7 +27,7 @@ ls.add_snippets('javascript', {
   ls.parser.parse_snippet('cnn', 'className={cn(``, {\n\t${0:}\n})}'),
   ls.parser.parse_snippet('ctx', 'const ctx = useHydrationContext();'),
   ls.parser.parse_snippet('tx', 'await LIBS.sequelize.transaction(async (t) => {\n\t${0:}\n});'),
-  ls.parser.parse_snippet('/**', '/**\n * ${0:}\n */'),
+  ls.parser.parse_snippet('cc', '/**\n * ${0:}\n */'),
 })
 
 ls.filetype_extend('typescript', { 'javascript' })

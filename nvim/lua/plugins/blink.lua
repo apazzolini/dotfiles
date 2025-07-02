@@ -9,6 +9,15 @@ return {
     vim.cmd('highlight FloatBorder guibg=none')
     vim.cmd('highlight NormalFloat guibg=none')
 
+    local has_words_before = function()
+      local col = vim.api.nvim_win_get_cursor(0)[2]
+      if col == 0 then
+        return false
+      end
+      local line = vim.api.nvim_get_current_line()
+      return line:sub(col, col):match('%s') == nil
+    end
+
     require('blink.cmp').setup(
       ---@module 'blink.cmp'
       ---@type blink.cmp.Config
@@ -30,17 +39,18 @@ return {
 
           ['<Tab>'] = {
             function(cmp)
-              if cmp.snippet_active() then
-                return cmp.accept()
-              else
+              if cmp.get_selected_item_idx() == nil and cmp.get_items()[1] ~= nil and cmp.get_items()[1].source_id == 'snippets' then
                 return cmp.select_and_accept()
+              elseif has_words_before() then
+                return cmp.insert_next()
               end
+              return cmp.select_and_accept()
             end,
             'snippet_forward',
             'fallback',
           },
 
-          ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+          ['<S-Tab>'] = { 'insert_prev', 'fallback' },
         },
         cmdline = {
           enabled = false,
@@ -70,7 +80,7 @@ return {
             dot_repeat = false,
             create_undo_point = true,
             auto_brackets = {
-              enabled = true,
+              enabled = false,
             },
           },
           menu = {
@@ -106,7 +116,7 @@ return {
         },
 
         sources = {
-          default = { 'lsp', 'path', 'snippets', 'buffer' },
+          default = { 'snippets', 'lsp', 'path', 'buffer' },
           transform_items = function(_, items)
             return vim.tbl_filter(function(item)
               local labelDetails = item.labelDetails
@@ -134,6 +144,7 @@ return {
 
           providers = {
             snippets = {
+              score_offset = 10,
               should_show_items = function(ctx)
                 return ctx.trigger.initial_kind ~= 'trigger_character'
               end,
