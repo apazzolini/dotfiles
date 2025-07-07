@@ -89,7 +89,7 @@ return {
               columns = { { 'label', 'label_detail', gap = 1 }, { 'kind' } },
               components = {
                 label = {
-                  width = { max = 30, fill = true },
+                  width = { max = 40, fill = true },
                   text = function(ctx)
                     return ctx.label
                   end,

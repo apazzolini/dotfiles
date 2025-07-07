@@ -36,7 +36,7 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=10000000
 export SAVEHIST=$HISTSIZE
 setopt HIST_VERIFY
-setopt SHARE_HISTORY # share history between sessions
+# setopt SHARE_HISTORY # share history between sessions
 setopt EXTENDED_HISTORY # add timestamps to history
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
@@ -90,3 +90,6 @@ if [ -f '/Users/andre/GitHub/google-cloud-sdk/completion.zsh.inc' ]; then . '/Us
 
 # bun completions
 [ -s "/home/andre/.bun/_bun" ] && source "/home/andre/.bun/_bun"
+
+zle -N fg_widget
+bindkey '^z' fg_widget

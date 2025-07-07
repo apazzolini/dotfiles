@@ -25,3 +25,9 @@ gcp
 impersonatedServiceAccount
 externalId
 sendgrid
+doppler_integration_gcp_cloudsql_sql
+iam
+cloudsql
+sqlserver
+postgres
+mysql

@@ -50,6 +50,7 @@ return {
       gopls = {},
       vimls = {},
       zls = {},
+      terraformls = {},
 
       vtsls = {
         root_dir = function(fname)

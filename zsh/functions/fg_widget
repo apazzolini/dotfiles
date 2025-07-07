@@ -1,0 +1,6 @@
+fg_widget() {
+  BUFFER=""
+  CURSOR=0
+  zle accept-line
+  fg
+}

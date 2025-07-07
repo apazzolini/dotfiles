@@ -22,6 +22,7 @@ return {
       javascript = { 'prettierd' },
       javascriptreact = { 'prettierd' },
       markdown = { 'prettierd' },
+      terraform = { 'terraform-fmt', lsp_format = 'prefer' },
       typescript = { 'prettierd' },
       typescriptreact = { 'prettierd' },
       zig = { 'zigfmt' },
