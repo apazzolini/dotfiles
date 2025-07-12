@@ -4162,7 +4162,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>OperatorMonoNF 11</string>
+			<string>BerkeleyMonoVariable-Regular 10</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -5088,7 +5088,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>OperatorMonoNF 13</string>
+			<string>BerkeleyMonoVariable-Regular_Retina-SemiCondensed 11</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -5270,7 +5270,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1</real>
+			<real>1.04</real>
 			<key>Visual Bell</key>
 			<false/>
 			<key>Window Type</key>
@@ -5653,7 +5653,7 @@
 			<key>Hide After Opening</key>
 			<false/>
 			<key>Horizontal Spacing</key>
-			<real>0.99096385542168675</real>
+			<real>0.98999999999999999</real>
 			<key>HotKey Activated By Modifier</key>
 			<false/>
 			<key>HotKey Alternate Shortcuts</key>
@@ -6057,11 +6057,11 @@
 			<key>Name</key>
 			<string>nomux</string>
 			<key>Non Ascii Font</key>
-			<string>DejaVuSansMono 11</string>
+			<string>Menlo-Regular 11</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>OperatorMonoNF 11</string>
+			<string>BerkeleyMonoVariable-Regular_Retina 10</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
