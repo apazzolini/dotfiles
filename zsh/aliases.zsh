@@ -33,7 +33,7 @@ alias pgn="pg node | grep -v '(node)' | grep -vE '(grep|javascript-typescript-st
 alias k='kill -9'
 
 # starts up a webserver at the current directory
-alias httpserver="python -m SimpleHTTPServer 9090"
+alias httpserver="python3 -m http.server 9090"
 
 # git aliases
 alias lg='lazygit -ucd ~/.config/lazygit'
