@@ -1101,11 +1101,12 @@ keybind = super+y=text:,Hy
 keybind = super+u=text:,Hu
 keybind = super+i=text:,Hi
 keybind = super+o=text:,Ho
-keybind = super+p=text:,Hp
+keybind = super+p=text:\x10O
 keybind = super+shift+y=text:,HY
 keybind = super+shift+u=text:,HU
 keybind = super+shift+i=text:,HI
 keybind = super+shift+o=text:,HO
+keybind = super+shift+p=text:,Hp
 
 keybind = super+l=text:\x10z
 
