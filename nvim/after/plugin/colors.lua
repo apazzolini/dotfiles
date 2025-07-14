@@ -1,6 +1,6 @@
 -- vim.opt.background = vim.g.isNotes and 'light' or 'dark'
 vim.opt.background = 'dark'
-vim.opt.guifont = '"Operator Mono Book":h8'
+vim.opt.guifont = '"Berkeley Mono":h9'
 
 -- You probably always want to set this in your vim file
 vim.g.colors_name = 'wave'
