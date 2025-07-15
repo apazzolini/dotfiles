@@ -24,25 +24,21 @@ git:
   paging:
     colorArg: always
     pager: delta --paging=never --24-bit-color=never
-
 os:
   edit: 'floaterm {{filename}} > /dev/null 2>&1 || nvim {{filename}}'
   editAtLine: 'floaterm {{filename}} {{line}} > /dev/null 2>&1 || nvim {{filename}} +{{line}}'
   editInTerminal: true
-
 keybinding:
   commits:
     moveDownCommit: 'J'
     moveUpCommit: 'K'
-
 promptToReturnFromSubprocess: false
-
 customCommands:
   - key: "<c-r>"
     description: "Toggle side by side"
     command: "[[ $(git config delta.side-by-side) == \"true\" ]] && git config delta.side-by-side false || git config delta.side-by-side true"
     context: "commits"
-    subprocess: true
+    output: terminal
   - key: "b"
     description: "Create new branch from origin/develop"
     command: "git fetch && git checkout origin/develop --no-track -b {{index .PromptResponses 0}}"
