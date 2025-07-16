@@ -14,10 +14,10 @@ return {
       '<leader>gd',
       ':FloatermNew --autoclose=2  make && ~/Work/cli/doppler --scope=~/Work/dopscopes/local/andretest.aa.dev tui --debug-tui<CR>'
     )
-    vim.keymap.set('n', '<c-q>', ':FloatermToggle<CR>')
+    -- vim.keymap.set('n', '<c-q>', ':FloatermToggle<CR>')
 
-    vim.keymap.set('t', '<c-q>', ':FloatermToggle<CR>')
-    vim.keymap.set('t', '<c-q>', '<c-\\><c-n>:FloatermToggle<cr>')
+    -- vim.keymap.set('t', '<c-q>', ':FloatermToggle<CR>')
+    -- vim.keymap.set('t', '<c-q>', '<c-\\><c-n>:FloatermToggle<cr>')
     vim.keymap.set('t', '<c-]>', '<c-\\><c-n>')
     vim.keymap.set('t', '<c-o>', '<c-\\><c-n><c-o>')
     vim.keymap.set('t', '<a-[>', '<c-\\><c-n>gT')

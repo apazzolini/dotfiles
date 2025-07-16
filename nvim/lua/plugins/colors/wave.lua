@@ -202,6 +202,10 @@ local theme = lush(function(injected_functions)
     TelescopeMultiSelection({ fg = c.cyan }),
     TelescopePromptCounter({ fg = c.cyan }),
 
+    -- FzfLua
+    FzfLuaBorder({ fg = c.cyan }),
+    FzfLuaTitle({ fg = c.cyan }),
+
     -- Hop
     HopNextKey({ fg = c.bright.magenta, gui = none, bg = c.gray1 }),
     HopNextKey1({ fg = c.bright.magenta, gui = none, bg = c.gray1 }),
