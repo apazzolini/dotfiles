@@ -12,7 +12,7 @@ return {
     local ui = require('dapui')
 
     require('dap-vscode-js').setup({
-      debugger_path = os.getenv('HOME') .. '/GitHub/vscode-js-debug/', -- Path to vscode-js-debug installation.
+      debugger_path = os.getenv('HOME') .. '/Code/vscode-js-debug/', -- Path to vscode-js-debug installation.
       adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
     })
 

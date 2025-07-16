@@ -16,9 +16,9 @@ chsh root -s /usr/bin/zsh
 apt upgrade -y
 
 # Neovim
-mkdir -p ~/GitHub
-git clone git@github.com:neovim/neovim.git ~/GitHub/neovim
-cd ~/GitHub/neovim
+mkdir -p ~/Code
+git clone git@github.com:neovim/neovim.git ~/Code/neovim
+cd ~/Code/neovim
 git co v0.10.2
 cat <<EOF > go.sh
 #!/bin/bash
@@ -32,7 +32,7 @@ chmod +x go.sh
 ./go.sh
 
 # Lazygit
-cd ~/GitHub
+cd ~/Code
 git clone git@github.com:apazzolini/lazygit.git
 cd lazygit
 go install
@@ -47,7 +47,7 @@ npm install -g n
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Tailwind
-cd ~/GitHub
+cd ~/Code
 git clone https://github.com/apazzolini/tailwindcss-intellisense.git
 cd tailwindcss-intellisense
 npm i

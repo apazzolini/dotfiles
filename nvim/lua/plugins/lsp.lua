@@ -109,7 +109,7 @@ return {
         settings = {
           Lua = {
             workspace = {
-              library = { '/Users/andre/GitHub/_forks/hammerspoon/build/stubs' },
+              library = { '/Users/andre/Code/_forks/hammerspoon/build/stubs' },
               checkThirdParty = false,
             },
             telemetry = {
