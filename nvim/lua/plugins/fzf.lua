@@ -8,28 +8,37 @@ return {
   config = function()
     -- vim.print('Setting up')
     require('fzf-lua').setup({
-      fzf_opts = { ['--cycle'] = true },
-      grep = {
-        rg_glob = true, -- enable glob parsing by default to all
-        -- grep providers? (default:false)
-        glob_flag = '--iglob', -- for case sensitive globs use '--glob'
-        glob_separator = '%s%s', -- query separator pattern (lua): ' --'
+      fzf_opts = {
+        ['--cycle'] = true,
       },
-      files = {
-        previewer = false,
-        git_icons = false,
-        file_icons = false,
-        winopts = { height = 0.45 },
+
+      winopts = {
+        preview = {
+          layout = 'vertical',
+          vertical = 'down:65%',
+        },
       },
+
       keymap = {
         builtin = {
           ['<esc>'] = 'hide',
         },
         fzf = {
-          -- false,
-          -- Use <c-q> to select all items and add them to the quickfix list
           ['ctrl-q'] = 'select-all+accept',
         },
+      },
+
+      grep = {
+        rg_glob = true, -- enable glob parsing by default to all grep providers? (default:false)
+        glob_flag = '--iglob', -- for case sensitive globs use '--glob'
+        glob_separator = '%s%s', -- query separator pattern (lua): '  '
+      },
+
+      files = {
+        previewer = false,
+        git_icons = false,
+        file_icons = false,
+        winopts = { height = 25, width = 120 },
       },
     })
 
