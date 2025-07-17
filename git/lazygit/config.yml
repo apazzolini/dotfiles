@@ -24,6 +24,8 @@ git:
   paging:
     colorArg: always
     pager: delta --paging=never --24-bit-color=never
+  log:
+    showGraph: when-maximised
 os:
   edit: 'floaterm {{filename}} > /dev/null 2>&1 || nvim {{filename}}'
   editAtLine: 'floaterm {{filename}} {{line}} > /dev/null 2>&1 || nvim {{filename}} +{{line}}'

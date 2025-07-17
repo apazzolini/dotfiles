@@ -20,7 +20,7 @@ bindkey -M vicmd g edit-command-line
 
 # initialize prompt
 eval "$(starship init zsh)"
-export RPROMPT="[%D{%L:%M:%S}]"
+# export RPROMPT="[%D{%L:%M:%S}]"
 
 function safesource {
   [ -f "$1" ] && source "$1"
@@ -56,6 +56,15 @@ safesource "/usr/share/fzf/key-bindings.zsh"
 if [ -z "$TMUX" ]; then
   if [[ "$(hostname)" =~ ^andrem2 ]]; then
     sessions=("/Users/andre/.dotfiles" "/Users/andre/Work/server/review" "/Users/andre/Work/server/develop" "/Users/andre/Work/server/small")
+    for session in $sessions
+    do
+      selected_name=$(basename "$session" | tr . _)
+      tmux new-session -ds $selected_name -c $session
+    done
+  fi;
+
+  if [[ "$(hostname)" =~ ^archw ]]; then
+    sessions=("/home/andre/.dotfiles" "/home/andre/Work/server/review" "/home/andre/Work/server/develop" "/home/andre/Work/server/small")
     for session in $sessions
     do
       selected_name=$(basename "$session" | tr . _)

@@ -1,18 +1,21 @@
 add_newline = false
 
-format = """$custom$directory$git_branch$git_status$git_state[»](purple) """
+format = """${custom.hertzner}$directory$git_branch$git_status$git_state[»](purple) """
+right_format = """${custom.archm}${custom.archw}$time"""
 
 [custom.hertzner]
-command = 'echo "[dre-ash-1]"'
-when = 'test `hostname` = "dre-ash-1"'
-
-[custom.hertzner2]
 command = 'echo "[drevps]"'
 when = 'test `hostname` = "drevps"'
 
-# [custom.andrem2]
-# command = 'echo "[andrem2]"'
-# when = 'test `hostname` = "andrem2.local" || test `hostname` = "andrembw"'
+[custom.archm]
+command = 'echo "archm"'
+when = 'test `hostname` = "archm"'
+style = 'gray'
+
+[custom.archw]
+command = 'echo "archw"'
+when = 'test `hostname` = "archw"'
+style = 'gray'
 
 [directory]
 truncation_length = 1000
@@ -28,3 +31,8 @@ diverged = "↑${ahead_count}↓${behind_count}"
 behind = "↓${count} "
 stashed = ""
 deleted = '✘ '
+
+[time]
+disabled = false
+style = 'gray'
+format = '\[[$time]($style)\]'

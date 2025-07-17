@@ -14,6 +14,9 @@ if [[ `hostname` = andrem2* ]]
 then
   alias dl='docker compose -f /Users/andre/Work/docker/docker-compose.yml'
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md"'
+elif [[ `hostname` = archw* ]]
+then
+  alias dl='docker compose -f /home/andre/Work/docker/docker-compose.yml'
 else
   alias dl='docker compose -f /apps/docker-compose.yml'
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/scratch.md"'

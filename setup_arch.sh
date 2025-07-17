@@ -8,18 +8,16 @@ set -o pipefail
 cd ~/.dotfiles
 ./link.sh
 sudo chown -R andre /usr/local/
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+sudo pacman -S --noconfirm starship
 sudo chsh andre -s /usr/bin/zsh
 
-sudo pacman -S ripgrep fzf htop tmux neovim go git-delta unzip
+sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sudo locale-gen
+sudo localectl set-locale LANG=en_US.UTF-8
 
-# Lazygit
-cd ~/Code
-git clone git@github.com:apazzolini/lazygit.git
-cd lazygit
-go install
-go build
-mv lazygit /usr/local/bin/
+sudo pacman -S --noconfirm base-devel cmake python
+sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim go git-delta unzip
+sudo pacman -S --noconfirm lazygit
 
 # Node
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
@@ -28,20 +26,11 @@ npm install -g n
 # Rust
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Tailwind
-cd ~/Code
-git clone https://github.com/apazzolini/tailwindcss-intellisense.git
-cd tailwindcss-intellisense
-npm i
-cd packages/tailwindcss-language-server
-npm run build
-npm i -g $(pwd)
-
-# misc
+# Go
 go install golang.org/x/tools/cmd/goimports@latest
 
 # docker
-sudo pacman -S docker
+sudo pacman -S --noconfirm docker
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER
