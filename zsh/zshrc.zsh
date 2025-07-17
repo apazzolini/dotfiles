@@ -20,6 +20,8 @@ bindkey -M vicmd g edit-command-line
 
 # initialize prompt
 eval "$(starship init zsh)"
+# export PS1=$'%{\e[38;5;245m%}${(r:$COLUMNS::\u2500:)}%{\e[0m%}'$PS1
+# export PS1=$'%{\e[38;5;245m%}${(r:$COLUMNS:: :)}%{\e[0m%}'$PS1
 # export RPROMPT="[%D{%L:%M:%S}]"
 
 function safesource {
