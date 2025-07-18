@@ -56,15 +56,6 @@ safesource "/usr/share/doc/fzf/examples/key-bindings.zsh"
 safesource "/usr/share/fzf/key-bindings.zsh"
 
 if [ -z "$TMUX" ]; then
-  if [[ "$(hostname)" =~ ^andrem2 ]]; then
-    sessions=("/Users/andre/.dotfiles" "/Users/andre/Work/server/review" "/Users/andre/Work/server/develop" "/Users/andre/Work/server/small")
-    for session in $sessions
-    do
-      selected_name=$(basename "$session" | tr . _)
-      tmux new-session -ds $selected_name -c $session
-    done
-  fi;
-
   if [[ "$(hostname)" =~ ^archw ]]; then
     sessions=("/home/andre/.dotfiles" "/home/andre/Work/server/review" "/home/andre/Work/server/develop" "/home/andre/Work/server/small")
     for session in $sessions
@@ -74,30 +65,21 @@ if [ -z "$TMUX" ]; then
     done
   fi;
 
-  if [[ "$__CFBundleIdentifier" =~ iterm2$ ]]; then
-    return;
+  if [[ "$(hostname)" =~ ^archm ]]; then
+    tmux-sessionizer /home/andre/.dotfiles
   fi;
-
-  tmux-sessionizer ~/.dotfiles
 fi
-
-# unix ssh-agent
-# if [ -f "/usr/bin/keychain" ]; then
-  # /usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
-  # source $HOME/.keychain/andred-sh
-# fi
 
 if [ -f "/etc/wsl.conf" ]; then
   ${HOME}/.dotfiles/bin/wsl-ssh-agent-relay start
   export SSH_AUTH_SOCK=${HOME}/.ssh/wsl-ssh-agent.sock
 fi
 
-
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/andre/Code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andre/Code/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/andre/code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andre/code/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/andre/Code/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andre/Code/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/andre/code/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andre/code/google-cloud-sdk/completion.zsh.inc'; fi
 
 # bun completions
 [ -s "/home/andre/.bun/_bun" ] && source "/home/andre/.bun/_bun"

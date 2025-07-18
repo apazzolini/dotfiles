@@ -25,6 +25,7 @@ path=(
   $path
 )
 
+export LC_COLLATE=C
 export GOPATH=$HOME/.go
 export PGDATA='/usr/local/var/postgres'
 export IGNOREEOF=50

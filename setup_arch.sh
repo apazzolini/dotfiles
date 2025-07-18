@@ -7,6 +7,7 @@ set -o pipefail
 
 cd ~/.dotfiles
 ./link.sh
+
 sudo chown -R andre /usr/local/
 sudo pacman -S --noconfirm starship
 sudo chsh andre -s /usr/bin/zsh
@@ -16,7 +17,7 @@ sudo locale-gen
 sudo localectl set-locale LANG=en_US.UTF-8
 
 sudo pacman -S --noconfirm base-devel cmake python
-sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim go git-delta unzip
+sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim go git-delta unzip wget fd
 sudo pacman -S --noconfirm lazygit
 
 # Node

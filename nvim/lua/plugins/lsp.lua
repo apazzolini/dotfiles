@@ -109,7 +109,7 @@ return {
         settings = {
           Lua = {
             workspace = {
-              library = { '/Users/andre/Code/_forks/hammerspoon/build/stubs' },
+              -- library = { vim.env.HOME .. '/.dotfiles/systems/osx/hammerspoon/repo/build/stubs' },
               checkThirdParty = false,
             },
             telemetry = {

@@ -26,6 +26,9 @@
 --glob=!**/__fixtures__/**
 --glob=!**/__snapshots__/**
 
+# Clutter
+--glob=!*.svg
+
 # Work
 --glob=!**/external-src/**
 --glob=!bugsnag.ejs
