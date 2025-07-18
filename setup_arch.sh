@@ -9,16 +9,18 @@ cd ~/.dotfiles
 ./link.sh
 
 sudo chown -R andre /usr/local/
-sudo pacman -S --noconfirm starship
+
+sudo pacman -S --noconfirm zsh
 sudo chsh andre -s /usr/bin/zsh
 
-sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-sudo locale-gen
-sudo localectl set-locale LANG=en_US.UTF-8
+if [[ "$LANG" != "en_US.UTF-8" ]]; then
+  sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+  sudo locale-gen
+  sudo localectl set-locale LANG=en_US.UTF-8
+fi
 
-sudo pacman -S --noconfirm base-devel cmake python
-sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim go git-delta unzip wget fd
-sudo pacman -S --noconfirm lazygit
+sudo pacman -S --noconfirm base-devel cmake python go
+sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta unzip wget fd starship lazygit
 
 # Node
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
