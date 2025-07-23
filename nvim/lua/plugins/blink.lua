@@ -2,6 +2,7 @@ return {
   'saghen/blink.cmp',
   enabled = true,
   cond = vim.g.isNotes == false,
+  version = '1.*',
   dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' },
   config = function()
     vim.cmd('highlight Pmenu guibg=none')
