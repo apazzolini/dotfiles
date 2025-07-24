@@ -2,7 +2,7 @@ local log = require('vim.lsp.log')
 local util = require('vim.lsp.util')
 
 --[[
-MasonInstall astro-language-server eslint_d gopls json-lsp lua-language-server prettierd python-lsp-server stylua vim-language-server vtsls tailwindcss-language-server
+MasonInstall astro-language-server eslint_d gopls json-lsp lua-language-server prettierd python-lsp-server stylua vim-language-server vtsls tailwindcss-language-server terraform-ls
 ]]
 
 return {
