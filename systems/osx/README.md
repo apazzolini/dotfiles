@@ -1,40 +1,31 @@
-# ghostty
+# Manual OS X Setup
 
-`mkdir -p ~/.config`
-`ln -s ~/.dotfiles/systems/osx/ghostty ~/.config/`
+These things aren't automated.
 
-# brew.sh
+- Set hostname
+    - 2 places in system settings and sudo scutil --set HostName <name>
 
-Invoke to install default homebrew packages
+- Download From App Store:
 
-# set-defaults.sh
+    - Mela
+    - Command X
+    - Hyperduck
+    - Dato
+    - Windows App
 
-Applies my OS X default settings
+- Download From Elsewhere:
 
-# others
+    - Tailscale
+    - iStatMenus
+    - SaneSideButtons
+    - Syncthing
+    - Amphetamine
+    - Deskflow
 
-```
-ln -s ~/.dotfiles/systems/osx/hammerspoon ~/.hammerspoon
-ln -s ~/.dotfiles/systems/osx/karabiner.json ~/.config/karabiner/karabiner.json
-```
-- Command X
-- Alfred
-- iStatMenus
-- Hyperduck
-- Amphetamine
-- Dato
-- iTerm2 (configure in-app to load prefs from dotfiles)
-- Deskflow 1.21.1.0
-- SaneSideButtons
-- MiddleClick.app
-
-# borg
-
-Needs borg-passphrase item (kind=secret) in Keychain
-```
-brew install borgbackup
-ln -s ~/.dotfiles/systems/osx/borg.plist ~/Library/LaunchAgents/borg.plist
-launchctl load ~/Library/LaunchAgents/borg.plist
-```
-
-
+- Configure Borg
+    - `brew install borgbackup`
+    - Add borg-passphrase (kind = secert) to OS X keychain
+    - Download borg-repokeys.zip and extract to ~/.config/
+    - `ln -s ~/.dotfiles/systems/osx/borg.plist ~/Library/LaunchAgents/borg.plist`
+    - `launchctl load ~/Library/LaunchAgents/borg.plist`
+    - `mkdir /var/log/borg`

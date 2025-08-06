@@ -19,6 +19,8 @@ return {
       return line:sub(col, col):match('%s') == nil
     end
 
+    local luasnip = require('luasnip')
+
     require('blink.cmp').setup(
       ---@module 'blink.cmp'
       ---@type blink.cmp.Config
@@ -40,14 +42,18 @@ return {
 
           ['<Tab>'] = {
             function(cmp)
-              if cmp.get_selected_item_idx() == nil and cmp.get_items()[1] ~= nil and cmp.get_items()[1].source_id == 'snippets' then
-                return cmp.select_and_accept()
-              elseif has_words_before() then
-                return cmp.insert_next()
+              if luasnip.expandable() then
+                cmp.cancel()
+                vim.schedule(function()
+                  luasnip.expand()
+                end)
+                return true
+                -- elseif has_words_before() then
+                --   return cmp.insert_next()
               end
-              return cmp.select_and_accept()
+              return cmp.insert_next()
             end,
-            'snippet_forward',
+            -- 'super-tab',
             'fallback',
           },
 
@@ -117,7 +123,12 @@ return {
         },
 
         sources = {
-          default = { 'snippets', 'lsp', 'path', 'buffer' },
+          default = {
+            -- 'snippets',
+            'lsp',
+            'path',
+            'buffer',
+          },
           transform_items = function(_, items)
             return vim.tbl_filter(function(item)
               local labelDetails = item.labelDetails

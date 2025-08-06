@@ -107,6 +107,7 @@ local theme = lush(function(injected_functions)
     Visual({ bg = c.gray2 }),
     CurSearch({ Search }),
     IncSearch({ Search }),
+    SpellBad({ gui = 'underdotted', sp = c.cyan }),
 
     NormalFloat({ guibg = none }),
     FloatBorder({ fg = c.white }),

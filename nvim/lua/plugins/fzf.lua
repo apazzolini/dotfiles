@@ -22,10 +22,17 @@ return {
       keymap = {
         builtin = {
           ['<esc>'] = 'hide',
+          ['<c-e>'] = 'preview-page-up',
+          ['<c-y>'] = 'preview-page-down',
         },
         fzf = {
           ['ctrl-q'] = 'select-all+accept',
         },
+      },
+
+      defaults = {
+        -- formatter = 'path.filename_first',
+        -- multiline = 0,
       },
 
       grep = {
@@ -40,6 +47,12 @@ return {
         git_icons = false,
         file_icons = false,
         winopts = { height = 25, width = 120 },
+        cmd = 'rg --files --hidden --ignore --glob "!.git" --sortr=modified',
+        RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
+        fzf_opts = {
+          ['--scheme'] = 'path',
+          ['--tiebreak'] = 'index',
+        },
       },
     })
 

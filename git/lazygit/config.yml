@@ -19,7 +19,7 @@ gui:
     selectedRangeBgColor:
       - underline
 git:
-  # autoFetch: false
+  autoFetch: false
   # autoRefresh: false
   paging:
     colorArg: always

@@ -25,6 +25,7 @@
 --glob=!**/nvim/plugged
 --glob=!**/__fixtures__/**
 --glob=!**/__snapshots__/**
+--glob=!**/Alfred.alfredpreferences/**
 
 # Clutter
 --glob=!*.svg

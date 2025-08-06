@@ -1,3 +1,4 @@
+[general]
 import = [
   "/Users/andre/.dotfiles/systems/shared/alacritty.toml",
 ]
@@ -11,7 +12,7 @@ size = 11.0
 offset = { x = 0, y = 1 }
 
 [font.normal]
-family = "OperatorMonoSSM Nerd Font"
+family = "Berkeley Mono Variable"
 style = "Light"
 
 [font.bold]
@@ -71,3 +72,5 @@ bindings = [
   # Needed on work laptop only? Not sure why
   { key = "Space"    , mods = "Control"       , chars = "\u0000" },
 ]
+
+
