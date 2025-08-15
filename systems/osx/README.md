@@ -21,11 +21,13 @@ These things aren't automated.
     - Syncthing
     - Amphetamine
     - Deskflow
+- Configure Restic:
 
-- Configure Borg
-    - `brew install borgbackup`
-    - Add borg-passphrase (kind = secert) to OS X keychain
-    - Download borg-repokeys.zip and extract to ~/.config/
-    - `ln -s ~/.dotfiles/systems/osx/borg.plist ~/Library/LaunchAgents/borg.plist`
-    - `launchctl load ~/Library/LaunchAgents/borg.plist`
-    - `mkdir /var/log/borg`
+    - `brew install restic`
+    - Add restic-password to OS X keychain
+    - Download restic-append-keys.zip and extract to ~/.ssh/
+    - `ln -s ~/.dotfiles/systems/osx/restic.plist ~/Library/LaunchAgents/restic.plist`
+    - `launchctl load ~/Library/LaunchAgents/restic.plist`
+    - `sudo mkdir /var/log/restic`
+    - `sudo chown andre /var/log/restic`
+
