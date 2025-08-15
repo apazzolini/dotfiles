@@ -1,6 +1,6 @@
 # Manual OS X Setup
 
-These things aren't automated.
+These things aren't automated:
 
 - Set hostname
     - 2 places in system settings and sudo scutil --set HostName <name>
@@ -12,15 +12,15 @@ These things aren't automated.
     - Hyperduck
     - Dato
     - Windows App
+    - Amphetamine
 
 - Download From Elsewhere:
 
     - Tailscale
-    - iStatMenus
-    - SaneSideButtons
     - Syncthing
-    - Amphetamine
     - Deskflow
+    - Berkeley Mono
+
 - Configure Restic:
 
     - `brew install restic`

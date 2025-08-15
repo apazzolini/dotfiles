@@ -48,10 +48,11 @@ return {
                   luasnip.expand()
                 end)
                 return true
-                -- elseif has_words_before() then
-                --   return cmp.insert_next()
+              elseif has_words_before() then
+                return cmp.insert_next()
               end
-              return cmp.insert_next()
+              return false
+              -- return cmp.insert_next()
             end,
             -- 'super-tab',
             'fallback',

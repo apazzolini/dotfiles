@@ -31,7 +31,7 @@ function safesource {
 source $ZSH/zsh/aliases.zsh
 source $ZSH/zsh/completion.zsh
 source $ZSH/bin/z.sh
-source $ZSH/bin/borg.zsh
+source $ZSH/bin/restic.zsh
 source $ZSH/bin/applypatch.zsh
 
 export HISTFILE=~/.zsh_history
@@ -68,7 +68,7 @@ if [ -z "$TMUX" ]; then
   #   done
   # fi;
 
-  if [[ "$(hostname)" =~ ^andrembp ]]; then
+  if [[ "$(hostname)" =~ ^andrem1 ]]; then
     tmux-sessionizer /Users/andre/.dotfiles
   fi;
 fi

@@ -1,6 +1,10 @@
 #!/bin/bash
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew > /dev/null 2>&1; then
+    echo "Installing brew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    exit 1;
+fi
 
 brew analytics off
 
@@ -28,3 +32,8 @@ brew install fliqlo
 brew install iterm2
 brew install fd
 brew install spotify
+brew install dua-cli
+brew install ghostty
+brew install istat-menus
+brew install firefox
+brew install sanesidebuttons

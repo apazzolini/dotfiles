@@ -91,3 +91,7 @@ vim.keymap.set('n', '<leader>wd', ':set winheight=10<cr><c-w>=<cr>')
 -- Comments
 vim.keymap.set('n', '<leader>ct', 'gcc', { remap = true })
 vim.keymap.set('x', '<leader>ct', 'gc', { remap = true })
+
+-- Toggles
+vim.keymap.set('n', '[s', ':set nospell<cr>', { silent = true })
+vim.keymap.set('n', ']s', ':set spell<cr>', { silent = true })
