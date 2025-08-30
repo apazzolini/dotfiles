@@ -10,6 +10,7 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     'b0o/schemastore.nvim',
+    'yioneko/nvim-vtsls',
     'williamboman/mason.nvim',
     {
       'j-hui/fidget.nvim',
@@ -71,7 +72,7 @@ return {
               },
             },
             preferences = {
-              importModuleSpecifierPreference = 'shortest',
+              -- importModuleSpecifierPreference = 'shortest',
               includePackageJsonAutoImports = 'off',
             },
           },
@@ -163,7 +164,7 @@ return {
 
     local function first_match(list)
       vim.lsp.util.show_document(list.items[1].user_data, 'utf-8', false)
-      vim.cmd('normal zz')
+      vim.cmd('normal zt')
     end
 
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -171,8 +172,20 @@ return {
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id), 'must have valid client')
         local opts = { noremap = true, silent = true, buffer = 0 }
 
+        vim.keymap.set('n', '<leader>gd', function()
+          vim.lsp.buf.definition()
+        end, opts)
+
+        vim.keymap.set('n', 'gs', function()
+          require('vtsls').commands.goto_source_definition()
+        end, opts)
+
         vim.keymap.set('n', 'gd', function()
           vim.lsp.buf.definition({ on_list = first_match })
+        end, opts)
+
+        vim.keymap.set('n', '<leader>gD', function()
+          vim.lsp.buf.type_definition()
         end, opts)
 
         vim.keymap.set('n', 'gD', function()

@@ -10,9 +10,9 @@ else
   alias o='explorer.exe .'
 fi
 
-if [[ `hostname` = andrem2* ]]; then
-  alias dl='docker compose -f /Users/andre/Work/docker/docker-compose.yml'
-  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Work/notes/log.md"'
+if [[ `hostname` = G16JTXJGPY ]]; then
+  # alias dl='docker compose -f /Users/andre/Work/docker/docker-compose.yml'
+  alias notes='IS_NOTES=1 nvim -O "/Users/andre.azzolini/work/notes/log.md"'
 else
   alias dl='docker compose -f /apps/docker-compose.yml'
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/personal/scratch.md"'
@@ -39,10 +39,10 @@ alias lg='lazygit -ucd ~/.config/lazygit'
 
 # shortcuts for npm/yarn
 alias yr="yarn run"
+alias y="yarn"
+alias ys="yarn start"
 alias nr="npm run"
 alias br="bun run"
-alias pr="pnpm run"
-alias pi='pnpm install --frozen-lockfile'
 alias rt='~/.dotfiles/bin/review-tags.sh'
 
 # tmux

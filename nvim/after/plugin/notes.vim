@@ -29,8 +29,8 @@ augroup END
 if (has('win32'))
   let wikipath = 'D:/Wiki'
 else
-  if (expand('$HOST') =~ 'andrem2')
-    let wikipath = '/Users/andre/Work/notes'
+  if (expand('$HOST') =~ 'G16JTXJGPY')
+    let wikipath = '/Users/andre.azzolini/work/notes'
   else
     let wikipath = '/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki'
   endif
@@ -47,8 +47,8 @@ let @d='gg/---------0:nohO,Lo- =strftime("%Y-%m-%d")k2,Lok,Lj'
 autocmd FileType vimwiki inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn 3 5<CR>
 autocmd FileType vimwiki inoremap <silent><buffer> <C-L><C-L> <Esc>:VimwikiReturn 2 2<CR>
 
-if (expand('$HOST') =~ 'andrem2')
-  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gl :e /Users/andre/Work/notes/log.md<CR>
-  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gi :e /Users/andre/Work/notes/index.md<CR>
-  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gs :e /Users/andre/Work/notes/scratch.md<CR>
+if (expand('$HOST') =~ 'G16JTXJGPY')
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gl :e /Users/andre.azzolini/work/notes/log.md<CR>
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gp :e /Users/andre.azzolini/work/notes/people.md<CR>
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gs :e /Users/andre.azzolini/work/notes/scratch.md<CR>
 endif

@@ -47,6 +47,11 @@ return {
       vim.cmd('sleep 100m')
       vim.cmd('%!eslint_d --stdin --fix-to-stdout --stdin-filename %')
     end, opts)
+    vim.keymap.set('n', '<leader>fi', function()
+      vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.addMissingImports.ts' } } })
+      vim.cmd('sleep 100m')
+      vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.removeUnused.ts' } } })
+    end, opts)
 
     local errorDiagnostics = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
     vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)

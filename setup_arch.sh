@@ -20,7 +20,7 @@ if [[ "$LANG" != "en_US.UTF-8" ]]; then
 fi
 
 sudo pacman -S --noconfirm base-devel cmake python go
-sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta unzip wget fd starship lazygit
+sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta unzip wget fd starship lazygit jq
 
 # Node
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts

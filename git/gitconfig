@@ -8,6 +8,8 @@
     autocrlf = input
     commentchar = ";"
     pager = delta
+    untrackedCache = true
+    fsmonitor = true
 [delta]
     side-by-side = true
     hunk-header-style = omit
@@ -57,11 +59,11 @@
     pf = push --force-with-lease
     ri = rebase --interactive
     wt = worktree
-    rod = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git reset --hard origin/develop"
-    frod = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees develop && git fetch && git reset --hard origin/develop"
+    ro = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git reset --hard origin/master"
+    fro = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git fetch && git reset --hard origin/master"
     work = "!git fetch && git checkout origin/develop --ignore-other-worktrees --no-track -b \"$@\""
     wip = "!git add --all && git commit -m 'wip'"
-    rdp = "!git range-diff origin/develop origin/$(git branch --show-current) HEAD"
+    rdp = "!git range-diff origin/master origin/$(git branch --show-current) HEAD"
 
     find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
 
@@ -86,6 +88,10 @@
     bs = "!. ~/.githelpers && pretty_git_branch_sorted"
 [diff]
     tool = vimdiff
+    algorithm = histogram
+    ; colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [color "diff-highlight"]
     oldNormal = red
     oldHighlight = red "#500000"
@@ -100,17 +106,22 @@
     whitespace = "#ffff00" reverse
 [include]
     path = ~/.gitconfig.local
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [branch]
   autosetuprebase = always
 [rerere]
-	enabled = false
+    enabled = true
+    autoupdate = true
 [commit]
-  verbose = true
+    verbose = true
 [init]
-	defaultBranch = master
+    defaultBranch = master
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+[rebase]
+    updateRefs = true
+    autoSquash = true
+    autoStash = true
+; [merge]
+;     conflictstyle = zdiff3

@@ -95,3 +95,9 @@ vim.keymap.set('x', '<leader>ct', 'gc', { remap = true })
 -- Toggles
 vim.keymap.set('n', '[s', ':set nospell<cr>', { silent = true })
 vim.keymap.set('n', ']s', ':set spell<cr>', { silent = true })
+vim.keymap.set('n', '[w', ':set nowrap<cr>', { silent = true })
+vim.keymap.set('n', ']w', ':set wrap<cr>', { silent = true })
+
+vim.keymap.set('n', 'mm', '%')
+vim.keymap.set('x', 'm', '%')
+vim.keymap.set('o', 'm', '%')

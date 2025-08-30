@@ -3,10 +3,12 @@ local hyper = { 'shift', 'cmd' }
 hs.loadSpoon('AppLauncher')
 spoon.AppLauncher:bindHotkeys({
   { { 'ctrl', 'a' }, 'Ghostty' },
+  { { 'alt', 'n' }, 'Notion' },
   { { 'alt', 's' }, 'Spotify' },
   { { 'alt', 'g' }, 'Firefox Developer Edition' },
   { { 'alt', 'd' }, 'Discord' },
   { { 'alt', 'f' }, 'Slack' },
+  { { 'alt', 'i' }, 'Alacritty' },
 })
 
 hs.loadSpoon('MiroWindowsManager')

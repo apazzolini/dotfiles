@@ -12,6 +12,7 @@ path=(
   $HOME/.cargo/bin
   $HOME/.go/bin
   $HOME/.local/bin
+  $HOME/.opencode/bin
   /opt/homebrew/bin
   /opt/homebrew/sbin
   /opt/homebrew/opt/python@3.13/libexec/bin
