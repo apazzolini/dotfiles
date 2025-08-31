@@ -4,6 +4,7 @@ gui:
   showPanelJumps: false
   showBottomLine: false
   border: 'rounded'
+  useHunkModeInStagingView: false
   theme:
     lightTheme: false
     activeBorderColor:

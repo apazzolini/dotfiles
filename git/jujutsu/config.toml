@@ -1,0 +1,8 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Andre Azzolini (apazzolini)"
+email = "andre@azzolini.io"
+
+[ui]
+diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
