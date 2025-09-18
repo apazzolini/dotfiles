@@ -7,7 +7,11 @@ vim.g.floaterm_title = ''
 return {
   'apazzolini/vim-floaterm',
   config = function()
+    -- vim.keymap.set('n', '<leader><c-g>', ':FloatermNew --autoclose=2  lazygit -ucd ~/.config/lazygit<CR>')
+    -- vim.keymap.set('n', '<c-g>', ':FloatermNew --autoclose=2  jjui<CR>')
+
     vim.keymap.set('n', '<c-g>', ':FloatermNew --autoclose=2  lazygit -ucd ~/.config/lazygit<CR>')
+
     -- vim.keymap.set('n', '<c-q>', ':FloatermToggle<CR>')
 
     -- vim.keymap.set('t', '<c-q>', ':FloatermToggle<CR>')

@@ -11,7 +11,7 @@
     untrackedCache = true
     fsmonitor = true
 [delta]
-    side-by-side = true
+    side-by-side = false
     hunk-header-style = omit
     paging = never
     line-numbers = true
