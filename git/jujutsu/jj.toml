@@ -1,0 +1,47 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Andre Azzolini"
+email = "andre.azzolini@ramp.com"
+
+[ui]
+# diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+diff-formatter = ":git" # required by `delta`
+pager=["delta", "--pager", "less -FRX"] # Keeps output from the terminal after closing the pager
+
+# [revset-aliases]
+# "immutable_heads()" = "trunk() | tags() | remote_bookmarks()"
+
+[aliases]
+sr = ["rebase", "-s", "roots(trunk()..mutable())", "-d", "trunk()"]
+
+[diff]
+tool = "delta"
+
+# These options allow for `jj diff` and `jj show` to clear the output from the terminal after closing the pager.
+[[--scope]]
+--when.commands = ["diff", "show"]
+
+[--scope.ui]
+pager = "delta"
+
+[merge-tools.neovim]
+program = "sh"
+edit-args = [
+  "-c",
+  """
+    set -eu
+    rm -f "$right/JJ-INSTRUCTIONS"
+    git -C "$left" init -q
+    git -C "$left" add -A
+    git -C "$left" commit -q -m baseline --allow-empty # create parent commit
+    mv "$left/.git" "$right"
+    git -C "$right" add --intent-to-add -A # create current working copy
+    (cd "$right"; nvim)
+    git -C "$right" diff-index --quiet --cached HEAD && { echo "No changes done, aborting split."; exit 1; }
+    git -C "$right" commit -q -m split # create commit on top of parent including changes
+    git -C "$right" restore . # undo changes in modified files
+    git -C "$right" reset .   # undo --intent-to-add
+    git -C "$right" clean -q -df # remove untracked files
+  """
+]

@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'julienvincent/hunk.nvim',
   cmd = { 'DiffEditor' },
   config = function()
@@ -32,7 +33,7 @@ return {
           expand_node = { 'l', '<Right>' },
           collapse_node = { 'h', '<Left>' },
 
-          open_file = { '<Cr>' },
+          open_file = { 'o' },
 
           toggle_file = { 'a' },
         },

@@ -1,0 +1,18 @@
+[leader.e]
+context = [ "$file", "$change_id" ]
+help = "Edit file in @"
+send = [ "$", "floaterm $file", "enter" ]
+
+[leader.E]
+context = [ "$file", "$change_id" ]
+help = "Edit file in change"
+send = [ "$", "jj edit $change_id && $EDITOR $file", "enter" ]
+
+[preview]
+show_at_start = true
+revision_command = ["show", "--color", "always", "-r", "$change_id", "--config", "ui.diff-formatter=delta"]
+width_percentage = 60.0
+
+
+[keys]
+leader = [","]
