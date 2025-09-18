@@ -47,7 +47,8 @@ return {
 
     local servers = {
       astro = {},
-      pylsp = {},
+      -- pylsp = {},
+      pyright = {},
       gopls = {},
       vimls = {},
       zls = {},

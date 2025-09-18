@@ -42,6 +42,7 @@ return {
         'lua',
         'make',
         'markdown',
+        'python',
         'regex',
         'scss',
         'sql',
