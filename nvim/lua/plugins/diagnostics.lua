@@ -23,9 +23,13 @@ return {
       virtual_lines = false,
       virtual_text = {
         severity = {
-          min = vim.diagnostic.severity.ERROR,
+          min = vim.diagnostic.severity.WARN,
         },
         format = function(diagnostic)
+          if diagnostic.code == 'prettier/prettier' then
+            return nil
+          end
+
           if diagnostic.source == 'eslint_d' then
             return string.format('%s [%s]', diagnostic.message, diagnostic.code)
           end
@@ -53,12 +57,10 @@ return {
       vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.removeUnused.ts' } } })
     end, opts)
 
-    local errorDiagnostics = '{ severity = ' .. vim.diagnostic.severity.ERROR .. ' }'
-    vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)
-    vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. errorDiagnostics .. ')<cr>zz', opts)
+    vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev()<cr>zz', opts)
+    vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next()<cr>zz', opts)
     vim.keymap.set('n', 'gH', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-    vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.setqflist(' .. errorDiagnostics .. ')<cr>zz', opts)
-    vim.keymap.set('n', '<leader>lE', '<cmd>lua vim.diagnostic.setqflist()<cr>zz', opts)
+    vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.setqflist()<cr>zz', opts)
 
     vim.keymap.set('n', '<leader>d', function()
       local current = vim.diagnostic.config()
