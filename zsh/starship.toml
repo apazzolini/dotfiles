@@ -1,6 +1,7 @@
 add_newline = false
 
 format = """${custom.hertzner}$directory$git_branch$git_status$git_state[»](purple) """
+# format = """${custom.hertzner}$directory[»](purple) """
 right_format = """$time"""
 
 [custom.hertzner]

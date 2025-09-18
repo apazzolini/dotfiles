@@ -15,7 +15,10 @@ function env_setup {
   link git/gitignore ~/.gitignore
   mkdir -p ~/.config/lazygit
   link git/lazygit/config.yml ~/.config/lazygit/
-  link git/jujutsu ~/.config/jj
+  mkdir -p ~/.config/jj
+  link git/jujutsu/jj.toml ~/.config/jj/config.toml
+  mkdir -p ~/.config/jjui
+  link git/jujutsu/jjui.toml ~/.config/jjui/config.toml
 
   # neovim
   mkdir -p ~/.config

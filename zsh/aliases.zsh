@@ -36,6 +36,8 @@ alias httpserver="python3 -m http.server 9090"
 
 # git aliases
 alias lg='lazygit -ucd ~/.config/lazygit'
+alias lj='jjui'
+alias gs='git status'
 
 # shortcuts for npm/yarn
 alias yr="yarn run"
@@ -65,16 +67,7 @@ alias da='d ps -a'
 alias j=z
 
 # work
-alias pgbak='~/work/backup-pg.sh'
-alias pgres='~/work/restore-pg.sh'
-alias pgls='ll /Users/andre/Work/docker/pgdatabackup/'
-alias pgcd='cd /Users/andre/Work/docker/pgdatabackup/'
-alias houston='HOST="https://houston.doppler.team" /Users/andre/Work/houston/scripts/houston.sh'
-alias houston-staging='HOST="https://houston.staging.doppler.team" /Users/andre/Work/houston/scripts/houston.sh'
-alias dop='doppler'
-alias ds='doppler secrets'
-alias dt='doppler tui'
-alias tf='terraform'
+alias fk="fuser -k 3000/tcp 16823/tcp"
 
 alias sudoedit='sudo -e'
 

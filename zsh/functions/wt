@@ -1,30 +1,27 @@
 wt () {
   if [[ "$1" == "done" ]]; then
     TREE="${PWD##*/}"
-    cd /Users/andre/Work/server
-    git worktree remove $TREE
-    git branch -d andre/$TREE
+    cd /home/andre/code/web
+    git worktree remove $TREE --force
+    git branch -d andre/$TREE --force
+    tmux switch-client -l
+    tmux kill-session -t "$(tmux display-message -p '#{client_last_session}')"
     return;
   fi
 
-  if [ -d "/Users/andre/Work/server/$1" ]; then
-    cd "/Users/andre/Work/server/$1"
+  if [ -d "/home/andre/code/web/$1" ]; then
+    echo "worktree $1 already exists"
     return;
   fi
 
-  pushd /Users/andre/Work/server
-  git fetch
-  git worktree add -f $1 origin/develop
+  pushd /home/andre/code/web
+  git worktree add -f $1 master
   cd $1
   git co andre/$1 || git co -b andre/$1
-  pnpm install
-  mkdir -p server/env
-  mkdir -p tokens-server/env
-  doppler setup -p server -c dev_personal
-  cd tokens-server
-  doppler setup -p tokens-server -c dev_personal
+  yarn install
+  cp .config/env_defaults/.env.local .config/.env.local
+  git status
   popd
-  cd server
-  pnpm run install-bower
-  popd
+
+  tmux-sessionizer "/home/andre/code/web/$1"
 }
