@@ -11,6 +11,8 @@ else
     elif [[ "$(hostname)" =~ arch ]]; then
       ARRAY+=($(find ~/code/web -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
       # ARRAY+=($(find ~/Work -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
+    elif [[ "$(hostname)" == "G16JTXJGPY" ]]; then
+      ARRAY+=("$HOME/work/notes")
     fi
 
     ARRAY+=($(find ~/code ~/code/_forks -mindepth 1 -maxdepth 1 -type d | sort))

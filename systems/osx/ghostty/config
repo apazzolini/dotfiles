@@ -1094,6 +1094,7 @@ keybind = super+minus=decrease_font_size:1
 keybind = super+equal=increase_font_size:1
 keybind = super+shift+zero=reset_font_size
 keybind = super+q=quit
+keybind = super+alt+p=toggle_command_palette
 
 keybind = super+slash=text:,ct
 
@@ -1120,16 +1121,16 @@ keybind = super+d=text:[qzz
 # { key = "Tab"      , mods = "Control"       , chars = "\u001B[9;5u" },
 # { key = "Tab"      , mods = "Control|Shift" , chars = "\u001B[9;6u" },
 
-keybind = super+zero=text:\x100
-keybind = super+one=text:\x101
-keybind = super+two=text:\x102
-keybind = super+three=text:\x103
-keybind = super+four=text:\x104
-keybind = super+five=text:\x105
-keybind = super+six=text:\x106
-keybind = super+seven=text:\x107
-keybind = super+eight=text:\x108
-keybind = super+nine=text:\x109
+keybind = super+digit_0=text:\x100
+keybind = super+digit_1=text:\x101
+keybind = super+digit_2=text:\x102
+keybind = super+digit_3=text:\x103
+keybind = super+digit_4=text:\x104
+keybind = super+digit_5=text:\x105
+keybind = super+digit_6=text:\x106
+keybind = super+digit_7=text:\x107
+keybind = super+digit_8=text:\x108
+keybind = super+digit_9=text:\x109
 
 keybind = super+left_bracket=text:\x10P
 keybind = super+right_bracket=text:\x10N
@@ -1975,7 +1976,7 @@ gtk-wide-tabs = true
 #
 # This configuration only has an effect if Ghostty was built with
 # libadwaita support.
-gtk-adwaita = true
+# gtk-adwaita = true
 
 # If `true` (default), applications running in the terminal can show desktop
 # notifications using certain escape sequences such as OSC 9 or OSC 777.
