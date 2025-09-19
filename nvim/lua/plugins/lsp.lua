@@ -47,52 +47,52 @@ return {
 
     local servers = {
       astro = {},
-      -- pylsp = {},
       pyright = {},
       gopls = {},
       vimls = {},
       zls = {},
       terraformls = {},
+      tsgo = {},
 
-      vtsls = {
-        root_dir = function(fname)
-          return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
-            or lspconfig.util.root_pattern('.git')(fname)
-            or lspconfig.util.root_pattern('package.json', 'jsconfig.json', 'tsconfig.json')(fname)
-        end,
-        single_file_support = false,
-        settings = {
-          typescript = {
-            tsserver = {
-              maxTsServerMemory = 10240,
-              watchOptions = {
-                watchDirectory = 'useFsEvents',
-                fallbackPolling = 'dynamicPriorityPolling',
-                watchFile = 'useFsEventsOnParentDirectory',
-                synchronousWatchDirectory = true,
-              },
-            },
-            preferences = {
-              -- importModuleSpecifierPreference = 'shortest',
-              includePackageJsonAutoImports = 'off',
-            },
-          },
-          vtsls = {
-            autoUseWorkspaceTsdk = true,
-            typescript = {
-              globalTsdk = false,
-            },
-            experimental = {
-              completion = {
-                enableServerSideFuzzyMatch = true,
-              },
-            },
-          },
-        },
-        flags = {
-          debounce_text_changes = 200,
-        },
-      },
+      -- vtsls = {
+      --   -- root_dir = function(fname)
+      --   --   return lspconfig.util.root_pattern('pnpm-workspace.yaml')(fname)
+      --   --     or lspconfig.util.root_pattern('.git')(fname)
+      --   --     or lspconfig.util.root_pattern('package.json', 'jsconfig.json', 'tsconfig.json')(fname)
+      --   -- end,
+      --   single_file_support = false,
+      --   settings = {
+      --     typescript = {
+      --       tsserver = {
+      --         maxTsServerMemory = 10240,
+      --         watchOptions = {
+      --           watchDirectory = 'useFsEvents',
+      --           fallbackPolling = 'dynamicPriorityPolling',
+      --           watchFile = 'useFsEventsOnParentDirectory',
+      --           synchronousWatchDirectory = true,
+      --         },
+      --       },
+      --       preferences = {
+      --         -- importModuleSpecifierPreference = 'shortest',
+      --         includePackageJsonAutoImports = 'off',
+      --       },
+      --     },
+      --     vtsls = {
+      --       autoUseWorkspaceTsdk = true,
+      --       typescript = {
+      --         globalTsdk = false,
+      --       },
+      --       experimental = {
+      --         completion = {
+      --           enableServerSideFuzzyMatch = true,
+      --         },
+      --       },
+      --     },
+      --   },
+      --   flags = {
+      --     debounce_text_changes = 200,
+      --   },
+      -- },
 
       jsonls = {
         settings = {
@@ -158,7 +158,8 @@ return {
     ----------------------------------------------------------------------------
 
     for name, config in pairs(servers) do
-      lspconfig[name].setup(config)
+      vim.lsp.config(name, config)
+      vim.lsp.enable(name)
     end
 
     ----------------------------------------------------------------------------
@@ -167,6 +168,34 @@ return {
       vim.lsp.util.show_document(list.items[1].user_data, 'utf-8', false)
       vim.cmd('normal zt')
     end
+
+    local function refresh_tsgo_diagnostics(bufnr)
+      local clients = vim.lsp.get_clients({ bufnr = bufnr, name = 'tsgo' })
+      for _, client in pairs(clients) do
+        client:request('textDocument/diagnostic', { textDocument = vim.lsp.util.make_text_document_params(bufnr) })
+      end
+    end
+
+    vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+      callback = function()
+        refresh_tsgo_diagnostics(vim.api.nvim_get_current_buf())
+      end,
+    })
+
+    vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged', 'TabEnter' }, {
+      callback = function()
+        vim.defer_fn(function()
+          local deduped_visible_buffers = {}
+          for _, win in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+            local bufnr = vim.api.nvim_win_get_buf(win)
+            deduped_visible_buffers[bufnr] = true
+          end
+          for bufnr, _ in pairs(deduped_visible_buffers) do
+            refresh_tsgo_diagnostics(bufnr)
+          end
+        end, 100)
+      end,
+    })
 
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
@@ -178,8 +207,27 @@ return {
         end, opts)
 
         vim.keymap.set('n', 'gs', function()
-          require('vtsls').commands.goto_source_definition()
-        end, opts)
+          client:request('textDocument/diagnostic', { textDocument = vim.lsp.util.make_text_document_params(0) })
+          -- local bufnr = vim.api.nvim_get_current_buf()
+          -- for _, client in pairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do
+          --   client.request('textDocument/diagnostic', {
+          --     textDocument = vim.lsp.util.make_text_document_params(),
+          --   })
+          -- end
+        end)
+
+        -- vim.keymap.set('n', 'gs', function()
+        --   local params = vim.lsp.util.make_position_params(0, 'utf-8')
+        --   -- params.context = { source_definition = true }
+        --
+        --   client:request('textDocument/definition', params)
+        --
+        --   -- vim.lsp.buf.execute_command({
+        --   --   command = 'typescript.goToSourceDefinition',
+        --   --   arguments = { params.textDocument.uri, params.position },
+        --   -- })
+        --   -- require('vtsls').commands.goto_source_definition()
+        -- end, opts)
 
         vim.keymap.set('n', 'gd', function()
           vim.lsp.buf.definition({ on_list = first_match })
