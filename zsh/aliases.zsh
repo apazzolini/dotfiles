@@ -67,7 +67,7 @@ alias da='d ps -a'
 alias j=z
 
 # work
-alias fk="fuser -k 3000/tcp 16823/tcp"
+alias ks="fuser -k 3000/tcp 16823/tcp"
 
 alias sudoedit='sudo -e'
 
