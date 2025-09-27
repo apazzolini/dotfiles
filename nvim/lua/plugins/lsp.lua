@@ -52,7 +52,9 @@ return {
       vimls = {},
       zls = {},
       terraformls = {},
-      tsgo = {},
+      tsgo = {
+        cmd = { vim.env.HOME .. '/.bun/bin/tsgo', '--lsp', '--stdio' },
+      },
 
       -- vtsls = {
       --   -- root_dir = function(fname)
