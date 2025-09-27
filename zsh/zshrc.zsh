@@ -69,7 +69,7 @@ if [ -z "$TMUX" ]; then
   # fi;
 
   if [[ "$(hostname)" == arch ]]; then
-    tmux-sessionizer /Users/andre/.dotfiles
+    tmux-sessionizer /home/andre/.dotfiles
   fi;
 fi
 
