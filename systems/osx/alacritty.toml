@@ -1,6 +1,6 @@
 [general]
 import = [
-  "/Users/andre.azzolini/.dotfiles/systems/shared/alacritty.toml",
+  "~/.dotfiles/systems/shared/alacritty.toml",
 ]
 
 [window]
