@@ -15,6 +15,7 @@ restic-list() {
 
 restic-backup() {
   restic-env
+  restic --option=rclone.program="ssh rsync" --repo=rclone: unlock
   restic --option=rclone.program="ssh rsync" --repo=rclone: backup \
     "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/" \
     "/Users/andre/.ssh/" \
@@ -23,10 +24,11 @@ restic-backup() {
 }
 
 restic-prune() {
-  restic-env
-  restic --option=rclone.program="ssh rsync" --repo=rclone: forget \
+  restic-master-env
+  restic forget \
     --keep-within 14d \
     --keep-hourly 24 \
     --keep-daily 31 \
-    --keep-weekly 52
+    --keep-weekly 52 \
+    --prune
 }
