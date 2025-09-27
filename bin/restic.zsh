@@ -15,7 +15,7 @@ restic-list() {
 
 restic-backup() {
   restic-env
-  restic --limit-upload 1536 --option=rclone.program="ssh rsync" --repo=rclone: backup \
+  restic --option=rclone.program="ssh rsync" --repo=rclone: backup \
     "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/" \
     "/Users/andre/.ssh/" \
     "/Users/andre/Library/Keychains/" \
