@@ -32,6 +32,8 @@ os:
   editAtLine: 'floaterm {{filename}} {{line}} > /dev/null 2>&1 || nvim {{filename}} +{{line}}'
   editInTerminal: true
 keybinding:
+  universal:
+    createPatchOptionsMenu: <c-t>
   commits:
     moveDownCommit: 'J'
     moveUpCommit: 'K'

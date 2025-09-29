@@ -15,7 +15,8 @@ wt () {
   fi
 
   pushd /home/andre/code/web
-  git worktree add -f $1 master
+  git fetch
+  git worktree add -f $1 origin/master
   cd $1
   git co andre/$1 || git co -b andre/$1
   yarn install
