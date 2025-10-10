@@ -36,4 +36,5 @@ brew install dua-cli
 brew install ghostty
 brew install istat-menus
 brew install firefox
+brew install discord
 # brew install sanesidebuttons

@@ -57,6 +57,7 @@
     pr = pull --rebase
     pnv = push --no-verify
     pf = push --force-with-lease
+    pfa = "!sh -c 'name=$0 && (git branch --format=\"%(refname:short)\" | grep \"$name\" | xargs -I {} git push --force-with-lease origin {})'"
     ri = rebase --interactive
     wt = worktree
     ro = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git reset --hard origin/master"

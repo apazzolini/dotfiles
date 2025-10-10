@@ -31,7 +31,8 @@
 --glob=!*.svg
 
 # Work
---glob=!**/external-src/**
---glob=!bugsnag.ejs
---glob=!**/migrations/post_deploy/previous/**
---glob=!**/migrations/pre_deploy/previous/**
+--glob=!**/packages/tools/codegen/**
+--glob=!**/src/coreApi/auth/_generated/**
+--glob=!**/src/coreApi/auth-typespec/_generated/**
+--glob=!**/.yarn/patches/**
+--glob=!**/.har.zip
