@@ -22,15 +22,16 @@ gui:
 git:
   autoFetch: false
   # autoRefresh: false
-  paging:
-    colorArg: always
-    pager: delta --paging=never --24-bit-color=never
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never --24-bit-color=never
   log:
     showGraph: always
 os:
   edit: 'floaterm {{filename}} > /dev/null 2>&1 || nvim {{filename}}'
   editAtLine: 'floaterm {{filename}} {{line}} > /dev/null 2>&1 || nvim {{filename}} +{{line}}'
   editInTerminal: true
+  copyToClipboardCmd: 'echo {{text}} | tr -d "\n" | pbcopy'
 keybinding:
   universal:
     createPatchOptionsMenu: <c-t>

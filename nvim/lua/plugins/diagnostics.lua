@@ -57,8 +57,9 @@ return {
       vim.lsp.buf.code_action({ apply = true, context = { only = { 'source.removeUnused.ts' } } })
     end, opts)
 
-    vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev()<cr>zz', opts)
-    vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next()<cr>zz', opts)
+    local errorDiagnostics = '{ severity = { min = ' .. vim.diagnostic.severity.WARN .. ' } }'
+    vim.keymap.set('n', '<leader>m', '<cmd>lua vim.diagnostic.goto_prev(' .. errorDiagnostics .. ')<cr>zz', opts)
+    vim.keymap.set('n', '<leader>.', '<cmd>lua vim.diagnostic.goto_next(' .. errorDiagnostics .. ')<cr>zz', opts)
     vim.keymap.set('n', 'gH', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
     vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.setqflist()<cr>zz', opts)
 

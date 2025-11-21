@@ -60,8 +60,10 @@
     pfa = "!sh -c 'name=$0 && (git branch --format=\"%(refname:short)\" | grep \"$name\" | xargs -I {} git push --force-with-lease origin {})'"
     ri = rebase --interactive
     wt = worktree
-    ro = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git reset --hard origin/master"
-    fro = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git fetch && git reset --hard origin/master"
+    rom = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git reset --hard origin/master"
+    from = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git fetch && git reset --hard origin/master"
+    ro = "!git reset --hard && git clean -fd && git reset --hard origin/master"
+    fro = "!git reset --hard && git clean -fd && git fetch && git reset --hard origin/master"
     work = "!git fetch && git checkout origin/develop --ignore-other-worktrees --no-track -b \"$@\""
     wip = "!git add --all && git commit -m 'wip'"
     rdp = "!git range-diff origin/master origin/$(git branch --show-current) HEAD"

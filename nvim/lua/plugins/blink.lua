@@ -142,6 +142,9 @@ return {
                 if description:find('^@aws') ~= nil then
                   return false
                 end
+                if description:find('coreApi/auth%-typespec') ~= nil then
+                  return false
+                end
               end
 
               -- vim.print(item)

@@ -17,7 +17,7 @@ return {
     -- vim.keymap.set('t', '<c-q>', ':FloatermToggle<CR>')
     -- vim.keymap.set('t', '<c-q>', '<c-\\><c-n>:FloatermToggle<cr>')
     vim.keymap.set('t', '<c-]>', '<c-\\><c-n>')
-    vim.keymap.set('t', '<c-o>', '<c-\\><c-n><c-o>')
+    -- vim.keymap.set('t', '<c-o>', '<c-\\><c-n><c-o>')
     vim.keymap.set('t', '<a-[>', '<c-\\><c-n>gT')
     vim.keymap.set('t', '<a-]>', '<c-\\><c-n>gt')
     vim.keymap.set('t', '<a-k>', '<c-l>')

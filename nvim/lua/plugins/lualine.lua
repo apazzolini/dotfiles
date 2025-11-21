@@ -69,7 +69,11 @@ return {
           path = 1,
         },
       },
-      lualine_c = {
+      lualine_c = {},
+      -- lualine_x = { 'filetype' },
+      -- lualine_y = { 'branch' },
+      lualine_x = {},
+      lualine_y = {
         {
           'diagnostics',
           sources = { 'nvim_diagnostic' },
@@ -81,8 +85,6 @@ return {
           symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' },
         },
       },
-      lualine_x = { 'filetype' },
-      lualine_y = { 'branch' },
       lualine_z = { 'location' },
     }
 

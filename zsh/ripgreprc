@@ -32,7 +32,8 @@
 
 # Work
 --glob=!**/packages/tools/codegen/**
---glob=!**/src/coreApi/auth/_generated/**
+# --glob=!**/src/coreApi/auth/_generated/**
 --glob=!**/src/coreApi/auth-typespec/_generated/**
 --glob=!**/.yarn/patches/**
 --glob=!**/.har.zip
+--glob=!**/toast-catalog.json

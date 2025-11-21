@@ -43,6 +43,7 @@ alias gs='git status'
 alias yr="yarn run"
 alias y="yarn"
 alias ys="yarn start"
+alias yi="yarn install"
 alias nr="npm run"
 alias br="bun run"
 alias rt='~/.dotfiles/bin/review-tags.sh'
