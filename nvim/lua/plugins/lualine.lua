@@ -63,17 +63,17 @@ return {
 
     local sections = {
       lualine_a = { 'mode' },
-      lualine_b = {
+      lualine_c = {
         {
           'filename',
           path = 1,
         },
       },
-      lualine_c = {},
+      lualine_y = {},
       -- lualine_x = { 'filetype' },
       -- lualine_y = { 'branch' },
       lualine_x = {},
-      lualine_y = {
+      lualine_b = {
         {
           'diagnostics',
           sources = { 'nvim_diagnostic' },
