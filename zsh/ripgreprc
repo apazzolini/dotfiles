@@ -33,12 +33,14 @@
 # Work
 --glob=!**/packages/tools/codegen/**
 # --glob=!**/src/coreApi/auth/_generated/**
+
 --glob=!**/src/coreApi/auth-typespec/_generated/**
 --glob=!**/src/coreApi/auth/_generated/operations.ts
 --glob=!**/src/coreApi/auth/_generated/openapi.ts
 --glob=!**/src/coreApi/auth/_generated/paths.ts
 --glob=!**/src/coreApi/auth/_generated/schemas.ts
 --glob=!**/src/coreApi/fixtures/_generated/openapi.ts
+
 --glob=!**/.yarn/patches/**
 --glob=!**/.har.zip
 --glob=!**/toast-catalog.json

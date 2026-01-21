@@ -13,23 +13,32 @@ return {
   config = function()
     local formatters_by_ft = {
       lua = { 'stylua' },
-      astro = { 'prettierd' },
-      css = { 'prettierd' },
+      astro = { 'oxfmt', 'prettierd' },
+      css = { 'oxfmt', 'prettierd' },
       go = { 'gofmt' },
-      html = { 'prettierd' },
-      json = { 'prettierd' },
-      jsonc = { 'prettierd' },
-      javascript = { 'prettierd' },
-      javascriptreact = { 'prettierd' },
-      markdown = { 'prettierd' },
+      html = { 'oxfmt', 'prettierd' },
+      json = { 'oxfmt', 'prettierd' },
+      jsonc = { 'oxfmt', 'prettierd' },
+      javascript = { 'oxfmt', 'prettierd' },
+      javascriptreact = { 'oxfmt', 'prettierd' },
+      markdown = { 'oxfmt', 'prettierd' },
       terraform = { 'terraform-fmt', lsp_format = 'prefer' },
-      typescript = { 'prettierd' },
-      typescriptreact = { 'prettierd' },
+      typescript = { 'oxfmt', 'prettierd' },
+      typescriptreact = { 'oxfmt', 'prettierd' },
       zig = { 'zigfmt' },
     }
 
     require('conform').setup({
       formatters_by_ft = formatters_by_ft,
+      formatters = {
+        oxfmt = {
+          command = 'oxfmt',
+          args = { '$FILENAME' },
+          stdin = false,
+          -- When stdin=false, use this template to generate the temporary file that gets formatted
+          tmpfile_format = '.conform.$RANDOM.$FILENAME',
+        },
+      },
       format_on_save = function(buf)
         local ft = vim.bo[buf].filetype
 
