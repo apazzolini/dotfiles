@@ -1,6 +1,6 @@
-local prettier_pid = -1
+local prettier_pid = '-1'
 local store_prettier_pid = function()
-  if prettier_pid == -1 then
+  if prettier_pid == '-1' then
     local obj = vim.system({ 'pgrep', '-n', 'prettierd' }, { text = true }, function(out)
       prettier_pid = out.stdout
     end)
@@ -43,7 +43,7 @@ return {
         local ft = vim.bo[buf].filetype
 
         local cb = nil
-        if formatters_by_ft[ft] ~= nil and formatters_by_ft[ft][1] == 'prettierd' then
+        if formatters_by_ft[ft] ~= nil and vim.tbl_contains(formatters_by_ft[ft], 'prettierd') then
           cb = store_prettier_pid
         end
 
@@ -60,7 +60,7 @@ return {
       local ft = vim.bo.filetype
 
       local cb = nil
-      if formatters_by_ft[ft] ~= nil and formatters_by_ft[ft][1] == 'prettierd' then
+      if formatters_by_ft[ft] ~= nil and vim.tbl_contains(formatters_by_ft[ft], 'prettierd') then
         cb = store_prettier_pid
       end
 
