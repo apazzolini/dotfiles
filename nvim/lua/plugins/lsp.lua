@@ -178,7 +178,7 @@ return {
       end
     end
 
-    vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'BufReadPost' }, {
       callback = function()
         refresh_tsgo_diagnostics(vim.api.nvim_get_current_buf())
       end,
