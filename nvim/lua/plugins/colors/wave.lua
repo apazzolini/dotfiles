@@ -228,6 +228,10 @@ local theme = lush(function(injected_functions)
     NavbuddyModule({ fg = c.yellow }),
     NavbuddyMethod({ fg = c.green }),
 
+    -- Markview
+    MarkviewCode({ bg = c.bg, fg = c.green }),
+    MarkviewInlineCode({ bg = c.bg, fg = c.green }),
+
     -- cmp
     CmpItemMenu({ fg = c.gray3 }),
     CmpItemKind({ fg = c.gray3 }),

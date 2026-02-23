@@ -76,3 +76,8 @@ end)
 vim.cmd([[
   command! -range=% JSON set ft=json | <line1>,<line2>!jq
 ]])
+
+-- Format JSON, sort keys
+vim.cmd([[
+  command! -range=% JSONS set ft=json | <line1>,<line2>!jq -S
+]])

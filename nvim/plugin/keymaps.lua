@@ -31,6 +31,7 @@ vim.keymap.set('n', '^', '0')
 vim.keymap.set('n', '<leader><leader>', '<c-^>')
 vim.keymap.set('n', '<leader>y', '"*y')
 vim.keymap.set('v', '<leader>y', '"*y')
+vim.keymap.set('n', '<leader>YR', ':let @*=expand("%")<cr>', { silent = true })
 vim.keymap.set('n', '<cr>', ':noh<cr><cr>', { silent = true })
 vim.keymap.set('n', 'J', 'mzJ`z')
 
@@ -38,7 +39,7 @@ vim.keymap.set('x', 'L', 'g_')
 vim.keymap.set('x', '<leader>p', '"_dP')
 
 vim.keymap.set('i', '<c-l>', '<space>=><space>')
-vim.keymap.set('i', "<c-r><c-'>", '<c-r>"')
+vim.keymap.set('i', '<c-r><c-r>', '<c-r>"')
 
 vim.keymap.set('c', '<c-k>', '<c-p>')
 vim.keymap.set('c', '<c-j>', '<c-n>')

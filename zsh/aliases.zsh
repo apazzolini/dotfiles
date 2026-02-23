@@ -66,6 +66,7 @@ alias vp='nvim package.json'
 alias d='docker'
 alias da='d ps -a'
 alias j=z
+alias oc='opencode'
 
 # work
 alias ks="fuser -k 3000/tcp 16823/tcp"

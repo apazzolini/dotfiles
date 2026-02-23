@@ -9,7 +9,7 @@
     commentchar = ";"
     pager = delta
     untrackedCache = true
-    fsmonitor = true
+    fsmonitor = false
 [delta]
     side-by-side = false
     hunk-header-style = omit
@@ -44,7 +44,7 @@
 [alias]
     di = diff
     ds = diff --staged
-    dp = diff HEAD..@{push}
+    dp = diff @{push}..HEAD
     st = status
     ca = commit --amend
     can = commit --amend --no-edit
