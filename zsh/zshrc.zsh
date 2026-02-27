@@ -19,6 +19,7 @@ zle -N edit-command-line
 bindkey -M vicmd g edit-command-line
 
 # initialize prompt
+export STARSHIP_CONFIG=${HOME}/.config/starship.toml
 eval "$(starship init zsh)"
 # export PS1=$'%{\e[38;5;245m%}${(r:$COLUMNS::\u2500:)}%{\e[0m%}'$PS1
 # export PS1=$'%{\e[38;5;245m%}${(r:$COLUMNS:: :)}%{\e[0m%}'$PS1

@@ -33,6 +33,10 @@ function env_setup {
   link zsh/zprofile.zsh ~/.zprofile
   link zsh/zshenv.zsh ~/.zshenv
   link zsh/starship.toml ~/.config
+
+  # opencode
+  link opencode/opencode.jsonc ~/.config/opencode/
+  link opencode/tui.jsonc ~/.config/opencode/
 }
 
 env_setup

@@ -82,16 +82,15 @@
 # font-style-bold = Regular
 # adjust-cell-height = 1
 
-font-family = Berkeley Mono Variable
 # font-family-bold = Berkeley Mono
-font-style =
 # font-style-bold =
-adjust-cell-height = 5
 
+font-family = Berkeley Mono Variable
+font-style =
+adjust-cell-height = 5
 font-variation = wght=375
 font-variation-bold = wght=600
 font-variation-bold-italic = wght=600
-
 
 # Always use operator mono for italics
 # font-family-italic = Operator Mono SSM
@@ -206,7 +205,8 @@ font-codepoint-map =
 
 # Draw fonts with a thicker stroke, if supported. This is only supported
 # currently on macOS.
-font-thicken = false
+font-thicken = true
+font-thicken-strength = 31
 
 # All of the configurations behavior adjust various metrics determined by the
 # font. The values can be integers (1, -1, etc.) or a percentage (20%, -15%,
