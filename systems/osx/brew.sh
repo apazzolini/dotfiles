@@ -38,3 +38,4 @@ brew install istat-menus
 brew install firefox
 brew install discord
 # brew install sanesidebuttons
+brew install zoxide
