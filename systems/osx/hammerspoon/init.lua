@@ -5,7 +5,7 @@ spoon.AppLauncher:bindHotkeys({
   { { 'ctrl', 'a' }, 'Ghostty' },
   { { 'alt', 'n' }, 'Notion' },
   { { 'alt', 's' }, 'Spotify' },
-  { { 'alt', 'g' }, 'Firefox' },
+  { { 'alt', 'g' }, 'Firefox Developer Edition' },
   { { 'alt', 'd' }, 'Discord' },
   { { 'alt', 'f' }, 'Slack' },
   { { 'alt', 'i' }, 'Alacritty' },

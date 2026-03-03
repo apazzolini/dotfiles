@@ -1,0 +1,4 @@
+ramp () {
+  eval "$(devbox global shellenv)"
+  eval "$(direnv hook zsh)"
+}
