@@ -65,6 +65,7 @@ alias vp='nvim package.json'
 # misc
 alias d='docker'
 alias da='d ps -a'
+# j uses zoxide (smarter cd with frecency)
 alias j=z
 alias oc='opencode'
 

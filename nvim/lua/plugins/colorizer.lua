@@ -1,6 +1,8 @@
 return {
   'catgoose/nvim-colorizer.lua',
   config = function()
+    vim.opt.termguicolors = true
+
     require('colorizer').setup({
       filetypes = {
         '*',
