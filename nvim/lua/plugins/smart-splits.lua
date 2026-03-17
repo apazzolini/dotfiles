@@ -6,6 +6,12 @@ return {
     require('smart-splits').setup({
       -- log_level = 'trace',
       -- at_edge = 'stop',
+      at_edge = function(ctx)
+        if vim.env.HYPRLAND_INSTANCE_SIGNATURE then
+          local dir_map = { left = 'l', right = 'r', up = 'u', down = 'd' }
+          vim.fn.system({ 'hyprctl', 'dispatch', 'movefocus', dir_map[ctx.direction] })
+        end
+      end,
     })
     vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
     vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
