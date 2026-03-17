@@ -22,9 +22,9 @@ gui:
 git:
   autoFetch: false
   # autoRefresh: false
-  paging:
-    colorArg: always
-    pager: delta --paging=never --24-bit-color=never
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never --24-bit-color=never
   log:
     showGraph: always
 os:
