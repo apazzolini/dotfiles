@@ -24,7 +24,7 @@ diverged = "↑${ahead_count}↓${behind_count}"
 behind = "↓${count} "
 stashed = ""
 deleted = '✘ '
-use_git_executable = true
+use_git_executable = false
 
 [time]
 disabled = false
