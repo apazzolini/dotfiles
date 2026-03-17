@@ -1089,6 +1089,7 @@ keybind = super+t=unbind
 # keybind = super+physical:two=goto_tab:2
 # keybind = super+physical:six=goto_tab:6
 keybind = super+v=paste_from_clipboard
+keybind = shift+insert=paste_from_clipboard
 keybind = super+shift+r=reload_config
 keybind = super+minus=decrease_font_size:1
 keybind = super+equal=increase_font_size:1
