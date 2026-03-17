@@ -1,13 +1,14 @@
 command_timeout = 1000
 add_newline = false
 
-format = """${custom.hertzner}$directory$git_branch$git_status$git_state[»](purple) """
+format = """$directory$git_branch$git_status$git_state[»](purple) """
+# format = """${custom.hertzner}$directory$git_branch$git_status$git_state[»](purple) """
 # format = """${custom.hertzner}$directory[»](purple) """
 right_format = """$time"""
 
-[custom.hertzner]
-command = 'echo "[drevps]"'
-when = 'test `hostname` = "drevps"'
+# [custom.hertzner]
+# command = 'echo "[drevps]"'
+# when = 'test `hostname` = "drevps"'
 
 [directory]
 truncation_length = 1000
