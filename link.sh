@@ -38,6 +38,8 @@ function env_setup {
   mkdir -p ~/.config/opencode
   link opencode/opencode.jsonc ~/.config/opencode/
   link opencode/tui.jsonc ~/.config/opencode/
+  link opencode/skills ~/.config/opencode/
+  link opencode/themes ~/.config/opencode/
 }
 
 env_setup
