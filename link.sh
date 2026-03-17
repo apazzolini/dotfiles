@@ -35,6 +35,7 @@ function env_setup {
   link zsh/starship.toml ~/.config
 
   # opencode
+  mkdir -p ~/.config/opencode
   link opencode/opencode.jsonc ~/.config/opencode/
   link opencode/tui.jsonc ~/.config/opencode/
 }
