@@ -1,159 +1,133 @@
-; Autoexec --------------------------------------------------------------------
+#Requires AutoHotkey v2.0
+
+#SingleInstance Force
 
 ; https://www.autohotkey.com/docs/KeyList.htm#modifier
 
-#SingleInstance force
-
-GroupAdd, games, ahk_exe TslGame.exe
-GroupAdd, games, ahk_exe ProjectZomboid64.exe
-GroupAdd, games, ahk_exe Raft.exe
-GroupAdd, games, ahk_exe DungeonCrawler.exe
-GroupAdd, games, ahk_exe HITMAN3.exe
-GroupAdd, games, ahk_exe portal2.exe
-GroupAdd, games, ahk_exe cs2.exe
-GroupAdd, games, ahk_exe FactoryGame-Win64-Shipping.exe
-GroupAdd, games, ahk_exe FactoryGameSteam-Win64-Shipping.exe
-GroupAdd, games, ahk_exe valheim.exe
-GroupAdd, games, ahk_exe NWXClient-Win64-Shipping
-GroupAdd, games, ahk_exe Factorio.exe
-
-global LDim := [-1442, -610, 1472, 2588]
-global RDim := [0, 0, 3840, 2127]
-
-return
+GroupAdd "games", "ahk_exe TslGame.exe"
+GroupAdd "games", "ahk_exe ProjectZomboid64.exe"
+GroupAdd "games", "ahk_exe Raft.exe"
+GroupAdd "games", "ahk_exe DungeonCrawler.exe"
+GroupAdd "games", "ahk_exe HITMAN3.exe"
+GroupAdd "games", "ahk_exe portal2.exe"
+GroupAdd "games", "ahk_exe cs2.exe"
+GroupAdd "games", "ahk_exe FactoryGame-Win64-Shipping.exe"
+GroupAdd "games", "ahk_exe FactoryGameSteam-Win64-Shipping.exe"
+GroupAdd "games", "ahk_exe valheim.exe"
+GroupAdd "games", "ahk_exe NWXClient-Win64-Shipping"
+GroupAdd "games", "ahk_exe Factorio.exe"
 
 ; Program specific MacOS similarity bindings -----------------------------------
+#HotIf WinActive("ahk_exe alacritty.exe")
+$!{::Send "!+["
+$!}::Send "!+]"
+$!w::Send "!w"
+$!a::Send "!a"
+$!f::Send "!f"
+$!y::Send "!y"
+$!p::Send "!p"
+$!v::Send "!v"
 
-#IfWinActive, ahk_exe alacritty.exe ; ------------------------------------------
+#HotIf WinActive("ahk_exe Nvy.exe")
+!q::ExitApp
 
-$!{::Send, !+[
-$!}::Send, !+]
-$!w::Send !w
-$!a::Send !a
-$!f::Send !f
-$!y::Send !y
-$!p::Send !p
-$!v::SEND !v
-; !v::
-;     ClipboardBackup := Clipboard                        ; To restore clipboard contents after paste
-;     FixString := StrReplace(Clipboard, "`r`n", "`n")    ; Change endings
-;     Clipboard := FixString                              ; Set to clipboard
-;     Send !v                                             ; Paste text
-;     Clipboard := ClipboardBackup                        ; Restore clipboard that has windows endings
-;     return
+#HotIf WinActive("ahk_exe jcpicker.exe")
+$!w::Send "!{f4}"
 
-#IfWinActive, ahk_exe Nvy.exe ; ------------------------------------------------
+#HotIf WinActive("ahk_exe Discord.exe")
+$!{::Send "{alt down}{shift down}[{shift up}{alt up}"
+$!}::Send "{alt down}{shift down}]{shift up}{alt up}"
+$#{::Send "!+{Up}"
+$#}::Send "!+{Down}"
 
-!q::
+#HotIf WinActive("ahk_exe Neovide.exe")
+!q::ExitApp
 
-#IfWinActive, ahk_exe jcpicker.exe ; ------------------------------------------------
+#HotIf WinActive("ahk_exe firefox.exe")
+!l::Send "!d"
+!t::Send "^t"
+!+p::Send "^+p"
+!+t::Send "^+t"
+!#i::Send "^+i"
 
-$!w::Send !{f4}
+#HotIf WinActive("ahk_exe chrome.exe")
+!l::Send "!d"
+!t::Send "^t"
+!+n::Send "^+n"
 
-#IfWinActive, ahk_exe Discord.exe ; --------------------------------------------
+#HotIf WinActive("ahk_exe DSPGAME.exe")
+!q::ExitApp
+$^a::Return
+$#i::Return
+$+1::Send "{f1}"
+$+2::Send "{f2}"
+$+3::Send "{f3}"
+$+4::Send "{f4}"
+$+5::Send "{f5}"
+$+6::Send "{f6}"
+$+7::Send "{f7}"
+$+8::Send "{f8}"
+$+9::Send "{f9}"
+$+0::Send "{f0}"
+XButton1::Send ","
+XButton2::Send "."
 
-$!{::Send, {alt down}{shift down}[{shift up}{alt up}
-$!}::Send, {alt down}{shift down}]{shift up}{alt up}
-$#{::Send, !+{Up}
-$#}::Send, !+{Down}
-
-#IfWinActive, ahk_exe Neovide.exe ; --------------------------------------------
-
-!q::
-
-#IfWinActive, ahk_exe firefox.exe ; --------------------------------------------
-
-!l::Send, !d
-!t::Send, ^t
-!+p::Send, ^+p
-!+t::Send, ^+t
-!#i::Send, ^+i
-
-#IfWinActive, ahk_exe chrome.exe ; --------------------------------------------
-
-!l::Send, !d
-!t::Send, ^t
-!+n::Send, ^+n
-
-#IfWinActive, ahk_exe DSPGAME.exe ; --------------------------------------------
-
-!q::
-$^a::
-$#i::
-$+1::Send {f1}
-$+2::Send {f2}
-$+3::Send {f3}
-$+4::Send {f4}
-$+5::Send {f5}
-$+6::Send {f6}
-$+7::Send {f7}
-$+8::Send {f8}
-$+9::Send {f9}
-$+0::Send {f0}
-XButton1::Send, {,}
-XButton2::Send, {.}
-
-#IfWinActive
+#HotIf
 
 ; Program Activation -----------------------------------------------------------
-
-Activate(name, executable)
-{
-  DetectHiddenWindows, On
-  if WinExist(name) {
-    WinGet, id, ID, %name%
-
-    if WinActive("ahk_id" . id) {
-      WinHide, ahk_id %id%
-      DetectHiddenWindows, Off
-      WinGet, wList, List
-      WinActivate, ahk_id %wList2%
+Activate(name, executable) {
+    DetectHiddenWindows True
+    if WinExist(name) {
+        id := WinGetID(name)
+        if WinActive("ahk_id " id) {
+            WinHide "ahk_id " id
+            DetectHiddenWindows False
+            wList := WinGetList()
+            WinActivate "ahk_id " wList[2]
+        } else {
+            WinShow "ahk_id " id
+            WinActivate "ahk_id " id
+        }
     } else {
-      WinShow, ahk_id %id%
-      WinActivate, ahk_id %id%
+        Run executable
+        WinWait name
+        id := WinGetID(name)
+        WinActivate "ahk_id " id
     }
-  } else {
-    Run, %executable%
-    WinGet, id, ID, Alacritty
-    WinActivate, ahk_id %id%
-  }
 }
 
-#IfWinNotActive, ahk_group games ; ------------------------------------------
-
-; $!z::
-$^a::Activate("Alacritty", "D:\Apps\Alacritty\alacritty.exe")
+#HotIf !WinActive("ahk_group games")
 $#i::Activate("Neovide", "D:\Apps\neovide\notes.lnk")
 
-; MacOS similarity bindings ---------------------------------------------------
+$!1::Send "^1"
+$!2::Send "^2"
+$!3::Send "^3"
+$!4::Send "^4"
+$!5::Send "^5"
+$!6::Send "^6"
+$!7::Send "^7"
+$!8::Send "^8"
+$!9::Send "^9"
+$!0::Send "^0"
+$!{::Send "^+{Tab}"
+$!}::Send "^{Tab}"
+$#{::Send "^+{Tab}"
+$#}::Send "^{Tab}"
+$!x::Send "^x"
+$!c::Send "^c"
+$!v::Send "^v"
+$!s::Send "^s"
+$!a::Send "^a"
+$!z::Send "^z"
+$!+z::Send "^y"
+$!w::Send "^w"
+$!f::Send "^f"
+$!n::Send "^n"
+$!q::Send "!{f4}"
+$!r::Send "^{f5}"
 
-$!1::Send ^1
-$!2::Send ^2
-$!3::Send ^3
-$!4::Send ^4
-$!5::Send ^5
-$!6::Send ^6
-$!7::Send ^7
-$!8::Send ^8
-$!9::Send ^9
-$!0::Send ^0
-$!{::Send, ^+{Tab}
-$!}::Send, ^{Tab}
-$#{::Send, ^+{Tab}
-$#}::Send, ^{Tab}
-$!x::Send ^x
-$!c::Send ^c
-$!v::Send ^v
-$!s::Send ^s
-$!a::Send ^a
-$!z::Send ^z
-$!+z::Send ^y
-$!w::Send ^w
-$!f::Send ^f
-$!n::Send ^n
-$!q::Send !{f4}
-$!r::Send ^{f5}
+^+r::Reload()
 
-#IfWinNotActive
+#HotIf
 
-#Include D:\Other\winmgt.ahk
+#Include "D:\Other\winmgt.ahk"

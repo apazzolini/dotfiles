@@ -1,109 +1,201 @@
+#Requires AutoHotkey v2.0
 
-; [x, y, w, h]
-GetWinPadding() {
-  if WinActive("ahk_exe firefox.exe") {
-    return [-10, -2, 19, 1]
-  } else if WinActive("ahk_exe alacritty.exe") {
-    return [0, 0, 0, 0]
-  ;} else if WinActive("ahk_exe chrome.exe") {
-  ;  return [-7, 29, 0, -29]
-  ;} else if WinActive("ahk_exe discord.exe") or WinActive("ahk_exe Spotify.exe") {
-  ;  return [0, 0, -14, -7]
-  }
-  return [-10, -1, 10, 1]
-}
+RDim      := [0, 0, 3840, 2160]
+TaskbarH  := 44   ; taskbar height in pixels
+PadX      := 8    ; gap on all horizontal edges and between tiled windows
+PadY      := 8    ; gap on all vertical edges and between tiled windows
 
 GetDimensions() {
-  WinGetActiveStats, title, w, h, x, y
-  ;if x < -10
-  ;{
-    ;return LDim
-  ;} else {
-    return RDim
-  ;}
+    global RDim, TaskbarH
+    d := RDim.Clone()
+    d[4] := d[4] - TaskbarH  ; usable height
+    return d
 }
 
-; --------------------------------------------------------------------------------------------------
+; Returns the visible (DWM) rect as [l, t, r, b]
+GetVisibleRect(hwnd) {
+    extRECT := Buffer(16, 0)
+    DllCall("dwmapi\DwmGetWindowAttribute",
+        "Ptr", hwnd, "UInt", 9, "Ptr", extRECT, "UInt", 16)
+    return [NumGet(extRECT, 0, "Int"), NumGet(extRECT, 4, "Int"),
+            NumGet(extRECT, 8, "Int"), NumGet(extRECT, 12, "Int")]
+}
 
-!+m::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  d := GetDimensions()
-  targetWidth := d[3] - 14 + padding[3]
+GetWindowBorders(hwnd) {
+    ext := GetVisibleRect(hwnd)
+    winRECT := Buffer(16, 0)
+    DllCall("GetWindowRect", "Ptr", hwnd, "Ptr", winRECT)
+    winL := NumGet(winRECT, 0, "Int")
+    winT := NumGet(winRECT, 4, "Int")
+    winR := NumGet(winRECT, 8, "Int")
+    winB := NumGet(winRECT, 12, "Int")
+    return [ext[1] - winL, ext[2] - winT, winR - ext[3], winB - ext[4]]
+}
 
-  isPinned := curX == d[1] + padding[1] && curW == targetWidth
+AdjustedWinMove(hwnd, x, y, w, h) {
+    b := GetWindowBorders(hwnd)
+    WinMove(x - b[1], y - b[2], w + b[1] + b[3], h + b[2] + b[4], hwnd)
+}
 
-  if (isPinned) {
-    offsetWidth :=  d[3] / 8
-    offsetHeight :=  d[4] / 8
-    WinMove A, , d[1] + padding[1] + offsetWidth, d[2] + padding[2] + offsetHeight, d[3] + padding[3] - (offsetWidth * 2), d[4] + padding[4] - (offsetHeight * 2)
-  } else {
-    WinMove A, , d[1] + padding[1], d[2] + padding[2], d[3] - 14 + padding[3], d[4] + padding[4]
-  }
-return
+; Use visible rect for position checks, not WinGetPos
+IsAt(a, b) => Abs(a - b) <= 6
 
-!+h::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  d := GetDimensions()
-  isPinned := curX == d[1] + padding[1]
+; Returns [x, w] for a named column slot using visible coordinates
+ColGeometry(slot, d, padX) {
+    full     := d[3]
+    hp       := Floor(padX / 2)
+    thirdW   := Floor(full / 3) - padX - hp
+    twoThirdW := full - 3 * padX - thirdW
 
-  if (isPinned && curW == Floor(d[3] / 2) + padding[3]) {
-    w := Floor(d[3] / 3) + padding[3]
-  } else if (isPinned && curW < Floor(d[3] / 2) + padding[3]) {
-    w := Floor(d[3] * 2 / 3) + padding[3]
-  } else {
-    w := Floor(d[3] / 2) + padding[3]
-  }
+    if slot = "left-half"
+        return [d[1] + padX, Floor(full / 2) - padX - hp]
+    if slot = "right-half"
+        return [d[1] + Floor(full / 2) + hp, Floor(full / 2) - padX - hp]
+    if slot = "left-third"
+        return [d[1] + padX, thirdW]
+    if slot = "right-third"
+        return [d[1] + full - padX - thirdW, thirdW]
+    if slot = "left-twothird"
+        return [d[1] + padX, twoThirdW]
+    if slot = "right-twothird"
+        return [d[1] + full - padX - twoThirdW, twoThirdW]
+}
 
-  WinMove A, , d[1] + padding[1], d[2] + padding[2], w, d[4] + padding[4]
-return
+!+h:: {
+    global PadX, PadY
+    hwnd := WinGetID("A")
+    d := GetDimensions()
+    vis := GetVisibleRect(hwnd)
+    visX := vis[1] - d[1]
+    visW := vis[3] - vis[1]
+    geo   := ColGeometry("left-half",      d, PadX)
+    geo3  := ColGeometry("left-third",     d, PadX)
+    geo23 := ColGeometry("left-twothird",  d, PadX)
+    atLeft := IsAt(visX, geo[1])
+    if atLeft && IsAt(visW, geo[2])
+        g := geo3
+    else if atLeft && IsAt(visW, geo3[2])
+        g := geo23
+    else
+        g := geo
+    AdjustedWinMove(hwnd, g[1], d[2] + PadY, g[2], d[4] - PadY * 2)
+}
 
-!+l::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  targetWidth := 3840 - padding[1]
+!+l:: {
+    global PadX, PadY
+    hwnd := WinGetID("A")
+    d := GetDimensions()
+    vis := GetVisibleRect(hwnd)
+    visX := vis[1] - d[1]
+    visW := vis[3] - vis[1]
+    visR := visX + visW  ; check right edge instead
+    geo   := ColGeometry("right-half",      d, PadX)
+    geo3  := ColGeometry("right-third",     d, PadX)
+    geo23 := ColGeometry("right-twothird",  d, PadX)
+    expectedR := geo[1] + geo[2]  ; all right-snapped slots share the same right edge
+    atRight := IsAt(visR, expectedR)
+    if atRight && IsAt(visW, geo[2])
+        g := geo3
+    else if atRight && IsAt(visW, geo3[2])
+        g := geo23
+    else
+        g := geo
+    AdjustedWinMove(hwnd, g[1], d[2] + PadY, g[2], d[4] - PadY * 2)
+}
 
-  if (curX == 1920 + padding[1]) {
-    x := 1920 + padding[1] - Ceil(d[3] / 6)
-  } else if (curX == 1920 + padding[1] - Ceil(d[3] / 6)) {
-    x := 1920 + padding[1] + Floor(d[3] / 6)
-  } else {
-    x := 1920 + padding[1]
-  }
+RowGeometry(slot, d, padY) {
+    full := d[4]
+    hp   := Floor(padY / 2)
+    ; third heights computed analogously to half heights
+    thirdH    := Floor(full / 3) - padY - hp
+    twoThirdH := full - Floor(full / 3) - padY - hp - padY  ; = full - thirdH - 3*padY - hp... let's just derive
+    ; verify: padY + thirdH + padY + twoThirdH + padY = full
+    ; => thirdH + twoThirdH = full - 3*padY
+    twoThirdH := full - 3 * padY - thirdH
 
-  WinMove A, , x, padding[2], targetWidth - x + padding[3], d[4] + padding[4]
-return
+    if slot = "top-half"
+        return [d[2] + padY, Floor(full / 2) - padY - hp]
+    if slot = "bottom-half"
+        return [d[2] + Floor(full / 2) + hp, Floor(full / 2) - padY - hp]
+    if slot = "top-third"
+        return [d[2] + padY, thirdH]
+    if slot = "bottom-third"
+        return [d[2] + full - padY - thirdH, thirdH]
+    if slot = "top-twothird"
+        return [d[2] + padY, twoThirdH]
+    if slot = "bottom-twothird"
+        return [d[2] + full - padY - twoThirdH, twoThirdH]
+}
 
-!+k::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  d := GetDimensions()
-  WinMove A, , curX, d[2] + padding[2], curW, (d[4] / 2) + padding[4]
-return
 
-!+j::
-  WinGetActiveStats, title, curW, curH, curX, curY
-  padding := GetWinPadding()
-  d := GetDimensions()
-  WinMove A, , curX, d[2] + (d[4] / 2) + padding[2], curW, d[4] - (d[4] / 2) + padding[4]
-return
+!+k:: {
+    global PadY
+    hwnd := WinGetID("A")
+    d := GetDimensions()
+    vis := GetVisibleRect(hwnd)
+    visY := vis[2] - d[2]
+    visH := vis[4] - vis[2]
+    visX := vis[1]
+    visW := vis[3] - vis[1]
+    geo   := RowGeometry("top-half",     d, PadY)
+    geo3  := RowGeometry("top-third",    d, PadY)
+    geo23 := RowGeometry("top-twothird", d, PadY)
+    atTop := IsAt(visY, geo[1] - d[2])
+    if atTop && IsAt(visH, geo[2])
+        g := geo3
+    else if atTop && IsAt(visH, geo3[2])
+        g := geo23
+    else
+        g := geo
+    AdjustedWinMove(hwnd, visX, g[1], visW, g[2])
+}
 
-^+r::
-Reload
-return
+!+j:: {
+    global PadY
+    hwnd := WinGetID("A")
+    d := GetDimensions()
+    vis := GetVisibleRect(hwnd)
+    visY := vis[2] - d[2]
+    visH := vis[4] - vis[2]
+    visB := visY + visH
+    visX := vis[1]
+    visW := vis[3] - vis[1]
+    geo   := RowGeometry("bottom-half",     d, PadY)
+    geo3  := RowGeometry("bottom-third",    d, PadY)
+    geo23 := RowGeometry("bottom-twothird", d, PadY)
+    expectedB := (geo[1] - d[2]) + geo[2]
+    atBottom := IsAt(visB, expectedB)
+    if atBottom && IsAt(visH, geo[2])
+        g := geo3
+    else if atBottom && IsAt(visH, geo3[2])
+        g := geo23
+    else
+        g := geo
+    AdjustedWinMove(hwnd, visX, g[1], visW, g[2])
+}
 
-; --------------------------------------------------------------------------------------------------
+; Store previous window geometry before maximizing
+PrevGeometry := Map()
 
-!+2::
-  WinGetActiveStats, title, w, h, x, y
-  d := LDim
-  padding := GetWinPadding()
-
-  if x < -10
-  {
-    d := RDim
-  }
-
-  WinMove A, , d[1] + padding[1], d[2] + padding[2], d[3] - 14 + padding[3], d[4] + padding[4]
-return
+!+m:: {
+    global PadX, PadY, PrevGeometry
+    hwnd := WinGetID("A")
+    d := GetDimensions()
+    vis := GetVisibleRect(hwnd)
+    visX := vis[1] - d[1]
+    visY := vis[2] - d[2]
+    visW := vis[3] - vis[1]
+    visH := vis[4] - vis[2]
+    fullW := d[3] - PadX * 2
+    fullH := d[4] - PadY * 2
+    isMaximized := IsAt(visX, PadX) && IsAt(visY, PadY) && IsAt(visW, fullW) && IsAt(visH, fullH)
+    if isMaximized {
+        if PrevGeometry.Has(hwnd) {
+            p := PrevGeometry[hwnd]
+            AdjustedWinMove(hwnd, p[1], p[2], p[3], p[4])
+        }
+    } else {
+        PrevGeometry[hwnd] := [vis[1], vis[2], visW, visH]
+        AdjustedWinMove(hwnd, d[1] + PadX, d[2] + PadY, fullW, fullH)
+    }
+}
