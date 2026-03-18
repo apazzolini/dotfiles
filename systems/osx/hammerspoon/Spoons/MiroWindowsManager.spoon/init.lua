@@ -228,8 +228,8 @@ end
 function obj:init()
   print("Initializing Miro's Windows Manager")
   hs.grid.setGrid(obj.GRID.w .. 'x' .. obj.GRID.h)
-  hs.grid.MARGINX = 0
-  hs.grid.MARGINY = 0
+  hs.grid.MARGINX = 8
+  hs.grid.MARGINY = 8
 end
 
 return obj
