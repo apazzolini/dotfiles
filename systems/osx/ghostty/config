@@ -1133,10 +1133,10 @@ keybind = super+digit_7=text:\x107
 keybind = super+digit_8=text:\x108
 keybind = super+digit_9=text:\x109
 
-keybind = super+left_bracket=text:\x10P
-keybind = super+right_bracket=text:\x10N
-keybind = super+shift+left_bracket=text:\x1B[
-keybind = super+shift+right_bracket=text:\x1B]
+keybind = super+[=text:\x10P
+keybind = super+]=text:\x10N
+keybind = super+shift+[=text:\x1B[
+keybind = super+shift+]=text:\x1B]
 keybind = super+j=text:\x10[
 keybind = super+w=text:\x10x
 keybind = super+k=text:\x10\x0c
