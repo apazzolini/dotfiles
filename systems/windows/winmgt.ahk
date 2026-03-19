@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 
 RDim      := [0, 0, 3840, 2160]
-TaskbarH  := 44   ; taskbar height in pixels
+TaskbarH  := 42   ; taskbar height in pixels
 PadX      := 8    ; gap on all horizontal edges and between tiled windows
 PadY      := 8    ; gap on all vertical edges and between tiled windows
 
@@ -61,6 +61,20 @@ ColGeometry(slot, d, padX) {
         return [d[1] + full - padX - twoThirdW, twoThirdW]
 }
 
+AdjustForPiP(hwnd, &x, &w, d, padX, slot) {
+    try {
+        title := WinGetTitle(hwnd)
+        class := WinGetClass(hwnd)
+        if (title = "Picture-in-Picture" && class = "MozillaDialogClass") {
+            slotGeo := ColGeometry(slot = "left" ? "left-half" : "right-half", d, padX)
+            slotX := slotGeo[1]
+            slotW := slotGeo[2]
+            w := slotW - 52
+            x := slotX + Floor((slotW - w) / 2)
+        }
+    }
+}
+
 !+h:: {
     global PadX, PadY
     hwnd := WinGetID("A")
@@ -71,14 +85,17 @@ ColGeometry(slot, d, padX) {
     geo   := ColGeometry("left-half",      d, PadX)
     geo3  := ColGeometry("left-third",     d, PadX)
     geo23 := ColGeometry("left-twothird",  d, PadX)
-    atLeft := IsAt(visX, geo[1])
+    atLeft := IsAt(visX, geo[1] - d[1])
     if atLeft && IsAt(visW, geo[2])
         g := geo3
     else if atLeft && IsAt(visW, geo3[2])
         g := geo23
     else
         g := geo
-    AdjustedWinMove(hwnd, g[1], d[2] + PadY, g[2], d[4] - PadY * 2)
+    finalX := g[1]
+    finalW := g[2]
+    AdjustForPiP(hwnd, &finalX, &finalW, d, PadX, "left")
+    AdjustedWinMove(hwnd, finalX, d[2] + PadY, finalW, d[4] - PadY * 2)
 }
 
 !+l:: {
@@ -88,11 +105,11 @@ ColGeometry(slot, d, padX) {
     vis := GetVisibleRect(hwnd)
     visX := vis[1] - d[1]
     visW := vis[3] - vis[1]
-    visR := visX + visW  ; check right edge instead
+    visR := visX + visW
     geo   := ColGeometry("right-half",      d, PadX)
     geo3  := ColGeometry("right-third",     d, PadX)
     geo23 := ColGeometry("right-twothird",  d, PadX)
-    expectedR := geo[1] + geo[2]  ; all right-snapped slots share the same right edge
+    expectedR := geo[1] + geo[2] - d[1]
     atRight := IsAt(visR, expectedR)
     if atRight && IsAt(visW, geo[2])
         g := geo3
@@ -100,7 +117,10 @@ ColGeometry(slot, d, padX) {
         g := geo23
     else
         g := geo
-    AdjustedWinMove(hwnd, g[1], d[2] + PadY, g[2], d[4] - PadY * 2)
+    finalX := g[1]
+    finalW := g[2]
+    AdjustForPiP(hwnd, &finalX, &finalW, d, PadX, "right")
+    AdjustedWinMove(hwnd, finalX, d[2] + PadY, finalW, d[4] - PadY * 2)
 }
 
 RowGeometry(slot, d, padY) {

@@ -98,6 +98,7 @@ Activate(name, executable) {
 
 #HotIf !WinActive("ahk_group games")
 $#i::Activate("Neovide", "D:\Apps\neovide\notes.lnk")
+$^a::Activate("Alacritty", "D:\Apps\Alacritty\alacritty.exe")
 
 $!1::Send "^1"
 $!2::Send "^2"
