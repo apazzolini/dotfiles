@@ -46,7 +46,7 @@ bindings = [
   { key = "["        , mods = "Alt"           , chars = "\u0010P" },
   { key = "]"        , mods = "Alt"           , chars = "\u0010N" },
   { key = "Space"    , mods = "Control"       , chars = "\u0000"     },
-  { key = "Return"   , mods = "Alt"           , action = "None"    },
+  { key = "Return"   , mods = "Alt"           , chars = "\u001B[13;3u" },
   { key = "Key0"     , mods = "Control"       , chars = "\u0010\u0030" },
   { key = "Key1"     , mods = "Control"       , chars = "\u0010\u0031" },
   { key = "Key2"     , mods = "Control"       , chars = "\u0010\u0032" },
