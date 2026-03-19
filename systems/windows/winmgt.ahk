@@ -1,221 +1,191 @@
 #Requires AutoHotkey v2.0
 
-RDim      := [0, 0, 3840, 2160]
-TaskbarH  := 42   ; taskbar height in pixels
-PadX      := 8    ; gap on all horizontal edges and between tiled windows
-PadY      := 8    ; gap on all vertical edges and between tiled windows
+PadX := 8   ; horizontal gap between edges/windows
+PadY := 8   ; vertical gap between edges/windows
 
-GetDimensions() {
-    global RDim, TaskbarH
-    d := RDim.Clone()
-    d[4] := d[4] - TaskbarH  ; usable height
-    return d
+; ---------------------------------------------------------------------------
+; Monitor / work-area helpers
+; ---------------------------------------------------------------------------
+
+GetWorkArea() {
+    MonitorGetWorkArea(, &L, &T, &R, &B)
+    return {x: L, y: T, w: R - L, h: B - T}
 }
 
-; Returns the visible (DWM) rect as [l, t, r, b]
+; Returns the DWM visible rect as {l, t, r, b}
 GetVisibleRect(hwnd) {
-    extRECT := Buffer(16, 0)
+    buf := Buffer(16, 0)
     DllCall("dwmapi\DwmGetWindowAttribute",
-        "Ptr", hwnd, "UInt", 9, "Ptr", extRECT, "UInt", 16)
-    return [NumGet(extRECT, 0, "Int"), NumGet(extRECT, 4, "Int"),
-            NumGet(extRECT, 8, "Int"), NumGet(extRECT, 12, "Int")]
+        "Ptr", hwnd, "UInt", 9, "Ptr", buf, "UInt", 16)
+    return {l: NumGet(buf, 0, "Int"), t: NumGet(buf, 4, "Int"),
+            r: NumGet(buf, 8, "Int"), b: NumGet(buf, 12, "Int")}
 }
 
 GetWindowBorders(hwnd) {
-    ext := GetVisibleRect(hwnd)
-    winRECT := Buffer(16, 0)
-    DllCall("GetWindowRect", "Ptr", hwnd, "Ptr", winRECT)
-    winL := NumGet(winRECT, 0, "Int")
-    winT := NumGet(winRECT, 4, "Int")
-    winR := NumGet(winRECT, 8, "Int")
-    winB := NumGet(winRECT, 12, "Int")
-    return [ext[1] - winL, ext[2] - winT, winR - ext[3], winB - ext[4]]
+    vis := GetVisibleRect(hwnd)
+    buf := Buffer(16, 0)
+    DllCall("GetWindowRect", "Ptr", hwnd, "Ptr", buf)
+    wl := NumGet(buf, 0, "Int"), wt := NumGet(buf, 4, "Int")
+    wr := NumGet(buf, 8, "Int"), wb := NumGet(buf, 12, "Int")
+    return {l: vis.l - wl, t: vis.t - wt, r: wr - vis.r, b: wb - vis.b}
 }
 
 AdjustedWinMove(hwnd, x, y, w, h) {
     b := GetWindowBorders(hwnd)
-    WinMove(x - b[1], y - b[2], w + b[1] + b[3], h + b[2] + b[4], hwnd)
+    WinMove(x - b.l, y - b.t, w + b.l + b.r, h + b.t + b.b, hwnd)
 }
 
-; Use visible rect for position checks, not WinGetPos
 IsAt(a, b) => Abs(a - b) <= 6
 
-; Returns [x, w] for a named column slot using visible coordinates
-ColGeometry(slot, d, padX) {
-    full     := d[3]
-    hp       := Floor(padX / 2)
-    thirdW   := Floor(full / 3) - padX - hp
-    twoThirdW := full - 3 * padX - thirdW
+; ---------------------------------------------------------------------------
+; Axis geometry  (replaces both ColGeometry and RowGeometry)
+;   origin : pixel start of the axis (wa.x or wa.y)
+;   length : total pixels along the axis (wa.w or wa.h)
+;   pad    : gap size (PadX or PadY)
+;
+; Returns a Map of slot-name => {pos, size} for the near/far side.
+; "near" = left or top, "far" = right or bottom.
+; ---------------------------------------------------------------------------
 
-    if slot = "left-half"
-        return [d[1] + padX, Floor(full / 2) - padX - hp]
-    if slot = "right-half"
-        return [d[1] + Floor(full / 2) + hp, Floor(full / 2) - padX - hp]
-    if slot = "left-third"
-        return [d[1] + padX, thirdW]
-    if slot = "right-third"
-        return [d[1] + full - padX - thirdW, thirdW]
-    if slot = "left-twothird"
-        return [d[1] + padX, twoThirdW]
-    if slot = "right-twothird"
-        return [d[1] + full - padX - twoThirdW, twoThirdW]
+AxisSlots(origin, length, pad) {
+    hp      := Floor(pad / 2)
+    halfS   := Floor(length / 2) - pad - hp
+    thirdS  := Floor(length / 3) - pad - hp
+    twoThS  := length - 3 * pad - thirdS
+
+    return Map(
+        "near-half",     {pos: origin + pad,                        size: halfS},
+        "far-half",      {pos: origin + Floor(length / 2) + hp,     size: halfS},
+        "near-third",    {pos: origin + pad,                        size: thirdS},
+        "far-third",     {pos: origin + length - pad - thirdS,      size: thirdS},
+        "near-twothird", {pos: origin + pad,                        size: twoThS},
+        "far-twothird",  {pos: origin + length - pad - twoThS,      size: twoThS}
+    )
 }
 
-AdjustForPiP(hwnd, &x, &w, d, padX, slot) {
+; ---------------------------------------------------------------------------
+; PiP adjustment (Firefox Picture-in-Picture)
+;   Narrows the window by 52px and centers it within its half-slot.
+; ---------------------------------------------------------------------------
+
+AdjustForPiP(hwnd, &x, &w, slotW) {
     try {
-        title := WinGetTitle(hwnd)
-        class := WinGetClass(hwnd)
-        if (title = "Picture-in-Picture" && class = "MozillaDialogClass") {
-            slotGeo := ColGeometry(slot = "left" ? "left-half" : "right-half", d, padX)
-            slotX := slotGeo[1]
-            slotW := slotGeo[2]
+        if (WinGetTitle(hwnd) = "Picture-in-Picture"
+            && WinGetClass(hwnd) = "MozillaDialogClass") {
             w := slotW - 52
-            x := slotX + Floor((slotW - w) / 2)
+            x := x + Floor((slotW - w) / 2)
         }
     }
 }
 
-!+h:: {
+; ---------------------------------------------------------------------------
+; Saved-position store for Alt+Shift+M toggle (static inside accessor)
+; ---------------------------------------------------------------------------
+
+_SavedPositions() {
+    static m := Map()
+    return m
+}
+
+; ---------------------------------------------------------------------------
+; Detect whether a window is currently in the "filled" position
+; ---------------------------------------------------------------------------
+
+IsFilledPos(hwnd) {
+    global PadX, PadY
+    wa  := GetWorkArea()
+    vis := GetVisibleRect(hwnd)
+    return IsAt(vis.l, wa.x + PadX)
+        && IsAt(vis.t, wa.y + PadY)
+        && IsAt(vis.r - vis.l, wa.w - PadX * 2)
+        && IsAt(vis.b - vis.t, wa.h - PadY * 2)
+}
+
+; ---------------------------------------------------------------------------
+; Core tiling function
+;   dir : "left" | "right" | "top" | "bottom"
+;
+; Cycle order: half -> third -> two-thirds -> half ...
+; ---------------------------------------------------------------------------
+
+CycleTile(dir) {
     global PadX, PadY
     hwnd := WinGetID("A")
-    d := GetDimensions()
-    vis := GetVisibleRect(hwnd)
-    visX := vis[1] - d[1]
-    visW := vis[3] - vis[1]
-    geo   := ColGeometry("left-half",      d, PadX)
-    geo3  := ColGeometry("left-third",     d, PadX)
-    geo23 := ColGeometry("left-twothird",  d, PadX)
-    atLeft := IsAt(visX, geo[1] - d[1])
-    if atLeft && IsAt(visW, geo[2])
-        g := geo3
-    else if atLeft && IsAt(visW, geo3[2])
-        g := geo23
+    wa   := GetWorkArea()
+    vis  := GetVisibleRect(hwnd)
+
+    isHoriz := (dir = "left" || dir = "right")
+    isNear  := (dir = "left" || dir = "top")
+
+    pad    := isHoriz ? PadX : PadY
+    origin := isHoriz ? wa.x : wa.y
+    length := isHoriz ? wa.w : wa.h
+    slots  := AxisSlots(origin, length, pad)
+
+    side   := isNear ? "near" : "far"
+    sHalf  := slots[side "-half"]
+    sThird := slots[side "-third"]
+    sTwoTh := slots[side "-twothird"]
+
+    ; Current visible position/size along this axis
+    if isHoriz {
+        curPos  := vis.l
+        curSize := vis.r - vis.l
+    } else {
+        curPos  := vis.t
+        curSize := vis.b - vis.t
+    }
+
+    ; Detect current slot and cycle
+    if isNear
+        atEdge := IsAt(curPos, sHalf.pos)
     else
-        g := geo
-    finalX := g[1]
-    finalW := g[2]
-    AdjustForPiP(hwnd, &finalX, &finalW, d, PadX, "left")
-    AdjustedWinMove(hwnd, finalX, d[2] + PadY, finalW, d[4] - PadY * 2)
-}
+        atEdge := IsAt(curPos + curSize, sHalf.pos + sHalf.size)
 
-!+l:: {
-    global PadX, PadY
-    hwnd := WinGetID("A")
-    d := GetDimensions()
-    vis := GetVisibleRect(hwnd)
-    visX := vis[1] - d[1]
-    visW := vis[3] - vis[1]
-    visR := visX + visW
-    geo   := ColGeometry("right-half",      d, PadX)
-    geo3  := ColGeometry("right-third",     d, PadX)
-    geo23 := ColGeometry("right-twothird",  d, PadX)
-    expectedR := geo[1] + geo[2] - d[1]
-    atRight := IsAt(visR, expectedR)
-    if atRight && IsAt(visW, geo[2])
-        g := geo3
-    else if atRight && IsAt(visW, geo3[2])
-        g := geo23
+    if atEdge && IsAt(curSize, sHalf.size)
+        s := sThird
+    else if atEdge && IsAt(curSize, sThird.size)
+        s := sTwoTh
     else
-        g := geo
-    finalX := g[1]
-    finalW := g[2]
-    AdjustForPiP(hwnd, &finalX, &finalW, d, PadX, "right")
-    AdjustedWinMove(hwnd, finalX, d[2] + PadY, finalW, d[4] - PadY * 2)
+        s := sHalf
+
+    ; Build final x, y, w, h
+    if isHoriz {
+        fx := s.pos, fy := wa.y + PadY
+        fw := s.size, fh := wa.h - PadY * 2
+        AdjustForPiP(hwnd, &fx, &fw, sHalf.size)
+    } else {
+        fx := vis.l,  fy := s.pos
+        fw := vis.r - vis.l, fh := s.size
+    }
+
+    AdjustedWinMove(hwnd, fx, fy, fw, fh)
 }
 
-RowGeometry(slot, d, padY) {
-    full := d[4]
-    hp   := Floor(padY / 2)
-    ; third heights computed analogously to half heights
-    thirdH    := Floor(full / 3) - padY - hp
-    twoThirdH := full - Floor(full / 3) - padY - hp - padY  ; = full - thirdH - 3*padY - hp... let's just derive
-    ; verify: padY + thirdH + padY + twoThirdH + padY = full
-    ; => thirdH + twoThirdH = full - 3*padY
-    twoThirdH := full - 3 * padY - thirdH
+; ---------------------------------------------------------------------------
+; Hotkeys  (Alt+Shift + vim keys)
+; ---------------------------------------------------------------------------
 
-    if slot = "top-half"
-        return [d[2] + padY, Floor(full / 2) - padY - hp]
-    if slot = "bottom-half"
-        return [d[2] + Floor(full / 2) + hp, Floor(full / 2) - padY - hp]
-    if slot = "top-third"
-        return [d[2] + padY, thirdH]
-    if slot = "bottom-third"
-        return [d[2] + full - padY - thirdH, thirdH]
-    if slot = "top-twothird"
-        return [d[2] + padY, twoThirdH]
-    if slot = "bottom-twothird"
-        return [d[2] + full - padY - twoThirdH, twoThirdH]
-}
-
-
-!+k:: {
-    global PadY
-    hwnd := WinGetID("A")
-    d := GetDimensions()
-    vis := GetVisibleRect(hwnd)
-    visY := vis[2] - d[2]
-    visH := vis[4] - vis[2]
-    visX := vis[1]
-    visW := vis[3] - vis[1]
-    geo   := RowGeometry("top-half",     d, PadY)
-    geo3  := RowGeometry("top-third",    d, PadY)
-    geo23 := RowGeometry("top-twothird", d, PadY)
-    atTop := IsAt(visY, geo[1] - d[2])
-    if atTop && IsAt(visH, geo[2])
-        g := geo3
-    else if atTop && IsAt(visH, geo3[2])
-        g := geo23
-    else
-        g := geo
-    AdjustedWinMove(hwnd, visX, g[1], visW, g[2])
-}
-
-!+j:: {
-    global PadY
-    hwnd := WinGetID("A")
-    d := GetDimensions()
-    vis := GetVisibleRect(hwnd)
-    visY := vis[2] - d[2]
-    visH := vis[4] - vis[2]
-    visB := visY + visH
-    visX := vis[1]
-    visW := vis[3] - vis[1]
-    geo   := RowGeometry("bottom-half",     d, PadY)
-    geo3  := RowGeometry("bottom-third",    d, PadY)
-    geo23 := RowGeometry("bottom-twothird", d, PadY)
-    expectedB := (geo[1] - d[2]) + geo[2]
-    atBottom := IsAt(visB, expectedB)
-    if atBottom && IsAt(visH, geo[2])
-        g := geo3
-    else if atBottom && IsAt(visH, geo3[2])
-        g := geo23
-    else
-        g := geo
-    AdjustedWinMove(hwnd, visX, g[1], visW, g[2])
-}
-
-; Store previous window geometry before maximizing
-PrevGeometry := Map()
+!+h:: CycleTile("left")
+!+l:: CycleTile("right")
+!+k:: CycleTile("top")
+!+j:: CycleTile("bottom")
 
 !+m:: {
-    global PadX, PadY, PrevGeometry
+    global PadX, PadY
     hwnd := WinGetID("A")
-    d := GetDimensions()
-    vis := GetVisibleRect(hwnd)
-    visX := vis[1] - d[1]
-    visY := vis[2] - d[2]
-    visW := vis[3] - vis[1]
-    visH := vis[4] - vis[2]
-    fullW := d[3] - PadX * 2
-    fullH := d[4] - PadY * 2
-    isMaximized := IsAt(visX, PadX) && IsAt(visY, PadY) && IsAt(visW, fullW) && IsAt(visH, fullH)
-    if isMaximized {
-        if PrevGeometry.Has(hwnd) {
-            p := PrevGeometry[hwnd]
-            AdjustedWinMove(hwnd, p[1], p[2], p[3], p[4])
-        }
-    } else {
-        PrevGeometry[hwnd] := [vis[1], vis[2], visW, visH]
-        AdjustedWinMove(hwnd, d[1] + PadX, d[2] + PadY, fullW, fullH)
+    m    := _SavedPositions()
+
+    if IsFilledPos(hwnd) && m.Has(hwnd) {
+        s := m[hwnd]
+        m.Delete(hwnd)
+        AdjustedWinMove(hwnd, s.x, s.y, s.w, s.h)
+        return
     }
+
+    vis := GetVisibleRect(hwnd)
+    m[hwnd] := {x: vis.l, y: vis.t, w: vis.r - vis.l, h: vis.b - vis.t}
+
+    wa := GetWorkArea()
+    AdjustedWinMove(hwnd, wa.x + PadX, wa.y + PadY, wa.w - PadX * 2, wa.h - PadY * 2)
 }
