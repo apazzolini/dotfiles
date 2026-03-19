@@ -61,6 +61,17 @@ obj._pressed = {
   right = false,
 }
 
+local function setMarginsForScreen(screen)
+  local frame = screen:frame()
+  if frame.w > 2000 then
+    hs.grid.MARGINX = 8
+    hs.grid.MARGINY = 8
+  else
+    hs.grid.MARGINX = 0
+    hs.grid.MARGINY = 0
+  end
+end
+
 function obj:_nextStep(dim, offs, cb)
   if hs.window.focusedWindow() then
     local axis = dim == 'w' and 'x' or 'y'
@@ -86,6 +97,7 @@ function obj:_nextStep(dim, offs, cb)
       cell[oppAxis] = 0
     end
 
+    setMarginsForScreen(screen)
     hs.grid.set(win, cell, screen)
   end
 end
@@ -116,6 +128,7 @@ function obj:_nextFullScreenStep()
     cell.x = (self.GRID.w - self.GRID.w / nextSize) / 2
     cell.y = (self.GRID.h - self.GRID.h / nextSize) / 2
 
+    setMarginsForScreen(screen)
     hs.grid.set(win, cell, screen)
   end
 end
@@ -134,6 +147,7 @@ function obj:_fullDimension(dim)
       cell[dim == 'w' and 'x' or 'y'] = 0
     end
 
+    setMarginsForScreen(screen)
     hs.grid.set(win, cell, screen)
   end
 end
@@ -228,8 +242,6 @@ end
 function obj:init()
   print("Initializing Miro's Windows Manager")
   hs.grid.setGrid(obj.GRID.w .. 'x' .. obj.GRID.h)
-  hs.grid.MARGINX = 8
-  hs.grid.MARGINY = 8
 end
 
 return obj
