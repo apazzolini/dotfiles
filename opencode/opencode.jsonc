@@ -5,4 +5,22 @@
   // "server": {
   //   "port": 4096,
   // },
+  "agent": {
+    "opus-helper": {
+      "description": "General helper on Claude Opus",
+      "mode": "subagent",
+      "model": "anthropic/claude-opus-4-6",
+      "prompt": "You are a focused helper agent."
+    }
+  },
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--no-usage-statistics", "--auto-connect"]
+    },
+    "logrocket": {
+      "type": "remote",
+      "url": "https://mcp.logrocket.com/mcp"
+    }
+  }
 }

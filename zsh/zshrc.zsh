@@ -47,7 +47,7 @@ source $ZSH/zsh/zsh-defer/zsh-defer.plugin.zsh
 
 source $ZSH/zsh/aliases.zsh
 source $ZSH/zsh/completion.zsh
-zsh-defer source $ZSH/zsh/fzf-tab/fzf-tab.plugin.zsh
+# zsh-defer source $ZSH/zsh/fzf-tab/fzf-tab.plugin.zsh
 source $ZSH/bin/restic.zsh
 source $ZSH/bin/applypatch.zsh
 
