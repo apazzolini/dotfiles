@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 
-PadX := 8   ; horizontal gap between edges/windows
-PadY := 8   ; vertical gap between edges/windows
+PadX := 10   ; horizontal gap between edges/windows
+PadY := 10   ; vertical gap between edges/windows
 
 ; ---------------------------------------------------------------------------
 ; Monitor / work-area helpers
@@ -187,5 +187,8 @@ CycleTile(dir) {
     m[hwnd] := {x: vis.l, y: vis.t, w: vis.r - vis.l, h: vis.b - vis.t}
 
     wa := GetWorkArea()
-    AdjustedWinMove(hwnd, wa.x + PadX, wa.y + PadY, wa.w - PadX * 2, wa.h - PadY * 2)
+    fh := wa.h - PadY * 2
+    try if (ProcessGetName(WinGetPID(hwnd)) = "alacritty.exe")
+        fh += 2
+    AdjustedWinMove(hwnd, wa.x + PadX, wa.y + PadY, wa.w - PadX * 2, fh)
 }
