@@ -3,12 +3,14 @@
 -- :EditQuery to open the Live Query Editor (Nvim 0.10+)
 return {
   'nvim-treesitter/nvim-treesitter',
+  branch = 'master',
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
     'JoosepAlviste/nvim-ts-context-commentstring',
     {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      branch = 'master',
       dependencies = {
         'kana/vim-textobj-user',
         'kana/vim-textobj-line',
