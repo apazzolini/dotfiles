@@ -16,11 +16,13 @@
   "mcp": {
     "chrome-devtools": {
       "type": "local",
-      "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--no-usage-statistics", "--auto-connect"]
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--no-usage-statistics", "--auto-connect"],
+      "enabled": false
     },
     "logrocket": {
       "type": "remote",
-      "url": "https://mcp.logrocket.com/mcp"
+      "url": "https://mcp.logrocket.com/mcp",
+      "enabled": false
     }
   }
 }

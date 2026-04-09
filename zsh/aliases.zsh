@@ -11,8 +11,7 @@ else
 fi
 
 if [[ `hostname` = G16JTXJGPY ]]; then
-  # alias dl='docker compose -f /Users/andre/Work/docker/docker-compose.yml'
-  alias notes='IS_NOTES=1 nvim -O "/Users/andre.azzolini/work/notes/log.md"'
+  alias notes='IS_NOTES=1 nvim -O "/Users/andre.azzolini/code/notes/log.md"'
 else
   alias dl='docker compose -f /apps/docker-compose.yml'
   alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/personal/scratch.md"'

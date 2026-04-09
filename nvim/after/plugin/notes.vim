@@ -30,7 +30,7 @@ if (has('win32'))
   let wikipath = 'D:/Wiki'
 else
   if (expand('$HOST') =~ 'G16JTXJGPY')
-    let wikipath = '/Users/andre.azzolini/work/notes'
+    let wikipath = '/Users/andre.azzolini/code/notes'
   else
     let wikipath = '/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki'
   endif
@@ -48,7 +48,7 @@ autocmd FileType vimwiki inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn
 autocmd FileType vimwiki inoremap <silent><buffer> <C-L><C-L> <Esc>:VimwikiReturn 2 2<CR>
 
 if (expand('$HOST') =~ 'G16JTXJGPY')
-  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gl :e /Users/andre.azzolini/work/notes/log.md<CR>
-  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gp :e /Users/andre.azzolini/work/notes/people.md<CR>
-  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gs :e /Users/andre.azzolini/work/notes/scratch.md<CR>
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gl :e /Users/andre.azzolini/code/notes/log.md<CR>
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gp :e /Users/andre.azzolini/code/notes/people.md<CR>
+  autocmd FileType vimwiki nnoremap <silent><buffer> <leader>gs :e /Users/andre.azzolini/code/notes/scratch.md<CR>
 endif

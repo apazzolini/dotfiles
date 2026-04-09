@@ -5,16 +5,11 @@ if [[ $# -eq 1 ]]; then
 else
     ARRAY=("$HOME/.dotfiles")
 
-    if [[ "$(hostname)" =~ andrem2 ]]; then
-      ARRAY+=($(find ~/Work/server -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
-      ARRAY+=($(find ~/Work -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
-    elif [[ "$(hostname)" =~ arch ]]; then
+    if [[ "$(hostname)" =~ arch ]]; then
       ARRAY+=($(find ~/code/web -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
-      # ARRAY+=($(find ~/Work -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
     elif [[ "$(hostname)" == "G16JTXJGPY" ]]; then
-      ARRAY+=($(find ~/work -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
-      ARRAY+=($(find ~/work/web -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
-      ARRAY+=("$HOME/work/notes")
+      ARRAY+=($(find ~/code/web -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'))
+      ARRAY+=("$HOME/code/notes")
     fi
 
     ARRAY+=($(find ~/code ~/code/_forks -mindepth 1 -maxdepth 1 -type d | sort))

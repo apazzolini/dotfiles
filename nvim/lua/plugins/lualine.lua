@@ -90,7 +90,7 @@ return {
 
     if vim.g.isNotes then
       sections.lualine_a = {}
-      sections.lualine_c = {}
+      -- sections.lualine_c = {}
       sections.lualine_x = {}
       sections.lualine_y = {}
     end
