@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Icon spacing in system tray
-defaults -currentHost write -globalDomain NSStatusItemSpacing -int 2
-defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 2
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 12
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
 
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
