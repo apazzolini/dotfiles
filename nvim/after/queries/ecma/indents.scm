@@ -6,3 +6,5 @@
   (comment)
   (ERROR)
 ] @indent.auto
+
+(binary_expression) @indent.end

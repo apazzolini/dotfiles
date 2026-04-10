@@ -238,6 +238,8 @@ local theme = lush(function(injected_functions)
     BlinkCmpMenu({ fg = c.gray3, bg = c.gray1 }),
     BlinkCmpLabel({ fg = c.fg }),
 
+    BlinkPairsMatchParen({ fg = c.bright.magenta }),
+
     -- For export usage
     ColorBlack({ fg = c.black }),
     ColorRed({ fg = c.red }),

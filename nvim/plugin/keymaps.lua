@@ -32,6 +32,7 @@ vim.keymap.set('n', '<leader><leader>', '<c-^>')
 vim.keymap.set('n', '<leader>y', '"+y')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>YR', ':let @*=expand("%")<cr>', { silent = true })
+vim.keymap.set('n', '<leader>YN', ':let @*=expand("%").":".line(".")<cr>', { silent = true })
 vim.keymap.set('n', '<cr>', ':noh<cr><cr>', { silent = true })
 vim.keymap.set('n', 'J', 'mzJ`z')
 
@@ -103,4 +104,8 @@ vim.keymap.set('n', 'mm', '%')
 vim.keymap.set('x', 'm', '%')
 vim.keymap.set('o', 'm', '%')
 
-vim.keymap.set('n', 'r<backspace>', ':restart<cr>')
+vim.keymap.set('n', 'r<backspace>', function()
+  local session = vim.fn.stdpath('state') .. '/restart_session.vim'
+  vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
+  vim.cmd('restart source ' .. vim.fn.fnameescape(session))
+end, { desc = 'Restart Neovim' })

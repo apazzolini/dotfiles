@@ -28,3 +28,5 @@ require('lazy').setup('plugins', {
 })
 
 vim.cmd([[ packadd nvim.undotree ]])
+
+require('vim._core.ui2').enable()
