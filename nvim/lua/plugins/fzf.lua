@@ -22,8 +22,8 @@ return {
       keymap = {
         builtin = {
           ['<esc>'] = 'hide',
-          ['<c-e>'] = 'preview-page-up',
-          ['<c-y>'] = 'preview-page-down',
+          ['<c-u>'] = 'preview-half-page-up',
+          ['<c-d>'] = 'preview-half-page-down',
         },
         fzf = {
           ['ctrl-q'] = 'select-all+accept',
