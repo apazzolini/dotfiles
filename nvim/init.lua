@@ -26,3 +26,5 @@ require('lazy').setup('plugins', {
     hererocks = true,
   },
 })
+
+vim.cmd([[ packadd nvim.undotree ]])
