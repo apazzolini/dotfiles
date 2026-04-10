@@ -102,3 +102,5 @@ vim.keymap.set('n', ']w', ':set wrap<cr>', { silent = true })
 vim.keymap.set('n', 'mm', '%')
 vim.keymap.set('x', 'm', '%')
 vim.keymap.set('o', 'm', '%')
+
+vim.keymap.set('n', 'r<backspace>', ':restart<cr>')
