@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'saghen/blink.pairs',
   version = '*', -- (recommended) only required with prebuilt binaries
 

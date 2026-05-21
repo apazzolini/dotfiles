@@ -1,0 +1,29 @@
+wt-old () {
+  if [[ "$1" == "done" ]]; then
+    TREE="${PWD##*/}"
+    cd $HOME/code/web
+    git worktree remove $TREE --force
+    git branch -d andre/$TREE --force
+    tmux switch-client -l
+    tmux kill-session -t "$(tmux display-message -p '#{client_last_session}')"
+    return;
+  fi
+
+  if [ -d "$HOME/code/web/$1" ]; then
+    echo "worktree $1 already exists"
+    return;
+  fi
+
+  pushd $HOME/code/web
+  # git fetch
+  # git worktree add -f $1 origin/master
+  git worktree add -f $1 master
+  cd $1
+  git co andre/$1 || git co -b andre/$1
+  # yarn install
+  cp .config/env_defaults/.env.local .config/.env.local
+  # git status
+  popd
+
+  tmux-sessionizer "$HOME/code/web/$1"
+}

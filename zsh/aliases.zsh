@@ -70,7 +70,13 @@ alias oc='opencode'
 
 # work
 alias ks="fuser -k 3000/tcp 16823/tcp"
+alias ytur="yarn test:e2e:record --ui-host=0.0.0.0"
+alias ytr="yarn test:e2e:record"
+alias ytu="yarn test:e2e --ui-host=0.0.0.0"
+alias yt="yarn test:e2e"
 
 alias sudoedit='sudo -e'
 
 alias lazy='cd ~/.local/share/nvim/lazy'
+
+alias pi='WAYLAND_DISPLAY=1 pi'

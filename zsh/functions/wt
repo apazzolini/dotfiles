@@ -1,29 +1,229 @@
 wt () {
-  if [[ "$1" == "done" ]]; then
-    TREE="${PWD##*/}"
-    cd $HOME/code/web
-    git worktree remove $TREE --force
-    git branch -d andre/$TREE --force
-    tmux switch-client -l
+  _wtn_start () {
+    local root="$1"
+    local pool_size="$2"
+    local name="$3"
+    local target="$root/$name"
+    local branch="andre/$name"
+    local idx
+    local slot=""
+
+    if [[ "$name" == */* ]]; then
+      echo "worktree names cannot contain /"
+      return 1
+    fi
+
+    if [[ "$name" == open<-> ]]; then
+      echo "worktree names matching open<number> are reserved for the pool"
+      return 1
+    fi
+
+    if [[ -e "$target" ]]; then
+      echo "worktree $name already exists"
+      return 1
+    fi
+
+    if ! git -C "$root" check-ref-format --branch "$branch" >/dev/null 2>&1; then
+      echo "invalid branch name: $branch"
+      return 1
+    fi
+
+    for (( idx = 0; idx < pool_size; idx++ )); do
+      if [[ -d "$root/open$idx" ]]; then
+        slot="$root/open$idx"
+        break
+      fi
+    done
+
+    if [[ -z "$slot" ]]; then
+      _wtn_init_pool "$root" "$pool_size" || return
+
+      for (( idx = 0; idx < pool_size; idx++ )); do
+        if [[ -d "$root/open$idx" ]]; then
+          slot="$root/open$idx"
+          break
+        fi
+      done
+    fi
+
+    if [[ -z "$slot" ]]; then
+      echo "no open worktrees available"
+      return 1
+    fi
+
+    _wtn_prepare_pool_worktree "$slot" "$idx" || return
+    git -C "$root" worktree move "$slot" "$target" || return
+    git -C "$target" checkout --no-track -B "$branch" origin/master || return
+    git -C "$target" push --set-upstream origin "$branch" || return
+    git -C "$target" reset --hard origin/master || return
+    _wtn_copy_env "$target"
+    (cd "$target" && yarn install) || return
+
+    tmux-sessionizer "$target"
+  }
+
+  _wtn_done () {
+    local root="$1"
+    local tree_path
+    local name
+    local branch
+    local slot_idx
+    local slot
+
+    tree_path="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+      echo "not in a git worktree"
+      return 1
+    }
+
+    if [[ "$tree_path" != "$root"/* ]]; then
+      echo "$tree_path is not under $root"
+      return 1
+    fi
+
+    name="${tree_path:t}"
+    slot_idx="$(_wtn_read_slot_marker "$tree_path")"
+
+    if [[ -z "$slot_idx" ]]; then
+      echo "$tree_path is not a wtn worktree"
+      return 1
+    fi
+
+    slot="$root/open$slot_idx"
+
+    if [[ -e "$slot" ]]; then
+      echo "pool slot already exists: $slot"
+      return 1
+    fi
+
+    branch="andre/$name"
+
+    git -C "$tree_path" checkout -f --detach origin/master || return
+    git -C "$tree_path" reset --hard origin/master || return
+    git -C "$tree_path" clean -fd || return
+
+    if git -C "$root" show-ref --verify --quiet "refs/heads/$branch"; then
+      git -C "$root" branch -D "$branch"
+    fi
+
+    cd "$root" || return
+    git -C "$root" worktree move "$tree_path" "$slot" || return
+    _wtn_write_slot_marker "$slot" "$slot_idx" || return
+    _wtn_copy_env "$slot"
+
+    tmux switch-client -t master
     tmux kill-session -t "$(tmux display-message -p '#{client_last_session}')"
-    return;
+  }
+
+  _wtn_init_pool () {
+    local root="$1"
+    local pool_size="$2"
+    local idx
+    local slot
+
+    if [[ ! -d "$root" ]]; then
+      echo "repo root not found: $root"
+      return 1
+    fi
+
+    for (( idx = 0; idx < pool_size; idx++ )); do
+      slot="$root/open$idx"
+
+      if [[ -e "$slot" ]]; then
+        if ! git -C "$slot" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+          echo "$slot exists but is not a git worktree"
+          return 1
+        fi
+
+        _wtn_prepare_pool_worktree "$slot" "$idx" || return
+        continue
+      fi
+
+      if _wtn_slot_is_active "$root" "$idx"; then
+        continue
+      fi
+
+      git -C "$root" worktree add --detach "$slot" origin/master || return
+      _wtn_prepare_pool_worktree "$slot" "$idx" || return
+      _wtn_copy_env "$slot"
+    done
+  }
+
+  _wtn_prepare_pool_worktree () {
+    local worktree_path="$1"
+    local slot_idx="$2"
+
+    git -C "$worktree_path" checkout -f --detach origin/master || return
+    git -C "$worktree_path" reset --hard origin/master || return
+    git -C "$worktree_path" clean -fd || return
+    _wtn_write_slot_marker "$worktree_path" "$slot_idx"
+  }
+
+  _wtn_worktree_paths () {
+    local root="$1"
+
+    git -C "$root" worktree list --porcelain | awk '/^worktree / { print substr($0, 10) }'
+  }
+
+  _wtn_slot_is_active () {
+    local root="$1"
+    local slot_idx="$2"
+    local worktree_path
+
+    for worktree_path in "${(@f)$(_wtn_worktree_paths "$root")}"; do
+      if [[ "$(_wtn_read_slot_marker "$worktree_path")" == "$slot_idx" ]]; then
+        return 0
+      fi
+    done
+
+    return 1
+  }
+
+  _wtn_read_slot_marker () {
+    local worktree_path="$1"
+    local marker
+
+    marker="$(git -C "$worktree_path" rev-parse --git-path wtn-slot 2>/dev/null)" || return
+
+    if [[ -f "$marker" ]]; then
+      <"$marker"
+    fi
+  }
+
+  _wtn_write_slot_marker () {
+    local worktree_path="$1"
+    local slot_idx="$2"
+    local marker
+
+    marker="$(git -C "$worktree_path" rev-parse --git-path wtn-slot 2>/dev/null)" || return
+    printf "%s\n" "$slot_idx" > "$marker"
+  }
+
+  _wtn_copy_env () {
+    local worktree_path="$1"
+
+    if [[ -f "$worktree_path/.config/env_defaults/.env.local" ]]; then
+      cp "$worktree_path/.config/env_defaults/.env.local" "$worktree_path/.config/.env.local"
+    fi
+  }
+
+  local root="${WTN_ROOT:-$HOME/code/web}"
+  local pool_size="${WTN_POOL_SIZE:-10}"
+  local name="$1"
+
+  if [[ -z "$name" ]]; then
+    echo "usage: wtn <name>|done|init"
+    return 1
   fi
 
-  if [ -d "$HOME/code/web/$1" ]; then
-    echo "worktree $1 already exists"
-    return;
+  if [[ "$name" == "init" ]]; then
+    _wtn_init_pool "$root" "$pool_size"
+    return
   fi
 
-  pushd $HOME/code/web
-  # git fetch
-  # git worktree add -f $1 origin/master
-  git worktree add -f $1 master
-  cd $1
-  git co andre/$1 || git co -b andre/$1
-  # yarn install
-  cp .config/env_defaults/.env.local .config/.env.local
-  # git status
-  popd
+  if [[ "$name" == "done" ]]; then
+    _wtn_done "$root"
+    return
+  fi
 
-  tmux-sessionizer "$HOME/code/web/$1"
+  _wtn_start "$root" "$pool_size" "$name"
 }

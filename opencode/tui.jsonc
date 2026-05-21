@@ -3,5 +3,8 @@
   "theme": "wave",
   "keybinds": {
     "command_list": "ctrl+b",
+    "messages_page_up": "ctrl+u",
+    "messages_page_down": "ctrl+d",
+    "editor_open": "ctrl+g"
   },
 }

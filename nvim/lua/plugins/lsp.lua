@@ -231,37 +231,37 @@ return {
         --   -- require('vtsls').commands.goto_source_definition()
         -- end, opts)
 
-        -- vim.keymap.set('n', 'gd', function()
-        --   vim.lsp.buf.definition({ on_list = first_match })
-        -- end, opts)
+        vim.keymap.set('n', 'gd', function()
+          vim.lsp.buf.definition({ on_list = first_match })
+        end, opts)
         vim.keymap.set('n', 'gi', function()
           vim.lsp.buf.implementation({ on_list = first_match })
         end, opts)
 
-        vim.keymap.set('n', 'gd', function()
-          vim.lsp.buf_request(0, 'textDocument/implementation', vim.lsp.util.make_position_params(0, 'utf-8'), function(err, result)
-            if not err and result and #result > 0 then
-              -- vim.lsp.util.jump_to_location(result[1])
-              vim.lsp.util.show_document(result[1], 'utf-8', { reuse_win = false })
-              vim.cmd('normal zt')
-            else
-              vim.lsp.buf.definition({ on_list = first_match })
-              vim.cmd('normal zt')
-            end
-          end)
-
-          -- vim.lsp.buf.implementation({
-          --   on_list = function(opts)
-          --     if opts.items and #opts.items == 0 then
-          --       vim.lsp.buf.definition({ on_list = first_match })
-          --       vim.cmd('normal zt')
-          --     elseif opts.items and #opts.items == 1 then
-          --       vim.lsp.util.show_document(opts.items[1].user_data, 'utf-8', false)
-          --       vim.cmd('normal zt')
-          --     end
-          --   end,
-          -- })
-        end, { noremap = true, silent = true })
+        -- vim.keymap.set('n', 'gd', function()
+        --   vim.lsp.buf_request(0, 'textDocument/implementation', vim.lsp.util.make_position_params(0, 'utf-8'), function(err, result)
+        --     if not err and result and #result > 0 then
+        --       -- vim.lsp.util.jump_to_location(result[1])
+        --       vim.lsp.util.show_document(result[1], 'utf-8', { reuse_win = false })
+        --       vim.cmd('normal zt')
+        --     else
+        --       vim.lsp.buf.definition({ on_list = first_match })
+        --       vim.cmd('normal zt')
+        --     end
+        --   end)
+        --
+        --   -- vim.lsp.buf.implementation({
+        --   --   on_list = function(opts)
+        --   --     if opts.items and #opts.items == 0 then
+        --   --       vim.lsp.buf.definition({ on_list = first_match })
+        --   --       vim.cmd('normal zt')
+        --   --     elseif opts.items and #opts.items == 1 then
+        --   --       vim.lsp.util.show_document(opts.items[1].user_data, 'utf-8', false)
+        --   --       vim.cmd('normal zt')
+        --   --     end
+        --   --   end,
+        --   -- })
+        -- end, { noremap = true, silent = true })
 
         vim.keymap.set('n', '<leader>gD', function()
           vim.lsp.buf.type_definition()

@@ -33,6 +33,7 @@ vim.keymap.set('n', '<leader>y', '"+y')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>YR', ':let @*=expand("%")<cr>', { silent = true })
 vim.keymap.set('n', '<leader>YN', ':let @*=expand("%").":".line(".")<cr>', { silent = true })
+vim.keymap.set('x', '<leader>YN', ':<C-U>let @*=expand("%").":".line("\'<")."-".line("\'>")<cr>', { silent = true })
 vim.keymap.set('n', '<cr>', ':noh<cr><cr>', { silent = true })
 vim.keymap.set('n', 'J', 'mzJ`z')
 
