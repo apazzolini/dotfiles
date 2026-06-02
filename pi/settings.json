@@ -1,0 +1,24 @@
+{
+  "lastChangelogVersion": "0.77.0",
+  "hideThinkingBlock": false,
+  "defaultThinkingLevel": "xhigh",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-8",
+  "enabledModels": [
+    "anthropic/claude-opus-4-8",
+    "openai-codex/gpt-5.5"
+  ],
+  "treeFilterMode": "no-tools",
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:@burneikis/pi-fzfp"
+  ],
+  "quietStartup": true,
+  "theme": "wave",
+  "warnings": {
+    "anthropicExtraUsage": false
+  },
+  "npmCommand": [
+    "bun"
+  ]
+}

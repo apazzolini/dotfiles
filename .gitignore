@@ -1,3 +1,11 @@
+pi/mcp-oauth
+pi/sessions
+pi/npm
+pi/mcp-cache.json
+pi/pi-debug.log
+pi/mcp.json
+pi/auth.json
+
 bin/private
 nvim/.netrwhist
 nvim/.swap

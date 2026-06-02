@@ -3,10 +3,16 @@ wt () {
     local root="$1"
     local pool_size="$2"
     local name="$3"
-    local target="$root/$name"
-    local branch="andre/$name"
+    local review=0
+    local target
+    local branch
     local idx
     local slot=""
+
+    if [[ "$name" == review/* ]]; then
+      review=1
+      name="review-${name#review/}"
+    fi
 
     if [[ "$name" == */* ]]; then
       echo "worktree names cannot contain /"
@@ -18,12 +24,15 @@ wt () {
       return 1
     fi
 
+    target="$root/$name"
+    branch="andre/$name"
+
     if [[ -e "$target" ]]; then
       echo "worktree $name already exists"
       return 1
     fi
 
-    if ! git -C "$root" check-ref-format --branch "$branch" >/dev/null 2>&1; then
+    if (( ! review )) && ! git -C "$root" check-ref-format --branch "$branch" >/dev/null 2>&1; then
       echo "invalid branch name: $branch"
       return 1
     fi
@@ -53,9 +62,13 @@ wt () {
 
     _wtn_prepare_pool_worktree "$slot" "$idx" || return
     git -C "$root" worktree move "$slot" "$target" || return
-    git -C "$target" checkout --no-track -B "$branch" origin/master || return
-    git -C "$target" push --set-upstream origin "$branch" || return
-    git -C "$target" reset --hard origin/master || return
+
+    if (( ! review )); then
+      git -C "$target" checkout --no-track -B "$branch" origin/master || return
+      git -C "$target" push --set-upstream origin "$branch" || return
+      git -C "$target" reset --hard origin/master || return
+    fi
+
     _wtn_copy_env "$target"
     (cd "$target" && yarn install) || return
 
@@ -95,14 +108,16 @@ wt () {
       return 1
     fi
 
-    branch="andre/$name"
+    branch="$(git -C "$tree_path" symbolic-ref --quiet --short HEAD 2>/dev/null)"
 
     git -C "$tree_path" checkout -f --detach origin/master || return
     git -C "$tree_path" reset --hard origin/master || return
     git -C "$tree_path" clean -fd || return
 
-    if git -C "$root" show-ref --verify --quiet "refs/heads/$branch"; then
-      git -C "$root" branch -D "$branch"
+    if [[ -n "$branch" && "$branch" != "master" ]]; then
+      if git -C "$root" show-ref --verify --quiet "refs/heads/$branch"; then
+        git -C "$root" branch -D "$branch"
+      fi
     fi
 
     cd "$root" || return
@@ -112,6 +127,75 @@ wt () {
 
     tmux switch-client -t master
     tmux kill-session -t "$(tmux display-message -p '#{client_last_session}')"
+  }
+
+  _wtn_rename () {
+    local root="$1"
+    local new_name="$2"
+    local tree_path
+    local new_target
+    local new_branch
+    local old_branch
+    local old_session
+    local new_session
+
+    if [[ -z "$new_name" ]]; then
+      echo "usage: wt rename <name>"
+      return 1
+    fi
+
+    if [[ "$new_name" == */* ]]; then
+      echo "worktree names cannot contain /"
+      return 1
+    fi
+
+    if [[ "$new_name" == open<-> ]]; then
+      echo "worktree names matching open<number> are reserved for the pool"
+      return 1
+    fi
+
+    tree_path="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+      echo "not in a git worktree"
+      return 1
+    }
+
+    if [[ "$tree_path" != "$root"/* ]]; then
+      echo "$tree_path is not under $root"
+      return 1
+    fi
+
+    new_target="$root/$new_name"
+
+    if [[ -e "$new_target" ]]; then
+      echo "worktree $new_name already exists"
+      return 1
+    fi
+
+    new_branch="andre/$new_name"
+    old_branch="$(git -C "$tree_path" symbolic-ref --quiet --short HEAD 2>/dev/null)"
+    old_session="${${tree_path:t}//./_}"
+    new_session="${new_name//./_}"
+
+    if [[ -n "$old_branch" && "$old_branch" != "master" ]]; then
+      if ! git -C "$tree_path" check-ref-format --branch "$new_branch" >/dev/null 2>&1; then
+        echo "invalid branch name: $new_branch"
+        return 1
+      fi
+    fi
+
+    git -C "$root" worktree move "$tree_path" "$new_target" || return
+
+    if [[ -n "$old_branch" && "$old_branch" != "master" ]]; then
+      git -C "$new_target" branch -m "$old_branch" "$new_branch" || return
+      git -C "$new_target" config "branch.$new_branch.remote" origin
+      git -C "$new_target" config "branch.$new_branch.merge" "refs/heads/$new_branch"
+    fi
+
+    tmux-sessionizer "$new_target"
+
+    if [[ "$old_session" != "$new_session" ]]; then
+      tmux kill-session -t "$old_session" 2>/dev/null
+    fi
   }
 
   _wtn_init_pool () {
@@ -211,7 +295,7 @@ wt () {
   local name="$1"
 
   if [[ -z "$name" ]]; then
-    echo "usage: wtn <name>|done|init"
+    echo "usage: wt <name>|review/<name>|rename <name>|done|init"
     return 1
   fi
 
@@ -222,6 +306,11 @@ wt () {
 
   if [[ "$name" == "done" ]]; then
     _wtn_done "$root"
+    return
+  fi
+
+  if [[ "$name" == "rename" ]]; then
+    _wtn_rename "$root" "$2"
     return
   fi
 

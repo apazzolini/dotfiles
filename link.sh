@@ -41,6 +41,9 @@ function env_setup {
   link opencode/AGENTS.md ~/.config/opencode/
   link opencode/skills ~/.config/opencode/
   link opencode/themes ~/.config/opencode/
+
+  mkdir -p ~/.pi
+  link pi ~/.pi/agent
 }
 
 env_setup
