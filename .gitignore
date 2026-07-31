@@ -5,6 +5,9 @@ pi/mcp-cache.json
 pi/pi-debug.log
 pi/mcp.json
 pi/auth.json
+pi/models-store.json
+pi/mcp-onboarding.json
+pi/trust.json
 
 bin/private
 nvim/.netrwhist

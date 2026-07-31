@@ -284,14 +284,19 @@ wt () {
 
   _wtn_copy_env () {
     local worktree_path="$1"
+    local env_local="$worktree_path/.config/.env.local"
 
     if [[ -f "$worktree_path/.config/env_defaults/.env.local" ]]; then
-      cp "$worktree_path/.config/env_defaults/.env.local" "$worktree_path/.config/.env.local"
+      cp "$worktree_path/.config/env_defaults/.env.local" "$env_local"
+    fi
+
+    if [[ -f "$env_local" ]] && ! grep -q '^DISABLE_URL_BUILDER=' "$env_local"; then
+      printf "DISABLE_URL_BUILDER=true\n" >> "$env_local"
     fi
   }
 
   local root="${WTN_ROOT:-$HOME/code/web}"
-  local pool_size="${WTN_POOL_SIZE:-10}"
+  local pool_size="${WTN_POOL_SIZE:-15}"
   local name="$1"
 
   if [[ -z "$name" ]]; then

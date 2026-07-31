@@ -26,6 +26,7 @@ Process:
 Output format:
 - Findings first, sorted by severity.
 - For each finding:
+  - The finding number (starting with 1)
   - Severity: blocker, high, medium, low
   - File/line
   - Problem

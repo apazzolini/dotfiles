@@ -42,6 +42,7 @@ alias gs='git status'
 alias yr="yarn run"
 alias y="yarn"
 alias ys="yarn start"
+alias ysp="yarn start-proxy"
 alias yi="yarn install"
 alias nr="npm run"
 alias br="bun run"

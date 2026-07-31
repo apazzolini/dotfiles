@@ -1,19 +1,28 @@
 {
-  "lastChangelogVersion": "0.77.0",
+  "lastChangelogVersion": "0.83.0",
   "hideThinkingBlock": false,
-  "defaultThinkingLevel": "xhigh",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-8",
+  "defaultThinkingLevel": "high",
+  "defaultProvider": "openai",
+  "defaultModel": "gpt-5.6-sol",
   "enabledModels": [
-    "anthropic/claude-opus-4-8",
-    "openai-codex/gpt-5.5"
+    "anthropic/claude-opus-5",
+    "openai/gpt-5.5",
+    "openai/gpt-5.6-sol",
+    "openai/gpt-5.6-terra",
+    "openai/gpt-5.6-luna",
+    "ramp-fable-gateway/claude-fable-5"
   ],
   "treeFilterMode": "no-tools",
   "packages": [
     "npm:pi-mcp-adapter",
-    "npm:@burneikis/pi-fzfp"
+    "npm:@burneikis/pi-fzfp",
+    "npm:pi-codex-fast",
+    "npm:@ramp/rampi-fable-gateway",
+    "npm:pi-continue"
   ],
   "quietStartup": true,
+  "enableInstallTelemetry": false,
+  "enableAnalytics": false,
   "theme": "wave",
   "warnings": {
     "anthropicExtraUsage": false

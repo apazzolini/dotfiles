@@ -8,6 +8,8 @@
 
 - When I ask "can ..." or "can we ...", treat it as a question, not an implementation request. Answer whether it is possible and why. Do not make changes unless I directly ask you to act.
 
+- Never run `graphite submit` unless I explicitly ask you to submit with Graphite. Creating or reorganizing a local stack is not permission to submit it.
+
 - Use bullets liberally
 
 - When I ask you to write in my voice, make the result seem like it was written by a human, not an AI. For example, don't use em-dashes (even when they're correct) because that's usually a giveaway. Search the web for modern AI detection techniques and do your best to avoid them.
