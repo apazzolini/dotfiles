@@ -49,7 +49,7 @@
     "toolErrorBg": "gray1",
     "toolTitle": "termDefault",
     "toolOutput": "white",
-    "mdHeading": "magenta",
+    "mdHeading": "blue",
     "mdLink": "cyan",
     "mdLinkUrl": "brightCyan",
     "mdCode": "blue",

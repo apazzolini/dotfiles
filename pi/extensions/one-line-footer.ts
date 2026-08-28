@@ -105,7 +105,7 @@ export default function (pi: ExtensionAPI) {
             }
 
             const message = entry.message as AssistantMessageLike;
-            if (message.role !== "assistant") {
+            if (message.role !== "assistant" && message.role !== "toolResult") {
               continue;
             }
 
@@ -126,9 +126,26 @@ export default function (pi: ExtensionAPI) {
             : `${contextPercent.toFixed(1)}%/${formatTokens(contextWindow)} (auto)`;
           statsParts.push(contextPercentDisplay);
 
+          const compactionCount = ctx.sessionManager
+            .getBranch()
+            .filter(
+              (entry) =>
+                entry.type === "custom" &&
+                entry.customType === "gpt-enhance-stateless-compaction",
+            ).length;
           const statuses = Array.from(footerData.getExtensionStatuses().entries())
             .sort(([a], [b]) => a.localeCompare(b))
-            .map(([, text]) => normalizeStatusText(text))
+            .map(([key, text]) => {
+              const normalized = normalizeStatusText(text);
+              if (key !== "gpt-enhance.compression") {
+                return normalized;
+              }
+
+              const compressionStatus = stripAnsi(normalized);
+              return compressionStatus === "COMPACT:ON"
+                ? `${compressionStatus} (${compactionCount})`
+                : compressionStatus;
+            })
             .filter(Boolean);
 
           const left = [
@@ -138,10 +155,20 @@ export default function (pi: ExtensionAPI) {
           ].filter(Boolean).join(" • ");
 
           const modelName = ctx.model?.id || "no-model";
-          let model = modelName;
+          const isLargeContext =
+            modelName === "gpt-5.6-sol" &&
+            contextUsage?.tokens !== null &&
+            contextUsage?.tokens !== undefined &&
+            contextUsage.tokens > 272000;
+          const largeContextIndicator = isLargeContext
+            ? ` ${theme.fg("error", "[large-context]")}`
+            : "";
+          let model = `${modelName}${largeContextIndicator}`;
           if (ctx.model?.reasoning) {
             const thinkingLevel = pi.getThinkingLevel();
-            model = thinkingLevel === "off" ? `${modelName} • thinking off` : `${modelName} • ${thinkingLevel}`;
+            model = thinkingLevel === "off"
+              ? `${modelName}${largeContextIndicator} • thinking off`
+              : `${modelName}${largeContextIndicator} • ${thinkingLevel}`;
           }
           model = `${model} • pi v${VERSION}`;
           if (footerData.getAvailableProviderCount() > 1 && ctx.model) {

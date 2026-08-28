@@ -1,0 +1,47 @@
+#!/bin/sh
+
+file=$1
+line=$2
+
+case $file in
+  /*) ;;
+  *) file="$PWD/$file" ;;
+esac
+
+nvim_server=
+if [ -n "${TMUX:-}" ]; then
+  nvim_server=$(tmux show-options -qv @lazygit-nvim-server)
+fi
+
+if [ -n "$nvim_server" ] && nvim --server "$nvim_server" --remote "$file" </dev/null >/dev/null 2>&1; then
+  case $line in
+    '' | *[!0-9]*) ;;
+    *) nvim --server "$nvim_server" --remote-expr "cursor($line, 1)" </dev/null >/dev/null 2>&1 || true ;;
+  esac
+  tmux detach-client >/dev/null 2>&1 || true
+  exit 0
+fi
+
+if [ -n "$nvim_server" ]; then
+  tmux set-option -qu @lazygit-nvim-server
+fi
+
+if [ -n "${TMUX:-}" ]; then
+  session_name=$(tmux display-message -p '#{session_name}')
+  case $session_name in
+    __lazygit_*) exec ~/.dotfiles/bin/lazygit-popup-edit "$file" "$line" ;;
+  esac
+fi
+
+if command -v floaterm >/dev/null 2>&1; then
+  if [ -n "$line" ]; then
+    floaterm "$file" "$line" >/dev/null 2>&1 && exit 0
+  else
+    floaterm "$file" >/dev/null 2>&1 && exit 0
+  fi
+fi
+
+if [ -n "$line" ]; then
+  exec nvim "+$line" -- "$file"
+fi
+exec nvim -- "$file"

@@ -25,7 +25,11 @@ diverged = "↑${ahead_count}↓${behind_count}"
 behind = "↓${count} "
 stashed = ""
 deleted = '✘ '
-use_git_executable = false
+
+# gpt suggesting turning this to true. the untrakced line suppresses the ? but is faster
+# use_git_executable = false
+use_git_executable = true
+untracked = ""
 
 [time]
 disabled = false

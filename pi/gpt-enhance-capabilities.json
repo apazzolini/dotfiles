@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "entries": {
+    "[\"openai\",\"openai-responses\",\"gpt-5.6-sol\",\"https://api.openai.com/v1\"]": {
+      "provider": "openai",
+      "api": "openai-responses",
+      "model": "gpt-5.6-sol",
+      "baseUrl": "https://api.openai.com/v1",
+      "responses": "unsupported",
+      "previousResponseId": "unknown",
+      "updatedAt": "2026-08-27T15:36:37.318Z"
+    },
+    "[\"openai\",\"openai-responses\",\"gpt-5.6-terra\",\"https://api.openai.com/v1\"]": {
+      "provider": "openai",
+      "api": "openai-responses",
+      "model": "gpt-5.6-terra",
+      "baseUrl": "https://api.openai.com/v1",
+      "responses": "supported",
+      "previousResponseId": "unknown",
+      "updatedAt": "2026-08-20T17:16:34.472Z"
+    },
+    "[\"openai\",\"openai-responses\",\"gpt-5.5\",\"https://api.openai.com/v1\"]": {
+      "provider": "openai",
+      "api": "openai-responses",
+      "model": "gpt-5.5",
+      "baseUrl": "https://api.openai.com/v1",
+      "responses": "supported",
+      "previousResponseId": "unknown",
+      "updatedAt": "2026-08-21T19:39:05.627Z"
+    }
+  }
+}

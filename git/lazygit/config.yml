@@ -22,15 +22,15 @@ gui:
 git:
   autoFetch: false
   # autoRefresh: false
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never --24-bit-color=never
+      command: delta --paging=never --24-bit-color=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
       # pager: hunk pager
   log:
     showGraph: never
 os:
-  edit: 'floaterm "{{filename}}" > /dev/null 2>&1 || nvim {{filename}}'
-  editAtLine: 'floaterm "{{filename}}" {{line}} > /dev/null 2>&1 || nvim {{filename}} +{{line}}'
+  edit: '~/.dotfiles/bin/lazygit-edit "{{filename}}"'
+  editAtLine: '~/.dotfiles/bin/lazygit-edit "{{filename}}" "{{line}}"'
   editInTerminal: true
   copyToClipboardCmd: 'echo {{text}} | tr -d "\n" | pbcopy'
 keybinding:
@@ -50,3 +50,19 @@ customCommands:
     description: "Copy markdown diff"
     command: 'printf "\`\`\`diff\n$(git diff --staged)\n\n\`\`\`" | pbcopy'
     context: "files"
+  - key: "Y"
+    description: "Send file location to session"
+    command: '~/.dotfiles/bin/lazygit-send-note {{.SelectedPath | quote}} {{.SelectedLine.Range.From}} {{.SelectedLine.Range.To}} {{.Form.Note | quote}}'
+    context: "staging, stagingSecondary"
+    prompts:
+      - type: "input"
+        key: "Note"
+        title: "Note"
+  - key: "Y"
+    description: "Send commit location to session"
+    command: '~/.dotfiles/bin/lazygit-send-note {{.SelectedPath | quote}} {{.SelectedLine.Range.From}} {{.SelectedLine.Range.To}} {{.Form.Note | quote}} {{.SelectedCommit.Hash | quote}}'
+    context: "patchBuilding"
+    prompts:
+      - type: "input"
+        key: "Note"
+        title: "Note"

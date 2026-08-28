@@ -3,6 +3,7 @@ wt () {
     local root="$1"
     local pool_size="$2"
     local name="$3"
+    local no_tmux="$4"
     local review=0
     local target
     local branch
@@ -72,7 +73,9 @@ wt () {
     _wtn_copy_env "$target"
     (cd "$target" && yarn install) || return
 
-    tmux-sessionizer "$target"
+    if (( ! no_tmux )); then
+      tmux-sessionizer "$target"
+    fi
   }
 
   _wtn_done () {
@@ -82,6 +85,7 @@ wt () {
     local branch
     local slot_idx
     local slot
+    local current_session
 
     tree_path="$(git rev-parse --show-toplevel 2>/dev/null)" || {
       echo "not in a git worktree"
@@ -125,8 +129,9 @@ wt () {
     _wtn_write_slot_marker "$slot" "$slot_idx" || return
     _wtn_copy_env "$slot"
 
-    tmux switch-client -t master
-    tmux kill-session -t "$(tmux display-message -p '#{client_last_session}')"
+    current_session="$(tmux display-message -p '#{session_id}')" || return
+    tmux switch-client -l || return
+    tmux kill-session -t "$current_session"
   }
 
   _wtn_rename () {
@@ -297,10 +302,22 @@ wt () {
 
   local root="${WTN_ROOT:-$HOME/code/web}"
   local pool_size="${WTN_POOL_SIZE:-15}"
-  local name="$1"
+  local no_tmux=0
+  local -a args=()
+  local arg
+
+  for arg in "$@"; do
+    if [[ "$arg" == "--no-tmux" ]]; then
+      no_tmux=1
+    else
+      args+=("$arg")
+    fi
+  done
+
+  local name="$args[1]"
 
   if [[ -z "$name" ]]; then
-    echo "usage: wt <name>|review/<name>|rename <name>|done|init"
+    echo "usage: wt [--no-tmux] <name>|review/<name>|rename <name>|done|init"
     return 1
   fi
 
@@ -315,9 +332,9 @@ wt () {
   fi
 
   if [[ "$name" == "rename" ]]; then
-    _wtn_rename "$root" "$2"
+    _wtn_rename "$root" "$args[2]"
     return
   fi
 
-  _wtn_start "$root" "$pool_size" "$name"
+  _wtn_start "$root" "$pool_size" "$name" "$no_tmux"
 }

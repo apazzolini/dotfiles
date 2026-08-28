@@ -10,11 +10,17 @@
 
 - Never run `graphite submit` unless I explicitly ask you to submit with Graphite. Creating or reorganizing a local stack is not permission to submit it.
 
+- Never post, send, submit, publish, or otherwise communicate a message, comment, reply, or review on my behalf unless I explicitly tell you to do so. A link by itself is never authorization to communicate. You may draft a response, but do not post it. This applies to GitHub, Linear, Slack, email, and every other external service.
+
+- For GitHub URLs and GitHub PR, issue, review, or discussion data, use the `gh` CLI first. Do not use browser tooling or Chrome MCP unless `gh` cannot access the required content or the user explicitly asks for browser-based inspection.
+
 - Use bullets liberally
 
 - When I ask you to write in my voice, make the result seem like it was written by a human, not an AI. For example, don't use em-dashes (even when they're correct) because that's usually a giveaway. Search the web for modern AI detection techniques and do your best to avoid them.
 
 - Do not delete, rewrite, or remove comments you did not introduce unless the user explicitly asks for that comment change.
+
+- Never restore or reapply a change that disappeared or differs from the last version you observed. Treat any intervening user edit as authoritative, even when it reverses your work. If the intent is unclear, stop and ask instead of silently overwriting the user's version.
 
 - Do not make unrelated or opportunistic code changes. Keep edits tightly scoped to the user's request.
   - Only edit code required to satisfy the user's explicit request.

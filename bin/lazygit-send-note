@@ -1,0 +1,47 @@
+#!/bin/sh
+
+if [ "$#" -lt 3 ] || [ -z "${TMUX:-}" ]; then
+  echo "usage: lazygit-send-note <file> <from-line> <to-line> [message] [commit]" >&2
+  exit 1
+fi
+
+file=$1
+from_line=$2
+to_line=${3:-$from_line}
+message=$4
+commit=$5
+
+if [ "$from_line" = "$to_line" ]; then
+  line_location=$from_line
+else
+  line_location=$from_line-$to_line
+fi
+
+if [ -n "$commit" ]; then
+  if ! short_commit=$(git rev-parse --short "$commit" 2>/dev/null); then
+    short_commit=$(printf '%s' "$commit" | cut -c1-8)
+  fi
+  location=$short_commit:$file:$line_location
+else
+  location=$file:$line_location
+fi
+
+source_pane=$(tmux show-options -qv @lazygit-source-pane)
+if [ -z "$source_pane" ]; then
+  echo "no source pane recorded for this lazygit session" >&2
+  exit 1
+fi
+
+if ! tmux list-panes -a -F '#{pane_id}' | grep -Fxq "$source_pane"; then
+  echo "the source pane $source_pane no longer exists" >&2
+  exit 1
+fi
+
+buffer=lazygit-note
+if [ -n "$message" ]; then
+  printf '%s\n%s\n\n' "$location" "$message" | tmux load-buffer -b "$buffer" -
+else
+  printf '%s\n\n' "$location" | tmux load-buffer -b "$buffer" -
+fi
+
+tmux paste-buffer -p -d -b "$buffer" -t "$source_pane"

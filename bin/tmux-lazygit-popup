@@ -1,0 +1,50 @@
+#!/bin/sh
+
+socket=${TMUX%%,*}
+owner_name=$LAZYGIT_POPUP_OWNER_NAME
+source_pane=$LAZYGIT_POPUP_SOURCE_PANE
+session="__lazygit_${owner_name}"
+nvim_server=$(tmux -S "$socket" show-options -pqv -t "$source_pane" @nvim-server)
+
+unset TMUX
+lazygit_pane=
+if ! tmux -S "$socket" has-session -t "$session" 2>/dev/null; then
+  lazygit_pane=$(tmux -S "$socket" new-session -d -P -F '#{pane_id}' -s "$session" -c "$PWD" lazygit -ucf "$HOME/.config/lazygit/config.yml,$HOME/.dotfiles/git/lazygit/popup.yml") ||
+    tmux -S "$socket" has-session -t "$session" || exit 1
+fi
+
+if [ -z "$lazygit_pane" ]; then
+  for pane in $(tmux -S "$socket" list-panes -t "$session" -F '#{pane_id}'); do
+    if [ "$(tmux -S "$socket" show-options -pqv -t "$pane" @lazygit-pane)" = "1" ]; then
+      lazygit_pane=$pane
+      break
+    fi
+  done
+fi
+
+if [ -z "$lazygit_pane" ]; then
+  for pane in $(tmux -S "$socket" list-panes -t "$session" -F '#{pane_id}'); do
+    if [ "$(tmux -S "$socket" display-message -p -t "$pane" '#{pane_current_command}')" = "lazygit" ]; then
+      lazygit_pane=$pane
+      break
+    fi
+  done
+fi
+
+if [ -n "$lazygit_pane" ]; then
+  tmux -S "$socket" set-option -pq -t "$lazygit_pane" @lazygit-pane 1
+fi
+
+if [ -n "$nvim_server" ]; then
+  tmux -S "$socket" set-option -t "$session" @lazygit-nvim-server "$nvim_server"
+else
+  tmux -S "$socket" set-option -qut "$session" @lazygit-nvim-server
+fi
+
+if [ -n "$source_pane" ]; then
+  tmux -S "$socket" set-option -t "$session" @lazygit-source-pane "$source_pane"
+else
+  tmux -S "$socket" set-option -qut "$session" @lazygit-source-pane
+fi
+
+exec tmux -S "$socket" attach-session -t "$session"

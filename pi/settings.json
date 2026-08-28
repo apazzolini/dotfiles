@@ -1,12 +1,11 @@
 {
-  "lastChangelogVersion": "0.83.0",
-  "hideThinkingBlock": false,
+  "lastChangelogVersion": "0.84.2",
+  "hideThinkingBlock": true,
   "defaultThinkingLevel": "high",
-  "defaultProvider": "openai",
-  "defaultModel": "gpt-5.6-sol",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-5",
   "enabledModels": [
     "anthropic/claude-opus-5",
-    "openai/gpt-5.5",
     "openai/gpt-5.6-sol",
     "openai/gpt-5.6-terra",
     "openai/gpt-5.6-luna",
@@ -14,18 +13,22 @@
   ],
   "treeFilterMode": "no-tools",
   "packages": [
-    "npm:pi-mcp-adapter",
-    "npm:@burneikis/pi-fzfp",
     "npm:@ramp/rampi-fable-gateway",
+    "npm:pi-mcp-adapter"
   ],
   "quietStartup": true,
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
+  "steeringMode": "all",
+  "followUpMode": "all",
+  "collapseChangelog": true,
   "theme": "wave",
   "warnings": {
     "anthropicExtraUsage": false
   },
   "npmCommand": [
     "bun"
-  ]
+  ],
+  "fullscreenScrollbar": "always",
+  "tuiMode": "regular"
 }

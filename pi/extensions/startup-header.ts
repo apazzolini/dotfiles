@@ -12,7 +12,7 @@ export default function (pi: ExtensionAPI) {
     ctx.ui.setHeader((_tui, theme) => {
       return {
         render(_width: number): string[] {
-          return [`${theme.bold(theme.fg("mdHeading", "Hello"))}`];
+          return [`${theme.bold(theme.fg("mdHeading", " Hello \n"))}`];
           // return [` ${theme.bold(theme.fg("mdHeading", "pi"))}${theme.fg("dim", ` v${VERSION}`)}`];
         },
         invalidate() {},

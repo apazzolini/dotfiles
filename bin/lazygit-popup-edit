@@ -1,0 +1,124 @@
+#!/bin/sh
+
+if [ "$1" = "--nvim" ]; then
+  runtime_dir=$2
+
+  cleanup() {
+    rm -rf "$runtime_dir"
+  }
+
+  trap cleanup EXIT
+  trap 'exit 1' HUP INT TERM
+
+  LAZYGIT_POPUP_NVIM=1 nvim --listen "$runtime_dir/nvim.sock"
+  exit $?
+fi
+
+if [ "$1" = "--focus-lazygit" ]; then
+  current_pane=${2:-${TMUX_PANE:-}}
+  [ -n "$current_pane" ] || exit 1
+  window_id=$(tmux display-message -p -t "$current_pane" '#{window_id}') || exit 1
+
+  lazygit_pane=
+  for pane in $(tmux list-panes -t "$window_id" -F '#{pane_id}'); do
+    if [ "$(tmux show-options -pqv -t "$pane" @lazygit-pane)" = "1" ]; then
+      lazygit_pane=$pane
+      break
+    fi
+  done
+
+  if [ -z "$lazygit_pane" ]; then
+    for pane in $(tmux list-panes -t "$window_id" -F '#{pane_id}'); do
+      if [ "$(tmux display-message -p -t "$pane" '#{pane_current_command}')" = "lazygit" ]; then
+        lazygit_pane=$pane
+        tmux set-option -pq -t "$pane" @lazygit-pane 1
+        break
+      fi
+    done
+  fi
+
+  [ -n "$lazygit_pane" ] || exit 1
+  tmux select-pane -t "$lazygit_pane"
+  if [ "$(tmux display-message -p -t "$lazygit_pane" '#{window_zoomed_flag}')" != "1" ]; then
+    tmux resize-pane -Z -t "$lazygit_pane"
+  fi
+  exit 0
+fi
+
+if [ "$#" -ne 2 ] || [ -z "${TMUX:-}" ]; then
+  echo "usage: lazygit-popup-edit <file> <line>" >&2
+  exit 1
+fi
+
+file=$1
+line=$2
+current_pane=${TMUX_PANE:-$(tmux display-message -p '#{pane_id}')} || exit 1
+window_id=$(tmux display-message -p -t "$current_pane" '#{window_id}') || exit 1
+tmux set-option -pq -t "$current_pane" @lazygit-pane 1
+
+editor_pane=
+server=
+for pane in $(tmux list-panes -t "$window_id" -F '#{pane_id}'); do
+  if [ "$(tmux show-options -pqv -t "$pane" @lazygit-editor-pane)" = "1" ]; then
+    editor_pane=$pane
+    server=$(tmux show-options -pqv -t "$pane" @lazygit-editor-server)
+    runtime_dir=${server%/*}
+    break
+  fi
+done
+
+if [ -n "$editor_pane" ] && ! nvim --server "$server" --remote-expr '1' >/dev/null 2>&1; then
+  tmux kill-pane -t "$editor_pane" 2>/dev/null || true
+  rm -rf "$runtime_dir"
+  editor_pane=
+  server=
+fi
+
+wait_for_editor=false
+if [ -z "$editor_pane" ]; then
+  tmux_pid=$(tmux display-message -p -t "$current_pane" '#{pid}') || exit 1
+  session_id=$(tmux display-message -p -t "$current_pane" '#{session_id}' | tr -d '$') || exit 1
+  window_number=$(tmux display-message -p -t "$current_pane" '#{window_id}' | tr -d '@') || exit 1
+  runtime_dir=/tmp/lazygit-editor-$tmux_pid-$session_id-$window_number
+  server=$runtime_dir/nvim.sock
+
+  rm -rf "$runtime_dir"
+  mkdir -m 700 "$runtime_dir" || exit 1
+
+  editor_pane=$(tmux split-window -d -v -P -F '#{pane_id}' -t "$current_pane" -c "$PWD" "$0 --nvim $runtime_dir") || exit 1
+  tmux set-option -pq -t "$editor_pane" @lazygit-editor-pane 1
+  tmux set-option -pq -t "$editor_pane" @lazygit-editor-server "$server"
+  wait_for_editor=true
+fi
+
+tmux select-pane -t "$editor_pane"
+if [ "$(tmux display-message -p -t "$editor_pane" '#{window_zoomed_flag}')" != "1" ]; then
+  tmux resize-pane -Z -t "$editor_pane"
+fi
+
+if [ "$wait_for_editor" = "true" ]; then
+  attempts=0
+  until nvim --server "$server" --remote-expr '1' >/dev/null 2>&1; do
+    attempts=$((attempts + 1))
+    if [ "$attempts" -ge 100 ] || ! tmux list-panes -t "$window_id" -F '#{pane_id}' | grep -Fxq "$editor_pane"; then
+      echo "timed out waiting for the lazygit editor" >&2
+      exit 1
+    fi
+    sleep 0.05
+  done
+fi
+
+if ! nvim --server "$server" --remote "$file" >/dev/null 2>&1; then
+  echo "failed to open '$file' in the lazygit editor" >&2
+  exit 1
+fi
+
+case $line in
+  '' | *[!0-9]*) ;;
+  *)
+    if ! nvim --server "$server" --remote-expr "cursor($line, 1)" >/dev/null 2>&1; then
+      echo "failed to move to line $line in the lazygit editor" >&2
+      exit 1
+    fi
+    ;;
+esac

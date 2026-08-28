@@ -1,3 +1,5 @@
 {
-  "app.exit": "ctrl+c"
+  "app.exit": "ctrl+c",
+  "app.editor.external": "ctrl+e",
+  "app.tree.filter.cycleForward": []
 }
