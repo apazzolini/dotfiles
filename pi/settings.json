@@ -16,9 +16,7 @@
   "packages": [
     "npm:pi-mcp-adapter",
     "npm:@burneikis/pi-fzfp",
-    "npm:pi-codex-fast",
     "npm:@ramp/rampi-fable-gateway",
-    "npm:pi-continue"
   ],
   "quietStartup": true,
   "enableInstallTelemetry": false,

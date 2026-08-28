@@ -1,0 +1,8 @@
+{
+  "name": "pi-gpt-enhance-local",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "proper-lockfile": "4.1.2"
+  }
+}
