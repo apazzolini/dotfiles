@@ -37,7 +37,12 @@ if [ "$1" = "--focus-lazygit" ]; then
     done
   fi
 
-  [ -n "$lazygit_pane" ] || exit 1
+  if [ -z "$lazygit_pane" ]; then
+    current_path=$(tmux display-message -p -t "$current_pane" '#{pane_current_path}') || exit 1
+    lazygit_pane=$(tmux split-window -d -v -P -F '#{pane_id}' -t "$current_pane" -c "$current_path" lazygit -ucf "$HOME/.config/lazygit/config.yml,$HOME/.dotfiles/git/lazygit/popup.yml") || exit 1
+    tmux set-option -pq -t "$lazygit_pane" @lazygit-pane 1
+  fi
+
   tmux select-pane -t "$lazygit_pane"
   if [ "$(tmux display-message -p -t "$lazygit_pane" '#{window_zoomed_flag}')" != "1" ]; then
     tmux resize-pane -Z -t "$lazygit_pane"
