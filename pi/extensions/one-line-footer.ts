@@ -1,5 +1,6 @@
+import { isAbsolute, relative, resolve, sep } from "node:path";
 import { VERSION, type ExtensionAPI, type ExtensionContext } from "@earendil-works/pi-coding-agent";
-import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
+import { stripTerminalSequences, truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
 type Usage = {
   input?: number;
@@ -23,13 +24,9 @@ function sanitizeStatusText(text: string): string {
     .trim();
 }
 
-function stripAnsi(text: string): string {
-  return text.replace(/\u001B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])/g, "");
-}
-
 function normalizeStatusText(text: string): string {
   const sanitized = sanitizeStatusText(text);
-  const plain = stripAnsi(sanitized);
+  const plain = stripTerminalSequences(sanitized);
   const mcpServers = /^MCP:\s*(\d+)\/\d+\s+servers?\b/.exec(plain);
 
   if (!mcpServers) {
@@ -68,8 +65,17 @@ function getPwd(ctx: ExtensionContext, branch: string | null): string {
   let pwd = ctx.sessionManager.getCwd();
   const home = process.env.HOME || process.env.USERPROFILE;
 
-  if (home && pwd.startsWith(home)) {
-    pwd = `~${pwd.slice(home.length)}`;
+  if (home) {
+    const relativeToHome = relative(resolve(home), resolve(pwd));
+    const isInsideHome =
+      relativeToHome === "" ||
+      (relativeToHome !== ".." &&
+        !relativeToHome.startsWith(`..${sep}`) &&
+        !isAbsolute(relativeToHome));
+
+    if (isInsideHome) {
+      pwd = relativeToHome === "" ? "~" : `~${sep}${relativeToHome}`;
+    }
   }
 
   if (branch) {
@@ -100,16 +106,17 @@ export default function (pi: ExtensionAPI) {
           let totalCost = 0;
 
           for (const entry of ctx.sessionManager.getEntries()) {
-            if (entry.type !== "message") {
+            if (entry.type === "message") {
+              const message = entry.message as AssistantMessageLike;
+              if (message.role === "assistant" || message.role === "toolResult") {
+                totalCost += message.usage?.cost?.total ?? 0;
+              }
               continue;
             }
 
-            const message = entry.message as AssistantMessageLike;
-            if (message.role !== "assistant" && message.role !== "toolResult") {
-              continue;
+            if (entry.type === "branch_summary" || entry.type === "compaction") {
+              totalCost += entry.usage?.cost.total ?? 0;
             }
-
-            totalCost += message.usage?.cost?.total ?? 0;
           }
 
           const statsParts: string[] = [];
@@ -122,8 +129,8 @@ export default function (pi: ExtensionAPI) {
           const contextWindow = contextUsage?.contextWindow ?? ctx.model?.contextWindow ?? 0;
           const contextPercent = contextUsage?.percent;
           const contextPercentDisplay = contextPercent === null || contextPercent === undefined
-            ? `?/${formatTokens(contextWindow)} (auto)`
-            : `${contextPercent.toFixed(1)}%/${formatTokens(contextWindow)} (auto)`;
+            ? `?/${formatTokens(contextWindow)}`
+            : `${contextPercent.toFixed(1)}%/${formatTokens(contextWindow)}`;
           statsParts.push(contextPercentDisplay);
 
           const compactionCount = ctx.sessionManager
@@ -141,18 +148,21 @@ export default function (pi: ExtensionAPI) {
                 return normalized;
               }
 
-              const compressionStatus = stripAnsi(normalized);
+              const compressionStatus = stripTerminalSequences(normalized);
               return compressionStatus === "COMPACT:ON"
                 ? `${compressionStatus} (${compactionCount})`
                 : compressionStatus;
             })
             .filter(Boolean);
 
-          const left = [
+          const separator = theme.fg("dim", " • ");
+          const leftParts = [
             getPwd(ctx, footerData.getGitBranch()),
             ...statsParts,
             ...statuses,
-          ].filter(Boolean).join(" • ");
+          ].filter(Boolean);
+          const left = leftParts.join(" • ");
+          const styledLeft = leftParts.map((part) => theme.fg("dim", part)).join(separator);
 
           const modelName = ctx.model?.id || "no-model";
           const isLargeContext =
@@ -163,35 +173,41 @@ export default function (pi: ExtensionAPI) {
           const largeContextIndicator = isLargeContext
             ? ` ${theme.fg("error", "[large-context]")}`
             : "";
-          let model = `${modelName}${largeContextIndicator}`;
-          if (ctx.model?.reasoning) {
-            const thinkingLevel = pi.getThinkingLevel();
-            model = thinkingLevel === "off"
-              ? `${modelName}${largeContextIndicator} • thinking off`
-              : `${modelName}${largeContextIndicator} • ${thinkingLevel}`;
+          const thinkingLevel = ctx.model?.reasoning ? pi.getThinkingLevel() : undefined;
+          let thinkingSuffix = "";
+          if (thinkingLevel === "off") {
+            thinkingSuffix = " • thinking off";
+          } else if (thinkingLevel !== undefined) {
+            thinkingSuffix = ` • ${thinkingLevel}`;
           }
-          model = `${model} • pi v${VERSION}`;
-          if (footerData.getAvailableProviderCount() > 1 && ctx.model) {
-            model = `(${ctx.model.provider}) ${model}`;
-          }
+          const providerPrefix = footerData.getAvailableProviderCount() > 1 && ctx.model
+            ? `(${ctx.model.provider}) `
+            : "";
+          const modelPrefix = `${providerPrefix}${modelName}`;
+          const modelSuffix = `${thinkingSuffix} • pi v${VERSION}`;
+          const model = `${modelPrefix}${largeContextIndicator}${modelSuffix}`;
+          const styledModel =
+            theme.fg("dim", modelPrefix) +
+            largeContextIndicator +
+            theme.fg("dim", modelSuffix);
 
           const minPadding = 2;
           const modelWidth = visibleWidth(model);
           const leftWidth = visibleWidth(left);
 
           if (leftWidth + minPadding + modelWidth <= width) {
-            const padding = " ".repeat(width - leftWidth - modelWidth);
-            return [theme.fg("dim", left + padding + model)];
+            const padding = theme.fg("dim", " ".repeat(width - leftWidth - modelWidth));
+            return [styledLeft + padding + styledModel];
           }
 
           const availableForLeft = width - modelWidth - minPadding;
           if (availableForLeft > 10) {
-            const truncatedLeft = truncateToWidth(left, availableForLeft, "...");
-            const padding = " ".repeat(Math.max(minPadding, width - visibleWidth(truncatedLeft) - modelWidth));
-            return [theme.fg("dim", truncatedLeft + padding + model)];
+            const truncatedLeft = truncateToWidth(styledLeft, availableForLeft, theme.fg("dim", "..."));
+            const padding = theme.fg("dim", " ".repeat(Math.max(minPadding, width - visibleWidth(truncatedLeft) - modelWidth)));
+            return [truncatedLeft + padding + styledModel];
           }
 
-          return [theme.fg("dim", truncateToWidth(`${left}  ${model}`, width, "..."))];
+          return [truncateToWidth(`${styledLeft}${theme.fg("dim", "  ")}${styledModel}`, width, theme.fg("dim", "..."))];
         },
       };
     });
