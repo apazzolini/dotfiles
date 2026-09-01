@@ -121,13 +121,6 @@ return {
       extensions = {
         'quickfix',
         'neo-tree',
-        {
-          filetypes = { 'fugitive' },
-          sections = {
-            lualine_a = { 'FugitiveHead' },
-            lualine_z = { 'location' },
-          },
-        },
       },
     })
   end,

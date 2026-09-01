@@ -1,22 +1,27 @@
 return {
   {
-    'tpope/vim-fugitive',
-    config = function()
-      vim.keymap.set('n', '<leader>gL', ':Gclog -- %<cr>')
-      vim.keymap.set('n', '<leader>gb', ':Git blame<cr>')
-    end,
-  },
-  {
     'ruifm/gitlinker.nvim',
     config = function()
       require('gitlinker').setup({})
     end,
   },
   {
-    'sindrets/diffview.nvim',
-    config = function()
-      require('diffview').setup({})
-    end,
+    'NeogitOrg/neogit',
+    cmd = 'Neogit',
+    dependencies = {
+      'esmuellert/codediff.nvim',
+    },
+    keys = {
+      { '<leader>G', '<cmd>Neogit<cr>', desc = 'Open Neogit' },
+    },
+    opts = {
+      integrations = {
+        codediff = false,
+        diffview = false,
+        telescope = false,
+        fzf_lua = true,
+      },
+    },
   },
   {
     'lewis6991/gitsigns.nvim',
@@ -70,6 +75,7 @@ return {
           col = 1,
         },
       })
+      vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns blame<cr>')
     end,
   },
 }
