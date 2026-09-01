@@ -19,3 +19,5 @@ docker/docker.symlink/daemon.json
 docker/docker.symlink/.buildNodeID
 server.pem
 zsh/plugins
+/pi/run-history.jsonl
+/pi/missions

@@ -1,9 +1,9 @@
 {
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.84.4",
   "hideThinkingBlock": true,
   "defaultThinkingLevel": "high",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-5",
+  "defaultProvider": "openai",
+  "defaultModel": "gpt-5.6-sol",
   "enabledModels": [
     "anthropic/claude-opus-5",
     "openai/gpt-5.6-sol",
@@ -14,8 +14,19 @@
   "treeFilterMode": "no-tools",
   "packages": [
     "npm:@ramp/rampi-fable-gateway",
-    "npm:pi-mcp-adapter"
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents"
   ],
+  "subagents": {
+    "agentOverrides": {
+      "codex-exec": { "disabled": true },
+      "codex-exec-writer": { "disabled": true },
+      "claude-code": { "disabled": true },
+      "claude-code-writer": { "disabled": true },
+      "cursor-agent": { "disabled": true },
+      "cursor-agent-writer": { "disabled": true }
+    }
+  },
   "quietStartup": true,
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
