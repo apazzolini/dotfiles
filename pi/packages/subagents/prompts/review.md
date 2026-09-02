@@ -10,9 +10,9 @@ Review the current changes for concrete defects.
 ## Execution
 
 - Unless the user explicitly asks for a direct, current-session, or no-subagent review, delegate exactly one review to a fresh-context `reviewer` subagent.
-- Launch the reviewer asynchronously and present its report when it completes.
-- Give the reviewer a self-contained task containing the effective scope and the review criteria below. Do not assume it can see the parent conversation.
-- If this session is already a subagent or the `subagent` tool is unavailable, perform the review directly instead of delegating again.
+- Give the child this literal slash task so it expands and executes this same review guide directly: `/review $ARGUMENTS`.
+- Wait for the child to settle, then present its report. Do not add findings the child did not report unless narrow verification is required to reject or clarify one.
+- If this session is already a child or the `subagent` tool is unavailable, perform the review directly.
 
 ## Scope
 
@@ -23,7 +23,7 @@ Review the current changes for concrete defects.
 - Prefer the smallest correct fix. Do not request unrelated architecture or cleanup work.
 - Treat comments and TODOs as evidence of intent, not automatic justification for defective behavior.
 
-## Review Criteria
+## Review criteria
 
 Check whether the change:
 

@@ -35,3 +35,5 @@
 - Avoid indexed-access types like `Foo['bar']['baz']` when a clearer named type exists. Before adding one, recursively check whether the sub-property already has a named type or whether a small local type alias would make the code clearer.
 
 - Do not create small helper functions used in only one place. Inline the logic unless it materially improves clarity or is needed for reuse.
+
+- Never commit or push changes unless explicitly asked. Treat requests to address review comments or update a PR as authorization for local changes only.

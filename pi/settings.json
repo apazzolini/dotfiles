@@ -15,31 +15,9 @@
   "packages": [
     "npm:@ramp/rampi-fable-gateway",
     "npm:pi-mcp-adapter",
-    "npm:pi-subagents",
+    "./packages/subagents",
     "npm:@ian-pascoe/pi-codemode"
   ],
-  "subagents": {
-    "agentOverrides": {
-      "codex-exec": {
-        "disabled": true
-      },
-      "codex-exec-writer": {
-        "disabled": true
-      },
-      "claude-code": {
-        "disabled": true
-      },
-      "claude-code-writer": {
-        "disabled": true
-      },
-      "cursor-agent": {
-        "disabled": true
-      },
-      "cursor-agent-writer": {
-        "disabled": true
-      }
-    }
-  },
   "quietStartup": true,
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
