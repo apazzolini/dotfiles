@@ -15,6 +15,14 @@ function env_setup {
   link git/gitignore ~/.gitignore
   mkdir -p ~/.config/lazygit
   link git/lazygit/config.yml ~/.config/lazygit/
+  mkdir -p ~/.config/bat
+  link bat/config ~/.config/bat/config
+  link bat/themes ~/.config/bat/themes
+  if command -v bat > /dev/null 2>&1; then
+    bat cache --build
+  elif command -v batcat > /dev/null 2>&1; then
+    batcat cache --build
+  fi
   mkdir -p ~/.config/jj
   link git/jujutsu/jj.toml ~/.config/jj/config.toml
   mkdir -p ~/.config/jjui

@@ -14,6 +14,8 @@ brew install coreutils
 brew install fzf
 brew install git
 brew install git-delta
+brew install bat
+bat cache --build
 brew install htop
 brew install ripgrep
 brew install tmux

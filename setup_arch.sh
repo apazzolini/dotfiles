@@ -20,7 +20,8 @@ sudo chsh andre -s /usr/bin/zsh
 #fi
 
 sudo pacman -S --noconfirm base-devel cmake python go
-sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta unzip wget fd starship lazygit jq zoxide
+sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta bat unzip wget fd starship lazygit jq zoxide
+bat cache --build
 
 # Node
 #curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts

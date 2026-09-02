@@ -24,7 +24,7 @@ git:
   # autoRefresh: false
   diffRenderers:
     - colorArg: always
-      command: delta --paging=never --24-bit-color=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+      command: delta --paging=never --syntax-theme=wave --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
       # pager: hunk pager
   log:
     showGraph: never

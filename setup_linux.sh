@@ -6,7 +6,7 @@ set -o nounset
 set -o pipefail
 
 sudo apt update
-sudo apt install zsh keychain ripgrep fzf git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl golang htop man tmux wget -y
+sudo apt install zsh keychain ripgrep fzf git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl golang htop man tmux wget bat -y
 
 cd ~/.dotfiles
 ./link.sh
