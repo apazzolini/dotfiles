@@ -12,7 +12,9 @@
 
 - Never post, send, submit, publish, or otherwise communicate a message, comment, reply, or review on my behalf unless I explicitly tell you to do so. A link by itself is never authorization to communicate. You may draft a response, but do not post it. This applies to GitHub, Linear, Slack, email, and every other external service.
 
-- For GitHub URLs and GitHub PR, issue, review, or discussion data, use the `gh` CLI first. Do not use browser tooling or Chrome MCP unless `gh` cannot access the required content or the user explicitly asks for browser-based inspection.
+- Never use Chrome MCP tools (including `chrome-devtools`) unless I explicitly tell you to use them. This applies even when other tools cannot access the required content.
+
+- For GitHub URLs and GitHub PR, issue, review, or discussion data, use the `gh` CLI first. Do not use other browser tooling unless `gh` cannot access the required content or the user explicitly asks for browser-based inspection. Chrome MCP still requires explicit authorization as stated above.
 
 - Use bullets liberally
 
