@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+root="${WTN_ROOT:-$HOME/code/web}"
+name="$1"
+
+if [[ "$name" == "rename" ]]; then
+  tree_path="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+    echo "not in a git worktree"
+    exit 1
+  }
+  old_session="${${tree_path:t}//./_}"
+fi
+
+"${0:A:h}/wt" "$@" || exit $?
+
+case "$name" in
+  init)
+    ;;
+  done)
+    current_session="$(tmux display-message -p '#{session_id}')" || exit $?
+    tmux switch-client -l || exit $?
+    tmux kill-session -t "$current_session"
+    ;;
+  rename)
+    new_session="${2//./_}"
+    tmux-sessionizer "$root/$2" || exit $?
+    if [[ "$old_session" != "$new_session" ]]; then
+      tmux kill-session -t "$old_session" 2>/dev/null
+    fi
+    ;;
+  *)
+    if [[ "$name" == review/* ]]; then
+      name="review-${name#review/}"
+    fi
+    tmux-sessionizer "$root/$name"
+    ;;
+esac

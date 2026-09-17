@@ -1,9 +1,11 @@
+#!/usr/bin/env zsh
+
 wt () {
+  # Agents must never use review/<name> mode. It is reserved for manual use.
   _wtn_start () {
     local root="$1"
     local pool_size="$2"
     local name="$3"
-    local no_tmux="$4"
     local review=0
     local target
     local branch
@@ -72,10 +74,6 @@ wt () {
 
     _wtn_copy_env "$target"
     (cd "$target" && yarn install) || return
-
-    if (( ! no_tmux )); then
-      tmux-sessionizer "$target"
-    fi
   }
 
   _wtn_done () {
@@ -85,7 +83,6 @@ wt () {
     local branch
     local slot_idx
     local slot
-    local current_session
 
     tree_path="$(git rev-parse --show-toplevel 2>/dev/null)" || {
       echo "not in a git worktree"
@@ -128,10 +125,6 @@ wt () {
     git -C "$root" worktree move "$tree_path" "$slot" || return
     _wtn_write_slot_marker "$slot" "$slot_idx" || return
     _wtn_copy_env "$slot"
-
-    current_session="$(tmux display-message -p '#{session_id}')" || return
-    tmux switch-client -l || return
-    tmux kill-session -t "$current_session"
   }
 
   _wtn_rename () {
@@ -141,8 +134,6 @@ wt () {
     local new_target
     local new_branch
     local old_branch
-    local old_session
-    local new_session
 
     if [[ -z "$new_name" ]]; then
       echo "usage: wt rename <name>"
@@ -178,8 +169,6 @@ wt () {
 
     new_branch="andre/$new_name"
     old_branch="$(git -C "$tree_path" symbolic-ref --quiet --short HEAD 2>/dev/null)"
-    old_session="${${tree_path:t}//./_}"
-    new_session="${new_name//./_}"
 
     if [[ -n "$old_branch" && "$old_branch" != "master" ]]; then
       if ! git -C "$tree_path" check-ref-format --branch "$new_branch" >/dev/null 2>&1; then
@@ -196,11 +185,6 @@ wt () {
       git -C "$new_target" config "branch.$new_branch.merge" "refs/heads/$new_branch"
     fi
 
-    tmux-sessionizer "$new_target"
-
-    if [[ "$old_session" != "$new_session" ]]; then
-      tmux kill-session -t "$old_session" 2>/dev/null
-    fi
   }
 
   _wtn_init_pool () {
@@ -302,22 +286,20 @@ wt () {
 
   local root="${WTN_ROOT:-$HOME/code/web}"
   local pool_size="${WTN_POOL_SIZE:-15}"
-  local no_tmux=0
-  local -a args=()
   local arg
 
   for arg in "$@"; do
     if [[ "$arg" == "--no-tmux" ]]; then
-      no_tmux=1
-    else
-      args+=("$arg")
+      echo "--no-tmux is no longer supported; use wt to create without attaching or wta to create and attach"
+      return 1
     fi
   done
 
-  local name="$args[1]"
+  local name="$1"
 
   if [[ -z "$name" ]]; then
-    echo "usage: wt [--no-tmux] <name>|review/<name>|rename <name>|done|init"
+    echo "usage: wt <name>|review/<name>|rename <name>|done|init"
+    echo "Agents must never use review/<name> mode. It is reserved for manual use."
     return 1
   fi
 
@@ -332,9 +314,11 @@ wt () {
   fi
 
   if [[ "$name" == "rename" ]]; then
-    _wtn_rename "$root" "$args[2]"
+    _wtn_rename "$root" "$2"
     return
   fi
 
-  _wtn_start "$root" "$pool_size" "$name" "$no_tmux"
+  _wtn_start "$root" "$pool_size" "$name"
 }
+
+wt "$@"

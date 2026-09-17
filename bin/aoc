@@ -1,3 +1,7 @@
+#!/usr/bin/env zsh
+
 aoc () {
   nvim -O "src/2021/day$1/day$1.js" "src/2021/day$1/day$1.test.js"
 }
+
+aoc "$@"

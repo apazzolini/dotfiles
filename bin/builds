@@ -1,6 +1,10 @@
+#!/usr/bin/env zsh
+
 function builds() {
   echo "### Staging"
   gcloud builds list --ongoing --project dopplerhq-staging
   echo "\n### Production"
   gcloud builds list --ongoing --project dopplerhq
 }
+
+builds "$@"
