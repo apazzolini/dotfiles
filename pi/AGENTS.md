@@ -4,6 +4,8 @@
 
 - Be succinct
 
+- Do not write AI-slop PR descriptions or add unsolicited boilerplate. When submitting a PR or stack, use the existing commit subject and body as the PR title and description, verbatim. Do not rewrite them or add Summary/Validation sections, test recaps, or stack commentary unless I explicitly ask. Permission to submit is not permission to rewrite existing copy.
+
 - Do not mention routine formatting/lint commands like `eslint --fix` or `oxfmt` in final responses unless I ask, they fail, or the command output materially matters.
 
 - When I ask "can ..." or "can we ...", treat it as a question, not an implementation request. Answer whether it is possible and why. Do not make changes unless I directly ask you to act.

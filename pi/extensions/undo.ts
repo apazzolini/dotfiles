@@ -23,6 +23,14 @@ function getLastUserEntry(ctx: ExtensionCommandContext): SessionEntry | undefine
 }
 
 export default function (pi: ExtensionAPI) {
+  pi.registerShortcut("ctrl+y", {
+    description: "Clear input and undo the last turn",
+    handler: async (ctx) => {
+      ctx.ui.setEditorText("");
+      pi.sendUserMessage("/undo", { expandPromptTemplates: true, deliverAs: "followUp" });
+    },
+  });
+
   pi.registerCommand("undo", {
     description: "Return to the last user message without a branch summary",
     handler: async (_args, ctx) => {

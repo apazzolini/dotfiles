@@ -1,5 +1,6 @@
 {
   "app.exit": "ctrl+c",
   "app.editor.external": "ctrl+e",
-  "app.tree.filter.cycleForward": []
+  "app.tree.filter.cycleForward": [],
+  "tui.editor.yank": []
 }

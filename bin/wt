@@ -1,6 +1,50 @@
 #!/usr/bin/env zsh
 
 wt () {
+  if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+    cat <<'EOF'
+Usage: wt <name>|rename <name>|done|init|--help
+
+Commands:
+  <name>         Claim a pooled worktree at $WTN_ROOT/<name>, create
+                 andre/<name> from origin/master, configure tracking of
+                 origin/andre/<name>, copy environment defaults, and run
+                 yarn install. Initializes the pool if no slots are available.
+                 Does not push or attach tmux. Run git push when ready to
+                 create the remote branch.
+  rename <name>  From the current worktree, move it to $WTN_ROOT/<name>.
+                 Rename its branch to andre/<name> unless detached or on
+                 master, and update its origin tracking config. Does not
+                 push the renamed branch or delete the old remote branch.
+  done           From the current managed worktree, discard tracked changes
+                 and untracked files/directories (excluding ignored files),
+                 reset to origin/master, delete the local branch (except
+                 master), and return the worktree to its pool slot.
+                 In tmux, switch to the previous session and kill the current
+                 session after successful cleanup, including all its panes.
+  init           Create missing pool slots and reset existing pool slots to
+                 origin/master, discarding tracked and non-ignored untracked
+                 changes. Leave claimed slots alone.
+  --help, -h     Show this help without changing anything.
+
+Environment:
+  WTN_ROOT       Worktree parent/repository root (default: $HOME/code/web).
+  WTN_POOL_SIZE  Number of pool slots (default: 15).
+
+Agent usage:
+  Only create worktrees or push branches when explicitly authorized.
+  Agents must never use review/<name> mode. It is reserved for manual use.
+  Names cannot contain / or match open<number>; command names are reserved.
+  Run rename and done from inside the target worktree.
+  Creation and rename do not change the caller's working directory; cd to
+  the resulting path explicitly. Use wt, not wta, for non-attaching creation.
+  done and init are destructive and do not prompt. Preserve needed work first.
+  done does not merge changes or delete the remote branch.
+  Commands use the local origin/master ref; they do not fetch updates.
+EOF
+    return 0
+  fi
+
   # Agents must never use review/<name> mode. It is reserved for manual use.
   _wtn_start () {
     local root="$1"
@@ -68,7 +112,8 @@ wt () {
 
     if (( ! review )); then
       git -C "$target" checkout --no-track -B "$branch" origin/master || return
-      git -C "$target" push --set-upstream origin "$branch" || return
+      git -C "$target" config "branch.$branch.remote" origin || return
+      git -C "$target" config "branch.$branch.merge" "refs/heads/$branch" || return
       git -C "$target" reset --hard origin/master || return
     fi
 
@@ -298,7 +343,7 @@ wt () {
   local name="$1"
 
   if [[ -z "$name" ]]; then
-    echo "usage: wt <name>|review/<name>|rename <name>|done|init"
+    echo "usage: wt <name>|review/<name>|rename <name>|done|init|--help"
     echo "Agents must never use review/<name> mode. It is reserved for manual use."
     return 1
   fi
@@ -309,7 +354,13 @@ wt () {
   fi
 
   if [[ "$name" == "done" ]]; then
-    _wtn_done "$root"
+    _wtn_done "$root" || return
+    if [[ -n "$TMUX" ]]; then
+      local current_session
+      current_session="$(tmux display-message -p '#{session_id}')" || return
+      tmux switch-client -l || return
+      tmux kill-session -t "$current_session"
+    fi
     return
   fi
 

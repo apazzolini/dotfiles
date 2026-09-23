@@ -17,6 +17,7 @@ case "$name" in
   init)
     ;;
   done)
+    [[ -n "$TMUX" ]] && exit 0
     current_session="$(tmux display-message -p '#{session_id}')" || exit $?
     tmux switch-client -l || exit $?
     tmux kill-session -t "$current_session"
