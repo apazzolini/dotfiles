@@ -63,7 +63,7 @@ obj._pressed = {
 
 local function setMarginsForScreen(screen)
   local frame = screen:frame()
-  if frame.w > 2000 then
+  if frame.w > 2000 or frame.w == 1440 then
     hs.grid.MARGINX = 8
     hs.grid.MARGINY = 8
   else

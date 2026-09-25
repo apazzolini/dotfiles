@@ -14,7 +14,7 @@ if [[ `hostname` = G16JTXJGPY ]]; then
   alias notes='IS_NOTES=1 nvim -O "/Users/andre.azzolini/code/notes/log.md"'
 else
   alias dl='docker compose -f /apps/docker-compose.yml'
-  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/com~apple~CloudDocs/Wiki/personal/scratch.md"'
+  alias notes='IS_NOTES=1 nvim -O "/Users/andre/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal/scratch.md"'
 fi
 
 # ls aliases

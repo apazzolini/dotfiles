@@ -3,7 +3,7 @@
 function link {
   src="$HOME/.dotfiles/$1"
   dst="$2"
-  ln -sfv "$src" "$dst"
+  ln -sfnv "$src" "$dst"
 }
 
 function env_setup {
