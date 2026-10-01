@@ -8,29 +8,30 @@ case $file in
   *) file="$PWD/$file" ;;
 esac
 
-nvim_server=
 if [ -n "${TMUX:-}" ]; then
-  nvim_server=$(tmux show-options -qv @lazygit-nvim-server)
-fi
-
-if [ -n "$nvim_server" ] && nvim --server "$nvim_server" --remote "$file" </dev/null >/dev/null 2>&1; then
+  editor_pane=$("$(dirname "$0")/tmux-program-pane" nvim focus) || exit 1
+  attempts=0
+  while :; do
+    server=$(tmux show-options -pqv -t "$editor_pane" @nvim-server) || exit 1
+    if [ -n "$server" ] && nvim --server "$server" --remote-expr '1' </dev/null >/dev/null 2>&1; then
+      break
+    fi
+    attempts=$((attempts + 1))
+    if [ "$attempts" -ge 600 ] || [ "$(tmux display-message -p -t "$editor_pane" '#{pane_dead}')" = 1 ]; then
+      echo "timed out waiting for Neovim in pane $editor_pane" >&2
+      exit 1
+    fi
+    sleep 0.05
+  done
+  if ! nvim --server "$server" --remote "$file" </dev/null >/dev/null 2>&1; then
+    echo "failed to open '$file' in Neovim" >&2
+    exit 1
+  fi
   case $line in
     '' | *[!0-9]*) ;;
-    *) nvim --server "$nvim_server" --remote-expr "cursor($line, 1)" </dev/null >/dev/null 2>&1 || true ;;
+    *) nvim --server "$server" --remote-expr "cursor($line, 1)" </dev/null >/dev/null 2>&1 || exit 1 ;;
   esac
-  tmux detach-client >/dev/null 2>&1 || true
   exit 0
-fi
-
-if [ -n "$nvim_server" ]; then
-  tmux set-option -qu @lazygit-nvim-server
-fi
-
-if [ -n "${TMUX:-}" ]; then
-  session_name=$(tmux display-message -p '#{session_name}')
-  case $session_name in
-    __lazygit_*) exec ~/.dotfiles/bin/lazygit-popup-edit "$file" "$line" ;;
-  esac
 fi
 
 if command -v floaterm >/dev/null 2>&1; then

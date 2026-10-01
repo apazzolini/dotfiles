@@ -51,7 +51,7 @@ customCommands:
     command: 'printf "\`\`\`diff\n$(git diff --staged)\n\n\`\`\`" | pbcopy'
     context: "files"
   - key: "Y"
-    description: "Send file location to session"
+    description: "Send file location to pi"
     command: '~/.dotfiles/bin/lazygit-send-note {{.SelectedPath | quote}} {{.SelectedLine.Range.From}} {{.SelectedLine.Range.To}} {{.Form.Note | quote}}'
     context: "staging, stagingSecondary"
     prompts:
@@ -59,7 +59,7 @@ customCommands:
         key: "Note"
         title: "Note"
   - key: "Y"
-    description: "Send commit location to session"
+    description: "Send commit location to pi"
     command: '~/.dotfiles/bin/lazygit-send-note {{.SelectedPath | quote}} {{.SelectedLine.Range.From}} {{.SelectedLine.Range.To}} {{.Form.Note | quote}} {{.SelectedCommit.Hash | quote}}'
     context: "patchBuilding"
     prompts:

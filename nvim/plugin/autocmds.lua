@@ -19,4 +19,3 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'VimResized' }, { command = ':wincmd =' })
-vim.api.nvim_create_autocmd({ 'VimResized' }, { command = 'FloatermUpdate' })
