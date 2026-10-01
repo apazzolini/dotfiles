@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "0.99.2",
   "hideThinkingBlock": true,
   "defaultThinkingLevel": "medium",
   "defaultProvider": "openai",
@@ -11,7 +11,6 @@
   ],
   "treeFilterMode": "no-tools",
   "packages": [
-    "npm:pi-mcp-adapter",
     "./packages/subagents"
   ],
   "quietStartup": true,

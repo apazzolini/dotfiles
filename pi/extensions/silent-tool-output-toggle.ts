@@ -28,6 +28,10 @@ type ToolExecutionInternals = {
   result?: ToolResult;
   toolCallId: string;
   toolName: string;
+  toolDefinition?: {
+    label?: string;
+    namespace?: { name: string };
+  };
   ui: {
     requestRender(): void;
   };
@@ -220,6 +224,30 @@ function formatToolCall(tool: ToolExecutionInternals): { icon: string; label: st
     return { icon: "→", label: "List", detail: ` ${path ?? "."}${count}` };
   }
 
+  if (tool.toolDefinition?.namespace?.name.startsWith("mcp__")) {
+    const target = clean(tool.toolDefinition.label) ?? tool.toolName;
+    return { icon: "→", label: "MCP", detail: ` ${target}` };
+  }
+
+  const nativeMcp = /^mcp__(.+?)__(.+)$/.exec(tool.toolName.split(".").at(-1) ?? tool.toolName);
+  if (nativeMcp) {
+    return { icon: "→", label: "MCP", detail: ` ${nativeMcp[1]}.${nativeMcp[2]}` };
+  }
+
+  if (["list_mcp_resources", "list_mcp_resource_templates", "read_mcp_resource"].includes(normalizedName)) {
+    const server = clean(args?.server);
+    const target = server ? `${server}.${normalizedName}` : normalizedName;
+    return { icon: "→", label: "MCP", detail: ` ${target}` };
+  }
+
+  if (normalizedName === "codemode") {
+    return { icon: "→", label: "Codemode", detail: "" };
+  }
+
+  if (normalizedName === "tool_search") {
+    return { icon: "*", label: "Tool search", detail: ` ${clean(args?.query) ?? "…"}` };
+  }
+
   if (normalizedName === "mcp") {
     const server = clean(args?.server);
     const remoteTool = clean(args?.tool);
@@ -374,6 +402,10 @@ export default function (pi: ExtensionAPI) {
   });
 
   pi.on("tool_execution_start", (event) => {
+    if (event.parentToolCallId) {
+      return;
+    }
+
     activeToolCallIds.add(event.toolCallId);
     latestActiveToolCallId = event.toolCallId;
     aggregateActiveToolCalls = false;

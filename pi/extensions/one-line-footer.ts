@@ -155,6 +155,16 @@ export default function (pi: ExtensionAPI) {
             })
             .filter(Boolean);
 
+          if (!statuses.some((status) => /^MCP:/.test(stripTerminalSequences(status)))) {
+            const mcpTools = pi.getAllTools().filter(
+              (tool) => tool.namespace?.name.startsWith("mcp__") && tool.exposure !== "hidden",
+            );
+            const mcpServers = new Set(mcpTools.map((tool) => tool.namespace?.name));
+            if (mcpTools.length > 0) {
+              statuses.push(`MCP: ${mcpServers.size} servers, ${mcpTools.length} tools`);
+            }
+          }
+
           const separator = theme.fg("dim", " • ");
           const leftParts = [
             getPwd(ctx, footerData.getGitBranch()),
