@@ -125,6 +125,48 @@ return {
 
       tailwindcss = {
         single_file_support = false,
+        root_dir = function(bufnr, on_dir)
+          local markers = vim.fs.find({
+            'tailwind.config.js',
+            'tailwind.config.cjs',
+            'tailwind.config.mjs',
+            'tailwind.config.ts',
+            'tailwind.config.cts',
+            'tailwind.config.mts',
+            'package.json',
+          }, {
+            path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+            upward = true,
+            type = 'file',
+            limit = math.huge,
+          })
+          for _, marker in ipairs(markers) do
+            if vim.fs.basename(marker) ~= 'package.json' then
+              on_dir(vim.fs.dirname(marker))
+              return
+            end
+            local ok, package = pcall(function()
+              return vim.json.decode(table.concat(vim.fn.readfile(marker), '\n'))
+            end)
+            if ok and type(package) == 'table' then
+              for _, field in ipairs({ 'dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies' }) do
+                if type(package[field]) == 'table' and package[field].tailwindcss then
+                  on_dir(vim.fs.dirname(marker))
+                  return
+                end
+              end
+            end
+          end
+        end,
+        capabilities = {
+          workspace = {
+            didChangeWatchedFiles = {
+              -- Without inotifywait, Neovim's Linux watcher scans the entire repo on the main thread.
+              -- Let Tailwind use its own watcher instead.
+              dynamicRegistration = vim.fn.has('linux') ~= 1 or vim.fn.executable('inotifywait') == 1,
+            },
+          },
+        },
         settings = {
           tailwindCSS = {
             experimental = {

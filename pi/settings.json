@@ -2,11 +2,11 @@
   "lastChangelogVersion": "0.87.1",
   "hideThinkingBlock": true,
   "defaultThinkingLevel": "medium",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-5-5",
+  "defaultProvider": "openai",
+  "defaultModel": "gpt-6.1-sol",
   "enabledModels": [
     "anthropic/claude-opus-5-5",
-    "openai/gpt-6-sol",
+    "openai/gpt-6.1-sol",
     "openai/gpt-6-astra"
   ],
   "treeFilterMode": "no-tools",
