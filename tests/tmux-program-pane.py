@@ -148,6 +148,53 @@ setInterval(() => {}, 1000);
         self.program("lazygit", source=second)
         self.assert_state(self.source, 0)
 
+    def test_wrapper_editor_precedes_later_direct_editor(self):
+        wrapper = self.split("/bin/sh -c 'nvim; sleep 60'")
+        direct = self.split("nvim", target=wrapper)
+        self.wait(lambda: self.tmux("show-options", "-pqv", "-t", wrapper, "@nvim-server") != "")
+        self.wait_program(direct, "nvim")
+        self.assertEqual(self.format(wrapper, "#{pane_current_command}"), "sh")
+        self.assertEqual(self.program("nvim", "ensure"), wrapper)
+        self.assertEqual(len(self.panes()), 3)
+
+    def test_zoomed_return_batches_updates_without_process_scan(self):
+        lazygit = self.program("lazygit")
+        self.wait_program(lazygit, "lazygit")
+        editor = self.program("nvim", source=lazygit)
+        self.wait_program(editor, "nvim")
+        traced = self.cwd / "traced-bin"
+        traced.mkdir()
+        log = self.cwd / "operations.jsonl"
+        for command in ("tmux", "ps"):
+            executable = traced / command
+            real = shutil.which(command)
+            executable.write_text(f"""#!{shutil.which('python3')}
+import json
+import os
+import sys
+with open({str(log)!r}, 'a') as output:
+    output.write(json.dumps([{command!r}, *sys.argv[1:]]) + '\\n')
+os.execv({real!r}, [{real!r}, *sys.argv[1:]])
+""")
+            executable.chmod(0o755)
+        self.test_env["PATH"] = str(traced) + ":" + self.test_env["PATH"]
+        self.assertEqual(self.program("nvim", source=editor), lazygit)
+        operations = [json.loads(line) for line in log.read_text().splitlines()]
+        self.assertEqual([operation[0] for operation in operations], ["tmux", "tmux", "tmux"])
+        self.assertEqual(operations[-1][1:], ["select-pane", "-Z", "-t", lazygit])
+        self.assert_state(lazygit, 1)
+        log.write_text("")
+        self.assertEqual(self.program("nvim", source=lazygit), editor)
+        operations = [json.loads(line) for line in log.read_text().splitlines()]
+        scans = [operation for operation in operations if operation[0] == "ps"]
+        self.assertTrue(scans)
+        self.assertTrue(all(operation[1] == "-t" for operation in scans))
+        self.assertEqual(len([operation for operation in operations if operation[0] == "tmux"]), 3)
+        self.assertNotIn("resize-pane", operations[-1])
+        self.assertIn("select-pane", operations[-1])
+        self.assertIn("-Z", operations[-1])
+        self.assert_state(editor, 1)
+
     def test_existing_editor_reused_by_lowest_pane_index(self):
         earlier = self.split("nvim")
         later = self.split("nvim")

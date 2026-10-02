@@ -14,30 +14,34 @@ case $action in
   *) echo "unknown pane action: $action" >&2; exit 1 ;;
 esac
 [ -n "$source_pane" ] || source_pane=$(tmux display-message -p '#{pane_id}')
-window=$(tmux display-message -p -t "$source_pane" '#{window_id}')
-zoomed=$(tmux display-message -p -t "$source_pane" '#{window_zoomed_flag}')
-panes=$(tmux list-panes -t "$window" -F '#{pane_index} #{pane_id} #{pane_pid} #{pane_dead} #{pane_current_command}' | sort -n)
-processes=$(ps -axo pid=,ppid=,comm=,args=)
+state=$(tmux display-message -p -t "$source_pane" '#{window_id} #{window_zoomed_flag} #{pane_pid} #{pane_dead} #{pane_current_command} #{pane_tty} #{@program-return-pane} #{@program-return-zoom}')
+read -r window zoomed source_pid source_dead source_command source_tty return_pane return_zoom <<EOF
+$state
+EOF
+panes=$(tmux list-panes -t "$window" -F '#{pane_index} #{pane_id} #{pane_pid} #{pane_dead} #{pane_current_command} #{pane_tty}' | sort -n)
+pi_resolved=false
 pi_command=
 pi_entrypoint=
-if [ "$program" = pi ]; then
-  pi_command=$(command -v pi || true)
-  pi_entrypoint=$pi_command
-  if [ -n "$pi_entrypoint" ]; then
-    while link=$(readlink "$pi_entrypoint" 2>/dev/null); do
-      case $link in
-        /*) pi_entrypoint=$link ;;
-        *) pi_entrypoint="$(dirname "$pi_entrypoint")/$link" ;;
-      esac
-    done
-    pi_entrypoint=$(cd -P "$(dirname "$pi_entrypoint")" && printf '%s/%s\n' "$PWD" "$(basename "$pi_entrypoint")")
-  fi
-fi
 
 pane_runs_program() {
   if [ "$2" = "$program" ]; then
     return 0
   fi
+  if [ "$program" = pi ] && [ "$pi_resolved" = false ]; then
+    pi_command=$(command -v pi || true)
+    pi_entrypoint=$pi_command
+    if [ -n "$pi_entrypoint" ]; then
+      while link=$(readlink "$pi_entrypoint" 2>/dev/null); do
+        case $link in
+          /*) pi_entrypoint=$link ;;
+          *) pi_entrypoint="$(dirname "$pi_entrypoint")/$link" ;;
+        esac
+      done
+      pi_entrypoint=$(cd -P "$(dirname "$pi_entrypoint")" && printf '%s/%s\n' "$PWD" "$(basename "$pi_entrypoint")")
+    fi
+    pi_resolved=true
+  fi
+  processes=$(ps -t "${3#/dev/}" -o pid=,ppid=,comm=,args= 2>/dev/null || true)
   printf '%s\n' "$processes" | awk -v root="$1" -v program="$program" -v pi_command="$pi_command" -v pi_entrypoint="$pi_entrypoint" '
     $1 ~ /^[0-9]+$/ {
       parent[$1] = $2
@@ -87,25 +91,13 @@ pane_runs_program() {
   '
 }
 
-first_pane=
 on_program=false
-while read -r index pane pid dead command; do
-  if [ "$dead" = 1 ]; then
-    continue
-  fi
-  if pane_runs_program "$pid" "$command"; then
-    [ -n "$first_pane" ] || first_pane=$pane
-    if [ "$pane" = "$source_pane" ]; then
-      on_program=true
-    fi
-  fi
-done <<EOF
-$panes
-EOF
+if [ "$action" = toggle ] && [ "$source_dead" != 1 ] && pane_runs_program "$source_pid" "$source_command" "$source_tty"; then
+  on_program=true
+fi
 
 if [ "$action" = toggle ] && [ "$on_program" = true ]; then
-  target=$(tmux show-options -pqv -t "$source_pane" @program-return-pane)
-  return_zoom=$(tmux show-options -pqv -t "$source_pane" @program-return-zoom)
+  target=$return_pane
   if ! printf '%s\n' "$panes" | awk -v target="$target" '$2 == target { found = 1 } END { exit !found }'; then
     target=$(tmux list-panes -t "$window" -f '#{pane_last}' -F '#{pane_id}')
     return_zoom=$zoomed
@@ -113,18 +105,32 @@ if [ "$action" = toggle ] && [ "$on_program" = true ]; then
   if [ -z "$target" ] || [ "$target" = "$source_pane" ]; then
     exit 0
   fi
-  if [ "$zoomed" = 1 ]; then
-    tmux resize-pane -Z -t "$source_pane"
-  fi
-  tmux select-pane -t "$target"
   if [ "$return_zoom" = 1 ]; then
-    tmux resize-pane -Z -t "$target"
+    if [ "$zoomed" = 1 ]; then
+      tmux select-pane -Z -t "$target"
+    else
+      tmux select-pane -t "$target" \; resize-pane -Z -t "$target"
+    fi
+  else
+    tmux select-pane -t "$target"
   fi
   printf '%s\n' "$target"
   exit 0
 fi
 
-target=$first_pane
+target=
+while read -r index pane pid dead command tty; do
+  if [ "$dead" = 1 ] || { [ "$action" = toggle ] && [ "$pane" = "$source_pane" ]; }; then
+    continue
+  fi
+  if pane_runs_program "$pid" "$command" "$tty"; then
+    target=$pane
+    break
+  fi
+done <<EOF
+$panes
+EOF
+
 if [ -z "$target" ]; then
   cwd=$(tmux display-message -p -t "$source_pane" '#{pane_current_path}')
   zoom_option=
@@ -142,13 +148,14 @@ if [ -z "$target" ]; then
 fi
 
 if [ "$action" != ensure ]; then
+  set -- select-pane -Z -t "$target"
   if [ "$target" != "$source_pane" ]; then
-    tmux set-option -pq -t "$target" @program-return-pane "$source_pane"
-    tmux set-option -pq -t "$target" @program-return-zoom "$zoomed"
-    tmux select-pane -t "$target"
+    set -- set-option -pq -t "$target" @program-return-pane "$source_pane" \; \
+      set-option -pq -t "$target" @program-return-zoom "$zoomed" \; "$@"
   fi
-  if [ "$(tmux display-message -p -t "$target" '#{window_zoomed_flag}')" != 1 ]; then
-    tmux resize-pane -Z -t "$target"
+  if [ "$zoomed" != 1 ]; then
+    set -- "$@" \; resize-pane -Z -t "$target"
   fi
+  tmux "$@"
 fi
 printf '%s\n' "$target"
