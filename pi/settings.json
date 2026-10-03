@@ -4,13 +4,9 @@
   "defaultThinkingLevel": "medium",
   "defaultProvider": "openai",
   "defaultModel": "gpt-6.1-sol",
-  "enabledModels": [
-    "{anthropic/claude-opus-5-5,openai-codex/gpt-6.1-sol,openai-codex/gpt-6-astra}*"
-  ],
+  "enabledModels": ["{anthropic/claude-opus-5-5,openai/gpt-6.1-sol,openai/gpt-6-astra}*"],
   "treeFilterMode": "no-tools",
-  "packages": [
-    "./packages/subagents"
-  ],
+  "packages": ["./packages/subagents"],
   "quietStartup": true,
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
@@ -21,9 +17,7 @@
   "warnings": {
     "anthropicExtraUsage": false
   },
-  "npmCommand": [
-    "bun"
-  ],
+  "npmCommand": ["bun"],
   "fullscreenScrollbar": "always",
   "tuiMode": "regular"
 }
