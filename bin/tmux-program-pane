@@ -137,14 +137,7 @@ if [ -z "$target" ]; then
   if [ "$zoomed" = 1 ]; then
     zoom_option=-Z
   fi
-  target=$(tmux split-window -d $zoom_option -v -P -F '#{pane_id}' -t "$source_pane" -c "$cwd")
-  if [ "$program" = lazygit ]; then
-    tmux send-keys -l -t "$target" 'lazygit -ucd "$HOME/.config/lazygit"'
-  else
-    tmux send-keys -l -t "$target" "$program"
-  fi
-  tmux send-keys -l -t "$target" '; if [ "$(tmux display-message -p -t "$TMUX_PANE" "#{window_panes}")" -gt 1 ]; then tmux kill-pane -t "$TMUX_PANE"; fi'
-  tmux send-keys -t "$target" Enter
+  target=$(tmux split-window -d $zoom_option -v -P -F '#{pane_id}' -t "$source_pane" -c "$cwd" /bin/sh "$(dirname "$0")/tmux-program-pane-run" "$program")
 fi
 
 if [ "$action" != ensure ]; then

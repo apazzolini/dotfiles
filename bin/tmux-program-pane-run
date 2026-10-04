@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -m
+
+case $1 in
+  lazygit) lazygit -ucd "$HOME/.config/lazygit" ;;
+  nvim | pi) "$1" ;;
+  *) exit 1 ;;
+esac
+
+if [ "$(tmux show-options -gqv @program-pane-close-on-exit)" = true ]; then
+  tmux kill-pane -t "$TMUX_PANE"
+  exit
+fi
+
+exec "$(tmux show-options -gv default-shell)" -i

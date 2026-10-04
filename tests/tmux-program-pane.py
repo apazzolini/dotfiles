@@ -73,6 +73,7 @@ setInterval(() => {}, 1000);
     def setUp(self):
         self.cwd = self.directory / self._testMethodName
         self.cwd.mkdir()
+        self.tmux("set-option", "-g", "@program-pane-close-on-exit", "false")
         self.source = self.tmux("new-window", "-P", "-F", "#{pane_id}", "-c", str(self.cwd), "/bin/sh")
         self.window = self.format(self.source, "#{window_id}")
         self.test_env = dict(self.env, TMUX_PANE=self.source)
@@ -316,11 +317,28 @@ os.execv({real!r}, [{real!r}, *sys.argv[1:]])
         self.assertEqual(self.program("pi", "ensure"), pi)
         self.assertEqual(len(self.panes()), 2)
 
-    def test_program_exit_closes_pane_when_other_panes_remain(self):
+    def test_program_exit_keeps_pane_as_a_live_shell_when_other_panes_remain(self):
+        self.tmux("set-option", "-w", "-t", self.window, "remain-on-exit", "off")
         editor = self.program("nvim", "ensure")
         self.wait_program(editor, "nvim")
         self.wait(lambda: self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server") != "")
         server = self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server")
+        subprocess.check_call([shutil.which("nvim"), "--server", server, "--remote-send", "<Cmd>qa!<CR>"])
+        self.wait(lambda: self.format(editor, "#{pane_current_command}") in ("sh", "bash"))
+        self.assertEqual(self.panes(), [self.source, editor])
+        self.assertEqual(self.format(editor, "#{pane_dead}"), "0")
+        screen = self.tmux("capture-pane", "-p", "-t", editor)
+        self.assertNotIn("@program-pane-close-on-exit", screen)
+        self.assertNotIn("tmux-program-pane-run", screen)
+        self.tmux("send-keys", "-t", editor, "printf 'shell %s' 'is alive'", "Enter")
+        self.wait(lambda: "shell is alive" in self.tmux("capture-pane", "-p", "-t", editor))
+
+    def test_program_exit_closes_pane_when_enabled(self):
+        editor = self.program("nvim", "ensure")
+        self.wait_program(editor, "nvim")
+        self.wait(lambda: self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server") != "")
+        server = self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server")
+        self.tmux("set-option", "-g", "@program-pane-close-on-exit", "true")
         subprocess.check_call([shutil.which("nvim"), "--server", server, "--remote-send", "<Cmd>qa!<CR>"])
         self.wait(lambda: editor not in self.panes())
         self.assertEqual(self.panes(), [self.source])
@@ -333,10 +351,10 @@ os.execv({real!r}, [{real!r}, *sys.argv[1:]])
         server = self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server")
         self.tmux("kill-pane", "-t", self.source)
         subprocess.check_call([shutil.which("nvim"), "--server", server, "--remote-send", "<Cmd>qa!<CR>"])
-        self.wait_program(editor, "sh")
+        self.wait(lambda: self.format(editor, "#{pane_current_command}") in ("sh", "bash"))
         self.assertEqual(self.panes(), [editor])
         self.assertEqual(self.format(editor, "#{pane_dead}"), "0")
-        self.tmux("send-keys", "-t", editor, "printf 'shell is alive'", "Enter")
+        self.tmux("send-keys", "-t", editor, "printf 'shell %s' 'is alive'", "Enter")
         self.wait(lambda: "shell is alive" in self.tmux("capture-pane", "-p", "-t", editor))
 
     def test_dead_program_panes_are_not_reused_or_toggled_back(self):
