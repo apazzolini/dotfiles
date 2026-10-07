@@ -29,8 +29,8 @@ if [[ ! -d ~/code/_forks/lazygit ]]; then
 fi
 (
   cd ~/code/_forks/lazygit
-  go build
-  install -m 755 lazygit /usr/local/bin/lazygit
+  make
+  make install
 )
 
 # Node
