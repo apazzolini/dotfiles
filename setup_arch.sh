@@ -20,8 +20,18 @@ if [[ "$LANG" != "en_US.UTF-8" ]]; then
 fi
 
 sudo pacman -S --noconfirm base-devel cmake python go
-sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta bat unzip wget fd starship jq zoxide tree-sitter-cli github-cli
-bat cache --build
+sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta unzip wget just fd starship jq zoxide tree-sitter-cli github-cli
+
+# Lazygit
+mkdir -p ~/code/_forks
+if [[ ! -d ~/code/_forks/lazygit ]]; then
+  git clone git@github.com:apazzolini/lazygit.git ~/code/_forks/lazygit
+fi
+(
+  cd ~/code/_forks/lazygit
+  go build
+  install -m 755 lazygit /usr/local/bin/lazygit
+)
 
 # Node
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
@@ -37,7 +47,7 @@ curl -fsSL https://bun.sh/install | bash
 #go install golang.org/x/tools/cmd/goimports@latest
 
 # docker
-#sudo pacman -S --noconfirm docker
-#sudo systemctl start docker.service
-#sudo systemctl enable docker.service
-#sudo usermod -aG docker $USER
+sudo pacman -S --noconfirm docker
+sudo systemctl start docker.service
+sudo systemctl enable docker.service
+sudo usermod -aG docker $USER

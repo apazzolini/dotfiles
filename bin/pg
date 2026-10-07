@@ -2,7 +2,7 @@
 
 pg () {
   ps -Aef | head -1
-  ps -Aef | rg -i --color=always "$@" | rg -v "rg -i"
+  ps -Aef | awk -v pid="$$" '$2 != pid' | rg -i --color=always "$@" | rg -v "rg -i"
 }
 
 pg "$@"

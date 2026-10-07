@@ -1,6 +1,6 @@
 # Environment Variables
 export ZSH=$HOME/.dotfiles
-export EDITOR='/usr/local/bin/nvim'
+export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 export CLICOLOR=true
 export COLORTERM=truecolor

@@ -1,29 +1,47 @@
 #!/bin/sh
 
-if [ "$#" -lt 3 ] || [ -z "${TMUX:-}" ]; then
-  echo "usage: lazygit-send-note <file> <from-line> <to-line> [message] [commit]" >&2
+if [ "${1:-}" = "--error" ]; then
+  printf '%s\n' "${2:-No diff location selected.}" >&2
   exit 1
 fi
 
-file=$1
-from_line=$2
-to_line=${3:-$from_line}
-message=$4
-commit=$5
-
-if [ "$from_line" = "$to_line" ]; then
-  line_location=$from_line
-else
-  line_location=$from_line-$to_line
-fi
-
-if [ -n "$commit" ]; then
-  if ! short_commit=$(git rev-parse --short "$commit" 2>/dev/null); then
-    short_commit=$(printf '%s' "$commit" | cut -c1-8)
+if [ "${1:-}" = "--diff-note" ] || [ "${1:-}" = "--stdin" ]; then
+  if [ -z "${TMUX:-}" ]; then
+    echo "Run Lazygit inside tmux to send a note to pi." >&2
+    exit 1
   fi
-  location=$short_commit:$file:$line_location
+  message=${2:-}
+  location=$(cat) || exit 1
+  if [ -z "$location" ]; then
+    echo "No diff location selected." >&2
+    exit 1
+  fi
 else
-  location=$file:$line_location
+  if [ "$#" -lt 3 ] || [ -z "${TMUX:-}" ]; then
+    echo "usage: lazygit-send-note --stdin (location and note on stdin), --diff-note [message] (location on stdin), or <file> <from-line> <to-line> [message] [commit]" >&2
+    exit 1
+  fi
+
+  file=$1
+  from_line=$2
+  to_line=${3:-$from_line}
+  message=${4:-}
+  commit=${5:-}
+
+  if [ "$from_line" = "$to_line" ]; then
+    line_location=$from_line
+  else
+    line_location=$from_line-$to_line
+  fi
+
+  if [ -n "$commit" ]; then
+    if ! short_commit=$(git rev-parse --short "$commit" 2>/dev/null); then
+      short_commit=$(printf '%s' "$commit" | cut -c1-8)
+    fi
+    location=$short_commit:$file:$line_location
+  else
+    location=$file:$line_location
+  fi
 fi
 
 pi_pane=$("$(dirname "$0")/tmux-program-pane" pi ensure) || exit 1

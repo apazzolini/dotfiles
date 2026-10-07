@@ -51,18 +51,14 @@ customCommands:
     command: 'printf "\`\`\`diff\n$(git diff --staged)\n\n\`\`\`" | pbcopy'
     context: "files"
   - key: "Y"
-    description: "Send file location to pi"
-    command: '~/.dotfiles/bin/lazygit-send-note {{.SelectedPath | quote}} {{.SelectedLine.Range.From}} {{.SelectedLine.Range.To}} {{.Form.Note | quote}}'
-    context: "staging, stagingSecondary"
+    description: "Send location to pi"
+    command: '{{ if .SelectedDiff }}~/.dotfiles/bin/lazygit-send-note --stdin{{ else }}~/.dotfiles/bin/lazygit-send-note --error {{ .SelectedDiffError | quote }}{{ end }}'
+    stdin: '{{ if .SelectedDiff }}{{ .SelectedDiff }}
+
+      {{ .Form.Note }}{{ end }}'
+    context: "normal, normalSecondary"
     prompts:
       - type: "input"
         key: "Note"
         title: "Note"
-  - key: "Y"
-    description: "Send commit location to pi"
-    command: '~/.dotfiles/bin/lazygit-send-note {{.SelectedPath | quote}} {{.SelectedLine.Range.From}} {{.SelectedLine.Range.To}} {{.Form.Note | quote}} {{.SelectedCommit.Hash | quote}}'
-    context: "patchBuilding"
-    prompts:
-      - type: "input"
-        key: "Note"
-        title: "Note"
+        condition: '{{ if .SelectedDiff }}true{{ end }}'
