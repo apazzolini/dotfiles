@@ -13,19 +13,22 @@ sudo chown -R andre /usr/local/
 sudo pacman -S --noconfirm zsh
 sudo chsh andre -s /usr/bin/zsh
 
-#if [[ "$LANG" != "en_US.UTF-8" ]]; then
-  #sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-  #sudo locale-gen
-  #sudo localectl set-locale LANG=en_US.UTF-8
-#fi
+if [[ "$LANG" != "en_US.UTF-8" ]]; then
+  sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+  sudo locale-gen
+  sudo localectl set-locale LANG=en_US.UTF-8
+fi
 
 sudo pacman -S --noconfirm base-devel cmake python go
-sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta bat unzip wget fd starship lazygit jq zoxide tree-sitter-cli github-cli
+sudo pacman -S --noconfirm ripgrep fzf htop tmux neovim git-delta bat unzip wget fd starship jq zoxide tree-sitter-cli github-cli
 bat cache --build
 
 # Node
-#curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
-#npm install -g n
+curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
+npm install -g n
+
+# Bun
+curl -fsSL https://bun.sh/install | bash
 
 # Rust
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

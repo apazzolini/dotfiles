@@ -10,3 +10,5 @@ go.sh
 .prettier_d
 .nvimlog
 .rgignore
+pi/install
+pi/bin

@@ -16,7 +16,9 @@ Other APIs, providers, and models are not modified.
 
 ## Installation
 
-Install from npm into Pi's user configuration:
+This local copy has no external runtime dependencies beyond the modules Pi provides. No `bun install` or `npm install` is needed in this directory.
+
+Install the upstream package from npm into Pi's user configuration:
 
 ```bash
 pi install npm:pi-gpt-enhance
@@ -226,7 +228,7 @@ Preferences are stored in:
 ~/.pi/agent/gpt-enhance-preferences.json
 ```
 
-Writes use an inter-process lock and an atomic rename. A missing or invalid file is treated as Fast being disabled. Tests can use `PI_GPT_ENHANCE_PREFERENCES_FILE` to specify an isolated path.
+Writes use a Node-built-in inter-process lock and an atomic rename. Locks owned by exited processes are recovered; locks owned by live processes are not expired. A missing or invalid file is treated as Fast being disabled. Tests can use `PI_GPT_ENHANCE_PREFERENCES_FILE` to specify an isolated path.
 
 If a third-party provider omits `service_tier` from its response, Pi may be unable to calculate the priority multiplier; the request will still carry priority.
 

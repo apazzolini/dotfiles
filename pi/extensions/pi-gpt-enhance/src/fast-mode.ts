@@ -1,14 +1,24 @@
-import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { randomUUID } from "node:crypto";
+import {
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  rmdirSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
+import { setTimeout } from "node:timers/promises";
 import type { Model, SimpleStreamOptions } from "@earendil-works/pi-ai";
-import lockfile from "proper-lockfile";
 import type { CompressionCapability } from "./lifecycle.js";
 import { isEligibleGptModelId } from "./model-eligibility.js";
 
 const FAST_STATUS_KEY = "gpt-enhance.fast";
 const COMPRESSION_STATUS_KEY = "gpt-enhance.compression";
-const PREFERENCE_LOCK_STALE_MS = 2_000;
+const PREFERENCE_LOCK_RETRIES = 30;
 const PREFERENCE_LOCK_RETRY_MS = 100;
 const DEFAULT_PREFERENCES_PATH = join(homedir(), ".pi", "agent", "gpt-enhance-preferences.json");
 
@@ -86,24 +96,67 @@ function writePreferences(preferences: PreferenceFile): void {
 async function updatePreferences<T>(mutator: (preferences: PreferenceFile) => T): Promise<T> {
   const path = preferencesPath();
   mkdirSync(dirname(path), { recursive: true });
-  const release = await lockfile.lock(path, {
-    realpath: false,
-    stale: PREFERENCE_LOCK_STALE_MS,
-    update: PREFERENCE_LOCK_STALE_MS / 2,
-    retries: {
-      retries: 30,
-      factor: 1,
-      minTimeout: PREFERENCE_LOCK_RETRY_MS,
-      maxTimeout: PREFERENCE_LOCK_RETRY_MS,
-    },
-  });
+  const lockPath = `${path}.lock`;
+  const owner = `${process.pid}-${randomUUID()}`;
+  const candidatePath = `${lockPath}.${owner}.tmp`;
+  let acquired = false;
+  mkdirSync(candidatePath);
   try {
+    // Publish a nonempty directory atomically, so cleanup cannot remove a new owner's lock.
+    writeFileSync(join(candidatePath, owner), "");
+    for (let attempt = 0; attempt <= PREFERENCE_LOCK_RETRIES; attempt++) {
+      try {
+        renameSync(candidatePath, lockPath);
+        acquired = true;
+        break;
+      } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (code !== "EEXIST" && code !== "ENOTEMPTY") throw error;
+      }
+
+      try {
+        for (const entry of readdirSync(lockPath)) {
+          const match = /^(\d+)-[0-9a-f-]{36}$/.exec(entry);
+          if (!match) continue;
+          try {
+            process.kill(Number(match[1]), 0);
+          } catch (error) {
+            if ((error as NodeJS.ErrnoException).code !== "ESRCH") continue;
+            try {
+              unlinkSync(join(lockPath, entry));
+            } catch (error) {
+              if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+            }
+          }
+        }
+        // Remove only an empty lock, never a replacement owner's marker.
+        rmdirSync(lockPath);
+      } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (code !== "ENOENT" && code !== "ENOTEMPTY" && code !== "EEXIST") throw error;
+      }
+
+      if (attempt === PREFERENCE_LOCK_RETRIES) {
+        throw new Error(`Timed out waiting for preferences lock: ${lockPath}`);
+      }
+      await setTimeout(PREFERENCE_LOCK_RETRY_MS);
+    }
     const preferences = readPreferences();
     const result = mutator(preferences);
     writePreferences(preferences);
     return result;
   } finally {
-    await release();
+    if (acquired) {
+      unlinkSync(join(lockPath, owner));
+      try {
+        rmdirSync(lockPath);
+      } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (code !== "ENOENT" && code !== "ENOTEMPTY" && code !== "EEXIST") throw error;
+      }
+    } else {
+      rmSync(candidatePath, { recursive: true, force: true });
+    }
   }
 }
 
