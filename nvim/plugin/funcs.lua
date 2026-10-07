@@ -60,18 +60,6 @@ vim.cmd([[
   nnoremap <expr> i IndentWith("i")
 ]])
 
--- Reload treesitter and LSP
-vim.keymap.set('n', '<leader>k', function()
-  vim.cmd([[
-    write
-    edit
-    TSBufEnable highlight
-    LspStop
-    sleep 1
-    LspStart
-  ]])
-end)
-
 -- Format JSON
 vim.cmd([[
   command! -range=% JSON set ft=json | <line1>,<line2>!jq
