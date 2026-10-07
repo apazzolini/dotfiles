@@ -9,7 +9,20 @@ case $1 in
 esac
 
 if [ "$(tmux show-options -gqv @program-pane-close-on-exit)" = true ]; then
-  tmux kill-pane -t "$TMUX_PANE"
+  state=$(tmux display-message -p -t "$TMUX_PANE" '#{window_id} #{pane_active} #{@program-return-pane} #{@program-return-zoom}')
+  read -r window active return_pane return_zoom <<EOF
+$state
+EOF
+  if [ "$active" = 1 ] && [ -n "$return_pane" ] && [ "$return_pane" != "$TMUX_PANE" ] &&
+    tmux list-panes -t "$window" -F '#{pane_id}' | grep -Fxq -- "$return_pane"; then
+    set -- kill-pane -t "$TMUX_PANE" \; select-pane -t "$return_pane"
+    if [ "$return_zoom" = 1 ]; then
+      set -- "$@" \; resize-pane -Z -t "$return_pane"
+    fi
+    tmux "$@"
+  else
+    tmux kill-pane -t "$TMUX_PANE"
+  fi
   exit
 fi
 

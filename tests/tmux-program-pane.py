@@ -343,6 +343,38 @@ os.execv({real!r}, [{real!r}, *sys.argv[1:]])
         self.wait(lambda: editor not in self.panes())
         self.assertEqual(self.panes(), [self.source])
 
+    def test_program_exit_restores_return_pane_and_zoom(self):
+        self.tmux("set-option", "-g", "@program-pane-close-on-exit", "true")
+        other = self.split("/bin/sh")
+        for zoomed in (0, 1):
+            with self.subTest(zoomed=zoomed):
+                if zoomed:
+                    self.tmux("resize-pane", "-Z", "-t", self.source)
+                editor = self.program("nvim")
+                self.wait_program(editor, "nvim")
+                self.wait(lambda: self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server") != "")
+                server = self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server")
+                subprocess.check_call([shutil.which("nvim"), "--server", server, "--remote-send", "<Cmd>qa!<CR>"])
+                self.wait(lambda: editor not in self.panes())
+                self.wait(lambda: self.active() == self.source and self.format(self.source, "#{window_zoomed_flag}") == str(zoomed))
+                self.assert_state(self.source, zoomed)
+                self.assertEqual(self.panes(), [self.source, other])
+
+    def test_background_program_exit_does_not_restore_return_pane(self):
+        self.tmux("set-option", "-g", "@program-pane-close-on-exit", "true")
+        self.split("/bin/sh")
+        self.tmux("resize-pane", "-Z", "-t", self.source)
+        editor = self.program("nvim")
+        self.wait_program(editor, "nvim")
+        self.wait(lambda: self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server") != "")
+        server = self.tmux("show-options", "-pqv", "-t", editor, "@nvim-server")
+        self.program("nvim", source=editor)
+        self.tmux("resize-pane", "-Z", "-t", self.source)
+        self.assert_state(self.source, 0)
+        subprocess.check_call([shutil.which("nvim"), "--server", server, "--remote-send", "<Cmd>qa!<CR>"])
+        self.wait(lambda: editor not in self.panes())
+        self.assert_state(self.source, 0)
+
     def test_program_exit_keeps_last_pane_as_a_live_shell(self):
         self.tmux("set-option", "-w", "-t", self.window, "remain-on-exit", "off")
         editor = self.program("nvim", "ensure")
