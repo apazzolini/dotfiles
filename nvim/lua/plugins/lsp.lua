@@ -52,7 +52,7 @@ return {
       vimls = {},
       zls = {},
       terraformls = {},
-      tsgo = {
+      tsc = {
         cmd = { vim.env.HOME .. '/.bun/bin/tsgo', '--lsp', '--stdio' },
       },
 
@@ -214,7 +214,7 @@ return {
     end
 
     local function refresh_tsgo_diagnostics(bufnr)
-      local clients = vim.lsp.get_clients({ bufnr = bufnr, name = 'tsgo' })
+      local clients = vim.lsp.get_clients({ bufnr = bufnr, name = 'tsc' })
       for _, client in pairs(clients) do
         client:request('textDocument/diagnostic', { textDocument = vim.lsp.util.make_text_document_params(bufnr) })
       end
