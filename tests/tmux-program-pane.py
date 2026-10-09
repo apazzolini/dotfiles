@@ -119,6 +119,7 @@ setInterval(() => {}, 1000);
         return self.tmux("split-window", "-d", *options, "-P", "-F", "#{pane_id}", "-t", target or self.source, "-c", str(self.cwd), command)
 
     def test_create_and_restore_unzoomed(self):
+        self.split("/bin/sh")
         lazygit = self.program("lazygit")
         self.wait_program(lazygit, "lazygit")
         self.assert_state(lazygit, 1)
@@ -126,7 +127,19 @@ setInterval(() => {}, 1000);
         self.assertEqual(self.program("lazygit", source=lazygit), self.source)
         self.assert_state(self.source, 0)
         self.assertEqual(self.program("lazygit"), lazygit)
-        self.assertEqual(len(self.panes()), 2)
+        self.assertEqual(len(self.panes()), 3)
+
+    def test_single_pi_pane_returns_zoomed(self):
+        self.tmux("respawn-pane", "-k", "-t", self.source, "pi")
+        self.wait(lambda: self.format(self.source, "#{bracket_paste_flag}") == "1")
+        self.assert_state(self.source, 0)
+        for _ in range(2):
+            lazygit = self.program("lazygit")
+            self.wait_program(lazygit, "lazygit")
+            self.assert_state(lazygit, 1)
+            self.assertEqual(self.program("lazygit", source=lazygit), self.source)
+            self.assert_state(self.source, 1)
+            self.assertEqual(len(self.panes()), 2)
 
     def test_restore_previously_zoomed_pane(self):
         self.split("/bin/sh")
@@ -208,6 +221,7 @@ os.execv({real!r}, [{real!r}, *sys.argv[1:]])
         self.assert_state(self.source, 0)
 
     def test_nested_toggles_restore_each_return_state(self):
+        self.split("/bin/sh")
         lazygit = self.program("lazygit")
         self.wait_program(lazygit, "lazygit")
         editor = self.program("nvim", source=lazygit)

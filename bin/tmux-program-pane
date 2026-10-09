@@ -141,10 +141,14 @@ if [ -z "$target" ]; then
 fi
 
 if [ "$action" != ensure ]; then
+  return_zoom=$zoomed
+  if [ "$(printf '%s\n' "$panes" | wc -l)" -eq 1 ]; then
+    return_zoom=1
+  fi
   set -- select-pane -Z -t "$target"
   if [ "$target" != "$source_pane" ]; then
     set -- set-option -pq -t "$target" @program-return-pane "$source_pane" \; \
-      set-option -pq -t "$target" @program-return-zoom "$zoomed" \; "$@"
+      set-option -pq -t "$target" @program-return-zoom "$return_zoom" \; "$@"
   fi
   if [ "$zoomed" != 1 ]; then
     set -- "$@" \; resize-pane -Z -t "$target"
