@@ -216,7 +216,7 @@ return {
     local function refresh_tsgo_diagnostics(bufnr)
       local clients = vim.lsp.get_clients({ bufnr = bufnr, name = 'tsc' })
       for _, client in pairs(clients) do
-        client:request('textDocument/diagnostic', { textDocument = vim.lsp.util.make_text_document_params(bufnr) })
+        client:request('textDocument/diagnostic', { textDocument = vim.lsp.util.make_text_document_params(bufnr) }, nil, bufnr)
       end
     end
 
