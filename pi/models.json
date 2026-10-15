@@ -2,7 +2,7 @@
   "providers": {
     "openai": {
       "modelOverrides": {
-        "gpt-5.6-sol": {
+        "gpt-6.1-sol": {
           "contextWindow": 1050000
         },
         "gpt-6-astra": {

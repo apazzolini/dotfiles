@@ -26,6 +26,7 @@ const REPORT_TOKEN_ENV = "PI_TMUX_SUBAGENT_TOKEN";
 const REPORT_TOKEN_STATE = Symbol.for("andre-subagents.report-token-state");
 const REPORT_OPTION_PREFIX = "@pi_tmux_subagent_";
 const REPORT_CHANNEL_PREFIX = "pi-tmux-subagent-";
+const USAGE_START_ENTRY = "subagent-usage-start";
 const SLASH_COMMAND_PATTERN = /^\/[A-Za-z0-9][\w:.-]*(\s|$)/;
 const CHILD_ENV_EXCLUSIONS = new Set([
   "_",
@@ -200,7 +201,13 @@ function getAssistantText(message: AssistantMessage): string {
     .trim();
 }
 
-function getUsage(entries: SessionEntry[]): Usage | undefined {
+function getUsage(entries: SessionEntry[], token: string): Usage | undefined {
+  const startIndex = entries.findIndex(
+    (entry) =>
+      entry.type === "custom" && entry.customType === USAGE_START_ENTRY && entry.data === token,
+  );
+  if (startIndex === -1) return undefined;
+
   const total: Usage = {
     input: 0,
     output: 0,
@@ -217,14 +224,16 @@ function getUsage(entries: SessionEntry[]): Usage | undefined {
   };
   let hasUsage = false;
 
-  for (const entry of entries) {
+  for (const entry of entries.slice(startIndex + 1)) {
     let usage: Usage | undefined;
     if (
       entry.type === "message" &&
       (entry.message.role === "assistant" || entry.message.role === "toolResult")
     ) {
       usage = entry.message.usage;
-    } else if (entry.type === "branch_summary" || entry.type === "compaction") {
+    } else if (
+      entry.type === "branch_summary" || entry.type === "compaction" || entry.type === "usage"
+    ) {
       usage = entry.usage;
     }
     if (!usage) continue;
@@ -268,7 +277,7 @@ export default function tmuxSubagent(pi: ExtensionAPI) {
       const value = JSON.stringify({
         state,
         sessionFile,
-        usage: entries ? getUsage(entries) : undefined,
+        usage: entries ? getUsage(entries, reportToken) : undefined,
       } satisfies SubagentReport);
       await pi.exec("tmux", ["set-option", "-gq", optionName, value]);
       if (state !== "running") {
@@ -278,6 +287,17 @@ export default function tmuxSubagent(pi: ExtensionAPI) {
 
     pi.on("session_start", async (_event, ctx) => {
       sessionFile = ctx.sessionManager.getSessionFile();
+      // Forks copy billed history. Keep this run's boundary across extension reloads.
+      if (
+        !ctx.sessionManager.getEntries().some(
+          (entry) =>
+            entry.type === "custom" &&
+            entry.customType === USAGE_START_ENTRY &&
+            entry.data === reportToken,
+        )
+      ) {
+        pi.appendEntry(USAGE_START_ENTRY, reportToken);
+      }
       await report("running");
     });
     pi.on("agent_settled", async (_event, ctx) => {
@@ -630,7 +650,7 @@ export default function tmuxSubagent(pi: ExtensionAPI) {
         );
       }
 
-      const subagentUsage = report.usage ?? getUsage(sessionManager.getEntries());
+      const subagentUsage = report.usage ?? getUsage(sessionManager.getEntries(), token);
       const finalText =
         getAssistantText(finalMessage) || "(Subagent completed without a final text response.)";
       const truncated = truncateHead(finalText, {

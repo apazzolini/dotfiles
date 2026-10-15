@@ -61,7 +61,7 @@
     ri = rebase --interactive
     wt = worktree
     rom = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git reset --hard origin/master"
-    from = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git fetch && git reset --hard origin/master"
+    from = "!git reset --hard && git clean -fd && git checkout --ignore-other-worktrees master && git fetch && git reset --hard origin/master && git status > /dev/null"
     ro = "!git reset --hard && git clean -fd && git reset --hard origin/master"
     fro = "!git reset --hard && git clean -fd && git fetch && git reset --hard origin/master"
     work = "!git fetch && git checkout origin/develop --ignore-other-worktrees --no-track -b \"$@\""
